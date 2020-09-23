@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>FirstBlog</title>
-    <url>/2020/09/21/FirstBlog/</url>
+    <url>/2020/09/21/Test/</url>
     <content><![CDATA[<h4 id="开始第一篇文章"><a href="#开始第一篇文章" class="headerlink" title="开始第一篇文章"></a>开始第一篇文章</h4><ul>
 <li>xxx </li>
 <li>yyyy</li>
@@ -20,7 +20,7 @@
   </entry>
   <entry>
     <title>Github + Hexo + Next 搭建个人博客网站</title>
-    <url>/2020/09/19/hello-world/</url>
+    <url>/2020/09/21/BuildBlog/</url>
     <content><![CDATA[<h2 id="步骤如下："><a href="#步骤如下：" class="headerlink" title="步骤如下："></a>步骤如下：</h2><hr>
 <h3 id="Github-创建博客仓库"><a href="#Github-创建博客仓库" class="headerlink" title="Github 创建博客仓库"></a>Github 创建博客仓库</h3><p>在 GitHub 新建一个仓库（Repository），名称为 {username}.github.io，注意这个名比较特殊，必须要是 github.io 为后缀结尾的。比如：aa4790139.github.io</p>
 <hr>
