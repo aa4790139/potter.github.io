@@ -124,4 +124,46 @@
         <tag>Next</tag>
       </tags>
   </entry>
+  <entry>
+    <title>全栈学习-开篇-001</title>
+    <url>/2020/09/25/LearningFullStack01/</url>
+    <content><![CDATA[<blockquote>
+<p>起因：在网上搜索了挺久，都没找到让我很满意的项目学习，也买了好几个付费项目，看了一部分就会发现看不下去，发现很多问题，虽然说能学到一部分东西，但感觉这些项目只是为了快速赚钱搞的，项目结构不清晰、缺少项目相关的介绍文档、前后端项目不分离，代码也写的非常临时和随意等等，可能我要求过高了。我如果用这种方式去做一个正式商业化的项目，用这种态度搞出来的东西肯定做不大。说实话我以前做东西也很随意，但自从我读了《程序员修炼之道》这本书后(要想成为一名合格的程序员，一定要去好好阅读这边书，去吸收点灵气)，让我受益匪浅。要想成为一个好的工程师，要约束好自己，做事情不要太随意，得有点工匠精神，像匠人一样打造自己的武器，一段时间后你会发现自己层次上了一个阶梯。为了提升下自己全栈方便的能力，选择了我慕客上购买的一个小项目，这个小项目很适合入手，所以就拿这个项目(简版-慕客商城)开启全栈学习之旅。</p>
+</blockquote>
+<h3 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h3><ol>
+<li><p>前端</p>
+<ul>
+<li>Vue - 2.2.6</li>
+<li>vue-cookie - 1.1.4</li>
+<li>vue-resource - 1.3.1</li>
+<li>vue-router - 2.3.1</li>
+<li>vuex - 2.3.1</li>
+</ul>
+</li>
+<li><p>后端</p>
+<ul>
+<li>Node.js - 12.13.1</li>
+<li>Express - 4.14.1</li>
+<li>Mongoose - 5.0.1</li>
+<li>Mongodb - 4.2.8</li>
+</ul>
+</li>
+</ol>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ul>
+<li>WebStorm - 2020.1 (方便后端调试，对比VScode、SublimeText、HBuildX 这IDE功能更强大)</li>
+<li>XShell6 、XFTP6 </li>
+<li>Navicat Premium 12 (低版本不支持连mongodb，所以请选择高一点的版本)</li>
+</ul>
+<blockquote>
+<p>未完待续…</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>全栈</category>
+      </categories>
+      <tags>
+        <tag>全栈</tag>
+        <tag>NodeJS</tag>
+      </tags>
+  </entry>
 </search>
