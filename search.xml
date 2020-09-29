@@ -15,7 +15,7 @@
 <hr>
 <h3 id="初始化Hexo项目"><a href="#初始化Hexo项目" class="headerlink" title="初始化Hexo项目"></a>初始化Hexo项目</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>如果出现以下情况报错：<br><img src="https://github.com/aa4790139/BlogPicBed/blob/master/img/1.png?raw=true" alt=""></p>
+<li><p>如果出现以下情况报错：<br><img data-src="https://github.com/aa4790139/BlogPicBed/blob/master/img/1.png?raw=true" alt=""></p>
 <p>  解决办法：关闭npm 的https</p>
   <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm config set strict-ssl false</span><br></pre></td></tr></table></figure>
 </li>
@@ -47,7 +47,7 @@
 <li>github 创建BlogPicBed 仓库</li>
 <li><a href="https://docs.github.com/cn/github/authenticating-to-github/creating-a-personal-access-token">创建个人访问令牌</a></li>
 <li><a href="https://github-production-release-asset-2e65be.s3.amazonaws.com/113965016/bc669d80-3b9c-11ea-9c36-8274348f10a9?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20200923%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20200923T014847Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=64a969201f2341629756cedfb055010b0262aec31d37fddc06c9fdf6ac56618a&amp;X-Amz-SignedHeaders=host&amp;actor_id=9338717&amp;key_id=0&amp;repo_id=113965016&amp;response-content-disposition=attachment%3B%20filename%3DPicGo-Setup-2.2.2.exe&amp;response-content-type=application%2Foctet-stream">下载PicGo</a> (目的：利用此工具上传图片至Github创建的BlogPicBed仓库中)</li>
-<li>PicGo 配置成Github,如下图所示 <img src="https://github.com/aa4790139/BlogPicBed/blob/master/img/2.png?raw=true" alt=""></li>
+<li>PicGo 配置成Github,如下图所示 <img data-src="https://github.com/aa4790139/BlogPicBed/blob/master/img/2.png?raw=true" alt=""></li>
 <li>利用PicGo 上传一张图片，然后去BlogPicBed仓库的img文件夹找到你刚刚上传的图片，然后右键复制图片链接地址</li>
 <li>使用Github 图床仓库的图片地址(提示：复制的图片地址是不带raw参数的，所以需要手动在地址后面拼”?raw=true” 否则图片不会显示)<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">比如：![](https:&#x2F;&#x2F;github.com&#x2F;aa4790139&#x2F;BlogPicBed&#x2F;blob&#x2F;master&#x2F;img&#x2F;2.png?raw&#x3D;true)</span><br></pre></td></tr></table></figure>
 </li>
@@ -88,7 +88,7 @@
 <h3 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h3><ol>
 <li>阿里云购买域名: <a href="https://oss.console.aliyun.com/"></a></li>
 <li>获取github上博客项目域名的ip<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ping github用户名.github.io</span><br></pre></td></tr></table></figure></li>
-<li>阿里云平台域名绑定博客域名ip(第2步ping出来的ip)<br><img src="https://github.com/aa4790139/BlogPicBed/blob/master/img/3.png?raw=true" alt=""></li>
+<li>阿里云平台域名绑定博客域名ip(第2步ping出来的ip)<br><img data-src="https://github.com/aa4790139/BlogPicBed/blob/master/img/3.png?raw=true" alt=""></li>
 </ol>
 <hr>
 <h3 id="版权配置"><a href="#版权配置" class="headerlink" title="版权配置"></a>版权配置</h3><ol>
