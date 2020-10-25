@@ -96,8 +96,10 @@
 </ol>
 </li>
 </ul>
-<h3 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h3><pre><code>- [Appium自动化测试教程](https://www.51zxw.net/list.aspx?page=2&amp;cid=670#!fenye=2)
-</code></pre><blockquote>
+<h3 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h3><ul>
+<li><a href="https://www.51zxw.net/list.aspx?page=2&amp;cid=670#!fenye=2">Appium自动化测试教程</a></li>
+</ul>
+<blockquote>
 <p>最后：其他平台APP调试应该类似，以后再尝试吧 ~</p>
 </blockquote>
 <hr>
