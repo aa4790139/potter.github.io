@@ -309,6 +309,7 @@
     <url>/2020/10/31/Python01/</url>
     <content><![CDATA[<h3 id="最明显的区别"><a href="#最明显的区别" class="headerlink" title="最明显的区别"></a>最明显的区别</h3><ol>
 <li>Python if、for、while等 包裹代码块不是用{}，而是使用”:”和 换行缩进</li>
+<li>Python 弱类型语言，同时每句话结束后无需加分号”;”，与JAVAScript 类似</li>
 </ol>
 <h3 id="具体语法区别："><a href="#具体语法区别：" class="headerlink" title="具体语法区别："></a>具体语法区别：</h3><ul>
 <li>if<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：</span><br><span class="line">if(条件)&#123;</span><br><span class="line">    print(&quot;xxx&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Python:</span><br><span class="line">if 条件:</span><br><span class="line">    print(&quot;xxx&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
