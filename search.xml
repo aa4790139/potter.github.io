@@ -1,52 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>自动化测试-01：了解</title>
-    <url>/2020/10/16/AutoTest01/</url>
-    <content><![CDATA[<h3 id="测试内容分类"><a href="#测试内容分类" class="headerlink" title="测试内容分类"></a>测试内容分类</h3><ul>
-<li>从软件测试的实践过程看：单元测试、集成测试、确认测试、系统测试、验收测试</li>
-<li>从软件测试的方法策略看：白盒测试、黑盒测试、灰盒测试</li>
-<li>从软件测试的测试视角看：功能测试、性能测试、兼容性测试、安全测试、探索性测试</li>
-<li>从软件测试的技术程度看：手工测试、自动化测试、测试开发</li>
-</ul>
-<h3 id="测试框架"><a href="#测试框架" class="headerlink" title="测试框架"></a>测试框架</h3><ul>
-<li>Python/PHP/Java/C#/JavaScprit/Ruby + Selenium/Appium + 单元测试框架：开源功能自动化测试方案</li>
-<li>Python + Macaca：阿里巴巴  自动化测试方案</li>
-<li>JavaScript + TestCafe，DevExpress： 开源功能自动化测试方案</li>
-<li>Python/Java/C#/JavaScprit/Ruby + Gauge： 一款开源的功能自动化测试方案</li>
-<li>JavaScript + Postman：免费的Web接口功能自动化测试</li>
-<li>Groovy + SoapUI：开源的Web接口功能自动化测试方案</li>
-<li>更多<ul>
-<li>selenium：<a href="http://www.selenium.org.cn/category/use">web测试工具</a></li>
-<li>appium: web、原生、混合应用都能测试</li>
-</ul>
-</li>
-</ul>
-<h3 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h3><ul>
-<li><a href="https://www.51zxw.net/list.aspx?page=2&amp;cid=670">Appium自动化测试视频教程</a></li>
-<li><a href="https://sutune.me/2018/04/15/appium/">Appium简介</a></li>
-<li><a href="https://hllgithub.github.io/2018/09/09/Appium%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">Appium自动化测试介绍和使用说明</a></li>
-<li><a href="http://www.selenium.org.cn/category/use">selenium</a></li>
-<li><a href="https://python-selenium-zh.readthedocs.io/zh_CN/latest/">selenium + python 中文文档</a></li>
-<li><a href="https://macacajs.github.io/zh/guide/#%E9%9B%86%E6%88%90%E5%92%8C%E8%9E%8D%E5%90%88">Macaca</a></li>
-<li><a href="https://yq.aliyun.com/articles/398697">Macaca-iOS入门那些事</a></li>
-</ul>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
-<li><a href="https://zhuanlan.zhihu.com/p/36896449">一分钟了解自动化测试</a></li>
-</ul>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>自动化测试</category>
-      </categories>
-      <tags>
-        <tag>测试</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>自动化测试-02：实践</title>
     <url>/2020/10/22/AutoTest02/</url>
     <content><![CDATA[<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><ul>
@@ -103,6 +57,52 @@
 <blockquote>
 <p>最后：其他平台APP调试应该类似，以后再尝试吧 ~</p>
 </blockquote>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>自动化测试</category>
+      </categories>
+      <tags>
+        <tag>测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自动化测试-01：了解</title>
+    <url>/2020/10/16/AutoTest01/</url>
+    <content><![CDATA[<h3 id="测试内容分类"><a href="#测试内容分类" class="headerlink" title="测试内容分类"></a>测试内容分类</h3><ul>
+<li>从软件测试的实践过程看：单元测试、集成测试、确认测试、系统测试、验收测试</li>
+<li>从软件测试的方法策略看：白盒测试、黑盒测试、灰盒测试</li>
+<li>从软件测试的测试视角看：功能测试、性能测试、兼容性测试、安全测试、探索性测试</li>
+<li>从软件测试的技术程度看：手工测试、自动化测试、测试开发</li>
+</ul>
+<h3 id="测试框架"><a href="#测试框架" class="headerlink" title="测试框架"></a>测试框架</h3><ul>
+<li>Python/PHP/Java/C#/JavaScprit/Ruby + Selenium/Appium + 单元测试框架：开源功能自动化测试方案</li>
+<li>Python + Macaca：阿里巴巴  自动化测试方案</li>
+<li>JavaScript + TestCafe，DevExpress： 开源功能自动化测试方案</li>
+<li>Python/Java/C#/JavaScprit/Ruby + Gauge： 一款开源的功能自动化测试方案</li>
+<li>JavaScript + Postman：免费的Web接口功能自动化测试</li>
+<li>Groovy + SoapUI：开源的Web接口功能自动化测试方案</li>
+<li>更多<ul>
+<li>selenium：<a href="http://www.selenium.org.cn/category/use">web测试工具</a></li>
+<li>appium: web、原生、混合应用都能测试</li>
+</ul>
+</li>
+</ul>
+<h3 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h3><ul>
+<li><a href="https://www.51zxw.net/list.aspx?page=2&amp;cid=670">Appium自动化测试视频教程</a></li>
+<li><a href="https://sutune.me/2018/04/15/appium/">Appium简介</a></li>
+<li><a href="https://hllgithub.github.io/2018/09/09/Appium%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">Appium自动化测试介绍和使用说明</a></li>
+<li><a href="http://www.selenium.org.cn/category/use">selenium</a></li>
+<li><a href="https://python-selenium-zh.readthedocs.io/zh_CN/latest/">selenium + python 中文文档</a></li>
+<li><a href="https://macacajs.github.io/zh/guide/#%E9%9B%86%E6%88%90%E5%92%8C%E8%9E%8D%E5%90%88">Macaca</a></li>
+<li><a href="https://yq.aliyun.com/articles/398697">Macaca-iOS入门那些事</a></li>
+</ul>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/36896449">一分钟了解自动化测试</a></li>
+</ul>
 <hr>
 <blockquote>
 <p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
@@ -302,6 +302,42 @@
       </categories>
       <tags>
         <tag>事件屏蔽</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>结束《皇室战争》之旅</title>
+    <url>/2020/11/02/Game01/</url>
+    <content><![CDATA[<h3 id="一款又爱又恨的游戏"><a href="#一款又爱又恨的游戏" class="headerlink" title="一款又爱又恨的游戏"></a>一款又爱又恨的游戏</h3><ul>
+<li>爱：<ol>
+<li>这游戏UI和画质都做得非常精美，原画的细节做得非常逼真</li>
+<li>3分钟一场战斗，游戏时间设置的完美</li>
+<li>操作简单，容易上手</li>
+</ol>
+</li>
+<li>恨:<ol>
+<li>3分钟一场战斗，导致你蹲个坑都可以玩几局，有时输能让你蹲半个多小时，最后起来酸的不行</li>
+<li>部落战匹配规则做得不好，分段6000左右但是卡等只有10级，基本给你匹配满级的来对付你，你技术再好也是以卵击石</li>
+<li>商店不断推出活动引诱你充值，看到你要啥卡牌、是没有金币还是没有宝石，就给你推对应的活动</li>
+<li>影响与家人的关系，有时候连输好几把，家人跟我聊天，我说话就会很火，最后就会跟对方吵起来</li>
+<li>不间断活动、每天对战，让你控制不住不玩，不停想上分，影响工作和学习</li>
+</ol>
+</li>
+</ul>
+<h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><ol>
+<li>对方出的每张卡都记住，等全部8张卡出完，在想怎么用当前的卡组对付它</li>
+<li>要学会利用小兵拉扯</li>
+<li>排兵布阵不能全部放到一块，要分散放，不然被对面一个法术全部打中</li>
+</ol>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><blockquote>
+<p>要升级的卡组已升满，没有玩下去的欲望了，本想着这个赛季冲个6500+，没时间打也打不太动了，那就让他停留在6150结束这段旅程。开启新的篇章，好好学习、工作，这样才能有好的未来</p>
+</blockquote>
+<p><img data-src="https://github.com/aa4790139/BlogPicBed/blob/master/img/222.png?raw=true" alt=""></p>
+]]></content>
+      <categories>
+        <category>游戏</category>
+      </categories>
+      <tags>
+        <tag>皇室战争</tag>
       </tags>
   </entry>
   <entry>
