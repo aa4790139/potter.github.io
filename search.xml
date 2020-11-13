@@ -117,6 +117,41 @@
       </tags>
   </entry>
   <entry>
+    <title>Python-03：Web自动化测试【打开Chrome百度搜索Selenium】</title>
+    <url>/2020/11/03/AutoTest03/</url>
+    <content><![CDATA[<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
+<li>Win10</li>
+<li>Chrome 84.0.4147.135</li>
+<li>ChromeDriver 84.0.4147.30<ol>
+<li>关闭Chrome更新，避免不停换驱动</li>
+<li>下载Chrome对应版本ChromeDriver驱动<a href="https://chromedriver.chromium.org/downloads">下载地址</a></li>
+<li>将ChromeDriver 放到Python安装目录下. 比如：C:\Users\Administrator\AppData\Local\Programs\Python\Python39</li>
+</ol>
+</li>
+<li>Python 3.9.0</li>
+<li>Selenium 3.141.0<br> 安装命令：pip install selenium (提示：如果执行报错，请检查python环境变量配置)</li>
+</ol>
+<h3 id="案例：打开Chrome百度搜索Selenium"><a href="#案例：打开Chrome百度搜索Selenium" class="headerlink" title="案例：打开Chrome百度搜索Selenium"></a>案例：打开Chrome百度搜索Selenium</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from selenium import  webdriver</span><br><span class="line"># 使用Chrome驱动</span><br><span class="line">driver &#x3D; webdriver.Chrome()</span><br><span class="line"># 让浏览器全屏</span><br><span class="line">driver.maximize_window()</span><br><span class="line"># 打开百度</span><br><span class="line">driver.get(&quot;https:&#x2F;&#x2F;baidu.com&quot;)</span><br><span class="line"># 找到百度搜索框元素</span><br><span class="line">input &#x3D; driver.find_element_by_id(&quot;kw&quot;)</span><br><span class="line"># 往输入框中输入搜索关键词&quot;selenium&quot;</span><br><span class="line">input.send_keys(&quot;selenium&quot;)</span><br><span class="line"># 点击百度一下按钮搜索</span><br><span class="line">search &#x3D; driver.find_element_by_id(&quot;su&quot;)</span><br><span class="line">search.click()</span><br></pre></td></tr></table></figure>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><blockquote>
+<p>其实原理就是 Python 通过Selenium 调用浏览器驱动接口，然后驱动Driver接口操作Web中元素进行交互</p>
+</blockquote>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献:"></a>参考文献:</h3><ul>
+<li><a href="https://selenium-python-zh.readthedocs.io/en/latest/index.html">Selenium-Python中文文档</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>自动化测试</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Selenium</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python-04：AppWeb自动化测试【打开App切换WebView登录】</title>
     <url>/2020/11/04/AutoTest04/</url>
     <content><![CDATA[<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
@@ -154,41 +189,6 @@
         <tag>Python</tag>
         <tag>Selenium</tag>
         <tag>Appnium</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python-03：Web自动化测试【打开Chrome百度搜索Selenium】</title>
-    <url>/2020/11/03/AutoTest03/</url>
-    <content><![CDATA[<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
-<li>Win10</li>
-<li>Chrome 84.0.4147.135</li>
-<li>ChromeDriver 84.0.4147.30<ol>
-<li>关闭Chrome更新，避免不停换驱动</li>
-<li>下载Chrome对应版本ChromeDriver驱动<a href="https://chromedriver.chromium.org/downloads">下载地址</a></li>
-<li>将ChromeDriver 放到Python安装目录下. 比如：C:\Users\Administrator\AppData\Local\Programs\Python\Python39</li>
-</ol>
-</li>
-<li>Python 3.9.0</li>
-<li>Selenium 3.141.0<br> 安装命令：pip install selenium (提示：如果执行报错，请检查python环境变量配置)</li>
-</ol>
-<h3 id="案例：打开Chrome百度搜索Selenium"><a href="#案例：打开Chrome百度搜索Selenium" class="headerlink" title="案例：打开Chrome百度搜索Selenium"></a>案例：打开Chrome百度搜索Selenium</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from selenium import  webdriver</span><br><span class="line"># 使用Chrome驱动</span><br><span class="line">driver &#x3D; webdriver.Chrome()</span><br><span class="line"># 让浏览器全屏</span><br><span class="line">driver.maximize_window()</span><br><span class="line"># 打开百度</span><br><span class="line">driver.get(&quot;https:&#x2F;&#x2F;baidu.com&quot;)</span><br><span class="line"># 找到百度搜索框元素</span><br><span class="line">input &#x3D; driver.find_element_by_id(&quot;kw&quot;)</span><br><span class="line"># 往输入框中输入搜索关键词&quot;selenium&quot;</span><br><span class="line">input.send_keys(&quot;selenium&quot;)</span><br><span class="line"># 点击百度一下按钮搜索</span><br><span class="line">search &#x3D; driver.find_element_by_id(&quot;su&quot;)</span><br><span class="line">search.click()</span><br></pre></td></tr></table></figure>
-<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><blockquote>
-<p>其实原理就是 Python 通过Selenium 调用浏览器驱动接口，然后驱动Driver接口操作Web中元素进行交互</p>
-</blockquote>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献:"></a>参考文献:</h3><ul>
-<li><a href="https://selenium-python-zh.readthedocs.io/en/latest/index.html">Selenium-Python中文文档</a></li>
-</ul>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>自动化测试</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Selenium</tag>
       </tags>
   </entry>
   <entry>
@@ -322,6 +322,42 @@
       </tags>
   </entry>
   <entry>
+    <title>结束《皇室战争》之旅</title>
+    <url>/2020/11/02/Game01/</url>
+    <content><![CDATA[<h3 id="一款又爱又恨的游戏"><a href="#一款又爱又恨的游戏" class="headerlink" title="一款又爱又恨的游戏"></a>一款又爱又恨的游戏</h3><ul>
+<li>爱：<ol>
+<li>这游戏UI和画质都做得非常精美，原画的细节做得非常逼真</li>
+<li>3分钟一场战斗，游戏时间设置的完美</li>
+<li>操作简单，容易上手</li>
+</ol>
+</li>
+<li>恨:<ol>
+<li>3分钟一场战斗，导致你蹲个坑都可以玩几局，有时输能让你蹲出半个多小时，最后起来酸的不行</li>
+<li>部落战匹配规则做得不好，分段6K左右自己卡等只有10级，结果给你匹配满级的来对付你，你技术再好也是以卵击石</li>
+<li>商店不断推出活动引诱你充值，看到你要啥卡牌、是没有金币还是没有宝石，就给你推对应的活动</li>
+<li>影响与家人的关系，有时候连输好几把，家人跟我聊天，我说话很冲，导致跟对方吵起来</li>
+<li>不间断活动、每天对战，让你控制不住不玩，不停想上分，影响工作和学习</li>
+</ol>
+</li>
+</ul>
+<h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><ol>
+<li>对方出的每张卡都记住，等全部8张卡出完，再想怎么用当前的卡组对付它</li>
+<li>未知对方卡组，尽量使用小费过牌，等待摸清对方卡组再出手</li>
+<li>排兵布阵不能全部放到一块，要分散放，不然被对面一个法术全部打中</li>
+</ol>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><blockquote>
+<p>要升级的卡组已升满，没有玩下去的欲望了，本想这个赛季冲个6500+，结果没多少时间打，中午打了一个多小时，结果卡住6150上不去了，那就让他停留在6150结束这段旅程。接下来开启新的篇章，好好学习、好好工作，这样才能有好的未来</p>
+</blockquote>
+<p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/222.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>游戏</category>
+      </categories>
+      <tags>
+        <tag>皇室战争</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>全栈学习-开篇-001</title>
     <url>/2020/09/29/LearningFullStack01/</url>
     <content><![CDATA[<blockquote>
@@ -364,42 +400,6 @@
       </tags>
   </entry>
   <entry>
-    <title>结束《皇室战争》之旅</title>
-    <url>/2020/11/02/Game01/</url>
-    <content><![CDATA[<h3 id="一款又爱又恨的游戏"><a href="#一款又爱又恨的游戏" class="headerlink" title="一款又爱又恨的游戏"></a>一款又爱又恨的游戏</h3><ul>
-<li>爱：<ol>
-<li>这游戏UI和画质都做得非常精美，原画的细节做得非常逼真</li>
-<li>3分钟一场战斗，游戏时间设置的完美</li>
-<li>操作简单，容易上手</li>
-</ol>
-</li>
-<li>恨:<ol>
-<li>3分钟一场战斗，导致你蹲个坑都可以玩几局，有时输能让你蹲出半个多小时，最后起来酸的不行</li>
-<li>部落战匹配规则做得不好，分段6K左右自己卡等只有10级，结果给你匹配满级的来对付你，你技术再好也是以卵击石</li>
-<li>商店不断推出活动引诱你充值，看到你要啥卡牌、是没有金币还是没有宝石，就给你推对应的活动</li>
-<li>影响与家人的关系，有时候连输好几把，家人跟我聊天，我说话很冲，导致跟对方吵起来</li>
-<li>不间断活动、每天对战，让你控制不住不玩，不停想上分，影响工作和学习</li>
-</ol>
-</li>
-</ul>
-<h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><ol>
-<li>对方出的每张卡都记住，等全部8张卡出完，再想怎么用当前的卡组对付它</li>
-<li>未知对方卡组，尽量使用小费过牌，等待摸清对方卡组再出手</li>
-<li>排兵布阵不能全部放到一块，要分散放，不然被对面一个法术全部打中</li>
-</ol>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><blockquote>
-<p>要升级的卡组已升满，没有玩下去的欲望了，本想这个赛季冲个6500+，结果没多少时间打，中午打了一个多小时，结果卡住6150上不去了，那就让他停留在6150结束这段旅程。接下来开启新的篇章，好好学习、好好工作，这样才能有好的未来</p>
-</blockquote>
-<p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/222.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>游戏</category>
-      </categories>
-      <tags>
-        <tag>皇室战争</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>屏蔽：键盘按键、鼠标点击事件</title>
     <url>/2020/10/14/PreventEvent/</url>
     <content><![CDATA[<h3 id="屏蔽-键盘按键"><a href="#屏蔽-键盘按键" class="headerlink" title="屏蔽-键盘按键"></a>屏蔽-键盘按键</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;添加按键监听</span><br><span class="line">window.addEventListener(&#39;keydown&#39;, this.onKeyDown,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;移除按键监听</span><br><span class="line">window.removeEventListener(&quot;keydown&quot;,this.onKeyDown,true);</span><br><span class="line"></span><br><span class="line">onKeyDown(val)&#123;</span><br><span class="line">    console.log(&#39;按下&#39; + val.key);</span><br><span class="line">    val.preventDefault();</span><br><span class="line">    val.stopPropagation();</span><br><span class="line">    val.cancelBubble &#x3D; true;</span><br><span class="line">    window.event.returnValue &#x3D; false;</span><br><span class="line">    window.event.preventDefault();</span><br><span class="line">    window.event.stopPropagation();</span><br><span class="line">    window.event.cancelBubble &#x3D; true;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -420,30 +420,6 @@
       </categories>
       <tags>
         <tag>事件屏蔽</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>UniApp 如何引入Iconfont阿里巴巴矢量图标库</title>
-    <url>/2020/11/13/UniApp01/</url>
-    <content><![CDATA[<h3 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下:"></a>步骤如下:</h3><ol>
-<li>下载解压图标项目, 解压后效果<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/QQ%E6%88%AA%E5%9B%BE20201113164039.png" alt=""></li>
-<li><p>修改iconfont.css文件</p>
-<p> 修改前格式：</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@font-face &#123;font-family: &quot;iconfont&quot;;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083&#39;); &#x2F;* IE9 *&#x2F;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083#iefix&#39;) format(&#39;embedded-opentype&#39;), &#x2F;* IE6-IE8 *&#x2F;</span><br><span class="line">url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;),</span><br><span class="line">url(&#39;iconfont.woff?t&#x3D;1605254910083&#39;) format(&#39;woff&#39;),</span><br><span class="line">url(&#39;iconfont.ttf?t&#x3D;1605254910083&#39;) format(&#39;truetype&#39;), &#x2F;* chrome, firefox, opera, Safari, Android, iOS 4.2+ *&#x2F;</span><br><span class="line">url(&#39;iconfont.svg?t&#x3D;1605254910083#iconfont&#39;) format(&#39;svg&#39;); &#x2F;* iOS 4.1- *&#x2F;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p> 修改后格式</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &quot;iconfont&quot;;</span><br><span class="line">    src: url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;);</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></li>
-<li>Copy 字体文件iconfont.ttf和修改后的样式文件iconfont.css 至UniApp项目Static/font目录中</li>
-</ol>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>UniApp</tag>
       </tags>
   </entry>
   <entry>
@@ -490,6 +466,30 @@
 ]]></content>
       <tags>
         <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>UniApp 如何引入Iconfont阿里巴巴矢量图标库</title>
+    <url>/2020/11/13/UniApp01/</url>
+    <content><![CDATA[<h3 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下:"></a>步骤如下:</h3><ol>
+<li>下载解压图标项目, 解压后效果<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/QQ%E6%88%AA%E5%9B%BE20201113164039.png" alt=""></li>
+<li><p>修改iconfont.css文件</p>
+<p> 修改前格式：</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@font-face &#123;font-family: &quot;iconfont&quot;;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083&#39;); &#x2F;* IE9 *&#x2F;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083#iefix&#39;) format(&#39;embedded-opentype&#39;), &#x2F;* IE6-IE8 *&#x2F;</span><br><span class="line">url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;),</span><br><span class="line">url(&#39;iconfont.woff?t&#x3D;1605254910083&#39;) format(&#39;woff&#39;),</span><br><span class="line">url(&#39;iconfont.ttf?t&#x3D;1605254910083&#39;) format(&#39;truetype&#39;), &#x2F;* chrome, firefox, opera, Safari, Android, iOS 4.2+ *&#x2F;</span><br><span class="line">url(&#39;iconfont.svg?t&#x3D;1605254910083#iconfont&#39;) format(&#39;svg&#39;); &#x2F;* iOS 4.1- *&#x2F;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> 修改后格式</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &quot;iconfont&quot;;</span><br><span class="line">    src: url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;);</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></li>
+<li>Copy 字体文件iconfont.ttf和修改后的样式文件iconfont.css 至UniApp项目Static/font目录中</li>
+</ol>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>UniApp</tag>
       </tags>
   </entry>
 </search>
