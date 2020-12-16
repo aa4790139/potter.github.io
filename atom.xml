@@ -6,7 +6,7 @@
   <link href="https://yanxuewen.cn/atom.xml" rel="self"/>
   
   <link href="https://yanxuewen.cn/"/>
-  <updated>2020-11-13T09:08:17.322Z</updated>
+  <updated>2020-12-16T13:44:57.821Z</updated>
   <id>https://yanxuewen.cn/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C# 与 JS 之间Gzip互通</title>
+    <link href="https://yanxuewen.cn/2020/12/16/JS01/"/>
+    <id>https://yanxuewen.cn/2020/12/16/JS01/</id>
+    <published>2020-12-16T13:43:35.821Z</published>
+    <updated>2020-12-16T13:44:57.821Z</updated>
+    
+    <content type="html"><![CDATA[<hr><blockquote><p>以上: 如发现有问题，欢迎留言指出，我及时更正</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;以上: 如发现有问题，欢迎留言指出，我及时更正&lt;/p&gt;
+&lt;/blockquote&gt;
+</summary>
+      
+    
+    
+    
+    <category term="xx" scheme="https://yanxuewen.cn/categories/xx/"/>
+    
+    
+    <category term="C#" scheme="https://yanxuewen.cn/tags/C/"/>
+    
+    <category term="Gzip" scheme="https://yanxuewen.cn/tags/Gzip/"/>
+    
+    <category term="JS" scheme="https://yanxuewen.cn/tags/JS/"/>
+    
+  </entry>
   
   <entry>
     <title>UniApp 如何引入Iconfont阿里巴巴矢量图标库</title>
