@@ -56,7 +56,12 @@
   <entry>
     <title>自动化测试-02：实践</title>
     <url>/2020/10/22/AutoTest02/</url>
-    <content><![CDATA[<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><ul>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>环境搭建: Appium 环境、Android 环境、Python 环境、夜神模拟器</li>
+<li>Android APP 测试 </li>
+</ul>
+<a id="more"></a>
+<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><ul>
 <li>Appium 环境<ul>
 <li>安装：Appium Desktop (Server) <a href="https://github.com/appium/appium-desktop/releases">下载地址</a></li>
 <li>安装：Appium-Python-Client (Client) <a href="https://pypi.org/project/Appium-Python-Client/">教程</a></li>
@@ -125,7 +130,13 @@
   <entry>
     <title>Python-03：Web自动化测试【打开Chrome百度搜索Selenium】</title>
     <url>/2020/11/03/AutoTest03/</url>
-    <content><![CDATA[<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>环境准备</li>
+<li>案例：打开Chrome百度搜索Selenium</li>
+<li>原理总结</li>
+</ul>
+<a id="more"></a>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
 <li>Win10</li>
 <li>Chrome 84.0.4147.135</li>
 <li>ChromeDriver 84.0.4147.30<ol>
@@ -160,7 +171,13 @@
   <entry>
     <title>Python-04：AppWeb自动化测试【打开App切换WebView登录】</title>
     <url>/2020/11/04/AutoTest04/</url>
-    <content><![CDATA[<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>环境准备</li>
+<li>测试步骤</li>
+<li>案例代码</li>
+</ul>
+<a id="more"></a>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
 <li>NodeJS v12.13.1</li>
 <li>JDK 1.8.0_191</li>
 <li>Android SDK </li>
@@ -200,9 +217,16 @@
   <entry>
     <title>Github + Hexo + Next 搭建个人博客网站</title>
     <url>/2020/09/29/BuildBlog/</url>
-    <content><![CDATA[<blockquote>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>搭建步骤</li>
+<li>安装环境</li>
+<li>图床加速、集成Gitalk、集成Gitalk </li>
+<li>绑定域名、版权配置、赞赏、站点加速等</li>
+</ul>
+<blockquote>
 <p>搭建原因：几年前一直在CSDN写博客，经常用心的写一篇文章结果过一段时间文章关联的图片全部丢失，给他们反馈无果，图片丢失找不回了。后面就转用印象笔记，几年下来记录了不上笔记，但是缺少一个互动的环节，不知道自己写的笔记有没有问题，没法与他人思想发生碰撞，想快速产生好的想法或者更好的解决方案，看到网上不少朋友都是写在自己的博客网站上，于是就决定自己也要搭一个，毕竟这样逼格更高一点。呵呵~  以下是我零碎2~3天搭自己博客网站的步骤，希望能给后面的人提供帮助。</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="搭建步骤："><a href="#搭建步骤：" class="headerlink" title="搭建步骤："></a>搭建步骤：</h2><hr>
 <h3 id="Github-创建博客仓库"><a href="#Github-创建博客仓库" class="headerlink" title="Github 创建博客仓库"></a>Github 创建博客仓库</h3><p>在 GitHub 新建一个仓库（Repository），名称为 {username}.github.io，注意这个名比较特殊，必须要是 github.io 为后缀结尾的。比如：aa4790139.github.io</p>
 <hr>
@@ -328,26 +352,15 @@
       </tags>
   </entry>
   <entry>
-    <title>C# 与 JS 之间Gzip互通</title>
-    <url>/2020/12/16/JS01/</url>
-    <content><![CDATA[<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>xx</category>
-      </categories>
-      <tags>
-        <tag>C#</tag>
-        <tag>Gzip</tag>
-        <tag>JS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>结束《皇室战争》之旅</title>
     <url>/2020/11/02/Game01/</url>
-    <content><![CDATA[<h3 id="一款又爱又恨的游戏"><a href="#一款又爱又恨的游戏" class="headerlink" title="一款又爱又恨的游戏"></a>一款又爱又恨的游戏</h3><ul>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>环境准备</li>
+<li>测试步骤</li>
+<li>案例代码</li>
+</ul>
+<a id="more"></a>
+<h3 id="一款又爱又恨的游戏"><a href="#一款又爱又恨的游戏" class="headerlink" title="一款又爱又恨的游戏"></a>一款又爱又恨的游戏</h3><ul>
 <li>爱：<ol>
 <li>这游戏UI和画质都做得非常精美，原画的细节做得非常逼真</li>
 <li>3分钟一场战斗，游戏时间设置的完美</li>
@@ -381,9 +394,35 @@
       </tags>
   </entry>
   <entry>
+    <title>C# 与 JS 之间Gzip互通</title>
+    <url>/2020/12/16/JS01/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li><a id="more"></a>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>xx</category>
+      </categories>
+      <tags>
+        <tag>C#</tag>
+        <tag>Gzip</tag>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>全栈学习-开篇-001</title>
     <url>/2020/09/29/LearningFullStack01/</url>
-    <content><![CDATA[<blockquote>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>技术栈介绍</li>
+<li>环境准备</li>
+</ul>
+<a id="more"></a>
+<blockquote>
 <p>起因：在网上搜索了挺久，都没找到让我很满意的项目学习，也买了好几个付费项目，看了一部分就会发现看不下去，发现很多问题，虽然说能学到一部分东西，但感觉这些项目只是为了快速赚钱搞的，项目结构不清晰、缺少项目相关的介绍文档、前后端项目代码不分离，代码也写的非常临时和随意等等，可能我要求过高了。我如果用这种方式去做一个正式商业化的项目，用这种态度搞出来的东西肯定做不大。说实话我以前做东西也很随意，但自从我读了《程序员修炼之道》这本书后(若想成为一名真正的程序员，一定要去好好阅读这边书，去吸收点灵气)，让我受益匪浅。要想成为一个好的工程师，就要约束好自己，做事情不要太随意，得有点工匠精神，像匠人一样打造自己的武器，一段时间后你会发现自己层次上了一个阶梯。为了提升下自己全栈方便的能力，选择了我慕客上购买的一个小项目，这个小项目很适合入手，所以就拿这个项目(简版-慕客商城)开启全栈学习之旅。</p>
 </blockquote>
 <h3 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h3><ol>
@@ -425,7 +464,13 @@
   <entry>
     <title>屏蔽：键盘按键、鼠标点击事件</title>
     <url>/2020/10/14/PreventEvent/</url>
-    <content><![CDATA[<h3 id="屏蔽-键盘按键"><a href="#屏蔽-键盘按键" class="headerlink" title="屏蔽-键盘按键"></a>屏蔽-键盘按键</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;添加按键监听</span><br><span class="line">window.addEventListener(&#39;keydown&#39;, this.onKeyDown,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;移除按键监听</span><br><span class="line">window.removeEventListener(&quot;keydown&quot;,this.onKeyDown,true);</span><br><span class="line"></span><br><span class="line">onKeyDown(val)&#123;</span><br><span class="line">    console.log(&#39;按下&#39; + val.key);</span><br><span class="line">    val.preventDefault();</span><br><span class="line">    val.stopPropagation();</span><br><span class="line">    val.cancelBubble &#x3D; true;</span><br><span class="line">    window.event.returnValue &#x3D; false;</span><br><span class="line">    window.event.preventDefault();</span><br><span class="line">    window.event.stopPropagation();</span><br><span class="line">    window.event.cancelBubble &#x3D; true;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>屏蔽-键盘按键</li>
+<li>屏蔽-鼠标点击</li>
+<li>屏蔽-BackSpace</li>
+</ul>
+<a id="more"></a>
+<h3 id="屏蔽-键盘按键"><a href="#屏蔽-键盘按键" class="headerlink" title="屏蔽-键盘按键"></a>屏蔽-键盘按键</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;添加按键监听</span><br><span class="line">window.addEventListener(&#39;keydown&#39;, this.onKeyDown,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;移除按键监听</span><br><span class="line">window.removeEventListener(&quot;keydown&quot;,this.onKeyDown,true);</span><br><span class="line"></span><br><span class="line">onKeyDown(val)&#123;</span><br><span class="line">    console.log(&#39;按下&#39; + val.key);</span><br><span class="line">    val.preventDefault();</span><br><span class="line">    val.stopPropagation();</span><br><span class="line">    val.cancelBubble &#x3D; true;</span><br><span class="line">    window.event.returnValue &#x3D; false;</span><br><span class="line">    window.event.preventDefault();</span><br><span class="line">    window.event.stopPropagation();</span><br><span class="line">    window.event.cancelBubble &#x3D; true;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="屏蔽-鼠标点击"><a href="#屏蔽-鼠标点击" class="headerlink" title="屏蔽-鼠标点击"></a>屏蔽-鼠标点击</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;添加鼠标点击监听</span><br><span class="line">window.addEventListener(&#39;mousedown&#39;,this.onClick,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;移除鼠标点击监听</span><br><span class="line">window.removeEventListener(&#39;mousedown&#39;,this.onClick,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;which: 1-左键 2-中键 3-右键</span><br><span class="line">onClick(val)&#123;</span><br><span class="line">    console.error(&#39;点击&#39; + val.which);</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="屏蔽-BackSpace"><a href="#屏蔽-BackSpace" class="headerlink" title="屏蔽-BackSpace"></a>屏蔽-BackSpace</h3><p>在IE页面跳转过程中，按BackSpace退格键默认返回上此浏览页，导致路由中断引起(Vue)页面卡死，所以需要在IE中屏蔽掉BackSpce退格键，但是在输入框中则不屏蔽。</p>
 <ul>
@@ -446,38 +491,14 @@
       </tags>
   </entry>
   <entry>
-    <title>UniApp 如何引入Iconfont阿里巴巴矢量图标库</title>
-    <url>/2020/11/13/UniApp01/</url>
-    <content><![CDATA[<h3 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下:"></a>步骤如下:</h3><ol>
-<li>下载图标项目, 解压后效果如下<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201113164039.png" alt=""></li>
-<li><p>修改iconfont.css文件</p>
-<p> 修改前格式：</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@font-face &#123;font-family: &quot;iconfont&quot;;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083&#39;); &#x2F;* IE9 *&#x2F;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083#iefix&#39;) format(&#39;embedded-opentype&#39;), &#x2F;* IE6-IE8 *&#x2F;</span><br><span class="line">url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;),</span><br><span class="line">url(&#39;iconfont.woff?t&#x3D;1605254910083&#39;) format(&#39;woff&#39;),</span><br><span class="line">url(&#39;iconfont.ttf?t&#x3D;1605254910083&#39;) format(&#39;truetype&#39;), &#x2F;* chrome, firefox, opera, Safari, Android, iOS 4.2+ *&#x2F;</span><br><span class="line">url(&#39;iconfont.svg?t&#x3D;1605254910083#iconfont&#39;) format(&#39;svg&#39;); &#x2F;* iOS 4.1- *&#x2F;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>    
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">修改后格式: </span><br></pre></td></tr></table></figure>
-<p> @font-face {</p>
-<pre><code> font-family: &quot;iconfont&quot;;
- src: url(&#39;data:application/x-font-woff2;charset=utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;);
-</code></pre><p> }<br> ```</p>
-</li>
-<li>Copy字体文件iconfont.ttf和样式文件iconfont.css 至UniApp项目static/font目录中</li>
-</ol>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>UniApp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python-01：Python与C# 基本语法区别</title>
     <url>/2020/10/31/Python01/</url>
-    <content><![CDATA[<h3 id="最明显的区别"><a href="#最明显的区别" class="headerlink" title="最明显的区别"></a>最明显的区别</h3><ol>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>Python 与 C# 基本语法区别</li>
+<li>具体语法示例</li>
+</ul>
+<a id="more"></a>
+<h3 id="最明显的区别"><a href="#最明显的区别" class="headerlink" title="最明显的区别"></a>最明显的区别</h3><ol>
 <li>Python if、for、while等 包裹代码块不是用{}，而是使用”:”和 换行缩进</li>
 <li>Python 弱类型语言，同时每句话结束后无需加分号”;”，与JAVAScript 类似</li>
 </ol>
@@ -518,6 +539,34 @@
 ]]></content>
       <tags>
         <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>UniApp 如何引入Iconfont阿里巴巴矢量图标库</title>
+    <url>/2020/11/13/UniApp01/</url>
+    <content><![CDATA[<h3 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下:"></a>步骤如下:</h3><ol>
+<li>下载图标项目, 解压后效果如下<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201113164039.png" alt=""></li>
+<li><p>修改iconfont.css文件</p>
+<p> 修改前格式：</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@font-face &#123;font-family: &quot;iconfont&quot;;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083&#39;); &#x2F;* IE9 *&#x2F;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083#iefix&#39;) format(&#39;embedded-opentype&#39;), &#x2F;* IE6-IE8 *&#x2F;</span><br><span class="line">url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;),</span><br><span class="line">url(&#39;iconfont.woff?t&#x3D;1605254910083&#39;) format(&#39;woff&#39;),</span><br><span class="line">url(&#39;iconfont.ttf?t&#x3D;1605254910083&#39;) format(&#39;truetype&#39;), &#x2F;* chrome, firefox, opera, Safari, Android, iOS 4.2+ *&#x2F;</span><br><span class="line">url(&#39;iconfont.svg?t&#x3D;1605254910083#iconfont&#39;) format(&#39;svg&#39;); &#x2F;* iOS 4.1- *&#x2F;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">修改后格式: </span><br></pre></td></tr></table></figure>
+<p> @font-face {</p>
+<pre><code> font-family: &quot;iconfont&quot;;
+ src: url(&#39;data:application/x-font-woff2;charset=utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;);
+</code></pre><p> }<br> ```</p>
+</li>
+<li>Copy字体文件iconfont.ttf和样式文件iconfont.css 至UniApp项目static/font目录中</li>
+</ol>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>UniApp</tag>
       </tags>
   </entry>
 </search>
