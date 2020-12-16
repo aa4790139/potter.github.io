@@ -48,6 +48,75 @@
       </tags>
   </entry>
   <entry>
+    <title>自动化测试-02：实践</title>
+    <url>/2020/10/22/AutoTest02/</url>
+    <content><![CDATA[<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><ul>
+<li>Appium 环境<ul>
+<li>安装：Appium Desktop (Server) <a href="https://github.com/appium/appium-desktop/releases">下载地址</a></li>
+<li>安装：Appium-Python-Client (Client) <a href="https://pypi.org/project/Appium-Python-Client/">教程</a></li>
+</ul>
+</li>
+<li>Android 环境：<ul>
+<li>下载安装JDK <a href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">下载地址</a></li>
+<li>下载Android SDK <a href="https://developer.android.com/studio">下载地址</a></li>
+<li>配置JAVA和Android环境变量 <a href="https://www.jianshu.com/p/a9e80bb782af">教程</a></li>
+</ul>
+</li>
+<li>Python 环境：<ul>
+<li>首先：<a href="https://www.python.org/downloads/">下载安装Python</a></li>
+<li>此次：安装Appium Python库, 命令: pip install -U Appium-Python-Client—python <a href="https://pypi.org/project/Appium-Python-Client/">安装教程</a></li>
+<li>最后：安装Python IDE <a href="https://www.jetbrains.com/pycharm/download/#section=windows">pycharm下载</a></li>
+</ul>
+</li>
+<li>夜神模拟器：<a href="https://www.yeshen.com/">下载安装</a></li>
+</ul>
+<h3 id="Android-APP-测试"><a href="#Android-APP-测试" class="headerlink" title="Android APP 测试"></a>Android APP 测试</h3><ul>
+<li><p>常用命令：</p>
+<ul>
+<li>获取联机设备名称：adb devices</li>
+<li>与设备建立连接：adb connect ip:port (提示：使用adb devices 显示设备的ip和端口)</li>
+<li><p>获取APP包名和启动名：adb shell dumpsys window  windows | findstr mFocusedApp (提示：使用模拟器或手机,打印需测试的APP 保持显示在当前屏幕后，在cmd中输入此命令回车，假如输出结果如下)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  adb shell dumpsys window  windows | findstr mFocusedApp</span><br><span class="line">mFocusedApp&#x3D;AppWindowToken&#123;e84eb4f token&#x3D;Token&#123;1260a29 ActivityRecord&#123;16e4bb0 u0 com.guide.custom&#x2F;com.anyapps.Activity.AALaunch t12&#125;&#125;&#125;</span><br><span class="line"></span><br><span class="line">包名：com.guide.custom</span><br><span class="line">启动Activity名：com.anyapps.Activity.AALaunch</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>调试步骤：</p>
+<ol>
+<li>启动夜神模拟器，获取相关信息<ul>
+<li>获取设备号IP和Port: cmd-&gt;adb devices (如果不显示请检查环境配置)</li>
+<li>与设备建立连接：adb connect 127.0.0.1:62001</li>
+<li>系统版本：系统应用-&gt;设置-&gt;版本</li>
+</ul>
+</li>
+<li>打开程序包(拿系统Setting打比方)，获取包名和启动Activity名：adb shell dumpsys window  windows | findstr</li>
+<li>启动Appium，创建Server&lt;-&gt;会话<ul>
+<li>Start Server -&gt; 点击搜索图标 -&gt; 根据1、2获取信息，填写对应信息，我的如下<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201025-001.png" alt=""></li>
+<li>创建会话成功后，效果图如下：(此时可以获取原生布局元素了)<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201025224614.png" alt=""></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h3><ul>
+<li><a href="https://www.51zxw.net/list.aspx?page=2&amp;cid=670#!fenye=2">Appium自动化测试教程</a></li>
+<li><a href="http://appium.io/docs/cn/writing-running-appium/caps/index.html">Appium 参数说明</a></li>
+</ul>
+<blockquote>
+<p>最后：其他平台APP调试应该类似，以后再尝试吧 ~</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>自动化测试</category>
+      </categories>
+      <tags>
+        <tag>测试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python-03：Web自动化测试【打开Chrome百度搜索Selenium】</title>
     <url>/2020/11/03/AutoTest03/</url>
     <content><![CDATA[<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
@@ -120,75 +189,6 @@
         <tag>Python</tag>
         <tag>Selenium</tag>
         <tag>Appnium</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>自动化测试-02：实践</title>
-    <url>/2020/10/22/AutoTest02/</url>
-    <content><![CDATA[<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><ul>
-<li>Appium 环境<ul>
-<li>安装：Appium Desktop (Server) <a href="https://github.com/appium/appium-desktop/releases">下载地址</a></li>
-<li>安装：Appium-Python-Client (Client) <a href="https://pypi.org/project/Appium-Python-Client/">教程</a></li>
-</ul>
-</li>
-<li>Android 环境：<ul>
-<li>下载安装JDK <a href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">下载地址</a></li>
-<li>下载Android SDK <a href="https://developer.android.com/studio">下载地址</a></li>
-<li>配置JAVA和Android环境变量 <a href="https://www.jianshu.com/p/a9e80bb782af">教程</a></li>
-</ul>
-</li>
-<li>Python 环境：<ul>
-<li>首先：<a href="https://www.python.org/downloads/">下载安装Python</a></li>
-<li>此次：安装Appium Python库, 命令: pip install -U Appium-Python-Client—python <a href="https://pypi.org/project/Appium-Python-Client/">安装教程</a></li>
-<li>最后：安装Python IDE <a href="https://www.jetbrains.com/pycharm/download/#section=windows">pycharm下载</a></li>
-</ul>
-</li>
-<li>夜神模拟器：<a href="https://www.yeshen.com/">下载安装</a></li>
-</ul>
-<h3 id="Android-APP-测试"><a href="#Android-APP-测试" class="headerlink" title="Android APP 测试"></a>Android APP 测试</h3><ul>
-<li><p>常用命令：</p>
-<ul>
-<li>获取联机设备名称：adb devices</li>
-<li>与设备建立连接：adb connect ip:port (提示：使用adb devices 显示设备的ip和端口)</li>
-<li><p>获取APP包名和启动名：adb shell dumpsys window  windows | findstr mFocusedApp (提示：使用模拟器或手机,打印需测试的APP 保持显示在当前屏幕后，在cmd中输入此命令回车，假如输出结果如下)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  adb shell dumpsys window  windows | findstr mFocusedApp</span><br><span class="line">mFocusedApp&#x3D;AppWindowToken&#123;e84eb4f token&#x3D;Token&#123;1260a29 ActivityRecord&#123;16e4bb0 u0 com.guide.custom&#x2F;com.anyapps.Activity.AALaunch t12&#125;&#125;&#125;</span><br><span class="line"></span><br><span class="line">包名：com.guide.custom</span><br><span class="line">启动Activity名：com.anyapps.Activity.AALaunch</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>调试步骤：</p>
-<ol>
-<li>启动夜神模拟器，获取相关信息<ul>
-<li>获取设备号IP和Port: cmd-&gt;adb devices (如果不显示请检查环境配置)</li>
-<li>与设备建立连接：adb connect 127.0.0.1:62001</li>
-<li>系统版本：系统应用-&gt;设置-&gt;版本</li>
-</ul>
-</li>
-<li>打开程序包(拿系统Setting打比方)，获取包名和启动Activity名：adb shell dumpsys window  windows | findstr</li>
-<li>启动Appium，创建Server&lt;-&gt;会话<ul>
-<li>Start Server -&gt; 点击搜索图标 -&gt; 根据1、2获取信息，填写对应信息，我的如下<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201025-001.png" alt=""></li>
-<li>创建会话成功后，效果图如下：(此时可以获取原生布局元素了)<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201025224614.png" alt=""></li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<h3 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h3><ul>
-<li><a href="https://www.51zxw.net/list.aspx?page=2&amp;cid=670#!fenye=2">Appium自动化测试教程</a></li>
-<li><a href="http://appium.io/docs/cn/writing-running-appium/caps/index.html">Appium 参数说明</a></li>
-</ul>
-<blockquote>
-<p>最后：其他平台APP调试应该类似，以后再尝试吧 ~</p>
-</blockquote>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>自动化测试</category>
-      </categories>
-      <tags>
-        <tag>测试</tag>
       </tags>
   </entry>
   <entry>
@@ -492,7 +492,7 @@
 <li>下载图标项目, 解压后效果如下<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201113164039.png" alt=""></li>
 <li><p>修改iconfont.css文件</p>
 <p> 修改前格式：</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@font-face &#123;font-family: &quot;iconfont&quot;;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083&#39;); &#x2F;* IE9 *&#x2F;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083#iefix&#39;) format(&#39;embedded-opentype&#39;), &#x2F;* IE6-IE8 *&#x2F;</span><br><span class="line">url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;),</span><br><span class="line">url(&#39;iconfont.woff?t&#x3D;1605254910083&#39;) format(&#39;woff&#39;),</span><br><span class="line">url(&#39;iconfont.ttf?t&#x3D;1605254910083&#39;) format(&#39;truetype&#39;), &#x2F;* chrome, firefox, opera, Safari, Android, iOS 4.2+ *&#x2F;</span><br><span class="line">url(&#39;iconfont.svg?t&#x3D;1605254910083#iconfont&#39;) format(&#39;svg&#39;); &#x2F;* iOS 4.1- *&#x2F;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@font-face &#123;font-family: &quot;iconfont&quot;;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083&#39;); &#x2F;* IE9 *&#x2F;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083#iefix&#39;) format(&#39;embedded-opentype&#39;), &#x2F;* IE6-IE8 *&#x2F;</span><br><span class="line">url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;),</span><br><span class="line">url(&#39;iconfont.woff?t&#x3D;1605254910083&#39;) format(&#39;woff&#39;),</span><br><span class="line">url(&#39;iconfont.ttf?t&#x3D;1605254910083&#39;) format(&#39;truetype&#39;), &#x2F;* chrome, firefox, opera, Safari, Android, iOS 4.2+ *&#x2F;</span><br><span class="line">url(&#39;iconfont.svg?t&#x3D;1605254910083#iconfont&#39;) format(&#39;svg&#39;); &#x2F;* iOS 4.1- *&#x2F;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure>
 <p> 修改后格式: </p>
  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &quot;iconfont&quot;;</span><br><span class="line">    src: url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;);</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></li>
 <li>Copy字体文件iconfont.ttf和样式文件iconfont.css 至UniApp项目static/font目录中</li>
