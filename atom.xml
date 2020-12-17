@@ -6,7 +6,7 @@
   <link href="https://yanxuewen.cn/atom.xml" rel="self"/>
   
   <link href="https://yanxuewen.cn/"/>
-  <updated>2020-12-17T12:52:44.884Z</updated>
+  <updated>2020-12-17T13:01:24.079Z</updated>
   <id>https://yanxuewen.cn/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://yanxuewen.cn/2020/12/16/JS01/"/>
     <id>https://yanxuewen.cn/2020/12/16/JS01/</id>
     <published>2020-12-16T13:43:35.821Z</published>
-    <updated>2020-12-17T12:52:44.884Z</updated>
+    <updated>2020-12-17T13:01:24.079Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul><li>JS 压缩 Gzip demo</li><li>JS 压缩 Gzip + base64 demo</li><li>JS 解压 CSharp 的 Gzip demo</li><li>JS 解压 CSharp 的 base64 + gzip</li><li>CSharp 压缩 Gzip demo</li><li>CSharp 压缩 Gzip + base64 demo</li><li>CSharp 解压 JS 的 Gzip demo</li><li>CSharp 解压 JS 的 base64 + gzip</li><li>Base64 encode 和 decode </li></ul><h3 id="源码地址：https-github-com-aa4790139-GzipSample"><a href="#源码地址：https-github-com-aa4790139-GzipSample" class="headerlink" title="源码地址：https://github.com/aa4790139/GzipSample"></a>源码地址：<a href="https://github.com/aa4790139/GzipSample">https://github.com/aa4790139/GzipSample</a></h3><h3 id="GZip-文件结构图"><a href="#GZip-文件结构图" class="headerlink" title="GZip 文件结构图"></a>GZip 文件结构图</h3><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201217205124.jpg" alt=""></p><a id="more"></a><h3 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h3><ul><li><a href="https://stackabuse.com/encoding-and-decoding-base64-strings-in-node-js/">Encoding and Decoding Base64 Strings in Node.js</a></li><li><a href="https://zh.wikipedia.org/wiki/DEFLATE">DEFLATE</a></li><li><a href="https://stackoverflow.com/questions/246801/how-can-you-encode-a-string-to-base64-in-javascript">How can you encode a string to Base64 in JavaScript?</a></li><li><a href="https://stackoverflow.com/questions/3195865/converting-byte-array-to-string-in-javascript">Converting byte array to string in javascript</a></li><li><a href="https://www.jianshu.com/p/c5df0156b229">Array.prototype.slice.call()方法详解</a></li><li><a href="https://stackoverflow.com/questions/7056925/how-does-array-prototype-slice-call-work">how does Array.prototype.slice.call() work?</a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators">JS按位操作符</a></li><li><a href="https://www.iditect.com/how-to/58717282.html">Remove trailing zeros from byte[]</a></li><li><a href="https://stackoverflow.com/questions/17191945/conversion-between-utf-8-arraybuffer-and-string">Conversion between UTF-8 ArrayBuffer and String</a></li><li><a href="https://tool.oschina.net/commons?type=4">ASCLL对照表</a></li></ul><hr><blockquote><p>以上: 如发现有问题，欢迎留言指出，我及时更正</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul><li>JS 压缩 Gzip demo</li><li>JS 压缩 Gzip + base64 demo</li><li>JS 解压 CSharp 的 Gzip demo</li><li>JS 解压 CSharp 的 base64 + gzip</li><li>CSharp 压缩 Gzip demo</li><li>CSharp 压缩 Gzip + base64 demo</li><li>CSharp 解压 JS 的 Gzip demo</li><li>CSharp 解压 JS 的 base64 + gzip</li><li>Base64 encode 和 decode </li></ul><h3 id="源码地址：https-github-com-aa4790139-GzipSample"><a href="#源码地址：https-github-com-aa4790139-GzipSample" class="headerlink" title="源码地址：https://github.com/aa4790139/GzipSample"></a>源码地址：<a href="https://github.com/aa4790139/GzipSample">https://github.com/aa4790139/GzipSample</a></h3><h3 id="GZip-文件结构图"><a href="#GZip-文件结构图" class="headerlink" title="GZip 文件结构图"></a>GZip 文件结构图</h3><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201217210101.jpg" alt=""></p><a id="more"></a><h3 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h3><ul><li><a href="https://stackabuse.com/encoding-and-decoding-base64-strings-in-node-js/">Encoding and Decoding Base64 Strings in Node.js</a></li><li><a href="https://zh.wikipedia.org/wiki/DEFLATE">DEFLATE</a></li><li><a href="https://stackoverflow.com/questions/246801/how-can-you-encode-a-string-to-base64-in-javascript">How can you encode a string to Base64 in JavaScript?</a></li><li><a href="https://stackoverflow.com/questions/3195865/converting-byte-array-to-string-in-javascript">Converting byte array to string in javascript</a></li><li><a href="https://www.jianshu.com/p/c5df0156b229">Array.prototype.slice.call()方法详解</a></li><li><a href="https://stackoverflow.com/questions/7056925/how-does-array-prototype-slice-call-work">how does Array.prototype.slice.call() work?</a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators">JS按位操作符</a></li><li><a href="https://www.iditect.com/how-to/58717282.html">Remove trailing zeros from byte[]</a></li><li><a href="https://stackoverflow.com/questions/17191945/conversion-between-utf-8-arraybuffer-and-string">Conversion between UTF-8 ArrayBuffer and String</a></li><li><a href="https://tool.oschina.net/commons?type=4">ASCLL对照表</a></li></ul><hr><blockquote><p>以上: 如发现有问题，欢迎留言指出，我及时更正</p></blockquote>]]></content>
     
     
     <summary type="html">&lt;h3 id=&quot;概要内容&quot;&gt;&lt;a href=&quot;#概要内容&quot; class=&quot;headerlink&quot; title=&quot;概要内容&quot;&gt;&lt;/a&gt;概要内容&lt;/h3&gt;&lt;ul&gt;
@@ -37,7 +37,7 @@
 &lt;li&gt;CSharp 解压 JS 的 base64 + gzip&lt;/li&gt;
 &lt;li&gt;Base64 encode 和 decode &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&quot;源码地址：https-github-com-aa4790139-GzipSample&quot;&gt;&lt;a href=&quot;#源码地址：https-github-com-aa4790139-GzipSample&quot; class=&quot;headerlink&quot; title=&quot;源码地址：https://github.com/aa4790139/GzipSample&quot;&gt;&lt;/a&gt;源码地址：&lt;a href=&quot;https://github.com/aa4790139/GzipSample&quot;&gt;https://github.com/aa4790139/GzipSample&lt;/a&gt;&lt;/h3&gt;&lt;h3 id=&quot;GZip-文件结构图&quot;&gt;&lt;a href=&quot;#GZip-文件结构图&quot; class=&quot;headerlink&quot; title=&quot;GZip 文件结构图&quot;&gt;&lt;/a&gt;GZip 文件结构图&lt;/h3&gt;&lt;p&gt;&lt;img data-src=&quot;https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201217205124.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;</summary>
+&lt;h3 id=&quot;源码地址：https-github-com-aa4790139-GzipSample&quot;&gt;&lt;a href=&quot;#源码地址：https-github-com-aa4790139-GzipSample&quot; class=&quot;headerlink&quot; title=&quot;源码地址：https://github.com/aa4790139/GzipSample&quot;&gt;&lt;/a&gt;源码地址：&lt;a href=&quot;https://github.com/aa4790139/GzipSample&quot;&gt;https://github.com/aa4790139/GzipSample&lt;/a&gt;&lt;/h3&gt;&lt;h3 id=&quot;GZip-文件结构图&quot;&gt;&lt;a href=&quot;#GZip-文件结构图&quot; class=&quot;headerlink&quot; title=&quot;GZip 文件结构图&quot;&gt;&lt;/a&gt;GZip 文件结构图&lt;/h3&gt;&lt;p&gt;&lt;img data-src=&quot;https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201217210101.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;</summary>
     
     
     
@@ -138,17 +138,27 @@
     <link href="https://yanxuewen.cn/2020/11/02/Game01/"/>
     <id>https://yanxuewen.cn/2020/11/02/Game01/</id>
     <published>2020-11-02T06:15:24.223Z</published>
-    <updated>2020-12-16T15:15:11.051Z</updated>
+    <updated>2020-12-17T13:09:10.445Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="一款又爱又恨的游戏"><a href="#一款又爱又恨的游戏" class="headerlink" title="一款又爱又恨的游戏"></a>一款又爱又恨的游戏</h3><ul><li>爱：<ol><li>这游戏UI和画质都做得非常精美，原画的细节做得非常逼真</li><li>3分钟一场战斗，游戏时间设置的完美</li><li>操作简单，容易上手</li></ol></li><li>恨:<ol><li>3分钟一场战斗，导致你蹲个坑都可以玩几局，有时输能让你蹲出半个多小时，最后起来酸的不行</li><li>部落战匹配规则做得不好，分段6K左右自己卡等只有10级，结果给你匹配满级的来对付你，你技术再好也是以卵击石</li><li>商店不断推出活动引诱你充值，看到你要啥卡牌、是没有金币还是没有宝石，就给你推对应的活动</li><li>影响与家人的关系，有时候连输好几把，家人跟我聊天，我说话很冲，导致跟对方吵起来</li><li>不间断活动、每天对战，让你控制不住不玩，不停想上分，影响工作和学习</li></ol></li></ul><h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><ol><li>对方出的每张卡都记住，等全部8张卡出完，再想怎么用当前的卡组对付它</li><li>未知对方卡组，尽量使用小费过牌，等待摸清对方卡组再出手</li><li>排兵布阵不能全部放到一块，要分散放，不然被对面一个法术全部打中</li></ol><h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><blockquote><p>要升级的卡组已升满，没有玩下去的欲望了，本想这个赛季冲个6500+，结果没多少时间打，中午打了一个多小时，结果卡住6150上不去了，那就让他停留在6150结束这段旅程。接下来开启新的篇章，好好学习、好好工作，这样才能有好的未来</p></blockquote><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/222.png" alt=""></p>]]></content>
+    <content type="html"><![CDATA[<h3 id="一款又爱又恨的游戏"><a href="#一款又爱又恨的游戏" class="headerlink" title="一款又爱又恨的游戏"></a>一款又爱又恨的游戏</h3><ul><li>爱：<ol><li>这游戏UI和画质都做得非常精美，原画的细节做得非常逼真</li><li>3分钟一场战斗，游戏时间设置的完美</li><li>操作简单，容易上手</li></ol></li><li>恨:<ol><li>3分钟一场战斗，导致你蹲个坑都可以玩几局，有时输能让你蹲出半个多小时，最后起来酸的不行</li><li>部落战匹配规则做得不好，分段6K左右自己卡等只有10级，结果给你匹配满级的来对付你，你技术再好也是以卵击石</li><li>商店不断推出活动引诱你充值，看到你要啥卡牌、是没有金币还是没有宝石，就给你推对应的活动</li><li>影响与家人的关系，有时候连输好几把，家人跟我聊天，我说话很冲，导致跟对方吵起来</li><li>不间断活动、每天对战，让你控制不住不玩，不停想上分，影响工作和学习</li></ol></li></ul><a id="more"></a><h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><ol><li>对方出的每张卡都记住，等全部8张卡出完，再想怎么用当前的卡组对付它</li><li>未知对方卡组，尽量使用小费过牌，等待摸清对方卡组再出手</li><li>排兵布阵不能全部放到一块，要分散放，不然被对面一个法术全部打中</li></ol><h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><blockquote><p>要升级的卡组已升满，没有玩下去的欲望了，本想这个赛季冲个6500+，结果没多少时间打，中午打了一个多小时，结果卡住6150上不去了，那就让他停留在6150结束这段旅程。接下来开启新的篇章，好好学习、好好工作，这样才能有好的未来</p></blockquote><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/222.png" alt=""></p>]]></content>
     
     
-      
-      
     <summary type="html">&lt;h3 id=&quot;一款又爱又恨的游戏&quot;&gt;&lt;a href=&quot;#一款又爱又恨的游戏&quot; class=&quot;headerlink&quot; title=&quot;一款又爱又恨的游戏&quot;&gt;&lt;/a&gt;一款又爱又恨的游戏&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;爱：&lt;ol&gt;
-&lt;li&gt;这游戏UI和画质都做得非常精美，原画的细节做得非常</summary>
-      
+&lt;li&gt;这游戏UI和画质都做得非常精美，原画的细节做得非常逼真&lt;/li&gt;
+&lt;li&gt;3分钟一场战斗，游戏时间设置的完美&lt;/li&gt;
+&lt;li&gt;操作简单，容易上手&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;恨:&lt;ol&gt;
+&lt;li&gt;3分钟一场战斗，导致你蹲个坑都可以玩几局，有时输能让你蹲出半个多小时，最后起来酸的不行&lt;/li&gt;
+&lt;li&gt;部落战匹配规则做得不好，分段6K左右自己卡等只有10级，结果给你匹配满级的来对付你，你技术再好也是以卵击石&lt;/li&gt;
+&lt;li&gt;商店不断推出活动引诱你充值，看到你要啥卡牌、是没有金币还是没有宝石，就给你推对应的活动&lt;/li&gt;
+&lt;li&gt;影响与家人的关系，有时候连输好几把，家人跟我聊天，我说话很冲，导致跟对方吵起来&lt;/li&gt;
+&lt;li&gt;不间断活动、每天对战，让你控制不住不玩，不停想上分，影响工作和学习&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary>
     
     
     
