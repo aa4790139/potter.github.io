@@ -54,6 +54,80 @@
       </tags>
   </entry>
   <entry>
+    <title>自动化测试-02：实践</title>
+    <url>/2020/10/22/AutoTest02/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>环境搭建: Appium 环境、Android 环境、Python 环境、夜神模拟器</li>
+<li>Android APP 测试 </li>
+</ul>
+<a id="more"></a>
+<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><ul>
+<li>Appium 环境<ul>
+<li>安装：Appium Desktop (Server) <a href="https://github.com/appium/appium-desktop/releases">下载地址</a></li>
+<li>安装：Appium-Python-Client (Client) <a href="https://pypi.org/project/Appium-Python-Client/">教程</a></li>
+</ul>
+</li>
+<li>Android 环境：<ul>
+<li>下载安装JDK <a href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">下载地址</a></li>
+<li>下载Android SDK <a href="https://developer.android.com/studio">下载地址</a></li>
+<li>配置JAVA和Android环境变量 <a href="https://www.jianshu.com/p/a9e80bb782af">教程</a></li>
+</ul>
+</li>
+<li>Python 环境：<ul>
+<li>首先：<a href="https://www.python.org/downloads/">下载安装Python</a></li>
+<li>此次：安装Appium Python库, 命令: pip install -U Appium-Python-Client—python <a href="https://pypi.org/project/Appium-Python-Client/">安装教程</a></li>
+<li>最后：安装Python IDE <a href="https://www.jetbrains.com/pycharm/download/#section=windows">pycharm下载</a></li>
+</ul>
+</li>
+<li>夜神模拟器：<a href="https://www.yeshen.com/">下载安装</a></li>
+</ul>
+<h3 id="Android-APP-测试"><a href="#Android-APP-测试" class="headerlink" title="Android APP 测试"></a>Android APP 测试</h3><ul>
+<li><p>常用命令：</p>
+<ul>
+<li>获取联机设备名称：adb devices</li>
+<li>与设备建立连接：adb connect ip:port (提示：使用adb devices 显示设备的ip和端口)</li>
+<li><p>获取APP包名和启动名：adb shell dumpsys window  windows | findstr mFocusedApp (提示：使用模拟器或手机,打印需测试的APP 保持显示在当前屏幕后，在cmd中输入此命令回车，假如输出结果如下)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  adb shell dumpsys window  windows | findstr mFocusedApp</span><br><span class="line">mFocusedApp&#x3D;AppWindowToken&#123;e84eb4f token&#x3D;Token&#123;1260a29 ActivityRecord&#123;16e4bb0 u0 com.guide.custom&#x2F;com.anyapps.Activity.AALaunch t12&#125;&#125;&#125;</span><br><span class="line"></span><br><span class="line">包名：com.guide.custom</span><br><span class="line">启动Activity名：com.anyapps.Activity.AALaunch</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>调试步骤：</p>
+<ol>
+<li>启动夜神模拟器，获取相关信息<ul>
+<li>获取设备号IP和Port: cmd-&gt;adb devices (如果不显示请检查环境配置)</li>
+<li>与设备建立连接：adb connect 127.0.0.1:62001</li>
+<li>系统版本：系统应用-&gt;设置-&gt;版本</li>
+</ul>
+</li>
+<li>打开程序包(拿系统Setting打比方)，获取包名和启动Activity名：adb shell dumpsys window  windows | findstr</li>
+<li>启动Appium，创建Server&lt;-&gt;会话<ul>
+<li>Start Server -&gt; 点击搜索图标 -&gt; 根据1、2获取信息，填写对应信息，我的如下<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201025-001.png" alt=""></li>
+<li>创建会话成功后，效果图如下：(此时可以获取原生布局元素了)<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201025224614.png" alt=""></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h3><ul>
+<li><a href="https://www.51zxw.net/list.aspx?page=2&amp;cid=670#!fenye=2">Appium自动化测试教程</a></li>
+<li><a href="http://appium.io/docs/cn/writing-running-appium/caps/index.html">Appium 参数说明</a></li>
+</ul>
+<blockquote>
+<p>最后：其他平台APP调试应该类似，以后再尝试吧 ~</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>自动化测试</category>
+      </categories>
+      <tags>
+        <tag>测试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python-03：Web自动化测试【打开Chrome百度搜索Selenium】</title>
     <url>/2020/11/03/AutoTest03/</url>
     <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
@@ -141,116 +215,6 @@
       </tags>
   </entry>
   <entry>
-    <title>结束《皇室战争》之旅</title>
-    <url>/2020/11/02/Game01/</url>
-    <content><![CDATA[<h3 id="一款又爱又恨的游戏"><a href="#一款又爱又恨的游戏" class="headerlink" title="一款又爱又恨的游戏"></a>一款又爱又恨的游戏</h3><ul>
-<li>爱：<ol>
-<li>这游戏UI和画质都做得非常精美，原画的细节做得非常逼真</li>
-<li>3分钟一场战斗，游戏时间设置的完美</li>
-<li>操作简单，容易上手</li>
-</ol>
-</li>
-<li>恨:<ol>
-<li>3分钟一场战斗，导致你蹲个坑都可以玩几局，有时输能让你蹲出半个多小时，最后起来酸的不行</li>
-<li>部落战匹配规则做得不好，分段6K左右自己卡等只有10级，结果给你匹配满级的来对付你，你技术再好也是以卵击石</li>
-<li>商店不断推出活动引诱你充值，看到你要啥卡牌、是没有金币还是没有宝石，就给你推对应的活动</li>
-<li>影响与家人的关系，有时候连输好几把，家人跟我聊天，我说话很冲，导致跟对方吵起来</li>
-<li>不间断活动、每天对战，让你控制不住不玩，不停想上分，影响工作和学习</li>
-</ol>
-</li>
-</ul>
-<h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><ol>
-<li>对方出的每张卡都记住，等全部8张卡出完，再想怎么用当前的卡组对付它</li>
-<li>未知对方卡组，尽量使用小费过牌，等待摸清对方卡组再出手</li>
-<li>排兵布阵不能全部放到一块，要分散放，不然被对面一个法术全部打中</li>
-</ol>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><blockquote>
-<p>要升级的卡组已升满，没有玩下去的欲望了，本想这个赛季冲个6500+，结果没多少时间打，中午打了一个多小时，结果卡住6150上不去了，那就让他停留在6150结束这段旅程。接下来开启新的篇章，好好学习、好好工作，这样才能有好的未来</p>
-</blockquote>
-<p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/222.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>游戏</category>
-      </categories>
-      <tags>
-        <tag>皇室战争</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>自动化测试-02：实践</title>
-    <url>/2020/10/22/AutoTest02/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>环境搭建: Appium 环境、Android 环境、Python 环境、夜神模拟器</li>
-<li>Android APP 测试 </li>
-</ul>
-<a id="more"></a>
-<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><ul>
-<li>Appium 环境<ul>
-<li>安装：Appium Desktop (Server) <a href="https://github.com/appium/appium-desktop/releases">下载地址</a></li>
-<li>安装：Appium-Python-Client (Client) <a href="https://pypi.org/project/Appium-Python-Client/">教程</a></li>
-</ul>
-</li>
-<li>Android 环境：<ul>
-<li>下载安装JDK <a href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">下载地址</a></li>
-<li>下载Android SDK <a href="https://developer.android.com/studio">下载地址</a></li>
-<li>配置JAVA和Android环境变量 <a href="https://www.jianshu.com/p/a9e80bb782af">教程</a></li>
-</ul>
-</li>
-<li>Python 环境：<ul>
-<li>首先：<a href="https://www.python.org/downloads/">下载安装Python</a></li>
-<li>此次：安装Appium Python库, 命令: pip install -U Appium-Python-Client—python <a href="https://pypi.org/project/Appium-Python-Client/">安装教程</a></li>
-<li>最后：安装Python IDE <a href="https://www.jetbrains.com/pycharm/download/#section=windows">pycharm下载</a></li>
-</ul>
-</li>
-<li>夜神模拟器：<a href="https://www.yeshen.com/">下载安装</a></li>
-</ul>
-<h3 id="Android-APP-测试"><a href="#Android-APP-测试" class="headerlink" title="Android APP 测试"></a>Android APP 测试</h3><ul>
-<li><p>常用命令：</p>
-<ul>
-<li>获取联机设备名称：adb devices</li>
-<li>与设备建立连接：adb connect ip:port (提示：使用adb devices 显示设备的ip和端口)</li>
-<li><p>获取APP包名和启动名：adb shell dumpsys window  windows | findstr mFocusedApp (提示：使用模拟器或手机,打印需测试的APP 保持显示在当前屏幕后，在cmd中输入此命令回车，假如输出结果如下)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  adb shell dumpsys window  windows | findstr mFocusedApp</span><br><span class="line">mFocusedApp&#x3D;AppWindowToken&#123;e84eb4f token&#x3D;Token&#123;1260a29 ActivityRecord&#123;16e4bb0 u0 com.guide.custom&#x2F;com.anyapps.Activity.AALaunch t12&#125;&#125;&#125;</span><br><span class="line"></span><br><span class="line">包名：com.guide.custom</span><br><span class="line">启动Activity名：com.anyapps.Activity.AALaunch</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>调试步骤：</p>
-<ol>
-<li>启动夜神模拟器，获取相关信息<ul>
-<li>获取设备号IP和Port: cmd-&gt;adb devices (如果不显示请检查环境配置)</li>
-<li>与设备建立连接：adb connect 127.0.0.1:62001</li>
-<li>系统版本：系统应用-&gt;设置-&gt;版本</li>
-</ul>
-</li>
-<li>打开程序包(拿系统Setting打比方)，获取包名和启动Activity名：adb shell dumpsys window  windows | findstr</li>
-<li>启动Appium，创建Server&lt;-&gt;会话<ul>
-<li>Start Server -&gt; 点击搜索图标 -&gt; 根据1、2获取信息，填写对应信息，我的如下<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201025-001.png" alt=""></li>
-<li>创建会话成功后，效果图如下：(此时可以获取原生布局元素了)<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201025224614.png" alt=""></li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<h3 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h3><ul>
-<li><a href="https://www.51zxw.net/list.aspx?page=2&amp;cid=670#!fenye=2">Appium自动化测试教程</a></li>
-<li><a href="http://appium.io/docs/cn/writing-running-appium/caps/index.html">Appium 参数说明</a></li>
-</ul>
-<blockquote>
-<p>最后：其他平台APP调试应该类似，以后再尝试吧 ~</p>
-</blockquote>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>自动化测试</category>
-      </categories>
-      <tags>
-        <tag>测试</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Github + Hexo + Next 搭建个人博客网站</title>
     <url>/2020/09/29/BuildBlog/</url>
     <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
@@ -260,7 +224,7 @@
 <li>绑定域名、版权配置、赞赏、站点加速等</li>
 </ul>
 <blockquote>
-<p>搭建原因：几年前一直在CSDN写博客，经常用心写的文章，结果过一段时间文章关联的图片全部丢失，给他们反馈无果，图片丢失也找不回。后面就转用印象笔记，几年下来记录了不少笔记，但是发现还是缺少一个互动的环节，不知道自己写的笔记有没有问题，没法与他人发生碰撞，想快速产生好的想法或者更好的解决方案，看到网上不少朋友都写在自己博客网站上，于是就决定自己也要搭一个，毕竟这样逼格更高一点。呵呵~  以下是我零碎2~3天搭自己博客网站的步骤，希望能给后面的人提供帮助。</p>
+<p>搭建原因：几年前一直在CSDN写博客，经常用心写的文章，结果过一段时间文章关联的图片全部丢失，给他们反馈无果，图片丢失也找不回。后面就转用印象笔记，几年下来记录了不少笔记，但是发现还是缺少一个互动的环节，不知道自己写的笔记有没有问题，没法与他人发生碰撞。想快速产生好的想法或者更好的解决方案，看到网上不少朋友都写在自己博客网站上，于是就决定自己也搭一个，一来记录自己成长，二来与大家互动让自己的知识得到升华，而且个人博客也显的逼格更高。 呵呵~  以下是我零碎2~3天搭自己博客网站的步骤，希望能给后面的人提供帮助。</p>
 </blockquote>
 <a id="more"></a>
 <h2 id="搭建步骤："><a href="#搭建步骤：" class="headerlink" title="搭建步骤："></a>搭建步骤：</h2><hr>
@@ -385,6 +349,42 @@
         <tag>Github</tag>
         <tag>Hexo</tag>
         <tag>Next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>结束《皇室战争》之旅</title>
+    <url>/2020/11/02/Game01/</url>
+    <content><![CDATA[<h3 id="一款又爱又恨的游戏"><a href="#一款又爱又恨的游戏" class="headerlink" title="一款又爱又恨的游戏"></a>一款又爱又恨的游戏</h3><ul>
+<li>爱：<ol>
+<li>这游戏UI和画质都做得非常精美，原画的细节做得非常逼真</li>
+<li>3分钟一场战斗，游戏时间设置的完美</li>
+<li>操作简单，容易上手</li>
+</ol>
+</li>
+<li>恨:<ol>
+<li>3分钟一场战斗，导致你蹲个坑都可以玩几局，有时输能让你蹲出半个多小时，最后起来酸的不行</li>
+<li>部落战匹配规则做得不好，分段6K左右自己卡等只有10级，结果给你匹配满级的来对付你，你技术再好也是以卵击石</li>
+<li>商店不断推出活动引诱你充值，看到你要啥卡牌、是没有金币还是没有宝石，就给你推对应的活动</li>
+<li>影响与家人的关系，有时候连输好几把，家人跟我聊天，我说话很冲，导致跟对方吵起来</li>
+<li>不间断活动、每天对战，让你控制不住不玩，不停想上分，影响工作和学习</li>
+</ol>
+</li>
+</ul>
+<h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><ol>
+<li>对方出的每张卡都记住，等全部8张卡出完，再想怎么用当前的卡组对付它</li>
+<li>未知对方卡组，尽量使用小费过牌，等待摸清对方卡组再出手</li>
+<li>排兵布阵不能全部放到一块，要分散放，不然被对面一个法术全部打中</li>
+</ol>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><blockquote>
+<p>要升级的卡组已升满，没有玩下去的欲望了，本想这个赛季冲个6500+，结果没多少时间打，中午打了一个多小时，结果卡住6150上不去了，那就让他停留在6150结束这段旅程。接下来开启新的篇章，好好学习、好好工作，这样才能有好的未来</p>
+</blockquote>
+<p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/222.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>游戏</category>
+      </categories>
+      <tags>
+        <tag>皇室战争</tag>
       </tags>
   </entry>
   <entry>
