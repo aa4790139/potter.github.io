@@ -445,8 +445,7 @@
 <li>介绍一套可行的混合加密方案，怎么应用到接口数据加密中</li>
 <li>demo源码：<a href="https://github.com/aa4790139/encrypt_decrypt_sample">https://github.com/aa4790139/encrypt_decrypt_sample</a></li>
 </ul>
-<a id="more"></a>
-<h3 id="什么是对称加密"><a href="#什么是对称加密" class="headerlink" title="什么是对称加密"></a>什么是对称加密</h3><ul>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h3 id="什么是对称加密"><a href="#什么是对称加密" class="headerlink" title="什么是对称加密"></a>什么是对称加密</h3><ul>
 <li>定义：<blockquote>
 <p>对称密钥算法（英语：Symmetric-key algorithm）又称为对称加密、私钥加密、共享密钥加密，是密码学中的一类加密算法。这类算法在加密和解密时使用相同的密钥，或是使用两个可以简单地相互推算的密钥</p>
 </blockquote>
@@ -471,7 +470,9 @@
 </blockquote>
 </li>
 </ul>
+<hr>
 <h3 id="对称加密demo"><a href="#对称加密demo" class="headerlink" title="对称加密demo"></a>对称加密demo</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">this.key &#x3D; CryptoJS.enc.Utf8.parse(&quot;0123456789abcdef&quot;);</span><br><span class="line">this.iv &#x3D; CryptoJS.enc.Utf8.parse(&quot;abcdef0123456789&quot;);</span><br><span class="line">&#x2F;**</span><br><span class="line">* AES 加密</span><br><span class="line">* @param iv</span><br><span class="line">* @param key</span><br><span class="line">* @param content 加密数据</span><br><span class="line">* @returns &#123;string&#125;</span><br><span class="line">* @private</span><br><span class="line">*&#x2F;</span><br><span class="line">__aesEncrypt(iv, key, content) &#123;</span><br><span class="line">    let text &#x3D; CryptoJS.enc.Utf8.parse(JSON.stringify(content));</span><br><span class="line">    let encrypted &#x3D; CryptoJS.AES.encrypt(text, key,</span><br><span class="line">        &#123;</span><br><span class="line">            iv: iv,</span><br><span class="line">            mode: CryptoJS.mode.CBC,</span><br><span class="line">            padding: CryptoJS.pad.Pkcs7,</span><br><span class="line">        &#125;);</span><br><span class="line">    return encrypted.toString();</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line">* AES 解密</span><br><span class="line">* @param iv</span><br><span class="line">* @param key</span><br><span class="line">* @param content  解密数据</span><br><span class="line">* @returns &#123;string&#125;</span><br><span class="line">* @private</span><br><span class="line">*&#x2F;</span><br><span class="line">__aesDecrypt(iv, key, content) &#123;</span><br><span class="line">    let decrypt &#x3D; CryptoJS.AES.decrypt(content, key, &#123;</span><br><span class="line">        iv: iv,</span><br><span class="line">        mode: CryptoJS.mode.CBC,</span><br><span class="line">        padding: CryptoJS.pad.Pkcs7,</span><br><span class="line">    &#125;);</span><br><span class="line">    let decryptText &#x3D; decrypt.toString(CryptoJS.enc.Utf8);</span><br><span class="line">    return decryptText.replace(&#x2F;\&quot;&#x2F;g, &quot;&quot;);</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
 <h3 id="什么是非对称加密"><a href="#什么是非对称加密" class="headerlink" title="什么是非对称加密"></a>什么是非对称加密</h3><ul>
 <li><p>定义：</p>
 <blockquote>
@@ -508,13 +509,31 @@
 </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">* 混合加密</span><br><span class="line">* @param iv</span><br><span class="line">* @param key</span><br><span class="line">* @param content</span><br><span class="line">* @returns &#123;&#123;data: string, iv: (CipherParams|PromiseLike&lt;ArrayBuffer&gt;), key: (CipherParams|PromiseLike&lt;ArrayBuffer&gt;)&#125;&#125;</span><br><span class="line">* @private</span><br><span class="line">*&#x2F;</span><br><span class="line">__hybirdEncrypt(iv, key, content) &#123;</span><br><span class="line">    const aesEncryptData &#x3D; this.__aesEncrypt(iv, key, content);</span><br><span class="line">    const rsaEncryptIv &#x3D; this.__rsaEncrypt(iv);</span><br><span class="line">    const rsaEncryptKey &#x3D; this.__rsaEncrypt(key);</span><br><span class="line">    return &#123;</span><br><span class="line">        iv: rsaEncryptIv,</span><br><span class="line">        key: rsaEncryptKey,</span><br><span class="line">        data: aesEncryptData,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line">* 混合解密</span><br><span class="line">* @param encryptInfo</span><br><span class="line">* @returns &#123;string&#125;</span><br><span class="line">* @private</span><br><span class="line">*&#x2F;</span><br><span class="line">__hybirdDecrypt(encryptInfo) &#123;</span><br><span class="line">    const iv &#x3D; this.rsaDecryptor.decrypt(encryptInfo.iv);</span><br><span class="line">    const key &#x3D; this.rsaDecryptor.decrypt(encryptInfo.key);</span><br><span class="line">    const data &#x3D; encryptInfo.data;</span><br><span class="line">    return this.__aesDecrypt(iv, key, data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="介绍一套可行的混合加密方案，怎么应用到接口数据加密中"><a href="#介绍一套可行的混合加密方案，怎么应用到接口数据加密中" class="headerlink" title="介绍一套可行的混合加密方案，怎么应用到接口数据加密中"></a>介绍一套可行的混合加密方案，怎么应用到接口数据加密中</h3><h3 id="特别致谢："><a href="#特别致谢：" class="headerlink" title="特别致谢："></a>特别致谢：</h3><blockquote>
-<p>非常感谢阿宝哥提供的[玩转混合(<a href="https://mp.weixin.qq.com/s/i_Clg5kmTBwcFoSUNO-naQ)文章，讲得通俗易懂，让我受益匪浅。">https://mp.weixin.qq.com/s/i_Clg5kmTBwcFoSUNO-naQ)文章，讲得通俗易懂，让我受益匪浅。</a></p>
-<ul>
-<li></li>
+<hr>
+<h3 id="介绍一套可行混合加密方案，怎么应用到接口数据加密中。流程图如下："><a href="#介绍一套可行混合加密方案，怎么应用到接口数据加密中。流程图如下：" class="headerlink" title="介绍一套可行混合加密方案，怎么应用到接口数据加密中。流程图如下："></a>介绍一套可行混合加密方案，怎么应用到接口数据加密中。流程图如下：</h3><ul>
+<li>思路如下：<ul>
+<li>第1步：创建一套RSA 公私钥，公钥前端拿着，私钥服务端拿着</li>
+<li>第2步：前端为每一个网络请求生成RequestID</li>
+<li>第3步：客户端生成AES Key，然后将RequestID 作为Key,AES Key 作为Value 存内存</li>
+<li>第4步：客户端用生成的AES Key 加密请求数据Request Data，用RSA公钥对AES Key进行加密，同时把requestID、加密数据、加密AES Key 发送给服务端</li>
+<li>第5步：服务端用RSA私钥解密被加密的AES Key，然后再用解开的AES Key 对RequestData数据进行解密</li>
+<li>第6步：服务端用AES Key对响应数据ResposneData加密+RequestID、返回给前端</li>
+<li>第7步：前端根据服务端返回的RequestID 取出内存的AES key, 用AES key 解密Resposne Data数据，用完后删除内存RequestID 的AES key 数据。</li>
+<li>最后：前端每次发送请求都创建AES Key 去加密数据，收到服务端响应数据解密用完后，就删除掉内存中的AES Key数据，如此循环就用一套RSA公私钥解决混合加密问题</li>
 </ul>
+</li>
+<li>流程图：<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/%E6%B7%B7%E5%90%88%E5%8A%A0%E5%AF%86%E6%96%B9%E6%A1%88%E6%B5%81%E7%A8%8B%E5%9B%BE.jpg" alt=""></li>
+</ul>
+<hr>
+<h3 id="最后："><a href="#最后：" class="headerlink" title="最后："></a>最后：</h3><blockquote>
+<p>由于对称加密DES安全性已不太强，所以就选择了替代品AES。非常感谢阿宝哥提供的<a href="https://mp.weixin.qq.com/s/i_Clg5kmTBwcFoSUNO-naQ">玩转混合加密</a>文章，讲得通俗易懂，让我受益匪浅。最后阿宝哥提到把AES key 存放内存容易让他人搞到AES Key。所以我就去了解Web如何防调试、代<br>码怎么混淆等，下一篇：Web如何防调试</p>
 </blockquote>
-<h3 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h3><p><a href="https://mp.weixin.qq.com/s/i_Clg5kmTBwcFoSUNO-naQ">阿宝哥-玩转混合加密</a></p>
+<hr>
+<h3 id="参考文献：阿宝哥-玩转混合加密"><a href="#参考文献：阿宝哥-玩转混合加密" class="headerlink" title="参考文献：阿宝哥-玩转混合加密"></a>参考文献：<a href="https://mp.weixin.qq.com/s/i_Clg5kmTBwcFoSUNO-naQ">阿宝哥-玩转混合加密</a></h3><hr>
+<h3 id="更多相关资料："><a href="#更多相关资料：" class="headerlink" title="更多相关资料："></a>更多相关资料：</h3><ul>
+<li><a href="https://www.jianshu.com/p/c44a8a1b7c38">DES加密算法原理</a></li>
+<li><a href="https://www.cxyxiaowu.com/1478.html">算法科普：神秘的 DES 加密算法</a></li>
+</ul>
 <hr>
 <blockquote>
 <p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
@@ -607,30 +626,6 @@
       </tags>
   </entry>
   <entry>
-    <title>UniApp 如何引入Iconfont阿里巴巴矢量图标库</title>
-    <url>/2020/11/13/UniApp01/</url>
-    <content><![CDATA[<h3 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下:"></a>步骤如下:</h3><ol>
-<li>下载图标项目, 解压后效果如下<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201113164039.png" alt=""></li>
-<li><p>修改iconfont.css文件</p>
-<p> 修改前格式：</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@font-face &#123;font-family: &quot;iconfont&quot;;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083&#39;); &#x2F;* IE9 *&#x2F;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083#iefix&#39;) format(&#39;embedded-opentype&#39;), &#x2F;* IE6-IE8 *&#x2F;</span><br><span class="line">url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;),</span><br><span class="line">url(&#39;iconfont.woff?t&#x3D;1605254910083&#39;) format(&#39;woff&#39;),</span><br><span class="line">url(&#39;iconfont.ttf?t&#x3D;1605254910083&#39;) format(&#39;truetype&#39;), &#x2F;* chrome, firefox, opera, Safari, Android, iOS 4.2+ *&#x2F;</span><br><span class="line">url(&#39;iconfont.svg?t&#x3D;1605254910083#iconfont&#39;) format(&#39;svg&#39;); &#x2F;* iOS 4.1- *&#x2F;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 修改后格式: </p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &quot;iconfont&quot;;</span><br><span class="line">    src: url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>Copy字体文件iconfont.ttf和样式文件iconfont.css 至UniApp项目static/font目录中</li>
-</ol>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>UniApp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python-01：Python与C# 基本语法区别</title>
     <url>/2020/10/31/Python01/</url>
     <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
@@ -679,6 +674,30 @@
 ]]></content>
       <tags>
         <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>UniApp 如何引入Iconfont阿里巴巴矢量图标库</title>
+    <url>/2020/11/13/UniApp01/</url>
+    <content><![CDATA[<h3 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下:"></a>步骤如下:</h3><ol>
+<li>下载图标项目, 解压后效果如下<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201113164039.png" alt=""></li>
+<li><p>修改iconfont.css文件</p>
+<p> 修改前格式：</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@font-face &#123;font-family: &quot;iconfont&quot;;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083&#39;); &#x2F;* IE9 *&#x2F;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083#iefix&#39;) format(&#39;embedded-opentype&#39;), &#x2F;* IE6-IE8 *&#x2F;</span><br><span class="line">url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;),</span><br><span class="line">url(&#39;iconfont.woff?t&#x3D;1605254910083&#39;) format(&#39;woff&#39;),</span><br><span class="line">url(&#39;iconfont.ttf?t&#x3D;1605254910083&#39;) format(&#39;truetype&#39;), &#x2F;* chrome, firefox, opera, Safari, Android, iOS 4.2+ *&#x2F;</span><br><span class="line">url(&#39;iconfont.svg?t&#x3D;1605254910083#iconfont&#39;) format(&#39;svg&#39;); &#x2F;* iOS 4.1- *&#x2F;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 修改后格式: </p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &quot;iconfont&quot;;</span><br><span class="line">    src: url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>Copy字体文件iconfont.ttf和样式文件iconfont.css 至UniApp项目static/font目录中</li>
+</ol>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>UniApp</tag>
       </tags>
   </entry>
 </search>
