@@ -441,9 +441,9 @@
 <li>对称加密demo</li>
 <li>什么是非对称加密</li>
 <li>非对称加密demo</li>
-<li>对称加密与非对称加密组合使用demo</li>
+<li>对称加密与非对称加密组合使用</li>
 <li>介绍一套可行的混合加密方案，怎么应用到接口数据加密中</li>
-<li>demo源码：<a href="https://github.com/aa4790139/encrypt_decrypt_sample">https://github.com/aa4790139/encrypt_decrypt_sample</a></li>
+<li>源码工程：<a href="https://github.com/aa4790139/encrypt_decrypt_sample">https://github.com/aa4790139/encrypt_decrypt_sample</a></li>
 </ul>
 <h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h3 id="什么是对称加密"><a href="#什么是对称加密" class="headerlink" title="什么是对称加密"></a>什么是对称加密</h3><ul>
 <li>定义：<blockquote>
@@ -502,13 +502,9 @@
 </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">this.rsaEncryptor &#x3D; new JSEncrypt();</span><br><span class="line">this.rsaEncryptor.setPublicKey(this.rsa_pub_key);</span><br><span class="line">this.rsaDecryptor &#x3D; new JSEncrypt();</span><br><span class="line">this.rsaDecryptor.setPrivateKey(this.rsa_pri_key);</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line">* RSA 加密</span><br><span class="line">* @param content</span><br><span class="line">* @returns &#123;CipherParams|PromiseLike&lt;ArrayBuffer&gt;&#125;</span><br><span class="line">* @private</span><br><span class="line">*&#x2F;</span><br><span class="line">__rsaEncrypt(content) &#123;</span><br><span class="line">    return this.rsaEncryptor.encrypt(content);</span><br><span class="line">&#125;,</span><br><span class="line">&#x2F;**</span><br><span class="line">* RSA 解密</span><br><span class="line">* @param content</span><br><span class="line">* @returns &#123;WordArray|PromiseLike&lt;ArrayBuffer&gt;&#125;</span><br><span class="line">* @private</span><br><span class="line">*&#x2F;</span><br><span class="line">__rsaDecrypt(content) &#123;</span><br><span class="line">    return this.rsaDecryptor.decrypt(content);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<ul>
-<li>对称加密与非对称加密组合使用<blockquote>
-<p>现在对称加密和非对称加密的缺点我们都知道了，那就结合对称加密和非对称加密的优点来个demo，思路：针对小数据对称加密的iv和key，采用非对称加密；针对大数据data采用对称加密。</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">* 混合加密</span><br><span class="line">* @param iv</span><br><span class="line">* @param key</span><br><span class="line">* @param content</span><br><span class="line">* @returns &#123;&#123;data: string, iv: (CipherParams|PromiseLike&lt;ArrayBuffer&gt;), key: (CipherParams|PromiseLike&lt;ArrayBuffer&gt;)&#125;&#125;</span><br><span class="line">* @private</span><br><span class="line">*&#x2F;</span><br><span class="line">__hybirdEncrypt(iv, key, content) &#123;</span><br><span class="line">    const aesEncryptData &#x3D; this.__aesEncrypt(iv, key, content);</span><br><span class="line">    const rsaEncryptIv &#x3D; this.__rsaEncrypt(iv);</span><br><span class="line">    const rsaEncryptKey &#x3D; this.__rsaEncrypt(key);</span><br><span class="line">    return &#123;</span><br><span class="line">        iv: rsaEncryptIv,</span><br><span class="line">        key: rsaEncryptKey,</span><br><span class="line">        data: aesEncryptData,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line">* 混合解密</span><br><span class="line">* @param encryptInfo</span><br><span class="line">* @returns &#123;string&#125;</span><br><span class="line">* @private</span><br><span class="line">*&#x2F;</span><br><span class="line">__hybirdDecrypt(encryptInfo) &#123;</span><br><span class="line">    const iv &#x3D; this.rsaDecryptor.decrypt(encryptInfo.iv);</span><br><span class="line">    const key &#x3D; this.rsaDecryptor.decrypt(encryptInfo.key);</span><br><span class="line">    const data &#x3D; encryptInfo.data;</span><br><span class="line">    return this.__aesDecrypt(iv, key, data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="对称加密与非对称加密组合使用"><a href="#对称加密与非对称加密组合使用" class="headerlink" title="对称加密与非对称加密组合使用"></a>对称加密与非对称加密组合使用</h3><pre><code>&gt; 现在对称加密和非对称加密的缺点我们都知道了，那就结合对称加密和非对称加密的优点来个demo，思路：针对小数据对称加密的iv和key，采用非对称加密；针对大数据data采用对称加密。
+</code></pre><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">* 混合加密</span><br><span class="line">* @param iv</span><br><span class="line">* @param key</span><br><span class="line">* @param content</span><br><span class="line">* @returns &#123;&#123;data: string, iv: (CipherParams|PromiseLike&lt;ArrayBuffer&gt;), key: (CipherParams|PromiseLike&lt;ArrayBuffer&gt;)&#125;&#125;</span><br><span class="line">* @private</span><br><span class="line">*&#x2F;</span><br><span class="line">__hybirdEncrypt(iv, key, content) &#123;</span><br><span class="line">    const aesEncryptData &#x3D; this.__aesEncrypt(iv, key, content);</span><br><span class="line">    const rsaEncryptIv &#x3D; this.__rsaEncrypt(iv);</span><br><span class="line">    const rsaEncryptKey &#x3D; this.__rsaEncrypt(key);</span><br><span class="line">    return &#123;</span><br><span class="line">        iv: rsaEncryptIv,</span><br><span class="line">        key: rsaEncryptKey,</span><br><span class="line">        data: aesEncryptData,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line">* 混合解密</span><br><span class="line">* @param encryptInfo</span><br><span class="line">* @returns &#123;string&#125;</span><br><span class="line">* @private</span><br><span class="line">*&#x2F;</span><br><span class="line">__hybirdDecrypt(encryptInfo) &#123;</span><br><span class="line">    const iv &#x3D; this.rsaDecryptor.decrypt(encryptInfo.iv);</span><br><span class="line">    const key &#x3D; this.rsaDecryptor.decrypt(encryptInfo.key);</span><br><span class="line">    const data &#x3D; encryptInfo.data;</span><br><span class="line">    return this.__aesDecrypt(iv, key, data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <h3 id="介绍一套可行混合加密方案，怎么应用到接口数据加密中。流程图如下："><a href="#介绍一套可行混合加密方案，怎么应用到接口数据加密中。流程图如下：" class="headerlink" title="介绍一套可行混合加密方案，怎么应用到接口数据加密中。流程图如下："></a>介绍一套可行混合加密方案，怎么应用到接口数据加密中。流程图如下：</h3><ul>
 <li>思路如下：<ul>
@@ -529,7 +525,10 @@
 <p>由于对称加密DES安全性已不太强，所以就选择了替代品AES。非常感谢阿宝哥提供的<a href="https://mp.weixin.qq.com/s/i_Clg5kmTBwcFoSUNO-naQ">玩转混合加密</a>文章，讲得通俗易懂，让我受益匪浅。最后阿宝哥提到把AES key 存放内存容易让他人搞到AES Key。所以我就去了解Web如何防调试、代<br>码怎么混淆等，下一篇：Web如何防调试</p>
 </blockquote>
 <hr>
-<h3 id="参考文献：阿宝哥-玩转混合加密"><a href="#参考文献：阿宝哥-玩转混合加密" class="headerlink" title="参考文献：阿宝哥-玩转混合加密"></a>参考文献：<a href="https://mp.weixin.qq.com/s/i_Clg5kmTBwcFoSUNO-naQ">阿宝哥-玩转混合加密</a></h3><hr>
+<h3 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s/i_Clg5kmTBwcFoSUNO-naQ">阿宝哥-玩转混合加密</a></li>
+</ul>
+<hr>
 <h3 id="更多相关资料："><a href="#更多相关资料：" class="headerlink" title="更多相关资料："></a>更多相关资料：</h3><ul>
 <li><a href="https://www.jianshu.com/p/c44a8a1b7c38">DES加密算法原理</a></li>
 <li><a href="https://www.cxyxiaowu.com/1478.html">算法科普：神秘的 DES 加密算法</a></li>
