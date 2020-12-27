@@ -54,6 +54,80 @@
       </tags>
   </entry>
   <entry>
+    <title>自动化测试-02：实践</title>
+    <url>/2020/10/22/AutoTest02/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>环境搭建: Appium 环境、Android 环境、Python 环境、夜神模拟器</li>
+<li>Android APP 测试 </li>
+</ul>
+<a id="more"></a>
+<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><ul>
+<li>Appium 环境<ul>
+<li>安装：Appium Desktop (Server) <a href="https://github.com/appium/appium-desktop/releases">下载地址</a></li>
+<li>安装：Appium-Python-Client (Client) <a href="https://pypi.org/project/Appium-Python-Client/">教程</a></li>
+</ul>
+</li>
+<li>Android 环境：<ul>
+<li>下载安装JDK <a href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">下载地址</a></li>
+<li>下载Android SDK <a href="https://developer.android.com/studio">下载地址</a></li>
+<li>配置JAVA和Android环境变量 <a href="https://www.jianshu.com/p/a9e80bb782af">教程</a></li>
+</ul>
+</li>
+<li>Python 环境：<ul>
+<li>首先：<a href="https://www.python.org/downloads/">下载安装Python</a></li>
+<li>此次：安装Appium Python库, 命令: pip install -U Appium-Python-Client—python <a href="https://pypi.org/project/Appium-Python-Client/">安装教程</a></li>
+<li>最后：安装Python IDE <a href="https://www.jetbrains.com/pycharm/download/#section=windows">pycharm下载</a></li>
+</ul>
+</li>
+<li>夜神模拟器：<a href="https://www.yeshen.com/">下载安装</a></li>
+</ul>
+<h3 id="Android-APP-测试"><a href="#Android-APP-测试" class="headerlink" title="Android APP 测试"></a>Android APP 测试</h3><ul>
+<li><p>常用命令：</p>
+<ul>
+<li>获取联机设备名称：adb devices</li>
+<li>与设备建立连接：adb connect ip:port (提示：使用adb devices 显示设备的ip和端口)</li>
+<li><p>获取APP包名和启动名：adb shell dumpsys window  windows | findstr mFocusedApp (提示：使用模拟器或手机,打印需测试的APP 保持显示在当前屏幕后，在cmd中输入此命令回车，假如输出结果如下)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  adb shell dumpsys window  windows | findstr mFocusedApp</span><br><span class="line">mFocusedApp&#x3D;AppWindowToken&#123;e84eb4f token&#x3D;Token&#123;1260a29 ActivityRecord&#123;16e4bb0 u0 com.guide.custom&#x2F;com.anyapps.Activity.AALaunch t12&#125;&#125;&#125;</span><br><span class="line"></span><br><span class="line">包名：com.guide.custom</span><br><span class="line">启动Activity名：com.anyapps.Activity.AALaunch</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>调试步骤：</p>
+<ol>
+<li>启动夜神模拟器，获取相关信息<ul>
+<li>获取设备号IP和Port: cmd-&gt;adb devices (如果不显示请检查环境配置)</li>
+<li>与设备建立连接：adb connect 127.0.0.1:62001</li>
+<li>系统版本：系统应用-&gt;设置-&gt;版本</li>
+</ul>
+</li>
+<li>打开程序包(拿系统Setting打比方)，获取包名和启动Activity名：adb shell dumpsys window  windows | findstr</li>
+<li>启动Appium，创建Server&lt;-&gt;会话<ul>
+<li>Start Server -&gt; 点击搜索图标 -&gt; 根据1、2获取信息，填写对应信息，我的如下<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201025-001.png" alt=""></li>
+<li>创建会话成功后，效果图如下：(此时可以获取原生布局元素了)<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201025224614.png" alt=""></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h3><ul>
+<li><a href="https://www.51zxw.net/list.aspx?page=2&amp;cid=670#!fenye=2">Appium自动化测试教程</a></li>
+<li><a href="http://appium.io/docs/cn/writing-running-appium/caps/index.html">Appium 参数说明</a></li>
+</ul>
+<blockquote>
+<p>最后：其他平台APP调试应该类似，以后再尝试吧 ~</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>自动化测试</category>
+      </categories>
+      <tags>
+        <tag>测试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python-03：Web自动化测试【打开Chrome百度搜索Selenium】</title>
     <url>/2020/11/03/AutoTest03/</url>
     <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
@@ -138,80 +212,6 @@
         <tag>Python</tag>
         <tag>Selenium</tag>
         <tag>Appnium</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>自动化测试-02：实践</title>
-    <url>/2020/10/22/AutoTest02/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>环境搭建: Appium 环境、Android 环境、Python 环境、夜神模拟器</li>
-<li>Android APP 测试 </li>
-</ul>
-<a id="more"></a>
-<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><ul>
-<li>Appium 环境<ul>
-<li>安装：Appium Desktop (Server) <a href="https://github.com/appium/appium-desktop/releases">下载地址</a></li>
-<li>安装：Appium-Python-Client (Client) <a href="https://pypi.org/project/Appium-Python-Client/">教程</a></li>
-</ul>
-</li>
-<li>Android 环境：<ul>
-<li>下载安装JDK <a href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">下载地址</a></li>
-<li>下载Android SDK <a href="https://developer.android.com/studio">下载地址</a></li>
-<li>配置JAVA和Android环境变量 <a href="https://www.jianshu.com/p/a9e80bb782af">教程</a></li>
-</ul>
-</li>
-<li>Python 环境：<ul>
-<li>首先：<a href="https://www.python.org/downloads/">下载安装Python</a></li>
-<li>此次：安装Appium Python库, 命令: pip install -U Appium-Python-Client—python <a href="https://pypi.org/project/Appium-Python-Client/">安装教程</a></li>
-<li>最后：安装Python IDE <a href="https://www.jetbrains.com/pycharm/download/#section=windows">pycharm下载</a></li>
-</ul>
-</li>
-<li>夜神模拟器：<a href="https://www.yeshen.com/">下载安装</a></li>
-</ul>
-<h3 id="Android-APP-测试"><a href="#Android-APP-测试" class="headerlink" title="Android APP 测试"></a>Android APP 测试</h3><ul>
-<li><p>常用命令：</p>
-<ul>
-<li>获取联机设备名称：adb devices</li>
-<li>与设备建立连接：adb connect ip:port (提示：使用adb devices 显示设备的ip和端口)</li>
-<li><p>获取APP包名和启动名：adb shell dumpsys window  windows | findstr mFocusedApp (提示：使用模拟器或手机,打印需测试的APP 保持显示在当前屏幕后，在cmd中输入此命令回车，假如输出结果如下)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  adb shell dumpsys window  windows | findstr mFocusedApp</span><br><span class="line">mFocusedApp&#x3D;AppWindowToken&#123;e84eb4f token&#x3D;Token&#123;1260a29 ActivityRecord&#123;16e4bb0 u0 com.guide.custom&#x2F;com.anyapps.Activity.AALaunch t12&#125;&#125;&#125;</span><br><span class="line"></span><br><span class="line">包名：com.guide.custom</span><br><span class="line">启动Activity名：com.anyapps.Activity.AALaunch</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>调试步骤：</p>
-<ol>
-<li>启动夜神模拟器，获取相关信息<ul>
-<li>获取设备号IP和Port: cmd-&gt;adb devices (如果不显示请检查环境配置)</li>
-<li>与设备建立连接：adb connect 127.0.0.1:62001</li>
-<li>系统版本：系统应用-&gt;设置-&gt;版本</li>
-</ul>
-</li>
-<li>打开程序包(拿系统Setting打比方)，获取包名和启动Activity名：adb shell dumpsys window  windows | findstr</li>
-<li>启动Appium，创建Server&lt;-&gt;会话<ul>
-<li>Start Server -&gt; 点击搜索图标 -&gt; 根据1、2获取信息，填写对应信息，我的如下<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201025-001.png" alt=""></li>
-<li>创建会话成功后，效果图如下：(此时可以获取原生布局元素了)<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201025224614.png" alt=""></li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<h3 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h3><ul>
-<li><a href="https://www.51zxw.net/list.aspx?page=2&amp;cid=670#!fenye=2">Appium自动化测试教程</a></li>
-<li><a href="http://appium.io/docs/cn/writing-running-appium/caps/index.html">Appium 参数说明</a></li>
-</ul>
-<blockquote>
-<p>最后：其他平台APP调试应该类似，以后再尝试吧 ~</p>
-</blockquote>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>自动化测试</category>
-      </categories>
-      <tags>
-        <tag>测试</tag>
       </tags>
   </entry>
   <entry>
@@ -601,35 +601,6 @@
       </tags>
   </entry>
   <entry>
-    <title>屏蔽：键盘按键、鼠标点击事件</title>
-    <url>/2020/10/14/PreventEvent/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>屏蔽-键盘按键</li>
-<li>屏蔽-鼠标点击</li>
-<li>屏蔽-BackSpace</li>
-</ul>
-<a id="more"></a>
-<h3 id="屏蔽-键盘按键"><a href="#屏蔽-键盘按键" class="headerlink" title="屏蔽-键盘按键"></a>屏蔽-键盘按键</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;添加按键监听</span><br><span class="line">window.addEventListener(&#39;keydown&#39;, this.onKeyDown,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;移除按键监听</span><br><span class="line">window.removeEventListener(&quot;keydown&quot;,this.onKeyDown,true);</span><br><span class="line"></span><br><span class="line">onKeyDown(val)&#123;</span><br><span class="line">    console.log(&#39;按下&#39; + val.key);</span><br><span class="line">    val.preventDefault();</span><br><span class="line">    val.stopPropagation();</span><br><span class="line">    val.cancelBubble &#x3D; true;</span><br><span class="line">    window.event.returnValue &#x3D; false;</span><br><span class="line">    window.event.preventDefault();</span><br><span class="line">    window.event.stopPropagation();</span><br><span class="line">    window.event.cancelBubble &#x3D; true;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="屏蔽-鼠标点击"><a href="#屏蔽-鼠标点击" class="headerlink" title="屏蔽-鼠标点击"></a>屏蔽-鼠标点击</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;添加鼠标点击监听</span><br><span class="line">window.addEventListener(&#39;mousedown&#39;,this.onClick,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;移除鼠标点击监听</span><br><span class="line">window.removeEventListener(&#39;mousedown&#39;,this.onClick,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;which: 1-左键 2-中键 3-右键</span><br><span class="line">onClick(val)&#123;</span><br><span class="line">    console.error(&#39;点击&#39; + val.which);</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="屏蔽-BackSpace"><a href="#屏蔽-BackSpace" class="headerlink" title="屏蔽-BackSpace"></a>屏蔽-BackSpace</h3><p>在IE页面跳转过程中，按BackSpace退格键默认返回上此浏览页，导致路由中断引起(Vue)页面卡死，所以需要在IE中屏蔽掉BackSpce退格键，但是在输入框中则不屏蔽。</p>
-<ul>
-<li>preventBackSpce.js： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export const banBackSpace &#x3D; (e) &#x3D;&gt; &#123;</span><br><span class="line">  let ev &#x3D; e || window.event</span><br><span class="line">  &#x2F;&#x2F; 各种浏览器下获取事件对象</span><br><span class="line">  let obj &#x3D; ev.relatedTarget || ev.srcElement || ev.target || ev.currentTarget</span><br><span class="line">  &#x2F;&#x2F; 按下Backspace键</span><br><span class="line">  if (ev.keyCode &#x3D;&#x3D;&#x3D; 8) &#123;</span><br><span class="line">    &#x2F;&#x2F; 标签名称</span><br><span class="line">    let tagName &#x3D; obj.nodeName.toLowerCase();</span><br><span class="line">    &#x2F;&#x2F; 如果标签不是input或者textarea则阻止Backspace</span><br><span class="line">    if (tagName !&#x3D;&#x3D; &#39;input&#39; &amp;&amp; tagName !&#x3D;&#x3D; &#39;textarea&#39;) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">    let tagType &#x3D; obj.type.toLowerCase() &#x2F;&#x2F; 标签类型</span><br><span class="line">    &#x2F;&#x2F; input标签除了下面几种类型，全部阻止Backspace</span><br><span class="line">    if (tagName &#x3D;&#x3D;&#x3D; &#39;input&#39; &amp;&amp; (tagType !&#x3D;&#x3D; &#39;text&#39; &amp;&amp; tagType !&#x3D;&#x3D; &#39;textarea&#39; &amp;&amp; tagType !&#x3D;&#x3D; &#39;password&#39;)) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; input或者textarea输入框如果不可编辑则阻止Backspace</span><br><span class="line">    if ((tagName &#x3D;&#x3D;&#x3D; &#39;input&#39; || tagName &#x3D;&#x3D;&#x3D; &#39;textarea&#39;) &amp;&amp; (obj.readOnly &#x3D;&#x3D;&#x3D; true || obj.disabled &#x3D;&#x3D;&#x3D; true)) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function stopIt(ev) &#123;</span><br><span class="line">  if (ev.preventDefault) &#123;</span><br><span class="line">    &#x2F;&#x2F; preventDefault()方法阻止元素发生默认的行为</span><br><span class="line">    ev.preventDefault()</span><br><span class="line">  &#125;</span><br><span class="line">  if (ev.returnValue) &#123;</span><br><span class="line">    &#x2F;&#x2F; IE浏览器下用window.event.returnValue &#x3D; false;实现阻止元素发生默认的行为</span><br><span class="line">  &#125;</span><br><span class="line">  return false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>使用方法：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. 在需要使用的Vue页面引入组件(一般在main.vue中添加)</span><br><span class="line">import &#123;banBackSpace&#125; from &quot;@&#x2F;util&#x2F;preventBackspace&quot;;</span><br><span class="line"></span><br><span class="line">2. mounted 钩子函数挂载事件</span><br><span class="line">document.onkeypress &#x3D; banBackSpace;</span><br><span class="line">document.onkeydown &#x3D; banBackSpace;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>H5</category>
-      </categories>
-      <tags>
-        <tag>事件屏蔽</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python-01：Python与C# 基本语法区别</title>
     <url>/2020/10/31/Python01/</url>
     <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
@@ -678,6 +649,35 @@
 ]]></content>
       <tags>
         <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>屏蔽：键盘按键、鼠标点击事件</title>
+    <url>/2020/10/14/PreventEvent/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>屏蔽-键盘按键</li>
+<li>屏蔽-鼠标点击</li>
+<li>屏蔽-BackSpace</li>
+</ul>
+<a id="more"></a>
+<h3 id="屏蔽-键盘按键"><a href="#屏蔽-键盘按键" class="headerlink" title="屏蔽-键盘按键"></a>屏蔽-键盘按键</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;添加按键监听</span><br><span class="line">window.addEventListener(&#39;keydown&#39;, this.onKeyDown,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;移除按键监听</span><br><span class="line">window.removeEventListener(&quot;keydown&quot;,this.onKeyDown,true);</span><br><span class="line"></span><br><span class="line">onKeyDown(val)&#123;</span><br><span class="line">    console.log(&#39;按下&#39; + val.key);</span><br><span class="line">    val.preventDefault();</span><br><span class="line">    val.stopPropagation();</span><br><span class="line">    val.cancelBubble &#x3D; true;</span><br><span class="line">    window.event.returnValue &#x3D; false;</span><br><span class="line">    window.event.preventDefault();</span><br><span class="line">    window.event.stopPropagation();</span><br><span class="line">    window.event.cancelBubble &#x3D; true;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="屏蔽-鼠标点击"><a href="#屏蔽-鼠标点击" class="headerlink" title="屏蔽-鼠标点击"></a>屏蔽-鼠标点击</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;添加鼠标点击监听</span><br><span class="line">window.addEventListener(&#39;mousedown&#39;,this.onClick,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;移除鼠标点击监听</span><br><span class="line">window.removeEventListener(&#39;mousedown&#39;,this.onClick,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;which: 1-左键 2-中键 3-右键</span><br><span class="line">onClick(val)&#123;</span><br><span class="line">    console.error(&#39;点击&#39; + val.which);</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="屏蔽-BackSpace"><a href="#屏蔽-BackSpace" class="headerlink" title="屏蔽-BackSpace"></a>屏蔽-BackSpace</h3><p>在IE页面跳转过程中，按BackSpace退格键默认返回上此浏览页，导致路由中断引起(Vue)页面卡死，所以需要在IE中屏蔽掉BackSpce退格键，但是在输入框中则不屏蔽。</p>
+<ul>
+<li>preventBackSpce.js： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export const banBackSpace &#x3D; (e) &#x3D;&gt; &#123;</span><br><span class="line">  let ev &#x3D; e || window.event</span><br><span class="line">  &#x2F;&#x2F; 各种浏览器下获取事件对象</span><br><span class="line">  let obj &#x3D; ev.relatedTarget || ev.srcElement || ev.target || ev.currentTarget</span><br><span class="line">  &#x2F;&#x2F; 按下Backspace键</span><br><span class="line">  if (ev.keyCode &#x3D;&#x3D;&#x3D; 8) &#123;</span><br><span class="line">    &#x2F;&#x2F; 标签名称</span><br><span class="line">    let tagName &#x3D; obj.nodeName.toLowerCase();</span><br><span class="line">    &#x2F;&#x2F; 如果标签不是input或者textarea则阻止Backspace</span><br><span class="line">    if (tagName !&#x3D;&#x3D; &#39;input&#39; &amp;&amp; tagName !&#x3D;&#x3D; &#39;textarea&#39;) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">    let tagType &#x3D; obj.type.toLowerCase() &#x2F;&#x2F; 标签类型</span><br><span class="line">    &#x2F;&#x2F; input标签除了下面几种类型，全部阻止Backspace</span><br><span class="line">    if (tagName &#x3D;&#x3D;&#x3D; &#39;input&#39; &amp;&amp; (tagType !&#x3D;&#x3D; &#39;text&#39; &amp;&amp; tagType !&#x3D;&#x3D; &#39;textarea&#39; &amp;&amp; tagType !&#x3D;&#x3D; &#39;password&#39;)) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; input或者textarea输入框如果不可编辑则阻止Backspace</span><br><span class="line">    if ((tagName &#x3D;&#x3D;&#x3D; &#39;input&#39; || tagName &#x3D;&#x3D;&#x3D; &#39;textarea&#39;) &amp;&amp; (obj.readOnly &#x3D;&#x3D;&#x3D; true || obj.disabled &#x3D;&#x3D;&#x3D; true)) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function stopIt(ev) &#123;</span><br><span class="line">  if (ev.preventDefault) &#123;</span><br><span class="line">    &#x2F;&#x2F; preventDefault()方法阻止元素发生默认的行为</span><br><span class="line">    ev.preventDefault()</span><br><span class="line">  &#125;</span><br><span class="line">  if (ev.returnValue) &#123;</span><br><span class="line">    &#x2F;&#x2F; IE浏览器下用window.event.returnValue &#x3D; false;实现阻止元素发生默认的行为</span><br><span class="line">  &#125;</span><br><span class="line">  return false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>使用方法：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. 在需要使用的Vue页面引入组件(一般在main.vue中添加)</span><br><span class="line">import &#123;banBackSpace&#125; from &quot;@&#x2F;util&#x2F;preventBackspace&quot;;</span><br><span class="line"></span><br><span class="line">2. mounted 钩子函数挂载事件</span><br><span class="line">document.onkeypress &#x3D; banBackSpace;</span><br><span class="line">document.onkeydown &#x3D; banBackSpace;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>H5</category>
+      </categories>
+      <tags>
+        <tag>事件屏蔽</tag>
       </tags>
   </entry>
   <entry>
