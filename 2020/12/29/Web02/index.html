@@ -20,25 +20,21 @@
     var CONFIG = {"hostname":"yanxuewen.cn","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="概要内容 环境准备 测试步骤 案例代码">
+  <meta name="description" content="概要内容 代码混淆 环境准备 如何配置UglifyJsPlugin混淆参数 Demo源码工程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python-04：AppWeb自动化测试【打开App切换WebView登录】">
-<meta property="og:url" content="https://yanxuewen.cn/2020/11/04/AutoTest04/index.html">
+<meta property="og:title" content="Web代码混淆">
+<meta property="og:url" content="https://yanxuewen.cn/2020/12/29/Web02/index.html">
 <meta property="og:site_name" content="Potter&#39;s Blog">
-<meta property="og:description" content="概要内容 环境准备 测试步骤 案例代码">
+<meta property="og:description" content="概要内容 代码混淆 环境准备 如何配置UglifyJsPlugin混淆参数 Demo源码工程">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201105212810.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/QQ%E6%88%AA%E5%9B%BE20201105213544.png">
-<meta property="article:published_time" content="2020-11-04T03:53:16.957Z">
-<meta property="article:modified_time" content="2020-12-16T15:13:31.445Z">
+<meta property="article:published_time" content="2020-12-29T04:57:17.325Z">
+<meta property="article:modified_time" content="2020-12-29T05:34:41.067Z">
 <meta property="article:author" content="Potter">
-<meta property="article:tag" content="Python">
-<meta property="article:tag" content="Selenium">
-<meta property="article:tag" content="Appnium">
+<meta property="article:tag" content="混淆">
+<meta property="article:tag" content="UglifyJS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201105212810.png">
 
-<link rel="canonical" href="https://yanxuewen.cn/2020/11/04/AutoTest04/">
+<link rel="canonical" href="https://yanxuewen.cn/2020/12/29/Web02/">
 
 
 <script id="page-configurations">
@@ -51,7 +47,7 @@
   };
 </script>
 
-  <title>Python-04：AppWeb自动化测试【打开App切换WebView登录】 | Potter's Blog</title>
+  <title>Web代码混淆 | Potter's Blog</title>
   
 
 
@@ -210,7 +206,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yanxuewen.cn/2020/11/04/AutoTest04/">
+    <link itemprop="mainEntityOfPage" href="https://yanxuewen.cn/2020/12/29/Web02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -223,7 +219,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Python-04：AppWeb自动化测试【打开App切换WebView登录】
+          Web代码混淆
         </h1>
 
         <div class="post-meta">
@@ -232,28 +228,22 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-11-04 11:53:16" itemprop="dateCreated datePublished" datetime="2020-11-04T11:53:16+08:00">2020-11-04</time>
+              <time title="创建时间：2020-12-29 12:57:17 / 修改时间：13:34:41" itemprop="dateCreated datePublished" datetime="2020-12-29T12:57:17+08:00">2020-12-29</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-16 23:13:31" itemprop="dateModified" datetime="2020-12-16T23:13:31+08:00">2020-12-16</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">自动化测试</span></a>
+                  <a href="/categories/Web%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">Web安全</span></a>
                 </span>
             </span>
 
           
-            <span id="/2020/11/04/AutoTest04/" class="post-meta-item leancloud_visitors" data-flag-title="Python-04：AppWeb自动化测试【打开App切换WebView登录】" title="阅读次数">
+            <span id="/2020/12/29/Web02/" class="post-meta-item leancloud_visitors" data-flag-title="Web代码混淆" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -268,8 +258,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/11/04/AutoTest04/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/04/AutoTest04/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/12/29/Web02/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/29/Web02/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -279,7 +269,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2k</span>
+              <span>2.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -299,33 +289,34 @@
 
       
         <h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>代码混淆</li>
 <li>环境准备</li>
-<li>测试步骤</li>
-<li>案例代码</li>
+<li>如何配置UglifyJsPlugin混淆参数</li>
+<li>Demo源码工程</li>
 </ul>
 <a id="more"></a>
-<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
-<li>NodeJS v12.13.1</li>
-<li>JDK 1.8.0_191</li>
-<li>Android SDK </li>
-<li>Appium-Python-Client </li>
-</ol>
-<blockquote>
-<p>具体教程请看: <a href="https://yanxuewen.cn/2020/10/22/AutoTest02/">自动化测试-02：实践</a></p>
+<h3 id="代码混淆"><a href="#代码混淆" class="headerlink" title="代码混淆"></a>代码混淆</h3><ul>
+<li><p>定义：代码混淆(Obfuscated code)亦称花指令，是将计算机程序的代码，转换成一种功能上等价，但是难于阅读和理解的形式的行为。通俗一点讲就是你写的代码，通过混淆工具，把你的源代码混淆得别人看不太懂。</p>
+</li>
+<li><p>起因：由于Web可以用浏览器调试工具，直接查看到我们的源代码，如果我们的源代码中包含了敏感信息(比如：加密密钥、服务器内部接口地址等)，那么对于不怀好意的人，就可能拿着这些东西攻击我们的服务器，所以我们需要把我们的代码去掉注释、混淆代码等，这样别人就没那么容易看懂我们的代码了，提高服务被攻击的门槛。</p>
+</li>
+</ul>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><blockquote>
+<p>由于我尝试使用WebPack3.x的版本，利用UglifyJsPlugin版本来混淆打包，发现各种配置问题，然后导致打包出问题，所以推荐WebPack4.x 以上版本。我的环境如下</p>
 </blockquote>
-<h3 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下"></a>步骤如下</h3><ol>
-<li>AppWebView开启调试模式： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setWebContentsDebuggingEnabled(true);</span><br></pre></td></tr></table></figure></li>
-<li>获取Android Chrome 版本： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start -a android.intent.action.VIEW -d  https:&#x2F;&#x2F;liulanmi.com&#x2F;labs&#x2F;core.html</span><br></pre></td></tr></table></figure></li>
-<li>根据Android Chrome版本，下载对应ChromeDriver驱动 <a target="_blank" rel="noopener" href="https://chromedriver.chromium.org/downloads">下载地址</a></li>
-<li>将下载的ChromeDriver Copy 至 Appium 目录，比如我的Appium目录： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files\Appium\resources\app\node_modules\appium\node_modules\appium-chromedriver\chromedriver\win</span><br></pre></td></tr></table></figure></li>
-<li>启动APP后并跳转App内嵌的WebView页面，使用Chrome获取WebView中的元素 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">打开Chrome </span><br><span class="line">地址栏输入：chrome:&#x2F;&#x2F;inspect</span><br></pre></td></tr></table></figure>
- 如下图所示：<br> <img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201105212810.png" alt=""></li>
-</ol>
-<h3 id="案例代码"><a href="#案例代码" class="headerlink" title="案例代码"></a>案例代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"># 案例：自动化测试-登录</span><br><span class="line"></span><br><span class="line">from appium import webdriver</span><br><span class="line">from selenium.webdriver.common.by import By</span><br><span class="line"></span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">desired_caps &#x3D; &#123;&#125;</span><br><span class="line">desired_caps[&quot;platformName&quot;] &#x3D; &quot;android&quot;</span><br><span class="line">desired_caps[&quot;platformVersion&quot;] &#x3D; &quot;7.1.2&quot;</span><br><span class="line">desired_caps[&quot;deviceName&quot;] &#x3D; &quot;127.0.0.1:62001&quot;</span><br><span class="line">desired_caps[&quot;appPackage&quot;] &#x3D; &quot;com.guide.custom&quot;</span><br><span class="line">desired_caps[&quot;appActivity&quot;] &#x3D; &quot;com.anyapps.Activity.AALaunch&quot;</span><br><span class="line">desired_caps[&quot;noReset&quot;] &#x3D; &quot;true&quot;</span><br><span class="line">desired_caps[&quot;autoGrantPermissions&quot;] &#x3D; &quot;true&quot;</span><br><span class="line">desired_caps[&#39;chromeOptions&#39;] &#x3D; &#123;&quot;w3c&quot;:False&#125;</span><br><span class="line">desired_caps[&#39;showChromedriverLog&#39;] &#x3D; True</span><br><span class="line"></span><br><span class="line">driver &#x3D; webdriver.Remote(&#39;http:&#x2F;&#x2F;localhost:4723&#x2F;wd&#x2F;hub&#39;, desired_caps)</span><br><span class="line"></span><br><span class="line">view_context &#x3D; &quot;WEBVIEW_com.guide.custom&quot;</span><br><span class="line">driver.switch_to.context(view_context)</span><br><span class="line">time.sleep(5)</span><br><span class="line">print(driver.current_context)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 获取账号和密码元素，输入账号密码</span><br><span class="line">inputAccount &#x3D; driver.find_element_by_id(&quot;account&quot;)</span><br><span class="line">inputAccount.send_keys(&#39;186xxxxxxx&#39;)</span><br><span class="line">inputPassword &#x3D; driver.find_element_by_id(&quot;password&quot;)</span><br><span class="line">inputPassword.send_keys(&#39;123456&#39;)</span><br><span class="line"># 获取登录元素，点击登录</span><br><span class="line">loginBtn &#x3D; driver.find_element_by_class_name(&#39;confirmDisable&#39;)</span><br><span class="line">loginBtn.click()</span><br></pre></td></tr></table></figure>
-<h3 id="Appium-调试App-原理图"><a href="#Appium-调试App-原理图" class="headerlink" title="Appium 调试App 原理图"></a>Appium 调试App 原理图</h3><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/QQ%E6%88%AA%E5%9B%BE20201105213544.png" alt=""></p>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献:"></a>参考文献:</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://selenium-python-zh.readthedocs.io/en/latest/index.html">Selenium-Python中文文档</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/appium/appium/issues/13306">Fail to locate an web element using “findElement” on Android</a></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">dependencies&quot;: &#123;</span><br><span class="line">		&quot;vue&quot;: &quot;^2.6.11&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;@babel&#x2F;cli&quot;: &quot;^7.8.4&quot;,</span><br><span class="line">    &quot;@babel&#x2F;core&quot;: &quot;^7.8.7&quot;,</span><br><span class="line">    &quot;@babel&#x2F;preset-env&quot;: &quot;^7.8.7&quot;,</span><br><span class="line">    &quot;babel-loader&quot;: &quot;^8.0.6&quot;,</span><br><span class="line">    &quot;clean-webpack-plugin&quot;: &quot;^3.0.0&quot;,</span><br><span class="line">    &quot;css-loader&quot;: &quot;^3.4.2&quot;,</span><br><span class="line">    &quot;html-loader&quot;: &quot;^1.3.2&quot;,</span><br><span class="line">    &quot;html-webpack-plugin&quot;: &quot;^3.2.0&quot;,</span><br><span class="line">    &quot;uglifyjs-webpack-plugin&quot;: &quot;^2.2.0&quot;,</span><br><span class="line">    &quot;url-loader&quot;: &quot;^4.1.1&quot;,</span><br><span class="line">    &quot;vue-loader&quot;: &quot;^15.9.0&quot;,</span><br><span class="line">    &quot;vue-style-loader&quot;: &quot;^4.1.2&quot;,</span><br><span class="line">    &quot;vue-template-compiler&quot;: &quot;^2.6.11&quot;,</span><br><span class="line">    &quot;webpack&quot;: &quot;^4.42.0&quot;,</span><br><span class="line">    &quot;webpack-bundle-analyzer&quot;: &quot;^4.3.0&quot;,</span><br><span class="line">    &quot;webpack-cli&quot;: &quot;^3.3.11&quot;,</span><br><span class="line">    &quot;webpack-dev-server&quot;: &quot;^3.10.3&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="如何配置UglifyJsPlugin混淆参数"><a href="#如何配置UglifyJsPlugin混淆参数" class="headerlink" title="如何配置UglifyJsPlugin混淆参数"></a>如何配置UglifyJsPlugin混淆参数</h3><blockquote>
+<p>由于混淆需指定混淆哪些代码，不能把JS提供的API、第三方库的API相关的代码也给混淆掉，所以需要在写代码时一定要养成养好的编码规范，这样在配置混淆正在表达式时就非常好些了。以下介绍我的2种命令规范，所以下面的混淆正则表达式就非常好写。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">m_xxx : 成员变量</span><br><span class="line">__function : 方法名</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">new UglifyJsPlugin(</span><br><span class="line">&#123;</span><br><span class="line">    uglifyOptions: &#123;</span><br><span class="line">        compress: &#123;</span><br><span class="line">            &#x2F;&#x2F; warnings: false,</span><br><span class="line">            &#x2F;* 移除没被引用的代码 *&#x2F;</span><br><span class="line">            dead_code: true,</span><br><span class="line">            &#x2F;* 当 Function(args, code)的args 和 code都是字符串时，压缩并混淆 *&#x2F;</span><br><span class="line">            &#x2F;&#x2F; unsafe_Func: true,</span><br><span class="line">            &#x2F;* 干掉没有被引用的函数和变量 *&#x2F;</span><br><span class="line">            unused: true,</span><br><span class="line">            &#x2F;* 干掉顶层作用域中没有被引用的函数或变量 *&#x2F;</span><br><span class="line">            toplevel: true,</span><br><span class="line">            &#x2F;* 干掉console.*函数 *&#x2F;</span><br><span class="line">            drop_console: true,</span><br><span class="line">            &#x2F;* 干掉Debugger*&#x2F;</span><br><span class="line">            drop_debugger: true,</span><br><span class="line">            &#x2F;* 压缩代码次数 注意：数字越大压缩耗时越长 *&#x2F;</span><br><span class="line">            passes: 1,</span><br><span class="line">            &#x2F;* 传true以防止压缩时把1&#x2F;0转成Infinity，那可能会在chrome上有性能问题 *&#x2F;</span><br><span class="line">            keep_infinity: true</span><br><span class="line">        &#125;,</span><br><span class="line">        output: &#123;</span><br><span class="line">            comments: false,</span><br><span class="line">        &#125;,</span><br><span class="line">        mangle: &#123;</span><br><span class="line">            properties: &#123;</span><br><span class="line">                &#x2F;&#x2F; keep_fnames: false,</span><br><span class="line">                &#x2F;* 说明：混淆正在表达式就非常好写 *&#x2F;</span><br><span class="line">                regex: &#x2F;(^__|^m_)\w+&#x2F;,</span><br><span class="line">                reserved: [&quot;$&quot;, &quot;iv&quot;, &quot;mode&quot;, &quot;padding&quot;, &quot;CryptoJS&quot;]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    cache: true,</span><br><span class="line">    extractComments: false,</span><br><span class="line">    sourceMap: false,</span><br><span class="line">    parallel: true</span><br><span class="line">&#125;</span><br><span class="line">),</span><br></pre></td></tr></table></figure>
+<h3 id="Demo源码工程"><a href="#Demo源码工程" class="headerlink" title="Demo源码工程"></a>Demo源码工程</h3><ul>
+<li>访问地址：<a target="_blank" rel="noopener" href="https://github.com/aa4790139/webpack4_confuse_demo">https://github.com/aa4790139/webpack4_confuse_demo</a></li>
+</ul>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/LiPinghai/UglifyJSDocCN/blob/master/README.md#compress-options">UglifyJSDocCN</a></li>
+<li><a target="_blank" rel="noopener" href="http://lisperator.net/uglifyjs/transform">UglifyJS</a></li>
+<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000008995453">UglifyJS中文文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/yacan8/blog/blob/master/posts/JavaScript%E6%B7%B7%E6%B7%86%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA.md">JavaScript混淆安全加固</a></li>
 </ul>
 <hr>
 <blockquote>
@@ -366,7 +357,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://yanxuewen.cn/2020/11/04/AutoTest04/" title="Python-04：AppWeb自动化测试【打开App切换WebView登录】">https://yanxuewen.cn/2020/11/04/AutoTest04/</a>
+    <a href="https://yanxuewen.cn/2020/12/29/Web02/" title="Web代码混淆">https://yanxuewen.cn/2020/12/29/Web02/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -377,9 +368,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Python/" rel="tag"># Python</a>
-              <a href="/tags/Selenium/" rel="tag"># Selenium</a>
-              <a href="/tags/Appnium/" rel="tag"># Appnium</a>
+              <a href="/tags/%E6%B7%B7%E6%B7%86/" rel="tag"># 混淆</a>
+              <a href="/tags/UglifyJS/" rel="tag"># UglifyJS</a>
           </div>
 
         
@@ -388,13 +378,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/11/03/AutoTest03/" rel="prev" title="Python-03：Web自动化测试【打开Chrome百度搜索Selenium】">
-      <i class="fa fa-chevron-left"></i> Python-03：Web自动化测试【打开Chrome百度搜索Selenium】
+    <a href="/2020/12/27/Web01/" rel="prev" title="Web如何防调试">
+      <i class="fa fa-chevron-left"></i> Web如何防调试
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/11/13/UniApp01/" rel="next" title="UniApp 如何引入Iconfont阿里巴巴矢量图标库">
-      UniApp 如何引入Iconfont阿里巴巴矢量图标库 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -467,7 +454,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%A6%81%E5%86%85%E5%AE%B9"><span class="nav-number">1.</span> <span class="nav-text">概要内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E5%A6%82%E4%B8%8B"><span class="nav-number">3.</span> <span class="nav-text">步骤如下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">案例代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Appium-%E8%B0%83%E8%AF%95App-%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="nav-number">5.</span> <span class="nav-text">Appium 调试App 原理图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">6.</span> <span class="nav-text">参考文献:</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%A6%81%E5%86%85%E5%AE%B9"><span class="nav-number">1.</span> <span class="nav-text">概要内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%B7%B7%E6%B7%86"><span class="nav-number">2.</span> <span class="nav-text">代码混淆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">3.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEUglifyJsPlugin%E6%B7%B7%E6%B7%86%E5%8F%82%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">如何配置UglifyJsPlugin混淆参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo%E6%BA%90%E7%A0%81%E5%B7%A5%E7%A8%8B"><span class="nav-number">5.</span> <span class="nav-text">Demo源码工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">6.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -645,7 +632,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'BlogGitTalk',
       owner       : 'aa4790139',
       admin       : ['aa4790139'],
-      id          : 'fe0ae5390a66cea80e73f3aad757d7c3',
+      id          : 'c506abd5d74e2cd0ce83d8c0ac2d86b0',
         language: 'zh-CN',
       distractionFreeMode: true
     });
