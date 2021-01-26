@@ -54,6 +54,52 @@
       </tags>
   </entry>
   <entry>
+    <title>Python-04：AppWeb自动化测试【打开App切换WebView登录】</title>
+    <url>/2020/11/04/AutoTest04/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>环境准备</li>
+<li>测试步骤</li>
+<li>案例代码</li>
+</ul>
+<a id="more"></a>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
+<li>NodeJS v12.13.1</li>
+<li>JDK 1.8.0_191</li>
+<li>Android SDK </li>
+<li>Appium-Python-Client </li>
+</ol>
+<blockquote>
+<p>具体教程请看: <a href="https://yanxuewen.cn/2020/10/22/AutoTest02/">自动化测试-02：实践</a></p>
+</blockquote>
+<h3 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下"></a>步骤如下</h3><ol>
+<li>AppWebView开启调试模式： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">setWebContentsDebuggingEnabled(true);</span><br></pre></td></tr></table></figure></li>
+<li>获取Android Chrome 版本： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">adb shell am start -a android.intent.action.VIEW -d  https:&#x2F;&#x2F;liulanmi.com&#x2F;labs&#x2F;core.html</span><br></pre></td></tr></table></figure></li>
+<li>根据Android Chrome版本，下载对应ChromeDriver驱动 <a href="https://chromedriver.chromium.org/downloads">下载地址</a></li>
+<li>将下载的ChromeDriver Copy 至 Appium 目录，比如我的Appium目录： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Program Files\Appium\resources\app\node_modules\appium\node_modules\appium-chromedriver\chromedriver\win</span><br></pre></td></tr></table></figure></li>
+<li>启动APP后并跳转App内嵌的WebView页面，使用Chrome获取WebView中的元素 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">打开Chrome </span><br><span class="line">地址栏输入：chrome:&#x2F;&#x2F;inspect</span><br></pre></td></tr></table></figure>
+ 如下图所示：<br> <img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201105212810.png" alt=""></li>
+</ol>
+<h3 id="案例代码"><a href="#案例代码" class="headerlink" title="案例代码"></a>案例代码</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 案例：自动化测试-登录</span><br><span class="line"></span><br><span class="line">from appium import webdriver</span><br><span class="line">from selenium.webdriver.common.by import By</span><br><span class="line"></span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">desired_caps &#x3D; &#123;&#125;</span><br><span class="line">desired_caps[&quot;platformName&quot;] &#x3D; &quot;android&quot;</span><br><span class="line">desired_caps[&quot;platformVersion&quot;] &#x3D; &quot;7.1.2&quot;</span><br><span class="line">desired_caps[&quot;deviceName&quot;] &#x3D; &quot;127.0.0.1:62001&quot;</span><br><span class="line">desired_caps[&quot;appPackage&quot;] &#x3D; &quot;com.guide.custom&quot;</span><br><span class="line">desired_caps[&quot;appActivity&quot;] &#x3D; &quot;com.anyapps.Activity.AALaunch&quot;</span><br><span class="line">desired_caps[&quot;noReset&quot;] &#x3D; &quot;true&quot;</span><br><span class="line">desired_caps[&quot;autoGrantPermissions&quot;] &#x3D; &quot;true&quot;</span><br><span class="line">desired_caps[&#39;chromeOptions&#39;] &#x3D; &#123;&quot;w3c&quot;:False&#125;</span><br><span class="line">desired_caps[&#39;showChromedriverLog&#39;] &#x3D; True</span><br><span class="line"></span><br><span class="line">driver &#x3D; webdriver.Remote(&#39;http:&#x2F;&#x2F;localhost:4723&#x2F;wd&#x2F;hub&#39;, desired_caps)</span><br><span class="line"></span><br><span class="line">view_context &#x3D; &quot;WEBVIEW_com.guide.custom&quot;</span><br><span class="line">driver.switch_to.context(view_context)</span><br><span class="line">time.sleep(5)</span><br><span class="line">print(driver.current_context)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 获取账号和密码元素，输入账号密码</span><br><span class="line">inputAccount &#x3D; driver.find_element_by_id(&quot;account&quot;)</span><br><span class="line">inputAccount.send_keys(&#39;186xxxxxxx&#39;)</span><br><span class="line">inputPassword &#x3D; driver.find_element_by_id(&quot;password&quot;)</span><br><span class="line">inputPassword.send_keys(&#39;123456&#39;)</span><br><span class="line"># 获取登录元素，点击登录</span><br><span class="line">loginBtn &#x3D; driver.find_element_by_class_name(&#39;confirmDisable&#39;)</span><br><span class="line">loginBtn.click()</span><br></pre></td></tr></table></figure>
+<h3 id="Appium-调试App-原理图"><a href="#Appium-调试App-原理图" class="headerlink" title="Appium 调试App 原理图"></a>Appium 调试App 原理图</h3><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/QQ%E6%88%AA%E5%9B%BE20201105213544.png" alt=""></p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献:"></a>参考文献:</h3><ul>
+<li><a href="https://selenium-python-zh.readthedocs.io/en/latest/index.html">Selenium-Python中文文档</a></li>
+<li><a href="https://github.com/appium/appium/issues/13306">Fail to locate an web element using “findElement” on Android</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>自动化测试</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Selenium</tag>
+        <tag>Appnium</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>自动化测试-02：实践</title>
     <url>/2020/10/22/AutoTest02/</url>
     <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
@@ -169,36 +215,73 @@
       </tags>
   </entry>
   <entry>
-    <title>Python-04：AppWeb自动化测试【打开App切换WebView登录】</title>
-    <url>/2020/11/04/AutoTest04/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>环境准备</li>
-<li>测试步骤</li>
-<li>案例代码</li>
+    <title>结束《皇室战争》之旅</title>
+    <url>/2020/11/02/Game01/</url>
+    <content><![CDATA[<h3 id="一款又爱又恨的游戏"><a href="#一款又爱又恨的游戏" class="headerlink" title="一款又爱又恨的游戏"></a>一款又爱又恨的游戏</h3><ul>
+<li>爱：<ol>
+<li>这游戏UI和画质都做得非常精美，原画的细节做得非常逼真</li>
+<li>3分钟一场战斗，游戏时间设置的完美</li>
+<li>操作简单，容易上手</li>
+</ol>
+</li>
+<li>恨:<ol>
+<li>3分钟一场战斗，导致你蹲个坑都可以玩几局，有时输能让你蹲出半个多小时，最后起来酸的不行</li>
+<li>部落战匹配规则做得不好，分段6K左右自己卡等只有10级，结果给你匹配满级的来对付你，你技术再好也是以卵击石</li>
+<li>商店不断推出活动引诱你充值，看到你要啥卡牌、是没有金币还是没有宝石，就给你推对应的活动</li>
+<li>影响与家人的关系，有时候连输好几把，家人跟我聊天，我说话很冲，导致跟对方吵起来</li>
+<li>不间断活动、每天对战，让你控制不住不玩，不停想上分，影响工作和学习</li>
+</ol>
+</li>
 </ul>
 <a id="more"></a>
-<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
-<li>NodeJS v12.13.1</li>
-<li>JDK 1.8.0_191</li>
-<li>Android SDK </li>
-<li>Appium-Python-Client </li>
+<h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><ol>
+<li>对方出的每张卡都记住，等全部8张卡出完，再想怎么用当前的卡组对付它</li>
+<li>未知对方卡组，尽量使用小费过牌，等待摸清对方卡组再出手</li>
+<li>排兵布阵不能全部放到一块，要分散放，不然被对面一个法术全部打中</li>
 </ol>
-<blockquote>
-<p>具体教程请看: <a href="https://yanxuewen.cn/2020/10/22/AutoTest02/">自动化测试-02：实践</a></p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><blockquote>
+<p>要升级的卡组已升满，没有玩下去的欲望了，本想这个赛季冲个6500+，结果没多少时间打，中午打了一个多小时，结果卡住6150上不去了，那就让他停留在6150结束这段旅程。接下来开启新的篇章，好好学习、好好工作，这样才能有好的未来</p>
 </blockquote>
-<h3 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下"></a>步骤如下</h3><ol>
-<li>AppWebView开启调试模式： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">setWebContentsDebuggingEnabled(true);</span><br></pre></td></tr></table></figure></li>
-<li>获取Android Chrome 版本： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">adb shell am start -a android.intent.action.VIEW -d  https:&#x2F;&#x2F;liulanmi.com&#x2F;labs&#x2F;core.html</span><br></pre></td></tr></table></figure></li>
-<li>根据Android Chrome版本，下载对应ChromeDriver驱动 <a href="https://chromedriver.chromium.org/downloads">下载地址</a></li>
-<li>将下载的ChromeDriver Copy 至 Appium 目录，比如我的Appium目录： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Program Files\Appium\resources\app\node_modules\appium\node_modules\appium-chromedriver\chromedriver\win</span><br></pre></td></tr></table></figure></li>
-<li>启动APP后并跳转App内嵌的WebView页面，使用Chrome获取WebView中的元素 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">打开Chrome </span><br><span class="line">地址栏输入：chrome:&#x2F;&#x2F;inspect</span><br></pre></td></tr></table></figure>
- 如下图所示：<br> <img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201105212810.png" alt=""></li>
-</ol>
-<h3 id="案例代码"><a href="#案例代码" class="headerlink" title="案例代码"></a>案例代码</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 案例：自动化测试-登录</span><br><span class="line"></span><br><span class="line">from appium import webdriver</span><br><span class="line">from selenium.webdriver.common.by import By</span><br><span class="line"></span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">desired_caps &#x3D; &#123;&#125;</span><br><span class="line">desired_caps[&quot;platformName&quot;] &#x3D; &quot;android&quot;</span><br><span class="line">desired_caps[&quot;platformVersion&quot;] &#x3D; &quot;7.1.2&quot;</span><br><span class="line">desired_caps[&quot;deviceName&quot;] &#x3D; &quot;127.0.0.1:62001&quot;</span><br><span class="line">desired_caps[&quot;appPackage&quot;] &#x3D; &quot;com.guide.custom&quot;</span><br><span class="line">desired_caps[&quot;appActivity&quot;] &#x3D; &quot;com.anyapps.Activity.AALaunch&quot;</span><br><span class="line">desired_caps[&quot;noReset&quot;] &#x3D; &quot;true&quot;</span><br><span class="line">desired_caps[&quot;autoGrantPermissions&quot;] &#x3D; &quot;true&quot;</span><br><span class="line">desired_caps[&#39;chromeOptions&#39;] &#x3D; &#123;&quot;w3c&quot;:False&#125;</span><br><span class="line">desired_caps[&#39;showChromedriverLog&#39;] &#x3D; True</span><br><span class="line"></span><br><span class="line">driver &#x3D; webdriver.Remote(&#39;http:&#x2F;&#x2F;localhost:4723&#x2F;wd&#x2F;hub&#39;, desired_caps)</span><br><span class="line"></span><br><span class="line">view_context &#x3D; &quot;WEBVIEW_com.guide.custom&quot;</span><br><span class="line">driver.switch_to.context(view_context)</span><br><span class="line">time.sleep(5)</span><br><span class="line">print(driver.current_context)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 获取账号和密码元素，输入账号密码</span><br><span class="line">inputAccount &#x3D; driver.find_element_by_id(&quot;account&quot;)</span><br><span class="line">inputAccount.send_keys(&#39;186xxxxxxx&#39;)</span><br><span class="line">inputPassword &#x3D; driver.find_element_by_id(&quot;password&quot;)</span><br><span class="line">inputPassword.send_keys(&#39;123456&#39;)</span><br><span class="line"># 获取登录元素，点击登录</span><br><span class="line">loginBtn &#x3D; driver.find_element_by_class_name(&#39;confirmDisable&#39;)</span><br><span class="line">loginBtn.click()</span><br></pre></td></tr></table></figure>
-<h3 id="Appium-调试App-原理图"><a href="#Appium-调试App-原理图" class="headerlink" title="Appium 调试App 原理图"></a>Appium 调试App 原理图</h3><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/QQ%E6%88%AA%E5%9B%BE20201105213544.png" alt=""></p>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献:"></a>参考文献:</h3><ul>
-<li><a href="https://selenium-python-zh.readthedocs.io/en/latest/index.html">Selenium-Python中文文档</a></li>
-<li><a href="https://github.com/appium/appium/issues/13306">Fail to locate an web element using “findElement” on Android</a></li>
+<p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/222.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>游戏</category>
+      </categories>
+      <tags>
+        <tag>皇室战争</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C# 与 JS 之间Gzip互通</title>
+    <url>/2020/12/16/JS01/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>JS 压缩 Gzip demo</li>
+<li>JS 压缩 Gzip + base64 demo</li>
+<li>JS 解压 CSharp 的 Gzip demo</li>
+<li>JS 解压 CSharp 的 base64 + gzip</li>
+<li>CSharp 压缩 Gzip demo</li>
+<li>CSharp 压缩 Gzip + base64 demo</li>
+<li>CSharp 解压 JS 的 Gzip demo</li>
+<li>CSharp 解压 JS 的 base64 + gzip</li>
+<li>Base64 encode 和 decode </li>
+</ul>
+<h3 id="源码地址："><a href="#源码地址：" class="headerlink" title="源码地址："></a>源码地址：</h3><p><a href="https://github.com/aa4790139/GzipSample">https://github.com/aa4790139/GzipSample</a></p>
+<a id="more"></a>
+<h3 id="GZip-文件结构图"><a href="#GZip-文件结构图" class="headerlink" title="GZip 文件结构图"></a>GZip 文件结构图</h3><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210115204550.jpg" alt=""></p>
+<!--more-->
+<h3 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h3><ul>
+<li><a href="https://stackabuse.com/encoding-and-decoding-base64-strings-in-node-js/">Encoding and Decoding Base64 Strings in Node.js</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/DEFLATE">DEFLATE</a></li>
+<li><a href="https://stackoverflow.com/questions/246801/how-can-you-encode-a-string-to-base64-in-javascript">How can you encode a string to Base64 in JavaScript?</a></li>
+<li><a href="https://stackoverflow.com/questions/3195865/converting-byte-array-to-string-in-javascript">Converting byte array to string in javascript</a></li>
+<li><a href="https://www.jianshu.com/p/c5df0156b229">Array.prototype.slice.call()方法详解</a></li>
+<li><a href="https://stackoverflow.com/questions/7056925/how-does-array-prototype-slice-call-work">how does Array.prototype.slice.call() work?
+</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators">JS按位操作符</a></li>
+<li><a href="https://www.iditect.com/how-to/58717282.html">Remove trailing zeros from byte[]</a></li>
+<li><a href="https://stackoverflow.com/questions/17191945/conversion-between-utf-8-arraybuffer-and-string">Conversion between UTF-8 ArrayBuffer and String</a></li>
+<li><a href="https://tool.oschina.net/commons?type=4">ASCLL对照表</a></li>
+<li><a href="https://blog.csdn.net/yc0188/article/details/4155168">GZIP文件格式简介</a></li>
 </ul>
 <hr>
 <blockquote>
@@ -206,12 +289,12 @@
 </blockquote>
 ]]></content>
       <categories>
-        <category>自动化测试</category>
+        <category>压缩</category>
       </categories>
       <tags>
-        <tag>Python</tag>
-        <tag>Selenium</tag>
-        <tag>Appnium</tag>
+        <tag>C#</tag>
+        <tag>Gzip</tag>
+        <tag>JS</tag>
       </tags>
   </entry>
   <entry>
@@ -352,133 +435,47 @@
       </tags>
   </entry>
   <entry>
-    <title>结束《皇室战争》之旅</title>
-    <url>/2020/11/02/Game01/</url>
-    <content><![CDATA[<h3 id="一款又爱又恨的游戏"><a href="#一款又爱又恨的游戏" class="headerlink" title="一款又爱又恨的游戏"></a>一款又爱又恨的游戏</h3><ul>
-<li>爱：<ol>
-<li>这游戏UI和画质都做得非常精美，原画的细节做得非常逼真</li>
-<li>3分钟一场战斗，游戏时间设置的完美</li>
-<li>操作简单，容易上手</li>
-</ol>
-</li>
-<li>恨:<ol>
-<li>3分钟一场战斗，导致你蹲个坑都可以玩几局，有时输能让你蹲出半个多小时，最后起来酸的不行</li>
-<li>部落战匹配规则做得不好，分段6K左右自己卡等只有10级，结果给你匹配满级的来对付你，你技术再好也是以卵击石</li>
-<li>商店不断推出活动引诱你充值，看到你要啥卡牌、是没有金币还是没有宝石，就给你推对应的活动</li>
-<li>影响与家人的关系，有时候连输好几把，家人跟我聊天，我说话很冲，导致跟对方吵起来</li>
-<li>不间断活动、每天对战，让你控制不住不玩，不停想上分，影响工作和学习</li>
-</ol>
-</li>
-</ul>
-<a id="more"></a>
-<h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><ol>
-<li>对方出的每张卡都记住，等全部8张卡出完，再想怎么用当前的卡组对付它</li>
-<li>未知对方卡组，尽量使用小费过牌，等待摸清对方卡组再出手</li>
-<li>排兵布阵不能全部放到一块，要分散放，不然被对面一个法术全部打中</li>
-</ol>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><blockquote>
-<p>要升级的卡组已升满，没有玩下去的欲望了，本想这个赛季冲个6500+，结果没多少时间打，中午打了一个多小时，结果卡住6150上不去了，那就让他停留在6150结束这段旅程。接下来开启新的篇章，好好学习、好好工作，这样才能有好的未来</p>
-</blockquote>
-<p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/222.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>游戏</category>
-      </categories>
-      <tags>
-        <tag>皇室战争</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C# 与 JS 之间Gzip互通</title>
-    <url>/2020/12/16/JS01/</url>
+    <title>CORS-跨域实战</title>
+    <url>/2021/01/26/JS03/</url>
     <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>JS 压缩 Gzip demo</li>
-<li>JS 压缩 Gzip + base64 demo</li>
-<li>JS 解压 CSharp 的 Gzip demo</li>
-<li>JS 解压 CSharp 的 base64 + gzip</li>
-<li>CSharp 压缩 Gzip demo</li>
-<li>CSharp 压缩 Gzip + base64 demo</li>
-<li>CSharp 解压 JS 的 Gzip demo</li>
-<li>CSharp 解压 JS 的 base64 + gzip</li>
-<li>Base64 encode 和 decode </li>
+<li>前端需要做什么?</li>
+<li>后端需要怎么配置?</li>
 </ul>
-<h3 id="源码地址："><a href="#源码地址：" class="headerlink" title="源码地址："></a>源码地址：</h3><p><a href="https://github.com/aa4790139/GzipSample">https://github.com/aa4790139/GzipSample</a></p>
-<a id="more"></a>
-<h3 id="GZip-文件结构图"><a href="#GZip-文件结构图" class="headerlink" title="GZip 文件结构图"></a>GZip 文件结构图</h3><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210115204550.jpg" alt=""></p>
-<!--more-->
-<h3 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h3><ul>
-<li><a href="https://stackabuse.com/encoding-and-decoding-base64-strings-in-node-js/">Encoding and Decoding Base64 Strings in Node.js</a></li>
-<li><a href="https://zh.wikipedia.org/wiki/DEFLATE">DEFLATE</a></li>
-<li><a href="https://stackoverflow.com/questions/246801/how-can-you-encode-a-string-to-base64-in-javascript">How can you encode a string to Base64 in JavaScript?</a></li>
-<li><a href="https://stackoverflow.com/questions/3195865/converting-byte-array-to-string-in-javascript">Converting byte array to string in javascript</a></li>
-<li><a href="https://www.jianshu.com/p/c5df0156b229">Array.prototype.slice.call()方法详解</a></li>
-<li><a href="https://stackoverflow.com/questions/7056925/how-does-array-prototype-slice-call-work">how does Array.prototype.slice.call() work?
-</a></li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators">JS按位操作符</a></li>
-<li><a href="https://www.iditect.com/how-to/58717282.html">Remove trailing zeros from byte[]</a></li>
-<li><a href="https://stackoverflow.com/questions/17191945/conversion-between-utf-8-arraybuffer-and-string">Conversion between UTF-8 ArrayBuffer and String</a></li>
-<li><a href="https://tool.oschina.net/commons?type=4">ASCLL对照表</a></li>
-<li><a href="https://blog.csdn.net/yc0188/article/details/4155168">GZIP文件格式简介</a></li>
-</ul>
+<blockquote>
+<p>由于浏览器的同源安全策略，作为前端开发你使用API调用接口必定会碰到跨域问题，网上太多的文章，大部分都是讲得不太清楚，让你看得特别懵逼，可能会做出以下愚蠢行为：跨域配置写到前端的header中、Nginx 跨域配置到Web节点中、瞎填Access-Control-Allow-Headers中的值等等，会导致怎么配置都不对，令你自己发狂。经验提醒：不要急着瞎改瞎试，看完理论相关文章后再尝试，，然后静下心来思考流程是怎么运转的，用这样的方式很快就会配对了。为了给后人提供的经验，避免少走弯路，所以用这篇文章记录一下。</p>
+</blockquote>
 <hr>
+<h3 id="前端需要做什么"><a href="#前端需要做什么" class="headerlink" title="前端需要做什么?"></a>前端需要做什么?</h3><blockquote>
+<p>请求时使用到的header字段梳理并告知后端<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210126175710.png" alt=""></p>
+</blockquote>
+<hr>
+<h3 id="后端需要怎么配置"><a href="#后端需要怎么配置" class="headerlink" title="后端需要怎么配置?"></a>后端需要怎么配置?</h3><h4 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h4><blockquote>
+<p>注意：针对API 服务配置跨域，而不是Web服务</p>
+<ul>
+<li>疑问1：为啥要配置nginx,因为请求需要转换，所以需要配置</li>
+<li>疑问2：为啥不在此服务下配置Access-Control-Allow-Origin *，原因：API Server可能只针对特定接口开发访问，所以就把这个放到Api Server中配置</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">location &#x2F;secret-http-api&#x2F; &#123;</span><br><span class="line">            proxy_pass http:&#x2F;&#x2F;127.0.0.1:3001&#x2F;;</span><br><span class="line">            proxy_read_timeout 240s;</span><br><span class="line">            add_header Access-Control-Allow-Methods &#39;GET, POST, OPTIONS&#39;;</span><br><span class="line">            add_header Access-Control-Allow-Headers &#39;DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Accept,Authorization,Content-Encoding,Accept-Encoding&#39;;</span><br><span class="line">            if ($request_method &#x3D; &#39;OPTIONS&#39;) &#123;</span><br><span class="line">                return 204;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="API-Server-Nodejs"><a href="#API-Server-Nodejs" class="headerlink" title="API Server (Nodejs)"></a>API Server (Nodejs)</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">        app.use(function (req, res, next) &#123;</span><br><span class="line">    if (req.path !&#x3D;&#x3D; &#39;&#x2F;&#39; &amp;&amp; !req.path.includes(&#39;.&#39;)) &#123;</span><br><span class="line">        res.set(&#123;</span><br><span class="line">            &#x2F;* 允许后端发送cookie*&#x2F;</span><br><span class="line">            &#x2F;&#x2F; &#39;Access-Control-Allow-Credentials&#39;: true,</span><br><span class="line">            &#x2F;*任意域名都可以访问,或者基于我请求头里面的域*&#x2F;</span><br><span class="line">            &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,</span><br><span class="line">            &#x2F;*允许请求头字段*&#x2F;</span><br><span class="line">            &#39;Access-Control-Allow-Headers&#39;: &#39;Accept,Content-Encoding,Content-Type,Accept-Encoding&#39;,</span><br><span class="line">            &#x2F;*允许请求方式*&#x2F;</span><br><span class="line">            &#39;Access-Control-Allow-Methods&#39;: &#39;POST,GET,OPTIONS&#39;,</span><br><span class="line">            &#x2F;*预检成功后相同请求无需预检的有效时间(单位：秒)*&#x2F;</span><br><span class="line">            &#39;Access-Control-Max-Age&#39;: 3600,</span><br><span class="line">            &#x2F;*默认与允许的文本格式json和编码格式*&#x2F;</span><br><span class="line">            &#39;Content-Type&#39;: &#39;text&#x2F;plain; charset&#x3D;utf-8&#39;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    req.method &#x3D;&#x3D;&#x3D; &#39;OPTIONS&#39; ? res.status(204).end() : next()</span><br><span class="line">&#125;);     </span><br></pre></td></tr></table></figure>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E9%9C%80%E8%A6%81_cors_%EF%BC%9F">跨源资源共享</a></li>
+<li><a href="https://segmentfault.com/a/1190000022512695">Node设置cors,后端解决跨域问题</a></li>
+<li><a href="https://segmentfault.com/a/1190000009971254">cors跨域之简单请求与预检请求（发送请求头带令牌token）</a></li>
+</ul>
 <blockquote>
 <p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
 </blockquote>
 ]]></content>
       <categories>
-        <category>压缩</category>
+        <category>部署</category>
       </categories>
       <tags>
-        <tag>C#</tag>
-        <tag>Gzip</tag>
-        <tag>JS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>全栈学习-开篇-001</title>
-    <url>/2020/09/29/LearningFullStack01/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>技术栈介绍</li>
-<li>环境准备</li>
-</ul>
-<a id="more"></a>
-<blockquote>
-<p>起因：在网上搜索了挺久，都没找到让我很满意的项目学习，也买了好几个付费项目，看了一部分就会发现看不下去，发现很多问题，虽然说能学到一部分东西，但感觉这些项目只是为了快速赚钱搞的，项目结构不清晰、缺少项目相关的介绍文档、前后端项目代码不分离，代码也写的非常临时和随意等等，可能我要求过高了。我如果用这种方式去做一个正式商业化的项目，用这种态度搞出来的东西肯定做不大。说实话我以前做东西也很随意，但自从我读了《程序员修炼之道》这本书后(若想成为一名真正的程序员，一定要去好好阅读这边书，去吸收点灵气)，让我受益匪浅。要想成为一个好的工程师，就要约束好自己，做事情不要太随意，得有点工匠精神，像匠人一样打造自己的武器，一段时间后你会发现自己层次上了一个阶梯。为了提升下自己全栈方便的能力，选择了我慕客上购买的一个小项目，这个小项目很适合入手，所以就拿这个项目(简版-慕客商城)开启全栈学习之旅。</p>
-</blockquote>
-<h3 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h3><ol>
-<li><p>前端</p>
-<ul>
-<li>Vue - 2.2.6</li>
-<li>vue-cookie - 1.1.4</li>
-<li>vue-resource - 1.3.1</li>
-<li>vue-router - 2.3.1</li>
-<li>vuex - 2.3.1</li>
-</ul>
-</li>
-<li><p>后端</p>
-<ul>
-<li>Node.js - 12.13.1</li>
-<li>Express - 4.14.1</li>
-<li>Mongoose - 5.0.1</li>
-<li>Mongodb - 4.2.8</li>
-</ul>
-</li>
-</ol>
-<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ul>
-<li>WebStorm - 2020.1 (方便后端调试，对比VScode、SublimeText、HBuildX 这IDE功能更强大)</li>
-<li>XShell6 、XFTP6 </li>
-<li>Navicat Premium 12 (低版本不支持连mongodb，所以请选择高一点的版本)</li>
-</ul>
-<blockquote>
-<p>未完待续…</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>全栈</category>
-      </categories>
-      <tags>
-        <tag>全栈</tag>
-        <tag>NodeJS</tag>
+        <tag>Web</tag>
+        <tag>Vue.js</tag>
+        <tag>Node.js</tag>
+        <tag>Express</tag>
       </tags>
   </entry>
   <entry>
@@ -602,6 +599,53 @@
       </tags>
   </entry>
   <entry>
+    <title>全栈学习-开篇-001</title>
+    <url>/2020/09/29/LearningFullStack01/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>技术栈介绍</li>
+<li>环境准备</li>
+</ul>
+<a id="more"></a>
+<blockquote>
+<p>起因：在网上搜索了挺久，都没找到让我很满意的项目学习，也买了好几个付费项目，看了一部分就会发现看不下去，发现很多问题，虽然说能学到一部分东西，但感觉这些项目只是为了快速赚钱搞的，项目结构不清晰、缺少项目相关的介绍文档、前后端项目代码不分离，代码也写的非常临时和随意等等，可能我要求过高了。我如果用这种方式去做一个正式商业化的项目，用这种态度搞出来的东西肯定做不大。说实话我以前做东西也很随意，但自从我读了《程序员修炼之道》这本书后(若想成为一名真正的程序员，一定要去好好阅读这边书，去吸收点灵气)，让我受益匪浅。要想成为一个好的工程师，就要约束好自己，做事情不要太随意，得有点工匠精神，像匠人一样打造自己的武器，一段时间后你会发现自己层次上了一个阶梯。为了提升下自己全栈方便的能力，选择了我慕客上购买的一个小项目，这个小项目很适合入手，所以就拿这个项目(简版-慕客商城)开启全栈学习之旅。</p>
+</blockquote>
+<h3 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h3><ol>
+<li><p>前端</p>
+<ul>
+<li>Vue - 2.2.6</li>
+<li>vue-cookie - 1.1.4</li>
+<li>vue-resource - 1.3.1</li>
+<li>vue-router - 2.3.1</li>
+<li>vuex - 2.3.1</li>
+</ul>
+</li>
+<li><p>后端</p>
+<ul>
+<li>Node.js - 12.13.1</li>
+<li>Express - 4.14.1</li>
+<li>Mongoose - 5.0.1</li>
+<li>Mongodb - 4.2.8</li>
+</ul>
+</li>
+</ol>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ul>
+<li>WebStorm - 2020.1 (方便后端调试，对比VScode、SublimeText、HBuildX 这IDE功能更强大)</li>
+<li>XShell6 、XFTP6 </li>
+<li>Navicat Premium 12 (低版本不支持连mongodb，所以请选择高一点的版本)</li>
+</ul>
+<blockquote>
+<p>未完待续…</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>全栈</category>
+      </categories>
+      <tags>
+        <tag>全栈</tag>
+        <tag>NodeJS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>屏蔽：键盘按键、鼠标点击事件</title>
     <url>/2020/10/14/PreventEvent/</url>
     <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
@@ -703,6 +747,56 @@
       </categories>
       <tags>
         <tag>UniApp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Web代码混淆</title>
+    <url>/2020/12/29/Web02/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>代码混淆</li>
+<li>环境准备</li>
+<li>如何配置UglifyJsPlugin混淆参数</li>
+<li>混淆效果</li>
+<li>Demo源码工程</li>
+</ul>
+<a id="more"></a>
+<h3 id="代码混淆"><a href="#代码混淆" class="headerlink" title="代码混淆"></a>代码混淆</h3><ul>
+<li><p>定义：代码混淆(Obfuscated code)亦称花指令，是将计算机程序的代码，转换成一种功能上等价，但是难于阅读和理解的形式的行为。通俗一点讲就是你写的代码，通过混淆工具，把你的源代码混淆得别人看不太懂。</p>
+</li>
+<li><p>起因：由于Web可以用浏览器调试工具，直接查看到我们的源代码，如果我们的源代码中包含了敏感信息(比如：加密密钥、服务器内部接口地址等)，那么对于不怀好意的人，就可能拿着这些东西攻击我们的服务器，所以我们需要把我们的代码去掉注释、混淆代码等，这样别人就没那么容易看懂我们的代码了，提高服务被攻击的门槛。</p>
+</li>
+</ul>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><blockquote>
+<p>由于我尝试使用WebPack3.x的版本，利用UglifyJsPlugin版本来混淆打包，发现各种配置问题，然后导致打包出问题，所以推荐WebPack4.x 以上版本。我的环境如下</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dependencies&quot;: &#123;</span><br><span class="line">		&quot;vue&quot;: &quot;^2.6.11&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;@babel&#x2F;cli&quot;: &quot;^7.8.4&quot;,</span><br><span class="line">    &quot;@babel&#x2F;core&quot;: &quot;^7.8.7&quot;,</span><br><span class="line">    &quot;@babel&#x2F;preset-env&quot;: &quot;^7.8.7&quot;,</span><br><span class="line">    &quot;babel-loader&quot;: &quot;^8.0.6&quot;,</span><br><span class="line">    &quot;clean-webpack-plugin&quot;: &quot;^3.0.0&quot;,</span><br><span class="line">    &quot;css-loader&quot;: &quot;^3.4.2&quot;,</span><br><span class="line">    &quot;html-loader&quot;: &quot;^1.3.2&quot;,</span><br><span class="line">    &quot;html-webpack-plugin&quot;: &quot;^3.2.0&quot;,</span><br><span class="line">    &quot;uglifyjs-webpack-plugin&quot;: &quot;^2.2.0&quot;,</span><br><span class="line">    &quot;url-loader&quot;: &quot;^4.1.1&quot;,</span><br><span class="line">    &quot;vue-loader&quot;: &quot;^15.9.0&quot;,</span><br><span class="line">    &quot;vue-style-loader&quot;: &quot;^4.1.2&quot;,</span><br><span class="line">    &quot;vue-template-compiler&quot;: &quot;^2.6.11&quot;,</span><br><span class="line">    &quot;webpack&quot;: &quot;^4.42.0&quot;,</span><br><span class="line">    &quot;webpack-bundle-analyzer&quot;: &quot;^4.3.0&quot;,</span><br><span class="line">    &quot;webpack-cli&quot;: &quot;^3.3.11&quot;,</span><br><span class="line">    &quot;webpack-dev-server&quot;: &quot;^3.10.3&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="如何配置UglifyJsPlugin混淆参数"><a href="#如何配置UglifyJsPlugin混淆参数" class="headerlink" title="如何配置UglifyJsPlugin混淆参数"></a>如何配置UglifyJsPlugin混淆参数</h3><blockquote>
+<p>由于混淆需指定混淆哪些代码，不能把JS提供的API、第三方库的API相关的代码也给混淆掉，所以需要在写代码时一定要养成养好的编码规范，这样在配置混淆正在表达式时就非常好些了。以下介绍我的2种命令规范，所以下面的混淆正则表达式就非常好写。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">m_xxx : 成员变量</span><br><span class="line">__function : 方法名</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">new UglifyJsPlugin(</span><br><span class="line">&#123;</span><br><span class="line">    uglifyOptions: &#123;</span><br><span class="line">        compress: &#123;</span><br><span class="line">            &#x2F;&#x2F; warnings: false,</span><br><span class="line">            &#x2F;* 移除没被引用的代码 *&#x2F;</span><br><span class="line">            dead_code: true,</span><br><span class="line">            &#x2F;* 当 Function(args, code)的args 和 code都是字符串时，压缩并混淆 *&#x2F;</span><br><span class="line">            &#x2F;&#x2F; unsafe_Func: true,</span><br><span class="line">            &#x2F;* 干掉没有被引用的函数和变量 *&#x2F;</span><br><span class="line">            unused: true,</span><br><span class="line">            &#x2F;* 干掉顶层作用域中没有被引用的函数或变量 *&#x2F;</span><br><span class="line">            toplevel: true,</span><br><span class="line">            &#x2F;* 干掉console.*函数 *&#x2F;</span><br><span class="line">            drop_console: true,</span><br><span class="line">            &#x2F;* 干掉Debugger*&#x2F;</span><br><span class="line">            drop_debugger: true,</span><br><span class="line">            &#x2F;* 压缩代码次数 注意：数字越大压缩耗时越长 *&#x2F;</span><br><span class="line">            passes: 1,</span><br><span class="line">            &#x2F;* 传true以防止压缩时把1&#x2F;0转成Infinity，那可能会在chrome上有性能问题 *&#x2F;</span><br><span class="line">            keep_infinity: true</span><br><span class="line">        &#125;,</span><br><span class="line">        output: &#123;</span><br><span class="line">            comments: false,</span><br><span class="line">        &#125;,</span><br><span class="line">        mangle: &#123;</span><br><span class="line">            properties: &#123;</span><br><span class="line">                &#x2F;&#x2F; keep_fnames: false,</span><br><span class="line">                &#x2F;* 说明：混淆正在表达式就非常好写 *&#x2F;</span><br><span class="line">                regex: &#x2F;(^__|^m_)\w+&#x2F;,</span><br><span class="line">                reserved: [&quot;$&quot;, &quot;iv&quot;, &quot;mode&quot;, &quot;padding&quot;, &quot;CryptoJS&quot;]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    cache: true,</span><br><span class="line">    extractComments: false,</span><br><span class="line">    sourceMap: false,</span><br><span class="line">    parallel: true</span><br><span class="line">&#125;</span><br><span class="line">),</span><br></pre></td></tr></table></figure>
+<h3 id="混淆效果"><a href="#混淆效果" class="headerlink" title="混淆效果"></a>混淆效果</h3><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201229141408.png" alt=""></p>
+<h3 id="Demo源码工程"><a href="#Demo源码工程" class="headerlink" title="Demo源码工程"></a>Demo源码工程</h3><ul>
+<li>访问地址：<a href="https://github.com/aa4790139/webpack4_confuse_demo">https://github.com/aa4790139/webpack4_confuse_demo</a></li>
+</ul>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
+<li><a href="https://www.freebuf.com/articles/web/102269.html">可信前端之路：代码保护</a></li>
+<li><a href="https://webpack.docschina.org/plugins/uglifyjs-webpack-plugin/">UglifyjsWebpackPlugin 使用说明</a></li>
+<li><a href="https://github.com/LiPinghai/UglifyJSDocCN/blob/master/README.md#compress-options">UglifyJSDocCN</a></li>
+<li><a href="http://lisperator.net/uglifyjs/transform">UglifyJS</a></li>
+<li><a href="https://segmentfault.com/a/1190000008995453">UglifyJS中文文档</a></li>
+<li><a href="https://github.com/yacan8/blog/blob/master/posts/JavaScript%E6%B7%B7%E6%B7%86%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA.md">JavaScript混淆安全加固</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>混淆</tag>
+        <tag>UglifyJS</tag>
       </tags>
   </entry>
   <entry>
@@ -846,56 +940,6 @@
       <tags>
         <tag>DllPlugin</tag>
         <tag>DllReferencePlugin</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Web代码混淆</title>
-    <url>/2020/12/29/Web02/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>代码混淆</li>
-<li>环境准备</li>
-<li>如何配置UglifyJsPlugin混淆参数</li>
-<li>混淆效果</li>
-<li>Demo源码工程</li>
-</ul>
-<a id="more"></a>
-<h3 id="代码混淆"><a href="#代码混淆" class="headerlink" title="代码混淆"></a>代码混淆</h3><ul>
-<li><p>定义：代码混淆(Obfuscated code)亦称花指令，是将计算机程序的代码，转换成一种功能上等价，但是难于阅读和理解的形式的行为。通俗一点讲就是你写的代码，通过混淆工具，把你的源代码混淆得别人看不太懂。</p>
-</li>
-<li><p>起因：由于Web可以用浏览器调试工具，直接查看到我们的源代码，如果我们的源代码中包含了敏感信息(比如：加密密钥、服务器内部接口地址等)，那么对于不怀好意的人，就可能拿着这些东西攻击我们的服务器，所以我们需要把我们的代码去掉注释、混淆代码等，这样别人就没那么容易看懂我们的代码了，提高服务被攻击的门槛。</p>
-</li>
-</ul>
-<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><blockquote>
-<p>由于我尝试使用WebPack3.x的版本，利用UglifyJsPlugin版本来混淆打包，发现各种配置问题，然后导致打包出问题，所以推荐WebPack4.x 以上版本。我的环境如下</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dependencies&quot;: &#123;</span><br><span class="line">		&quot;vue&quot;: &quot;^2.6.11&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;@babel&#x2F;cli&quot;: &quot;^7.8.4&quot;,</span><br><span class="line">    &quot;@babel&#x2F;core&quot;: &quot;^7.8.7&quot;,</span><br><span class="line">    &quot;@babel&#x2F;preset-env&quot;: &quot;^7.8.7&quot;,</span><br><span class="line">    &quot;babel-loader&quot;: &quot;^8.0.6&quot;,</span><br><span class="line">    &quot;clean-webpack-plugin&quot;: &quot;^3.0.0&quot;,</span><br><span class="line">    &quot;css-loader&quot;: &quot;^3.4.2&quot;,</span><br><span class="line">    &quot;html-loader&quot;: &quot;^1.3.2&quot;,</span><br><span class="line">    &quot;html-webpack-plugin&quot;: &quot;^3.2.0&quot;,</span><br><span class="line">    &quot;uglifyjs-webpack-plugin&quot;: &quot;^2.2.0&quot;,</span><br><span class="line">    &quot;url-loader&quot;: &quot;^4.1.1&quot;,</span><br><span class="line">    &quot;vue-loader&quot;: &quot;^15.9.0&quot;,</span><br><span class="line">    &quot;vue-style-loader&quot;: &quot;^4.1.2&quot;,</span><br><span class="line">    &quot;vue-template-compiler&quot;: &quot;^2.6.11&quot;,</span><br><span class="line">    &quot;webpack&quot;: &quot;^4.42.0&quot;,</span><br><span class="line">    &quot;webpack-bundle-analyzer&quot;: &quot;^4.3.0&quot;,</span><br><span class="line">    &quot;webpack-cli&quot;: &quot;^3.3.11&quot;,</span><br><span class="line">    &quot;webpack-dev-server&quot;: &quot;^3.10.3&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="如何配置UglifyJsPlugin混淆参数"><a href="#如何配置UglifyJsPlugin混淆参数" class="headerlink" title="如何配置UglifyJsPlugin混淆参数"></a>如何配置UglifyJsPlugin混淆参数</h3><blockquote>
-<p>由于混淆需指定混淆哪些代码，不能把JS提供的API、第三方库的API相关的代码也给混淆掉，所以需要在写代码时一定要养成养好的编码规范，这样在配置混淆正在表达式时就非常好些了。以下介绍我的2种命令规范，所以下面的混淆正则表达式就非常好写。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">m_xxx : 成员变量</span><br><span class="line">__function : 方法名</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">new UglifyJsPlugin(</span><br><span class="line">&#123;</span><br><span class="line">    uglifyOptions: &#123;</span><br><span class="line">        compress: &#123;</span><br><span class="line">            &#x2F;&#x2F; warnings: false,</span><br><span class="line">            &#x2F;* 移除没被引用的代码 *&#x2F;</span><br><span class="line">            dead_code: true,</span><br><span class="line">            &#x2F;* 当 Function(args, code)的args 和 code都是字符串时，压缩并混淆 *&#x2F;</span><br><span class="line">            &#x2F;&#x2F; unsafe_Func: true,</span><br><span class="line">            &#x2F;* 干掉没有被引用的函数和变量 *&#x2F;</span><br><span class="line">            unused: true,</span><br><span class="line">            &#x2F;* 干掉顶层作用域中没有被引用的函数或变量 *&#x2F;</span><br><span class="line">            toplevel: true,</span><br><span class="line">            &#x2F;* 干掉console.*函数 *&#x2F;</span><br><span class="line">            drop_console: true,</span><br><span class="line">            &#x2F;* 干掉Debugger*&#x2F;</span><br><span class="line">            drop_debugger: true,</span><br><span class="line">            &#x2F;* 压缩代码次数 注意：数字越大压缩耗时越长 *&#x2F;</span><br><span class="line">            passes: 1,</span><br><span class="line">            &#x2F;* 传true以防止压缩时把1&#x2F;0转成Infinity，那可能会在chrome上有性能问题 *&#x2F;</span><br><span class="line">            keep_infinity: true</span><br><span class="line">        &#125;,</span><br><span class="line">        output: &#123;</span><br><span class="line">            comments: false,</span><br><span class="line">        &#125;,</span><br><span class="line">        mangle: &#123;</span><br><span class="line">            properties: &#123;</span><br><span class="line">                &#x2F;&#x2F; keep_fnames: false,</span><br><span class="line">                &#x2F;* 说明：混淆正在表达式就非常好写 *&#x2F;</span><br><span class="line">                regex: &#x2F;(^__|^m_)\w+&#x2F;,</span><br><span class="line">                reserved: [&quot;$&quot;, &quot;iv&quot;, &quot;mode&quot;, &quot;padding&quot;, &quot;CryptoJS&quot;]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    cache: true,</span><br><span class="line">    extractComments: false,</span><br><span class="line">    sourceMap: false,</span><br><span class="line">    parallel: true</span><br><span class="line">&#125;</span><br><span class="line">),</span><br></pre></td></tr></table></figure>
-<h3 id="混淆效果"><a href="#混淆效果" class="headerlink" title="混淆效果"></a>混淆效果</h3><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201229141408.png" alt=""></p>
-<h3 id="Demo源码工程"><a href="#Demo源码工程" class="headerlink" title="Demo源码工程"></a>Demo源码工程</h3><ul>
-<li>访问地址：<a href="https://github.com/aa4790139/webpack4_confuse_demo">https://github.com/aa4790139/webpack4_confuse_demo</a></li>
-</ul>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
-<li><a href="https://www.freebuf.com/articles/web/102269.html">可信前端之路：代码保护</a></li>
-<li><a href="https://webpack.docschina.org/plugins/uglifyjs-webpack-plugin/">UglifyjsWebpackPlugin 使用说明</a></li>
-<li><a href="https://github.com/LiPinghai/UglifyJSDocCN/blob/master/README.md#compress-options">UglifyJSDocCN</a></li>
-<li><a href="http://lisperator.net/uglifyjs/transform">UglifyJS</a></li>
-<li><a href="https://segmentfault.com/a/1190000008995453">UglifyJS中文文档</a></li>
-<li><a href="https://github.com/yacan8/blog/blob/master/posts/JavaScript%E6%B7%B7%E6%B7%86%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA.md">JavaScript混淆安全加固</a></li>
-</ul>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Web安全</category>
-      </categories>
-      <tags>
-        <tag>混淆</tag>
-        <tag>UglifyJS</tag>
       </tags>
   </entry>
 </search>
