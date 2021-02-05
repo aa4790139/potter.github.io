@@ -6,7 +6,7 @@
   <link href="https://yanxuewen.cn/atom.xml" rel="self"/>
   
   <link href="https://yanxuewen.cn/"/>
-  <updated>2021-01-26T13:27:07.082Z</updated>
+  <updated>2021-02-05T09:08:17.735Z</updated>
   <id>https://yanxuewen.cn/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Web性能优化</title>
+    <link href="https://yanxuewen.cn/2021/02/05/Web03/"/>
+    <id>https://yanxuewen.cn/2021/02/05/Web03/</id>
+    <published>2021-02-05T09:08:17.735Z</published>
+    <updated>2021-02-05T09:08:17.735Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul><li>工具层面</li><li>Vue代码层面</li><li>Webpack层面</li><li>Web技术层面</li></ul><blockquote><p>性能优化对于每一个工程师都是必定要面对的问题，相信大部分人平常发现什么点可以优化，就优化什么样的点，没有全面仔细梳理汇总过知识点，导致别人问我们也不能很全面的回答上来，可能当时只能回答想到的一些零碎的点，这样给人的印象就很不好，所以我查阅相关资料，以及自己的一些经验汇总出如下脑图，方面日后别人问起时，我们脑子里面能快速呈现一幅图，然后把关联知识都说出来。</p></blockquote><a id="more"></a><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/Web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.jpg" alt=""></p><h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><blockquote><p>如果你发现有我没有列出来的优化点，欢迎给我留言，我再更新这个导图</p></blockquote><h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul><li><a href="https://juejin.cn/post/6844903913410314247#heading-22">Vue 项目性能优化 — 实践指南（网上最全 / 详细）</a></li><li><a href="https://yanxuewen.cn/2020/12/30/WebBuild01/#more">Web构建优化</a></li></ul><hr><blockquote><p>以上: 如发现有问题，欢迎留言指出，我及时更正</p></blockquote>]]></content>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;概要内容&quot;&gt;&lt;a href=&quot;#概要内容&quot; class=&quot;headerlink&quot; title=&quot;概要内容&quot;&gt;&lt;/a&gt;概要内容&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;工具层面&lt;/li&gt;
+&lt;li&gt;Vue代码层面&lt;/li&gt;
+&lt;li&gt;Webpack层面&lt;/li&gt;
+&lt;li&gt;Web技术层面&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;性能优化对于每一个工程师都是必定要面对的问题，相信大部分人平常发现什么点可以优化，就优化什么样的点，没有全面仔细梳理汇总过知识点，导致别人问我们也不能很全面的回答上来，可能当时只能回答想到的一些零碎的点，这样给人的印象就很不好，所以我查阅相关资料，以及自己的一些经验汇总出如下脑图，方面日后别人问起时，我们脑子里面能快速呈现一幅图，然后把关联知识都说出来。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="性能优化" scheme="https://yanxuewen.cn/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    
+    
+    <category term="Vue" scheme="https://yanxuewen.cn/tags/Vue/"/>
+    
+    <category term="WebPack" scheme="https://yanxuewen.cn/tags/WebPack/"/>
+    
+  </entry>
   
   <entry>
     <title>CORS-跨域实战</title>
