@@ -6,7 +6,7 @@
   <link href="https://yanxuewen.cn/atom.xml" rel="self"/>
   
   <link href="https://yanxuewen.cn/"/>
-  <updated>2021-02-05T09:08:17.735Z</updated>
+  <updated>2021-02-17T08:13:35.557Z</updated>
   <id>https://yanxuewen.cn/</id>
   
   <author>
@@ -17,11 +17,41 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>算法&amp;数据结构-梳理汇总</title>
+    <link href="https://yanxuewen.cn/2021/02/17/Algorithm-DataStruct01/"/>
+    <id>https://yanxuewen.cn/2021/02/17/Algorithm-DataStruct01/</id>
+    <published>2021-02-17T08:13:35.556Z</published>
+    <updated>2021-02-17T08:13:35.557Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul><li>算法&amp;数据结构，重学起因</li><li>算法与数据结构-梳理汇总导图</li><li>学习心得</li></ul><h3 id="算法-amp-数据结构，重学起因"><a href="#算法-amp-数据结构，重学起因" class="headerlink" title="算法&amp;数据结构，重学起因"></a>算法&amp;数据结构，重学起因</h3><blockquote><p>起因：虽然在大学期间学习过算法，刚开始学习基础排序算法、基础数据结构还好，但到后面学习、快速排序、二分查找、双向链表、循环链表、各种树等，就开始顶不住了，觉得太复杂、太难就学不动了，导致学得挺差，现在也基本忘得差不多了。前端时间看到昊神分享的一篇算法学习文章，就接触到了波波老师的文章，提到算法也没有传说中的难，说得挺简单的，然后我就跑到慕课网找到了波波老师的课程【<a href="https://class.imooc.com/sc/105/learn">算法与数据结构体系课：覆盖0~5年工作面试所需</a>】，原价：￥1199 折后：￥999，贵竟然好评率100%。心想：投资自己是最好的投资，就狠心放次血吧~ </p></blockquote><a id="more"></a><h3 id="算法与数据结构-梳理汇总导图"><a href="#算法与数据结构-梳理汇总导图" class="headerlink" title="算法与数据结构-梳理汇总导图"></a>算法与数据结构-梳理汇总导图</h3><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84&amp;%E7%AE%97%E6%B3%95.jpg" alt=""></p><h3 id="学习心得"><a href="#学习心得" class="headerlink" title="学习心得"></a>学习心得</h3><ol><li>学习一个知识：需消化成自己理解后的样子，然后再输出出来</li><li>学习一个知识：使用思维导图绘成一幅图。一来：让自己非常直观的看到知识点间的关系，二来：方便知识点的记忆，三来：未来根据图快速全面的回顾知识点。</li></ol><h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><blockquote><p>感谢波波老师出的这干货课程，讲得通俗易懂，让我收获满满。好东西，推荐大家购买学习~</p></blockquote><h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul><li><a href="https://class.imooc.com/sc/105/learn">算法与数据结构体系课：覆盖0~5年工作面试所需</a></li><li><a href="https://www.jianshu.com/p/d5dd618014f0">各种树的复杂度</a></li><li><a href="https://zhuanlan.zhihu.com/p/136183284">BFS 的使用场景：层序遍历、最短路径问题</a></li><li><a href="https://blog.csdn.net/Hairy_Monsters/article/details/80154391">十种常见排序算法的思想、应用场景、C++代码实现及时间效率直观对比</a></li><li><a href="https://www.cnblogs.com/onepixel/p/7674659.html">十大经典排序算法（动图演示）</a></li><li><a href="https://www.cnblogs.com/QG-whz/p/5194627.html">数据结构图文解析系列</a></li></ul><hr><blockquote><p>以上: 如发现有问题，欢迎留言指出，我及时更正</p></blockquote>]]></content>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;概要内容&quot;&gt;&lt;a href=&quot;#概要内容&quot; class=&quot;headerlink&quot; title=&quot;概要内容&quot;&gt;&lt;/a&gt;概要内容&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;算法&amp;amp;数据结构，重学起因&lt;/li&gt;
+&lt;li&gt;算法与数据结构-梳理汇总导图&lt;/li&gt;
+&lt;li&gt;学习心得&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;算法-amp-数据结构，重学起因&quot;&gt;&lt;a href=&quot;#算法-amp-数据结构，重学起因&quot; class=&quot;headerlink&quot; title=&quot;算法&amp;amp;数据结构，重学起因&quot;&gt;&lt;/a&gt;算法&amp;amp;数据结构，重学起因&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;起因：虽然在大学期间学习过算法，刚开始学习基础排序算法、基础数据结构还好，但到后面学习、快速排序、二分查找、双向链表、循环链表、各种树等，就开始顶不住了，觉得太复杂、太难就学不动了，导致学得挺差，现在也基本忘得差不多了。前端时间看到昊神分享的一篇算法学习文章，就接触到了波波老师的文章，提到算法也没有传说中的难，说得挺简单的，然后我就跑到慕课网找到了波波老师的课程【&lt;a href=&quot;https://class.imooc.com/sc/105/learn&quot;&gt;算法与数据结构体系课：覆盖0~5年工作面试所需&lt;/a&gt;】，原价：￥1199 折后：￥999，贵竟然好评率100%。心想：投资自己是最好的投资，就狠心放次血吧~ &lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="算法&amp;数据结构" scheme="https://yanxuewen.cn/categories/%E7%AE%97%E6%B3%95-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    
+    <category term="常用排序" scheme="https://yanxuewen.cn/tags/%E5%B8%B8%E7%94%A8%E6%8E%92%E5%BA%8F/"/>
+    
+    <category term="常用数据结构" scheme="https://yanxuewen.cn/tags/%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Web性能优化</title>
     <link href="https://yanxuewen.cn/2021/02/05/Web03/"/>
     <id>https://yanxuewen.cn/2021/02/05/Web03/</id>
     <published>2021-02-05T09:08:17.735Z</published>
-    <updated>2021-02-05T09:08:17.735Z</updated>
+    <updated>2021-02-17T08:13:35.583Z</updated>
     
     <content type="html"><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul><li>工具层面</li><li>Vue代码层面</li><li>Webpack层面</li><li>Web技术层面</li></ul><blockquote><p>性能优化对于每一个工程师都是必定要面对的问题，相信大部分人平常发现什么点可以优化，就优化什么样的点，没有全面仔细梳理汇总过知识点，导致别人问我们也不能很全面的回答上来，可能当时只能回答想到的一些零碎的点，这样给人的印象就很不好，所以我查阅相关资料，以及自己的一些经验汇总出如下脑图，方面日后别人问起时，我们脑子里面能快速呈现一幅图，然后把关联知识都说出来。</p></blockquote><a id="more"></a><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/Web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.jpg" alt=""></p><h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><blockquote><p>如果你发现有我没有列出来的优化点，欢迎给我留言，我再更新这个导图</p></blockquote><h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul><li><a href="https://juejin.cn/post/6844903913410314247#heading-22">Vue 项目性能优化 — 实践指南（网上最全 / 详细）</a></li><li><a href="https://yanxuewen.cn/2020/12/30/WebBuild01/#more">Web构建优化</a></li></ul><hr><blockquote><p>以上: 如发现有问题，欢迎留言指出，我及时更正</p></blockquote>]]></content>
     
@@ -85,7 +115,7 @@
     <link href="https://yanxuewen.cn/2020/12/30/WebBuild01/"/>
     <id>https://yanxuewen.cn/2020/12/30/WebBuild01/</id>
     <published>2020-12-30T05:05:31.688Z</published>
-    <updated>2020-12-30T06:36:38.228Z</updated>
+    <updated>2021-02-17T08:13:35.591Z</updated>
     
     <content type="html"><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul><li>DllPlugin 和 DllReferencePlugin 简介</li><li>如何使用DllPlugin打包，及DllReferencePlugin如何引用dll</li><li>构建优化效果</li><li>SplitChunks </li><li>Demo源码工程</li></ul><a id="more"></a><hr><h3 id="DllPlugin-和-DllReferencePlugin-简介"><a href="#DllPlugin-和-DllReferencePlugin-简介" class="headerlink" title="DllPlugin 和 DllReferencePlugin 简介"></a>DllPlugin 和 DllReferencePlugin 简介</h3><ul><li>DllPlugin: <blockquote><p>这个插件是在一个额外的独立的 webpack 设置中创建一个只有 dll 的 bundle(dll-only-bundle)。 这个插件会生成一个名为 manifest.json 的文件，这个文件是用来让 DLLReferencePlugin 映射到相关的依赖上去的。</p></blockquote></li><li>DllReferencePlugin:<blockquote><p>此插件配置在 webpack 的主配置文件中，此插件会把 dll-only-bundles 引用到需要的预编译的依赖中</p></blockquote></li><li>通俗点讲：<blockquote><p>DllPlugin 插件负责把第三方公共库，打包进一个独立的dll库中。最后项目打包时DllReferencePlugin 通过manifest.json 来引用dll的公共库，避免项目每次构建时都将第三库和业务代码进行重复打包。</p></blockquote></li><li>优点：<ul><li>提升打包构建速度</li><li>公共js文件配置CDN，避免掉重复下载公共库js文件</li></ul></li></ul><hr><h3 id="如何使用DllPlugin打包，及DllReferencePlugin如何引用dll"><a href="#如何使用DllPlugin打包，及DllReferencePlugin如何引用dll" class="headerlink" title="如何使用DllPlugin打包，及DllReferencePlugin如何引用dll"></a>如何使用DllPlugin打包，及DllReferencePlugin如何引用dll</h3><ul><li>DllPlugin 配置需要打包第三方库至dll中</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;webpack.dll.config.js</span><br><span class="line"></span><br><span class="line">const DllPlugin &#x3D; require(&#39;webpack&#x2F;lib&#x2F;DllPlugin&#39;);</span><br><span class="line">const path &#x3D; require(&#39;path&#39;)</span><br><span class="line">const fs &#x3D; require(&#39;fs&#39;);</span><br><span class="line"></span><br><span class="line">var packageJsonContent &#x3D; fs.readFileSync(path.resolve(__dirname, &#39;..&#x2F;package.json&#39;));</span><br><span class="line">var packageJson &#x3D; JSON.parse(packageJsonContent);</span><br><span class="line"></span><br><span class="line">var dependencies &#x3D; Object.keys(packageJson.dependencies);</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        vendor: dependencies</span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: path.resolve(__dirname, &#39;..&#x2F;dist&#39;),</span><br><span class="line">        filename: &#39;vendor.bundle.js&#39;,</span><br><span class="line">        library: &#39;vendor_lib&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        new DllPlugin(&#123;</span><br><span class="line">            context: __dirname,</span><br><span class="line">            name: &#39;vendor_lib&#39;,</span><br><span class="line">            &#x2F;* 生成manifest文件输出的位置和文件名称 *&#x2F;</span><br><span class="line">            path: path.resolve(__dirname, &#39;..&#x2F;dist&#x2F;vendor-manifest.json&#39;)</span><br><span class="line">        &#125;)</span><br><span class="line">    ],</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><ul><li>DllReferencePlugin如何引用dll</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;webpack.config.js 中 plugins添加以下代码</span><br><span class="line"></span><br><span class="line">new DllReferencePlugin(&#123;</span><br><span class="line">            manifest: require(path.resolve(__dirname, &#39;..&#x2F;dist&#x2F;vendor-manifest.json&#39;))</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure><hr><h3 id="构建优化效果"><a href="#构建优化效果" class="headerlink" title="构建优化效果"></a>构建优化效果</h3><blockquote><p>简单demo，未抽离公共库打包时间7572ms，抽离公共库打包时间2315ms，打包速度快2倍多<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20201230131323.png" alt=""></p></blockquote><hr><h3 id="SplitChunks"><a href="#SplitChunks" class="headerlink" title="SplitChunks"></a>SplitChunks</h3><ul><li>简介：Webpack中一个提取或分离代码的插件，主要作用是提取公共代码，防止代码被重复打包，拆分过大的js文件，合并零散的js文件，可配置</li><li>配置：</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;webpack.dll.config.js中optimization 中新增如下配置</span><br><span class="line">splitChunks: &#123;</span><br><span class="line">            chunks: &quot;async&quot;,</span><br><span class="line">            minSize: 30000,</span><br><span class="line">            minChunks: 1,</span><br><span class="line">            maxAsyncRequests: 5,</span><br><span class="line">            maxInitialRequests: 3,</span><br><span class="line">            automaticNameDelimiter: &#39;~&#39;,</span><br><span class="line">            name: true,</span><br><span class="line">            cacheGroups: &#123;</span><br><span class="line">                vendors: &#123;</span><br><span class="line">                    test: &#x2F;[\\&#x2F;]node_modules[\\&#x2F;]&#x2F;,</span><br><span class="line">                    priority: -10</span><br><span class="line">                &#125;,</span><br><span class="line">                default: &#123;</span><br><span class="line">                    minChunks: 2,</span><br><span class="line">                    priority: -20,</span><br><span class="line">                    reuseExistingChunk: true</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure><hr><h3 id="Demo源码工程"><a href="#Demo源码工程" class="headerlink" title="Demo源码工程"></a>Demo源码工程</h3><ul><li>访问地址：<a href="https://github.com/aa4790139/webpack4_confuse_demo">https://github.com/aa4790139/webpack4_confuse_demo</a></li></ul><hr><h3 id="最后："><a href="#最后：" class="headerlink" title="最后："></a>最后：</h3><blockquote><p>由于对于公共库抽离和分割包过大优化打包，我只是试探性的去了解和测试。如果你还有什么更好的优化构建方法或者建议，欢迎给我留言。感谢~</p></blockquote><hr><h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul><li><a href="https://www.cnblogs.com/tugenhua0707/p/9520780.html">深入浅出的webpack构建工具—-DllPlugin DllReferencePlugin提高构建速度(七)</a></li><li><a href="https://webpack.docschina.org/plugins/split-chunks-plugin/#optimizationsplitchunks">SplitChunksPlugin 使用说明</a></li><li><a href="https://zhuanlan.zhihu.com/p/152097785">Webpack之SplitChunks插件用法详解</a></li><li><a href="https://imweb.io/topic/5b66dd601402769b60847149">webpack 4 Code Splitting 的 splitChunks 配置探索</a></li></ul><blockquote><p>以上: 如发现有问题，欢迎留言指出，我及时更正</p></blockquote>]]></content>
     
@@ -100,12 +130,14 @@
     
     
     
-    <category term="Webpack打包优化" scheme="https://yanxuewen.cn/categories/Webpack%E6%89%93%E5%8C%85%E4%BC%98%E5%8C%96/"/>
+    <category term="webpack" scheme="https://yanxuewen.cn/categories/webpack/"/>
     
     
     <category term="DllPlugin" scheme="https://yanxuewen.cn/tags/DllPlugin/"/>
     
     <category term="DllReferencePlugin" scheme="https://yanxuewen.cn/tags/DllReferencePlugin/"/>
+    
+    <category term="打包优化" scheme="https://yanxuewen.cn/tags/%E6%89%93%E5%8C%85%E4%BC%98%E5%8C%96/"/>
     
   </entry>
   
@@ -235,11 +267,11 @@
   </entry>
   
   <entry>
-    <title>UniApp 如何引入Iconfont阿里巴巴矢量图标库</title>
+    <title>uni-app 如何引入Iconfont阿里巴巴矢量图标库</title>
     <link href="https://yanxuewen.cn/2020/11/13/UniApp01/"/>
     <id>https://yanxuewen.cn/2020/11/13/UniApp01/</id>
     <published>2020-11-13T08:34:23.759Z</published>
-    <updated>2020-12-17T14:55:52.935Z</updated>
+    <updated>2021-02-17T08:13:35.576Z</updated>
     
     <content type="html"><![CDATA[<h3 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下:"></a>步骤如下:</h3><ol><li>下载图标项目, 解压后效果如下<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201113164039.png" alt=""></li><li><p>修改iconfont.css文件</p><p> 修改前格式：</p> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@font-face &#123;font-family: &quot;iconfont&quot;;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083&#39;); &#x2F;* IE9 *&#x2F;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083#iefix&#39;) format(&#39;embedded-opentype&#39;), &#x2F;* IE6-IE8 *&#x2F;</span><br><span class="line">url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;),</span><br><span class="line">url(&#39;iconfont.woff?t&#x3D;1605254910083&#39;) format(&#39;woff&#39;),</span><br><span class="line">url(&#39;iconfont.ttf?t&#x3D;1605254910083&#39;) format(&#39;truetype&#39;), &#x2F;* chrome, firefox, opera, Safari, Android, iOS 4.2+ *&#x2F;</span><br><span class="line">url(&#39;iconfont.svg?t&#x3D;1605254910083#iconfont&#39;) format(&#39;svg&#39;); &#x2F;* iOS 4.1- *&#x2F;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p> 修改后格式: </p> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &quot;iconfont&quot;;</span><br><span class="line">    src: url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>Copy字体文件iconfont.ttf和样式文件iconfont.css 至UniApp项目static/font目录中</li></ol><hr><blockquote><p>以上: 如发现有问题，欢迎留言指出，我及时更正</p></blockquote>]]></content>
     
