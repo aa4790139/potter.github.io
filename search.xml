@@ -169,47 +169,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Python-03：Web自动化测试【打开Chrome百度搜索Selenium】</title>
-    <url>/2020/11/03/AutoTest03/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>环境准备</li>
-<li>案例：打开Chrome百度搜索Selenium</li>
-<li>原理总结</li>
-</ul>
-<a id="more"></a>
-<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
-<li>Win10</li>
-<li>Chrome 84.0.4147.135</li>
-<li>ChromeDriver 84.0.4147.30<ol>
-<li>关闭Chrome更新，避免不停换驱动</li>
-<li>下载Chrome对应版本ChromeDriver驱动<a href="https://chromedriver.chromium.org/downloads">下载地址</a></li>
-<li>将ChromeDriver 放到Python安装目录下. 比如：C:\Users\Administrator\AppData\Local\Programs\Python\Python39</li>
-</ol>
-</li>
-<li>Python 3.9.0</li>
-<li>Selenium 3.141.0<br> 安装命令：pip install selenium (提示：如果执行报错，请检查python环境变量配置)</li>
-</ol>
-<h3 id="案例：打开Chrome百度搜索Selenium"><a href="#案例：打开Chrome百度搜索Selenium" class="headerlink" title="案例：打开Chrome百度搜索Selenium"></a>案例：打开Chrome百度搜索Selenium</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from selenium import  webdriver</span><br><span class="line"># 使用Chrome驱动</span><br><span class="line">driver &#x3D; webdriver.Chrome()</span><br><span class="line"># 让浏览器全屏</span><br><span class="line">driver.maximize_window()</span><br><span class="line"># 打开百度</span><br><span class="line">driver.get(&quot;https:&#x2F;&#x2F;baidu.com&quot;)</span><br><span class="line"># 找到百度搜索框元素</span><br><span class="line">input &#x3D; driver.find_element_by_id(&quot;kw&quot;)</span><br><span class="line"># 往输入框中输入搜索关键词&quot;selenium&quot;</span><br><span class="line">input.send_keys(&quot;selenium&quot;)</span><br><span class="line"># 点击百度一下按钮搜索</span><br><span class="line">search &#x3D; driver.find_element_by_id(&quot;su&quot;)</span><br><span class="line">search.click()</span><br></pre></td></tr></table></figure>
-<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><blockquote>
-<p>其实原理就是 Python 通过Selenium 调用浏览器驱动接口，然后驱动Driver接口操作Web中元素进行交互</p>
-</blockquote>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献:"></a>参考文献:</h3><ul>
-<li><a href="https://selenium-python-zh.readthedocs.io/en/latest/index.html">Selenium-Python中文文档</a></li>
-</ul>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>自动化测试</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Selenium</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python-04：AppWeb自动化测试【打开App切换WebView登录】</title>
     <url>/2020/11/04/AutoTest04/</url>
     <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
@@ -253,6 +212,84 @@
         <tag>Python</tag>
         <tag>Selenium</tag>
         <tag>Appnium</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python-03：Web自动化测试【打开Chrome百度搜索Selenium】</title>
+    <url>/2020/11/03/AutoTest03/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>环境准备</li>
+<li>案例：打开Chrome百度搜索Selenium</li>
+<li>原理总结</li>
+</ul>
+<a id="more"></a>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
+<li>Win10</li>
+<li>Chrome 84.0.4147.135</li>
+<li>ChromeDriver 84.0.4147.30<ol>
+<li>关闭Chrome更新，避免不停换驱动</li>
+<li>下载Chrome对应版本ChromeDriver驱动<a href="https://chromedriver.chromium.org/downloads">下载地址</a></li>
+<li>将ChromeDriver 放到Python安装目录下. 比如：C:\Users\Administrator\AppData\Local\Programs\Python\Python39</li>
+</ol>
+</li>
+<li>Python 3.9.0</li>
+<li>Selenium 3.141.0<br> 安装命令：pip install selenium (提示：如果执行报错，请检查python环境变量配置)</li>
+</ol>
+<h3 id="案例：打开Chrome百度搜索Selenium"><a href="#案例：打开Chrome百度搜索Selenium" class="headerlink" title="案例：打开Chrome百度搜索Selenium"></a>案例：打开Chrome百度搜索Selenium</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from selenium import  webdriver</span><br><span class="line"># 使用Chrome驱动</span><br><span class="line">driver &#x3D; webdriver.Chrome()</span><br><span class="line"># 让浏览器全屏</span><br><span class="line">driver.maximize_window()</span><br><span class="line"># 打开百度</span><br><span class="line">driver.get(&quot;https:&#x2F;&#x2F;baidu.com&quot;)</span><br><span class="line"># 找到百度搜索框元素</span><br><span class="line">input &#x3D; driver.find_element_by_id(&quot;kw&quot;)</span><br><span class="line"># 往输入框中输入搜索关键词&quot;selenium&quot;</span><br><span class="line">input.send_keys(&quot;selenium&quot;)</span><br><span class="line"># 点击百度一下按钮搜索</span><br><span class="line">search &#x3D; driver.find_element_by_id(&quot;su&quot;)</span><br><span class="line">search.click()</span><br></pre></td></tr></table></figure>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><blockquote>
+<p>其实原理就是 Python 通过Selenium 调用浏览器驱动接口，然后驱动Driver接口操作Web中元素进行交互</p>
+</blockquote>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献:"></a>参考文献:</h3><ul>
+<li><a href="https://selenium-python-zh.readthedocs.io/en/latest/index.html">Selenium-Python中文文档</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>自动化测试</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Selenium</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>结束《皇室战争》之旅</title>
+    <url>/2020/11/02/Game01/</url>
+    <content><![CDATA[<h3 id="一款又爱又恨的游戏"><a href="#一款又爱又恨的游戏" class="headerlink" title="一款又爱又恨的游戏"></a>一款又爱又恨的游戏</h3><ul>
+<li>爱：<ol>
+<li>这游戏UI和画质都做得非常精美，原画的细节做得非常逼真</li>
+<li>3分钟一场战斗，游戏时间设置的完美</li>
+<li>操作简单，容易上手</li>
+</ol>
+</li>
+<li>恨:<ol>
+<li>3分钟一场战斗，导致你蹲个坑都可以玩几局，有时输能让你蹲出半个多小时，最后起来酸的不行</li>
+<li>部落战匹配规则做得不好，分段6K左右自己卡等只有10级，结果给你匹配满级的来对付你，你技术再好也是以卵击石</li>
+<li>商店不断推出活动引诱你充值，看到你要啥卡牌、是没有金币还是没有宝石，就给你推对应的活动</li>
+<li>影响与家人的关系，有时候连输好几把，家人跟我聊天，我说话很冲，导致跟对方吵起来</li>
+<li>不间断活动、每天对战，让你控制不住不玩，不停想上分，影响工作和学习</li>
+</ol>
+</li>
+</ul>
+<a id="more"></a>
+<h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><ol>
+<li>对方出的每张卡都记住，等全部8张卡出完，再想怎么用当前的卡组对付它</li>
+<li>未知对方卡组，尽量使用小费过牌，等待摸清对方卡组再出手</li>
+<li>排兵布阵不能全部放到一块，要分散放，不然被对面一个法术全部打中</li>
+</ol>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><blockquote>
+<p>要升级的卡组已升满，没有玩下去的欲望了，本想这个赛季冲个6500+，结果没多少时间打，中午打了一个多小时，结果卡住6150上不去了，那就让他停留在6150结束这段旅程。接下来开启新的篇章，好好学习、好好工作，这样才能有好的未来</p>
+</blockquote>
+<p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/222.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>游戏</category>
+      </categories>
+      <tags>
+        <tag>皇室战争</tag>
       </tags>
   </entry>
   <entry>
@@ -390,43 +427,6 @@
         <tag>Github</tag>
         <tag>Hexo</tag>
         <tag>Next</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>结束《皇室战争》之旅</title>
-    <url>/2020/11/02/Game01/</url>
-    <content><![CDATA[<h3 id="一款又爱又恨的游戏"><a href="#一款又爱又恨的游戏" class="headerlink" title="一款又爱又恨的游戏"></a>一款又爱又恨的游戏</h3><ul>
-<li>爱：<ol>
-<li>这游戏UI和画质都做得非常精美，原画的细节做得非常逼真</li>
-<li>3分钟一场战斗，游戏时间设置的完美</li>
-<li>操作简单，容易上手</li>
-</ol>
-</li>
-<li>恨:<ol>
-<li>3分钟一场战斗，导致你蹲个坑都可以玩几局，有时输能让你蹲出半个多小时，最后起来酸的不行</li>
-<li>部落战匹配规则做得不好，分段6K左右自己卡等只有10级，结果给你匹配满级的来对付你，你技术再好也是以卵击石</li>
-<li>商店不断推出活动引诱你充值，看到你要啥卡牌、是没有金币还是没有宝石，就给你推对应的活动</li>
-<li>影响与家人的关系，有时候连输好几把，家人跟我聊天，我说话很冲，导致跟对方吵起来</li>
-<li>不间断活动、每天对战，让你控制不住不玩，不停想上分，影响工作和学习</li>
-</ol>
-</li>
-</ul>
-<a id="more"></a>
-<h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><ol>
-<li>对方出的每张卡都记住，等全部8张卡出完，再想怎么用当前的卡组对付它</li>
-<li>未知对方卡组，尽量使用小费过牌，等待摸清对方卡组再出手</li>
-<li>排兵布阵不能全部放到一块，要分散放，不然被对面一个法术全部打中</li>
-</ol>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><blockquote>
-<p>要升级的卡组已升满，没有玩下去的欲望了，本想这个赛季冲个6500+，结果没多少时间打，中午打了一个多小时，结果卡住6150上不去了，那就让他停留在6150结束这段旅程。接下来开启新的篇章，好好学习、好好工作，这样才能有好的未来</p>
-</blockquote>
-<p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/222.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>游戏</category>
-      </categories>
-      <tags>
-        <tag>皇室战争</tag>
       </tags>
   </entry>
   <entry>
@@ -643,6 +643,35 @@
       </tags>
   </entry>
   <entry>
+    <title>屏蔽：键盘按键、鼠标点击事件</title>
+    <url>/2020/10/14/PreventEvent/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>屏蔽-键盘按键</li>
+<li>屏蔽-鼠标点击</li>
+<li>屏蔽-BackSpace</li>
+</ul>
+<a id="more"></a>
+<h3 id="屏蔽-键盘按键"><a href="#屏蔽-键盘按键" class="headerlink" title="屏蔽-键盘按键"></a>屏蔽-键盘按键</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;添加按键监听</span><br><span class="line">window.addEventListener(&#39;keydown&#39;, this.onKeyDown,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;移除按键监听</span><br><span class="line">window.removeEventListener(&quot;keydown&quot;,this.onKeyDown,true);</span><br><span class="line"></span><br><span class="line">onKeyDown(val)&#123;</span><br><span class="line">    console.log(&#39;按下&#39; + val.key);</span><br><span class="line">    val.preventDefault();</span><br><span class="line">    val.stopPropagation();</span><br><span class="line">    val.cancelBubble &#x3D; true;</span><br><span class="line">    window.event.returnValue &#x3D; false;</span><br><span class="line">    window.event.preventDefault();</span><br><span class="line">    window.event.stopPropagation();</span><br><span class="line">    window.event.cancelBubble &#x3D; true;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="屏蔽-鼠标点击"><a href="#屏蔽-鼠标点击" class="headerlink" title="屏蔽-鼠标点击"></a>屏蔽-鼠标点击</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;添加鼠标点击监听</span><br><span class="line">window.addEventListener(&#39;mousedown&#39;,this.onClick,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;移除鼠标点击监听</span><br><span class="line">window.removeEventListener(&#39;mousedown&#39;,this.onClick,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;which: 1-左键 2-中键 3-右键</span><br><span class="line">onClick(val)&#123;</span><br><span class="line">    console.error(&#39;点击&#39; + val.which);</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="屏蔽-BackSpace"><a href="#屏蔽-BackSpace" class="headerlink" title="屏蔽-BackSpace"></a>屏蔽-BackSpace</h3><p>在IE页面跳转过程中，按BackSpace退格键默认返回上此浏览页，导致路由中断引起(Vue)页面卡死，所以需要在IE中屏蔽掉BackSpce退格键，但是在输入框中则不屏蔽。</p>
+<ul>
+<li>preventBackSpce.js： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export const banBackSpace &#x3D; (e) &#x3D;&gt; &#123;</span><br><span class="line">  let ev &#x3D; e || window.event</span><br><span class="line">  &#x2F;&#x2F; 各种浏览器下获取事件对象</span><br><span class="line">  let obj &#x3D; ev.relatedTarget || ev.srcElement || ev.target || ev.currentTarget</span><br><span class="line">  &#x2F;&#x2F; 按下Backspace键</span><br><span class="line">  if (ev.keyCode &#x3D;&#x3D;&#x3D; 8) &#123;</span><br><span class="line">    &#x2F;&#x2F; 标签名称</span><br><span class="line">    let tagName &#x3D; obj.nodeName.toLowerCase();</span><br><span class="line">    &#x2F;&#x2F; 如果标签不是input或者textarea则阻止Backspace</span><br><span class="line">    if (tagName !&#x3D;&#x3D; &#39;input&#39; &amp;&amp; tagName !&#x3D;&#x3D; &#39;textarea&#39;) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">    let tagType &#x3D; obj.type.toLowerCase() &#x2F;&#x2F; 标签类型</span><br><span class="line">    &#x2F;&#x2F; input标签除了下面几种类型，全部阻止Backspace</span><br><span class="line">    if (tagName &#x3D;&#x3D;&#x3D; &#39;input&#39; &amp;&amp; (tagType !&#x3D;&#x3D; &#39;text&#39; &amp;&amp; tagType !&#x3D;&#x3D; &#39;textarea&#39; &amp;&amp; tagType !&#x3D;&#x3D; &#39;password&#39;)) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; input或者textarea输入框如果不可编辑则阻止Backspace</span><br><span class="line">    if ((tagName &#x3D;&#x3D;&#x3D; &#39;input&#39; || tagName &#x3D;&#x3D;&#x3D; &#39;textarea&#39;) &amp;&amp; (obj.readOnly &#x3D;&#x3D;&#x3D; true || obj.disabled &#x3D;&#x3D;&#x3D; true)) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function stopIt(ev) &#123;</span><br><span class="line">  if (ev.preventDefault) &#123;</span><br><span class="line">    &#x2F;&#x2F; preventDefault()方法阻止元素发生默认的行为</span><br><span class="line">    ev.preventDefault()</span><br><span class="line">  &#125;</span><br><span class="line">  if (ev.returnValue) &#123;</span><br><span class="line">    &#x2F;&#x2F; IE浏览器下用window.event.returnValue &#x3D; false;实现阻止元素发生默认的行为</span><br><span class="line">  &#125;</span><br><span class="line">  return false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>使用方法：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. 在需要使用的Vue页面引入组件(一般在main.vue中添加)</span><br><span class="line">import &#123;banBackSpace&#125; from &quot;@&#x2F;util&#x2F;preventBackspace&quot;;</span><br><span class="line"></span><br><span class="line">2. mounted 钩子函数挂载事件</span><br><span class="line">document.onkeypress &#x3D; banBackSpace;</span><br><span class="line">document.onkeydown &#x3D; banBackSpace;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>H5</category>
+      </categories>
+      <tags>
+        <tag>事件屏蔽</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>全栈学习-开篇-001</title>
     <url>/2020/09/29/LearningFullStack01/</url>
     <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
@@ -687,35 +716,6 @@
       <tags>
         <tag>全栈</tag>
         <tag>NodeJS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>屏蔽：键盘按键、鼠标点击事件</title>
-    <url>/2020/10/14/PreventEvent/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>屏蔽-键盘按键</li>
-<li>屏蔽-鼠标点击</li>
-<li>屏蔽-BackSpace</li>
-</ul>
-<a id="more"></a>
-<h3 id="屏蔽-键盘按键"><a href="#屏蔽-键盘按键" class="headerlink" title="屏蔽-键盘按键"></a>屏蔽-键盘按键</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;添加按键监听</span><br><span class="line">window.addEventListener(&#39;keydown&#39;, this.onKeyDown,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;移除按键监听</span><br><span class="line">window.removeEventListener(&quot;keydown&quot;,this.onKeyDown,true);</span><br><span class="line"></span><br><span class="line">onKeyDown(val)&#123;</span><br><span class="line">    console.log(&#39;按下&#39; + val.key);</span><br><span class="line">    val.preventDefault();</span><br><span class="line">    val.stopPropagation();</span><br><span class="line">    val.cancelBubble &#x3D; true;</span><br><span class="line">    window.event.returnValue &#x3D; false;</span><br><span class="line">    window.event.preventDefault();</span><br><span class="line">    window.event.stopPropagation();</span><br><span class="line">    window.event.cancelBubble &#x3D; true;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="屏蔽-鼠标点击"><a href="#屏蔽-鼠标点击" class="headerlink" title="屏蔽-鼠标点击"></a>屏蔽-鼠标点击</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;添加鼠标点击监听</span><br><span class="line">window.addEventListener(&#39;mousedown&#39;,this.onClick,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;移除鼠标点击监听</span><br><span class="line">window.removeEventListener(&#39;mousedown&#39;,this.onClick,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;which: 1-左键 2-中键 3-右键</span><br><span class="line">onClick(val)&#123;</span><br><span class="line">    console.error(&#39;点击&#39; + val.which);</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="屏蔽-BackSpace"><a href="#屏蔽-BackSpace" class="headerlink" title="屏蔽-BackSpace"></a>屏蔽-BackSpace</h3><p>在IE页面跳转过程中，按BackSpace退格键默认返回上此浏览页，导致路由中断引起(Vue)页面卡死，所以需要在IE中屏蔽掉BackSpce退格键，但是在输入框中则不屏蔽。</p>
-<ul>
-<li>preventBackSpce.js： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export const banBackSpace &#x3D; (e) &#x3D;&gt; &#123;</span><br><span class="line">  let ev &#x3D; e || window.event</span><br><span class="line">  &#x2F;&#x2F; 各种浏览器下获取事件对象</span><br><span class="line">  let obj &#x3D; ev.relatedTarget || ev.srcElement || ev.target || ev.currentTarget</span><br><span class="line">  &#x2F;&#x2F; 按下Backspace键</span><br><span class="line">  if (ev.keyCode &#x3D;&#x3D;&#x3D; 8) &#123;</span><br><span class="line">    &#x2F;&#x2F; 标签名称</span><br><span class="line">    let tagName &#x3D; obj.nodeName.toLowerCase();</span><br><span class="line">    &#x2F;&#x2F; 如果标签不是input或者textarea则阻止Backspace</span><br><span class="line">    if (tagName !&#x3D;&#x3D; &#39;input&#39; &amp;&amp; tagName !&#x3D;&#x3D; &#39;textarea&#39;) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">    let tagType &#x3D; obj.type.toLowerCase() &#x2F;&#x2F; 标签类型</span><br><span class="line">    &#x2F;&#x2F; input标签除了下面几种类型，全部阻止Backspace</span><br><span class="line">    if (tagName &#x3D;&#x3D;&#x3D; &#39;input&#39; &amp;&amp; (tagType !&#x3D;&#x3D; &#39;text&#39; &amp;&amp; tagType !&#x3D;&#x3D; &#39;textarea&#39; &amp;&amp; tagType !&#x3D;&#x3D; &#39;password&#39;)) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; input或者textarea输入框如果不可编辑则阻止Backspace</span><br><span class="line">    if ((tagName &#x3D;&#x3D;&#x3D; &#39;input&#39; || tagName &#x3D;&#x3D;&#x3D; &#39;textarea&#39;) &amp;&amp; (obj.readOnly &#x3D;&#x3D;&#x3D; true || obj.disabled &#x3D;&#x3D;&#x3D; true)) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function stopIt(ev) &#123;</span><br><span class="line">  if (ev.preventDefault) &#123;</span><br><span class="line">    &#x2F;&#x2F; preventDefault()方法阻止元素发生默认的行为</span><br><span class="line">    ev.preventDefault()</span><br><span class="line">  &#125;</span><br><span class="line">  if (ev.returnValue) &#123;</span><br><span class="line">    &#x2F;&#x2F; IE浏览器下用window.event.returnValue &#x3D; false;实现阻止元素发生默认的行为</span><br><span class="line">  &#125;</span><br><span class="line">  return false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>使用方法：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. 在需要使用的Vue页面引入组件(一般在main.vue中添加)</span><br><span class="line">import &#123;banBackSpace&#125; from &quot;@&#x2F;util&#x2F;preventBackspace&quot;;</span><br><span class="line"></span><br><span class="line">2. mounted 钩子函数挂载事件</span><br><span class="line">document.onkeypress &#x3D; banBackSpace;</span><br><span class="line">document.onkeydown &#x3D; banBackSpace;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>H5</category>
-      </categories>
-      <tags>
-        <tag>事件屏蔽</tag>
       </tags>
   </entry>
   <entry>
@@ -907,6 +907,74 @@
       <tags>
         <tag>混淆</tag>
         <tag>UglifyJS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>创建通用JS公共模块并发布至npm</title>
+    <url>/2021/03/03/Web04/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>创建：JS公共模块</li>
+<li>打包：使用rollup 打包公共模块</li>
+<li>发布：js公共模块至verdaccio平台</li>
+<li>发布：js公共模块至npm平台</li>
+</ul>
+<a id="more"></a>
+<hr>
+<h3 id="如何创建JS公共模块"><a href="#如何创建JS公共模块" class="headerlink" title="如何创建JS公共模块"></a>如何创建JS公共模块</h3><blockquote>
+<p>由于代码有点多就不贴代码了，直接去代码仓库看吧  <a href="https://github.com/aa4790139/JSCommonUtils">传输门</a></p>
+</blockquote>
+<hr>
+<h3 id="rollup"><a href="#rollup" class="headerlink" title="rollup"></a>rollup</h3><blockquote>
+<p>简介：Rollup 是一个 JavaScript 模块打包器，可以将小块代码编译成大块复杂的代码，例如 library 或应用程序。<br>使用起因：公共相关的js文件想弄成单独的一个模块，方便后续开发使用，而不是不停的copy 和paste，所以就去了解怎么样把js公共相关js 打包成一个模块。</p>
+</blockquote>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pnpm install -g rollup</span><br></pre></td></tr></table></figure>
+<h4 id="创建配置文件"><a href="#创建配置文件" class="headerlink" title="创建配置文件"></a>创建配置文件</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; rollup.config.js</span><br><span class="line">import json from &#39;rollup-plugin-json&#39;;</span><br><span class="line">import babel from &#39;rollup-plugin-babel&#39;;</span><br><span class="line">import &#123;uglify&#125; from &#39;rollup-plugin-uglify&#39;;</span><br><span class="line">import &#123;version&#125; from &#39;..&#x2F;package.json&#39;;</span><br><span class="line">import multiEntry from &quot;rollup-plugin-multi-entry&quot;;</span><br><span class="line">import &#123;terser&#125; from &quot;rollup-plugin-terser&quot;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    input: &#39;src&#x2F;*.js&#39;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        &#x2F;*输出公共库路径*&#x2F;</span><br><span class="line">        file: &#39;lib&#x2F;index.js&#39;,</span><br><span class="line">        &#x2F;*配置：UMD 通用定义模块，支持前端端跨平台模块化*&#x2F;</span><br><span class="line">        format: &#39;umd&#39;,</span><br><span class="line">        name: &#39;JSCommonUtils&#39;,</span><br><span class="line">        &#x2F;*压缩和混淆js*&#x2F;</span><br><span class="line">        plugins: [terser(), uglify()],</span><br><span class="line">        &#x2F;*JS前缀: 添加库相关信息*&#x2F;</span><br><span class="line">        banner: &#39;&#x2F;* JSCommonUtils version &#39; + version + &#39; *&#x2F;&#39;,</span><br><span class="line">        &#x2F;*JS尾部: 添加个人相关信息*&#x2F;</span><br><span class="line">        footer: &#39;&#x2F;* follow me on github aa4790139 *&#x2F;&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        json(),</span><br><span class="line">        babel(&#123;</span><br><span class="line">            &#x2F;*过滤node_modules编译*&#x2F;</span><br><span class="line">            exclude: &#39;node_modules&#x2F;**&#39;</span><br><span class="line">        &#125;),</span><br><span class="line">        &#x2F;*允许多输入源*&#x2F;</span><br><span class="line">        multiEntry()</span><br><span class="line">    ],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="verdaccio"><a href="#verdaccio" class="headerlink" title="verdaccio"></a>verdaccio</h3><ul>
+<li>简介： 开源轻量的npm私服包管理平台<blockquote>
+<p>使用起因：创建好自己的js公共模块时，我们需要在浏览器和Node.js 环境中测试，有了verdaccio 就非常方便我们测试了。而不是去不停npm本地公共模块搞得非常蛋疼，而且很容易出问题，所以为了简单和方便我们使用verdaccio 搞个私有仓库，方便我们模拟安装使用。</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pnpm install -g verdaccio</span><br></pre></td></tr></table></figure>
+<h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">verdaccio</span><br></pre></td></tr></table></figure>
+<h3 id="发布至verdaccio平台"><a href="#发布至verdaccio平台" class="headerlink" title="发布至verdaccio平台"></a>发布至verdaccio平台</h3><ul>
+<li>常用命令<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;1. 添加用户</span><br><span class="line">npm adduser --registry http:&#x2F;&#x2F;localhost:4873</span><br><span class="line">&#x2F;&#x2F;2. 发布至私有仓库位置</span><br><span class="line">npm publish --registry http:&#x2F;&#x2F;localhost:4873</span><br><span class="line">&#x2F;&#x2F; 撤回发布刚发布包</span><br><span class="line">npm unpublish --force --registry http:&#x2F;&#x2F;localhost:4873 </span><br><span class="line">&#x2F;&#x2F; 撤回发布的指定包</span><br><span class="line">npm unpublish package_name  --force --registry http:&#x2F;&#x2F;localhost:4873</span><br></pre></td></tr></table></figure></li>
+<li>效果图<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210303144737.png" alt=""></li>
+</ul>
+<h3 id="发布至npm平台"><a href="#发布至npm平台" class="headerlink" title="发布至npm平台"></a>发布至npm平台</h3><ul>
+<li><p>创建.npmignore 文件，过滤掉无需上传的文件和目录</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">node_modules&#x2F;*</span><br><span class="line">src&#x2F;</span><br><span class="line">build&#x2F;</span><br><span class="line">.babelrc</span><br><span class="line">.gitignore</span><br><span class="line">package-lock.json</span><br><span class="line">pnpm-lock.yaml</span><br><span class="line">!node_modules&#x2F;crc32</span><br><span class="line">!node_modules&#x2F;deflate-js</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>提示: .npmignore文件内容，需要忽略的文件和目录写前面，需要排除忽略的文件或目录前加!写后面</p>
+</blockquote>
+</li>
+<li><p>效果图<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210303144716.png" alt=""></p>
+</li>
+</ul>
+<hr>
+<h4 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h4><ul>
+<li><a href="https://verdaccio.org/docs/en/installation">verdaccio 官网</a></li>
+<li><a href="https://fe.rualc.com/note/npm-verdaccio.html#npm-install">verdaccio 搭建配置</a></li>
+<li><a href="https://www.rollupjs.com/guide/tools">rollup.js 中文文档</a></li>
+<li><a href="https://github.com/Godiswill/blog/issues/6">rollup 官网打包实践</a></li>
+<li><a href="https://chenshenhai.github.io/rollupjs-note/">Rollup.js 实战学习笔记</a></li>
+<li><a href="https://stackoverflow.com/questions/48092647/npmignore-ignore-whole-folder-except-given-file-types">.npmignore: ignore whole folder except given file types</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>模块化</category>
+      </categories>
+      <tags>
+        <tag>UMD</tag>
+        <tag>rollup</tag>
+        <tag>verdaccio</tag>
+        <tag>npm</tag>
       </tags>
   </entry>
   <entry>
