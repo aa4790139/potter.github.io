@@ -22,7 +22,7 @@
 
   <meta name="description" content="概述 目前使用TypeScript编写前端项目已成为趋势，所以搞一个运行在HTML 的demo 来方便练习一下TypeScript 相关语法。由于技术更新太快，会导致你在网上参考的例子可能已经过时，或者运行不起来。我的建议还是直接先去看官方文档，尝试这编写demo，实在搞不出来再去Google 查找相关文章。  构建环境 vscode：1.53.2 chrome：87.0.42.80.141 No">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Potter&#39;s Blog">
+<meta property="og:title" content="TypeScript 入门1：创建一个在HTML 上运行的TypeScript Demo">
 <meta property="og:url" content="https://yanxuewen.cn/2021/03/04/TypeScript01/index.html">
 <meta property="og:site_name" content="Potter&#39;s Blog">
 <meta property="og:description" content="概述 目前使用TypeScript编写前端项目已成为趋势，所以搞一个运行在HTML 的demo 来方便练习一下TypeScript 相关语法。由于技术更新太快，会导致你在网上参考的例子可能已经过时，或者运行不起来。我的建议还是直接先去看官方文档，尝试这编写demo，实在搞不出来再去Google 查找相关文章。  构建环境 vscode：1.53.2 chrome：87.0.42.80.141 No">
@@ -31,8 +31,11 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210304153458.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210304153521.png">
 <meta property="article:published_time" content="2021-03-04T07:31:53.771Z">
-<meta property="article:modified_time" content="2021-03-04T07:36:53.661Z">
+<meta property="article:modified_time" content="2021-03-04T07:39:10.608Z">
 <meta property="article:author" content="Potter">
+<meta property="article:tag" content="TypeScript">
+<meta property="article:tag" content="VSCode">
+<meta property="article:tag" content="Chrom">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210304153444.png">
 
@@ -49,7 +52,7 @@
   };
 </script>
 
-  <title> | Potter's Blog</title>
+  <title>TypeScript 入门1：创建一个在HTML 上运行的TypeScript Demo | Potter's Blog</title>
   
 
 
@@ -221,7 +224,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          TypeScript 入门1：创建一个在HTML 上运行的TypeScript Demo
         </h1>
 
         <div class="post-meta">
@@ -232,11 +235,20 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-03-04 15:31:53 / 修改时间：15:36:53" itemprop="dateCreated datePublished" datetime="2021-03-04T15:31:53+08:00">2021-03-04</time>
+              <time title="创建时间：2021-03-04 15:31:53 / 修改时间：15:39:10" itemprop="dateCreated datePublished" datetime="2021-03-04T15:31:53+08:00">2021-03-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TypeScript-%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">TypeScript 入门</span></a>
+                </span>
             </span>
 
           
-            <span id="/2021/03/04/TypeScript01/" class="post-meta-item leancloud_visitors" data-flag-title="" title="阅读次数">
+            <span id="/2021/03/04/TypeScript01/" class="post-meta-item leancloud_visitors" data-flag-title="TypeScript 入门1：创建一个在HTML 上运行的TypeScript Demo" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -290,6 +302,7 @@
 <li>Node.js：12.8.3</li>
 <li>win10</li>
 </ul>
+<a id="more"></a>
 <h3 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h3><ul>
 <li><strong>第一步：创建工程</strong>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;创建目录工程</span><br><span class="line">mkdir typescript_chrom_demo</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;安装typescript 编译环境（推荐：使用pnpm安装，速度贼快）</span><br><span class="line">pnpm install -g typescript</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;初始化工程，会产生tsconfig.json 配置文件</span><br><span class="line">tsc ---init</span><br></pre></td></tr></table></figure></li>
 <li><p><strong>第二步：创建目录和相关文件</strong></p>
@@ -355,7 +368,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://yanxuewen.cn/2021/03/04/TypeScript01/" title="">https://yanxuewen.cn/2021/03/04/TypeScript01/</a>
+    <a href="https://yanxuewen.cn/2021/03/04/TypeScript01/" title="TypeScript 入门1：创建一个在HTML 上运行的TypeScript Demo">https://yanxuewen.cn/2021/03/04/TypeScript01/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -365,6 +378,11 @@
 
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/TypeScript/" rel="tag"># TypeScript</a>
+              <a href="/tags/VSCode/" rel="tag"># VSCode</a>
+              <a href="/tags/Chrom/" rel="tag"># Chrom</a>
+          </div>
 
         
 
@@ -471,13 +489,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">40</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

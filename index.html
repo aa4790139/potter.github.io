@@ -215,7 +215,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/03/04/TypeScript01/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2021/03/04/TypeScript01/" class="post-title-link" itemprop="url">TypeScript 入门1：创建一个在HTML 上运行的TypeScript Demo</a>
         </h2>
 
         <div class="post-meta">
@@ -226,11 +226,20 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-03-04 15:31:53 / 修改时间：15:36:53" itemprop="dateCreated datePublished" datetime="2021-03-04T15:31:53+08:00">2021-03-04</time>
+              <time title="创建时间：2021-03-04 15:31:53 / 修改时间：15:39:10" itemprop="dateCreated datePublished" datetime="2021-03-04T15:31:53+08:00">2021-03-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TypeScript-%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">TypeScript 入门</span></a>
+                </span>
             </span>
 
           
-            <span id="/2021/03/04/TypeScript01/" class="post-meta-item leancloud_visitors" data-flag-title="" title="阅读次数">
+            <span id="/2021/03/04/TypeScript01/" class="post-meta-item leancloud_visitors" data-flag-title="TypeScript 入门1：创建一个在HTML 上运行的TypeScript Demo" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -284,37 +293,14 @@
 <li>Node.js：12.8.3</li>
 <li>win10</li>
 </ul>
-<h3 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h3><ul>
-<li><strong>第一步：创建工程</strong>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;创建目录工程</span><br><span class="line">mkdir typescript_chrom_demo</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;安装typescript 编译环境（推荐：使用pnpm安装，速度贼快）</span><br><span class="line">pnpm install -g typescript</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;初始化工程，会产生tsconfig.json 配置文件</span><br><span class="line">tsc ---init</span><br></pre></td></tr></table></figure></li>
-<li><p><strong>第二步：创建目录和相关文件</strong></p>
-<ul>
-<li>目录结构效果<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210304153444.png" alt=""></li>
-<li><p>具体内容如下：<br>  <strong>helloworld.html</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">   &lt;head&gt;</span><br><span class="line">       &lt;title&gt;This is a use TypeScript HTML demo&lt;&#x2F;title&gt;</span><br><span class="line">   &lt;&#x2F;head&gt;</span><br><span class="line">   &lt;body&gt;</span><br><span class="line">   &lt;&#x2F;body&gt;</span><br><span class="line">   &lt;script src&#x3D;&quot;..&#x2F;out&#x2F;helloworld.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-<p>  <strong>helloworld.ts</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let message: string &#x3D; &#39;Hello Web, I am is TypeSciprt&#39;;</span><br><span class="line">console.log(message);</span><br><span class="line">document.body.textContent &#x3D; message;</span><br></pre></td></tr></table></figure>
-<p>  <strong>tsconfig.json</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;compilerOptions&quot;: &#123;</span><br><span class="line">    &quot;target&quot;: &quot;es5&quot;,                           </span><br><span class="line">    &quot;module&quot;: &quot;amd&quot;,                          </span><br><span class="line">    &quot;outFile&quot;: &quot;.&#x2F;out&#x2F;helloworld.js&quot;,         </span><br><span class="line">    &quot;strict&quot;: true,                           </span><br><span class="line">    &quot;esModuleInterop&quot;: true,                   </span><br><span class="line">    &quot;skipLibCheck&quot;: true,                     </span><br><span class="line">    &quot;forceConsistentCasingInFileNames&quot;: true  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><strong>第三步：创建运行和调试launch.json</strong><br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210304153458.png" alt=""><br><strong>内容如下</strong>：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; 使用 IntelliSense 了解相关属性。 </span><br><span class="line">    &#x2F;&#x2F; 悬停以查看现有属性的描述。</span><br><span class="line">    &#x2F;&#x2F; 欲了解更多信息，请访问: https:&#x2F;&#x2F;go.microsoft.com&#x2F;fwlink&#x2F;?linkid&#x3D;830387</span><br><span class="line">    &quot;version&quot;: &quot;0.2.0&quot;,</span><br><span class="line">    &quot;configurations&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;type&quot;: &quot;pwa-chrome&quot;,</span><br><span class="line">            &quot;request&quot;: &quot;launch&quot;,</span><br><span class="line">            &quot;name&quot;: &quot;Open helloworld.html&quot;,</span><br><span class="line">            &quot;file&quot;: &quot;d:\\Work\\h5_workspace\\typescript_chrome_demo\\src\\helloworld.html&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p><strong>第四步：打开终端，开启自动编译typescript</strong></p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc -w</span><br></pre></td></tr></table></figure>
-
-**效果如下**
-</code></pre></li>
-</ul>
-<ul>
-<li><p><strong>最后：F5启动运行</strong></p>
-<p>  <strong>效果如下</strong><br>  <img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210304153521.png" alt=""></p>
-</li>
-</ul>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/typescript/typescript-tutorial">TypeScript tutorial in Visual Studio Code</a></li>
-<li><a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/editor/debugging#_start-debugging">VSCode Debugging</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.tektutorialshub.com/typescript/typescript-compile-on-save-in-visual-studio-code/">TypeScript Compile on Save in Visual Studio Code</a></li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/04/TypeScript01/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -878,13 +864,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">40</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
