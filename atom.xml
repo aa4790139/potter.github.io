@@ -6,7 +6,7 @@
   <link href="https://yanxuewen.cn/atom.xml" rel="self"/>
   
   <link href="https://yanxuewen.cn/"/>
-  <updated>2021-04-02T04:36:49.939Z</updated>
+  <updated>2021-04-09T04:09:22.541Z</updated>
   <id>https://yanxuewen.cn/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vue3.x + Vite2.x 实战 04：不管怎么设置z-index值，元素仍然层级不对</title>
+    <link href="https://yanxuewen.cn/2021/04/09/Vue3.x_Vite2.x-04/"/>
+    <id>https://yanxuewen.cn/2021/04/09/Vue3.x_Vite2.x-04/</id>
+    <published>2021-04-09T04:07:23.752Z</published>
+    <updated>2021-04-09T04:09:22.541Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>编写页面布局时，必定会碰到的问题，不管怎么设置z-index值，元素都被挡住。原因：没有真正理解CSS层叠样式是啥</p></blockquote><h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul><li>元素层级不对情况</li><li>解决层级不对方案</li><li>总结</li></ul><a id="more"></a><h2 id="元素层级不对情况"><a href="#元素层级不对情况" class="headerlink" title="元素层级不对情况"></a>元素层级不对情况</h2><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><ul><li><p>html</p>  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;modal&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;side-tab&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li><li><p>css</p>  <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line"><span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.modal</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">100</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.side-tab</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">5</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><ul><li>遮挡情况</li></ul><p><img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210409112623.png" alt="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210409112623.png"></p><ul><li>正常情况</li></ul><p><img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210409113631.png" alt="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210409113631.png"></p><hr><h2 id="解决层级不对方案"><a href="#解决层级不对方案" class="headerlink" title="解决层级不对方案"></a>解决层级不对方案</h2><h3 id="方案一："><a href="#方案一：" class="headerlink" title="方案一："></a>方案一：</h3><ul><li>步骤1：遮挡元素和被遮挡元素，调整到相同父节点下</li><li>步骤2：调整z-index值</li><li><p>示例</p><ul><li><p>html</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- modal 移出来放到同级, z-index 就生效了 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;modal&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;side-tab&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li><li><p>css</p><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line"><span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.modal</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">100</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.side-tab</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">5</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul></li></ul><h3 id="方案二："><a href="#方案二：" class="headerlink" title="方案二："></a>方案二：</h3><ul><li>步骤1：去掉被遮挡的父元素postion熟悉</li><li>步骤2：调整z-index值</li><li><p>示例</p><ul><li><p>html</p>  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;modal&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;side-tab&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li><li><p>css</p>  <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line"><span class="comment">//position: relative;</span></span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.modal</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">100</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.side-tab</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">5</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul></li></ul><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote><p>先按元素先后顺序层叠摆放，再按z-index属性调整层级次序叠放</p></blockquote><ul><li>CSS是层叠样式<ul><li>无postion时，元素按先后顺序一层一层叠放绘制的</li><li>有postion时，可通过z-index 调整同级元素的层级</li><li>子元素要想突破父元素层叠限制，请删除父元素postion 属性</li></ul></li><li>感悟：接触CSS就应该先搞懂层叠是个啥玩意儿，不然层级问题会搞得你摸不着头脑。贴个chrome layer图（Chrome位置：More tools/layers）</li></ul><p><img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210409115545.png" alt="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210409115545.png"></p><h2 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h2><ul><li><a href="https://coder-coder.com/z-index-isnt-working/">4 reasons your z-index isn’t working (and how to fix it)</a></li></ul><hr><blockquote><p>以上: 如发现有问题，欢迎留言指出，我及时更正</p></blockquote>]]></content>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;编写页面布局时，必定会碰到的问题，不管怎么设置z-index值，元素都被挡住。原因：没有真正理解CSS层叠样式是啥&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;概要内容&quot;&gt;&lt;a href=&quot;#概要内容&quot; class=&quot;headerlink&quot; title=&quot;概要内容&quot;&gt;&lt;/a&gt;概要内容&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;元素层级不对情况&lt;/li&gt;
+&lt;li&gt;解决层级不对方案&lt;/li&gt;
+&lt;li&gt;总结&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="Vue3.x + Vite2.x 实战" scheme="https://yanxuewen.cn/categories/Vue3-x-Vite2-x-%E5%AE%9E%E6%88%98/"/>
+    
+    
+    <category term="z-index" scheme="https://yanxuewen.cn/tags/z-index/"/>
+    
+    <category term="css" scheme="https://yanxuewen.cn/tags/css/"/>
+    
+  </entry>
   
   <entry>
     <title>Vue3.x + Vite2.x 实战 03：二次封装el-input组件</title>
@@ -582,31 +612,6 @@
     <summary type="html">&lt;h3 id=&quot;概要内容&quot;&gt;&lt;a href=&quot;#概要内容&quot; class=&quot;headerlink&quot; title=&quot;概要内容&quot;&gt;&lt;/a&gt;概要内容&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;环境搭建: Appium 环境、Android 环境、Python 环境、夜神模拟器&lt;/li&gt;
 &lt;li&gt;Android APP 测试 &lt;/li&gt;
-&lt;/ul&gt;</summary>
-    
-    
-    
-    <category term="自动化测试" scheme="https://yanxuewen.cn/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/"/>
-    
-    
-    <category term="测试" scheme="https://yanxuewen.cn/tags/%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>自动化测试-01：了解</title>
-    <link href="https://yanxuewen.cn/2020/10/16/AutoTest01/"/>
-    <id>https://yanxuewen.cn/2020/10/16/AutoTest01/</id>
-    <published>2020-10-16T02:08:48.893Z</published>
-    <updated>2020-12-16T15:14:02.675Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul><li>了解测试内容分类</li><li>了解测试框架</li><li>相关视频教程</li></ul><a id="more"></a><h3 id="测试内容分类"><a href="#测试内容分类" class="headerlink" title="测试内容分类"></a>测试内容分类</h3><ul><li>从软件测试的实践过程看：单元测试、集成测试、确认测试、系统测试、验收测试</li><li>从软件测试的方法策略看：白盒测试、黑盒测试、灰盒测试</li><li>从软件测试的测试视角看：功能测试、性能测试、兼容性测试、安全测试、探索性测试</li><li>从软件测试的技术程度看：手工测试、自动化测试、测试开发</li></ul><h3 id="测试框架"><a href="#测试框架" class="headerlink" title="测试框架"></a>测试框架</h3><ul><li>Python/PHP/Java/C#/JavaScprit/Ruby + Selenium/Appium + 单元测试框架：开源功能自动化测试方案</li><li>Python + Macaca：阿里巴巴  自动化测试方案</li><li>JavaScript + TestCafe，DevExpress： 开源功能自动化测试方案</li><li>Python/Java/C#/JavaScprit/Ruby + Gauge： 一款开源的功能自动化测试方案</li><li>JavaScript + Postman：免费的Web接口功能自动化测试</li><li>Groovy + SoapUI：开源的Web接口功能自动化测试方案</li><li>更多<ul><li>Selenium：<a href="http://www.selenium.org.cn/category/use">web测试工具</a></li><li>Appium: web、原生、混合应用都能测试</li><li>JMeter：软件压测工具</li></ul></li></ul><h3 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h3><ul><li><a href="https://www.51zxw.net/list.aspx?page=2&amp;cid=670">Appium自动化测试视频教程</a></li><li><a href="https://sutune.me/2018/04/15/appium/">Appium简介</a></li><li><a href="https://hllgithub.github.io/2018/09/09/Appium%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">Appium自动化测试介绍和使用说明</a></li><li><a href="http://www.selenium.org.cn/category/use">Selenium</a></li><li><a href="https://python-selenium-zh.readthedocs.io/zh_CN/latest/">Selenium + python 中文文档</a></li><li><a href="https://macacajs.github.io/zh/guide/#%E9%9B%86%E6%88%90%E5%92%8C%E8%9E%8D%E5%90%88">Macaca</a></li><li><a href="https://yq.aliyun.com/articles/398697">Macaca-iOS入门那些事</a></li></ul><h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul><li><a href="https://zhuanlan.zhihu.com/p/36896449">一分钟了解自动化测试</a></li></ul><hr><blockquote><p>以上: 如发现有问题，欢迎留言指出，我及时更正</p></blockquote>]]></content>
-    
-    
-    <summary type="html">&lt;h3 id=&quot;概要内容&quot;&gt;&lt;a href=&quot;#概要内容&quot; class=&quot;headerlink&quot; title=&quot;概要内容&quot;&gt;&lt;/a&gt;概要内容&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;了解测试内容分类&lt;/li&gt;
-&lt;li&gt;了解测试框架&lt;/li&gt;
-&lt;li&gt;相关视频教程&lt;/li&gt;
 &lt;/ul&gt;</summary>
     
     
