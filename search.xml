@@ -42,52 +42,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Python-04：AppWeb自动化测试【打开App切换WebView登录】</title>
-    <url>/2020/11/04/AutoTest04/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>环境准备</li>
-<li>测试步骤</li>
-<li>案例代码</li>
-</ul>
-<a id="more"></a>
-<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
-<li>NodeJS v12.13.1</li>
-<li>JDK 1.8.0_191</li>
-<li>Android SDK </li>
-<li>Appium-Python-Client </li>
-</ol>
-<blockquote>
-<p>具体教程请看: <a href="https://yanxuewen.cn/2020/10/22/AutoTest02/">自动化测试-02：实践</a></p>
-</blockquote>
-<h3 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下"></a>步骤如下</h3><ol>
-<li>AppWebView开启调试模式： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">setWebContentsDebuggingEnabled(true);</span><br></pre></td></tr></table></figure></li>
-<li>获取Android Chrome 版本： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">adb shell am start -a android.intent.action.VIEW -d  https:&#x2F;&#x2F;liulanmi.com&#x2F;labs&#x2F;core.html</span><br></pre></td></tr></table></figure></li>
-<li>根据Android Chrome版本，下载对应ChromeDriver驱动 <a href="https://chromedriver.chromium.org/downloads">下载地址</a></li>
-<li>将下载的ChromeDriver Copy 至 Appium 目录，比如我的Appium目录： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Program Files\Appium\resources\app\node_modules\appium\node_modules\appium-chromedriver\chromedriver\win</span><br></pre></td></tr></table></figure></li>
-<li>启动APP后并跳转App内嵌的WebView页面，使用Chrome获取WebView中的元素 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">打开Chrome </span><br><span class="line">地址栏输入：chrome:&#x2F;&#x2F;inspect</span><br></pre></td></tr></table></figure>
- 如下图所示：<br> <img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201105212810.png" alt=""></li>
-</ol>
-<h3 id="案例代码"><a href="#案例代码" class="headerlink" title="案例代码"></a>案例代码</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 案例：自动化测试-登录</span><br><span class="line"></span><br><span class="line">from appium import webdriver</span><br><span class="line">from selenium.webdriver.common.by import By</span><br><span class="line"></span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">desired_caps &#x3D; &#123;&#125;</span><br><span class="line">desired_caps[&quot;platformName&quot;] &#x3D; &quot;android&quot;</span><br><span class="line">desired_caps[&quot;platformVersion&quot;] &#x3D; &quot;7.1.2&quot;</span><br><span class="line">desired_caps[&quot;deviceName&quot;] &#x3D; &quot;127.0.0.1:62001&quot;</span><br><span class="line">desired_caps[&quot;appPackage&quot;] &#x3D; &quot;com.guide.custom&quot;</span><br><span class="line">desired_caps[&quot;appActivity&quot;] &#x3D; &quot;com.anyapps.Activity.AALaunch&quot;</span><br><span class="line">desired_caps[&quot;noReset&quot;] &#x3D; &quot;true&quot;</span><br><span class="line">desired_caps[&quot;autoGrantPermissions&quot;] &#x3D; &quot;true&quot;</span><br><span class="line">desired_caps[&#39;chromeOptions&#39;] &#x3D; &#123;&quot;w3c&quot;:False&#125;</span><br><span class="line">desired_caps[&#39;showChromedriverLog&#39;] &#x3D; True</span><br><span class="line"></span><br><span class="line">driver &#x3D; webdriver.Remote(&#39;http:&#x2F;&#x2F;localhost:4723&#x2F;wd&#x2F;hub&#39;, desired_caps)</span><br><span class="line"></span><br><span class="line">view_context &#x3D; &quot;WEBVIEW_com.guide.custom&quot;</span><br><span class="line">driver.switch_to.context(view_context)</span><br><span class="line">time.sleep(5)</span><br><span class="line">print(driver.current_context)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 获取账号和密码元素，输入账号密码</span><br><span class="line">inputAccount &#x3D; driver.find_element_by_id(&quot;account&quot;)</span><br><span class="line">inputAccount.send_keys(&#39;186xxxxxxx&#39;)</span><br><span class="line">inputPassword &#x3D; driver.find_element_by_id(&quot;password&quot;)</span><br><span class="line">inputPassword.send_keys(&#39;123456&#39;)</span><br><span class="line"># 获取登录元素，点击登录</span><br><span class="line">loginBtn &#x3D; driver.find_element_by_class_name(&#39;confirmDisable&#39;)</span><br><span class="line">loginBtn.click()</span><br></pre></td></tr></table></figure>
-<h3 id="Appium-调试App-原理图"><a href="#Appium-调试App-原理图" class="headerlink" title="Appium 调试App 原理图"></a>Appium 调试App 原理图</h3><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/QQ%E6%88%AA%E5%9B%BE20201105213544.png" alt=""></p>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献:"></a>参考文献:</h3><ul>
-<li><a href="https://selenium-python-zh.readthedocs.io/en/latest/index.html">Selenium-Python中文文档</a></li>
-<li><a href="https://github.com/appium/appium/issues/13306">Fail to locate an web element using “findElement” on Android</a></li>
-</ul>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>自动化测试</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Selenium</tag>
-        <tag>Appnium</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>自动化测试-01：了解</title>
     <url>/2020/10/16/AutoTest01/</url>
     <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
@@ -138,47 +92,6 @@
       </categories>
       <tags>
         <tag>测试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python-03：Web自动化测试【打开Chrome百度搜索Selenium】</title>
-    <url>/2020/11/03/AutoTest03/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>环境准备</li>
-<li>案例：打开Chrome百度搜索Selenium</li>
-<li>原理总结</li>
-</ul>
-<a id="more"></a>
-<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
-<li>Win10</li>
-<li>Chrome 84.0.4147.135</li>
-<li>ChromeDriver 84.0.4147.30<ol>
-<li>关闭Chrome更新，避免不停换驱动</li>
-<li>下载Chrome对应版本ChromeDriver驱动<a href="https://chromedriver.chromium.org/downloads">下载地址</a></li>
-<li>将ChromeDriver 放到Python安装目录下. 比如：C:\Users\Administrator\AppData\Local\Programs\Python\Python39</li>
-</ol>
-</li>
-<li>Python 3.9.0</li>
-<li>Selenium 3.141.0<br> 安装命令：pip install selenium (提示：如果执行报错，请检查python环境变量配置)</li>
-</ol>
-<h3 id="案例：打开Chrome百度搜索Selenium"><a href="#案例：打开Chrome百度搜索Selenium" class="headerlink" title="案例：打开Chrome百度搜索Selenium"></a>案例：打开Chrome百度搜索Selenium</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from selenium import  webdriver</span><br><span class="line"># 使用Chrome驱动</span><br><span class="line">driver &#x3D; webdriver.Chrome()</span><br><span class="line"># 让浏览器全屏</span><br><span class="line">driver.maximize_window()</span><br><span class="line"># 打开百度</span><br><span class="line">driver.get(&quot;https:&#x2F;&#x2F;baidu.com&quot;)</span><br><span class="line"># 找到百度搜索框元素</span><br><span class="line">input &#x3D; driver.find_element_by_id(&quot;kw&quot;)</span><br><span class="line"># 往输入框中输入搜索关键词&quot;selenium&quot;</span><br><span class="line">input.send_keys(&quot;selenium&quot;)</span><br><span class="line"># 点击百度一下按钮搜索</span><br><span class="line">search &#x3D; driver.find_element_by_id(&quot;su&quot;)</span><br><span class="line">search.click()</span><br></pre></td></tr></table></figure>
-<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><blockquote>
-<p>其实原理就是 Python 通过Selenium 调用浏览器驱动接口，然后驱动Driver接口操作Web中元素进行交互</p>
-</blockquote>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献:"></a>参考文献:</h3><ul>
-<li><a href="https://selenium-python-zh.readthedocs.io/en/latest/index.html">Selenium-Python中文文档</a></li>
-</ul>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>自动化测试</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Selenium</tag>
       </tags>
   </entry>
   <entry>
@@ -253,6 +166,47 @@
       </categories>
       <tags>
         <tag>测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python-03：Web自动化测试【打开Chrome百度搜索Selenium】</title>
+    <url>/2020/11/03/AutoTest03/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>环境准备</li>
+<li>案例：打开Chrome百度搜索Selenium</li>
+<li>原理总结</li>
+</ul>
+<a id="more"></a>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
+<li>Win10</li>
+<li>Chrome 84.0.4147.135</li>
+<li>ChromeDriver 84.0.4147.30<ol>
+<li>关闭Chrome更新，避免不停换驱动</li>
+<li>下载Chrome对应版本ChromeDriver驱动<a href="https://chromedriver.chromium.org/downloads">下载地址</a></li>
+<li>将ChromeDriver 放到Python安装目录下. 比如：C:\Users\Administrator\AppData\Local\Programs\Python\Python39</li>
+</ol>
+</li>
+<li>Python 3.9.0</li>
+<li>Selenium 3.141.0<br> 安装命令：pip install selenium (提示：如果执行报错，请检查python环境变量配置)</li>
+</ol>
+<h3 id="案例：打开Chrome百度搜索Selenium"><a href="#案例：打开Chrome百度搜索Selenium" class="headerlink" title="案例：打开Chrome百度搜索Selenium"></a>案例：打开Chrome百度搜索Selenium</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from selenium import  webdriver</span><br><span class="line"># 使用Chrome驱动</span><br><span class="line">driver &#x3D; webdriver.Chrome()</span><br><span class="line"># 让浏览器全屏</span><br><span class="line">driver.maximize_window()</span><br><span class="line"># 打开百度</span><br><span class="line">driver.get(&quot;https:&#x2F;&#x2F;baidu.com&quot;)</span><br><span class="line"># 找到百度搜索框元素</span><br><span class="line">input &#x3D; driver.find_element_by_id(&quot;kw&quot;)</span><br><span class="line"># 往输入框中输入搜索关键词&quot;selenium&quot;</span><br><span class="line">input.send_keys(&quot;selenium&quot;)</span><br><span class="line"># 点击百度一下按钮搜索</span><br><span class="line">search &#x3D; driver.find_element_by_id(&quot;su&quot;)</span><br><span class="line">search.click()</span><br></pre></td></tr></table></figure>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><blockquote>
+<p>其实原理就是 Python 通过Selenium 调用浏览器驱动接口，然后驱动Driver接口操作Web中元素进行交互</p>
+</blockquote>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献:"></a>参考文献:</h3><ul>
+<li><a href="https://selenium-python-zh.readthedocs.io/en/latest/index.html">Selenium-Python中文文档</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>自动化测试</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Selenium</tag>
       </tags>
   </entry>
   <entry>
@@ -393,36 +347,36 @@
       </tags>
   </entry>
   <entry>
-    <title>C# 与 JS 之间Gzip互通</title>
-    <url>/2020/12/16/JS01/</url>
+    <title>Python-04：AppWeb自动化测试【打开App切换WebView登录】</title>
+    <url>/2020/11/04/AutoTest04/</url>
     <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>JS 压缩 Gzip demo</li>
-<li>JS 压缩 Gzip + base64 demo</li>
-<li>JS 解压 CSharp 的 Gzip demo</li>
-<li>JS 解压 CSharp 的 base64 + gzip</li>
-<li>CSharp 压缩 Gzip demo</li>
-<li>CSharp 压缩 Gzip + base64 demo</li>
-<li>CSharp 解压 JS 的 Gzip demo</li>
-<li>CSharp 解压 JS 的 base64 + gzip</li>
-<li>Base64 encode 和 decode </li>
+<li>环境准备</li>
+<li>测试步骤</li>
+<li>案例代码</li>
 </ul>
-<h3 id="源码地址："><a href="#源码地址：" class="headerlink" title="源码地址："></a>源码地址：</h3><p><a href="https://github.com/aa4790139/GzipSample">https://github.com/aa4790139/GzipSample</a></p>
 <a id="more"></a>
-<h3 id="GZip-文件结构图"><a href="#GZip-文件结构图" class="headerlink" title="GZip 文件结构图"></a>GZip 文件结构图</h3><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210115204550.jpg" alt=""></p>
-<!--more-->
-<h3 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h3><ul>
-<li><a href="https://stackabuse.com/encoding-and-decoding-base64-strings-in-node-js/">Encoding and Decoding Base64 Strings in Node.js</a></li>
-<li><a href="https://zh.wikipedia.org/wiki/DEFLATE">DEFLATE</a></li>
-<li><a href="https://stackoverflow.com/questions/246801/how-can-you-encode-a-string-to-base64-in-javascript">How can you encode a string to Base64 in JavaScript?</a></li>
-<li><a href="https://stackoverflow.com/questions/3195865/converting-byte-array-to-string-in-javascript">Converting byte array to string in javascript</a></li>
-<li><a href="https://www.jianshu.com/p/c5df0156b229">Array.prototype.slice.call()方法详解</a></li>
-<li><a href="https://stackoverflow.com/questions/7056925/how-does-array-prototype-slice-call-work">how does Array.prototype.slice.call() work?
-</a></li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators">JS按位操作符</a></li>
-<li><a href="https://www.iditect.com/how-to/58717282.html">Remove trailing zeros from byte[]</a></li>
-<li><a href="https://stackoverflow.com/questions/17191945/conversion-between-utf-8-arraybuffer-and-string">Conversion between UTF-8 ArrayBuffer and String</a></li>
-<li><a href="https://tool.oschina.net/commons?type=4">ASCLL对照表</a></li>
-<li><a href="https://blog.csdn.net/yc0188/article/details/4155168">GZIP文件格式简介</a></li>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
+<li>NodeJS v12.13.1</li>
+<li>JDK 1.8.0_191</li>
+<li>Android SDK </li>
+<li>Appium-Python-Client </li>
+</ol>
+<blockquote>
+<p>具体教程请看: <a href="https://yanxuewen.cn/2020/10/22/AutoTest02/">自动化测试-02：实践</a></p>
+</blockquote>
+<h3 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下"></a>步骤如下</h3><ol>
+<li>AppWebView开启调试模式： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">setWebContentsDebuggingEnabled(true);</span><br></pre></td></tr></table></figure></li>
+<li>获取Android Chrome 版本： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">adb shell am start -a android.intent.action.VIEW -d  https:&#x2F;&#x2F;liulanmi.com&#x2F;labs&#x2F;core.html</span><br></pre></td></tr></table></figure></li>
+<li>根据Android Chrome版本，下载对应ChromeDriver驱动 <a href="https://chromedriver.chromium.org/downloads">下载地址</a></li>
+<li>将下载的ChromeDriver Copy 至 Appium 目录，比如我的Appium目录： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Program Files\Appium\resources\app\node_modules\appium\node_modules\appium-chromedriver\chromedriver\win</span><br></pre></td></tr></table></figure></li>
+<li>启动APP后并跳转App内嵌的WebView页面，使用Chrome获取WebView中的元素 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">打开Chrome </span><br><span class="line">地址栏输入：chrome:&#x2F;&#x2F;inspect</span><br></pre></td></tr></table></figure>
+ 如下图所示：<br> <img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201105212810.png" alt=""></li>
+</ol>
+<h3 id="案例代码"><a href="#案例代码" class="headerlink" title="案例代码"></a>案例代码</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 案例：自动化测试-登录</span><br><span class="line"></span><br><span class="line">from appium import webdriver</span><br><span class="line">from selenium.webdriver.common.by import By</span><br><span class="line"></span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">desired_caps &#x3D; &#123;&#125;</span><br><span class="line">desired_caps[&quot;platformName&quot;] &#x3D; &quot;android&quot;</span><br><span class="line">desired_caps[&quot;platformVersion&quot;] &#x3D; &quot;7.1.2&quot;</span><br><span class="line">desired_caps[&quot;deviceName&quot;] &#x3D; &quot;127.0.0.1:62001&quot;</span><br><span class="line">desired_caps[&quot;appPackage&quot;] &#x3D; &quot;com.guide.custom&quot;</span><br><span class="line">desired_caps[&quot;appActivity&quot;] &#x3D; &quot;com.anyapps.Activity.AALaunch&quot;</span><br><span class="line">desired_caps[&quot;noReset&quot;] &#x3D; &quot;true&quot;</span><br><span class="line">desired_caps[&quot;autoGrantPermissions&quot;] &#x3D; &quot;true&quot;</span><br><span class="line">desired_caps[&#39;chromeOptions&#39;] &#x3D; &#123;&quot;w3c&quot;:False&#125;</span><br><span class="line">desired_caps[&#39;showChromedriverLog&#39;] &#x3D; True</span><br><span class="line"></span><br><span class="line">driver &#x3D; webdriver.Remote(&#39;http:&#x2F;&#x2F;localhost:4723&#x2F;wd&#x2F;hub&#39;, desired_caps)</span><br><span class="line"></span><br><span class="line">view_context &#x3D; &quot;WEBVIEW_com.guide.custom&quot;</span><br><span class="line">driver.switch_to.context(view_context)</span><br><span class="line">time.sleep(5)</span><br><span class="line">print(driver.current_context)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 获取账号和密码元素，输入账号密码</span><br><span class="line">inputAccount &#x3D; driver.find_element_by_id(&quot;account&quot;)</span><br><span class="line">inputAccount.send_keys(&#39;186xxxxxxx&#39;)</span><br><span class="line">inputPassword &#x3D; driver.find_element_by_id(&quot;password&quot;)</span><br><span class="line">inputPassword.send_keys(&#39;123456&#39;)</span><br><span class="line"># 获取登录元素，点击登录</span><br><span class="line">loginBtn &#x3D; driver.find_element_by_class_name(&#39;confirmDisable&#39;)</span><br><span class="line">loginBtn.click()</span><br></pre></td></tr></table></figure>
+<h3 id="Appium-调试App-原理图"><a href="#Appium-调试App-原理图" class="headerlink" title="Appium 调试App 原理图"></a>Appium 调试App 原理图</h3><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/QQ%E6%88%AA%E5%9B%BE20201105213544.png" alt=""></p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献:"></a>参考文献:</h3><ul>
+<li><a href="https://selenium-python-zh.readthedocs.io/en/latest/index.html">Selenium-Python中文文档</a></li>
+<li><a href="https://github.com/appium/appium/issues/13306">Fail to locate an web element using “findElement” on Android</a></li>
 </ul>
 <hr>
 <blockquote>
@@ -430,12 +384,12 @@
 </blockquote>
 ]]></content>
       <categories>
-        <category>压缩</category>
+        <category>自动化测试</category>
       </categories>
       <tags>
-        <tag>C#</tag>
-        <tag>Gzip</tag>
-        <tag>JS</tag>
+        <tag>Python</tag>
+        <tag>Selenium</tag>
+        <tag>Appnium</tag>
       </tags>
   </entry>
   <entry>
@@ -473,6 +427,53 @@
       </categories>
       <tags>
         <tag>皇室战争</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CORS-跨域实战</title>
+    <url>/2021/01/26/JS03/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>前端需要做什么?</li>
+<li>后端需要怎么配置?</li>
+</ul>
+<blockquote>
+<p>由于浏览器的同源安全策略，作为前端开发你使用API调用接口必定会碰到跨域问题，网上太多的文章，大部分都是讲得不太清楚，让你看得特别懵逼，让你可能会做出以下愚蠢行为：跨域配置写到前端的header中、Nginx 跨域配置到Web节点中、瞎填Access-Control-Allow-Headers中的值等等，会导致怎么配置都不对，令你自己发狂。经验提醒：不要急着瞎改瞎试，看完理论相关文章后再尝试，然后静下心来思考流程是怎么运转的，用这样的方式很快就会配对了。以下是我成功跨域配置，希望给你提供一点帮助。</p>
+</blockquote>
+<a id="more"></a>
+<hr>
+<h3 id="前端需要做什么"><a href="#前端需要做什么" class="headerlink" title="前端需要做什么?"></a>前端需要做什么?</h3><blockquote>
+<p>请求时使用到的header字段梳理并告知后端<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210126175710.png" alt=""></p>
+</blockquote>
+<hr>
+<h3 id="后端需要怎么配置"><a href="#后端需要怎么配置" class="headerlink" title="后端需要怎么配置?"></a>后端需要怎么配置?</h3><h4 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h4><blockquote>
+<p>注意：针对API 服务配置跨域，而不是Web服务</p>
+<ul>
+<li>疑问1：为啥要配置nginx,因为请求需要转换，所以需要配置</li>
+<li>注意：Access-Control-Allow-Origin <em>，必须加在Nginx层，否则请求不会转换至api server 层，所以api server 层的Access-Control-Allow-Origin </em> 可以去掉，否则会报：<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210126211841.png" alt=""></li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">location &#x2F;secret-http-api&#x2F; &#123;</span><br><span class="line">            proxy_pass http:&#x2F;&#x2F;127.0.0.1:3001&#x2F;;</span><br><span class="line">            proxy_read_timeout 240s;</span><br><span class="line">            add_header Access-Control-Allow-Origin *;</span><br><span class="line">            add_header Access-Control-Allow-Methods &#39;GET, POST, OPTIONS&#39;;</span><br><span class="line">            add_header Access-Control-Allow-Headers &#39;Content-Type,Authorization,Content-Encoding,Accept-Encoding&#39;;</span><br><span class="line">            if ($request_method &#x3D; &#39;OPTIONS&#39;) &#123;</span><br><span class="line">                return 204;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="API-Server-Nodejs"><a href="#API-Server-Nodejs" class="headerlink" title="API Server (Nodejs)"></a>API Server (Nodejs)</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">        app.use(function (req, res, next) &#123;</span><br><span class="line">    if (req.path !&#x3D;&#x3D; &#39;&#x2F;&#39; &amp;&amp; !req.path.includes(&#39;.&#39;)) &#123;</span><br><span class="line">        res.set(&#123;</span><br><span class="line">            &#x2F;* 允许后端发送cookie*&#x2F;</span><br><span class="line">            &#x2F;&#x2F; &#39;Access-Control-Allow-Credentials&#39;: true,</span><br><span class="line">            &#x2F;*任意域名都可以访问,或者基于我请求头里面的域*&#x2F;</span><br><span class="line">            &#x2F;&#x2F; &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,</span><br><span class="line">            &#x2F;*允许请求头字段*&#x2F;</span><br><span class="line">            &#x2F;&#x2F; &#39;Access-Control-Allow-Headers&#39;: &#39;Accept,Content-Encoding,Content-Type,Accept-Encoding&#39;,</span><br><span class="line">            &#x2F;*允许请求方式*&#x2F;</span><br><span class="line">            &#39;Access-Control-Allow-Methods&#39;: &#39;POST,GET,OPTIONS&#39;,</span><br><span class="line">            &#x2F;*预检成功后相同请求无需预检的有效时间(单位：秒)*&#x2F;</span><br><span class="line">            &#39;Access-Control-Max-Age&#39;: 3600,</span><br><span class="line">            &#x2F;*默认与允许的文本格式json和编码格式*&#x2F;</span><br><span class="line">            &#39;Content-Type&#39;: &#39;text&#x2F;plain; charset&#x3D;utf-8&#39;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    req.method &#x3D;&#x3D;&#x3D; &#39;OPTIONS&#39; ? res.status(204).end() : next()</span><br><span class="line">&#125;);     </span><br></pre></td></tr></table></figure>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E9%9C%80%E8%A6%81_cors_%EF%BC%9F">跨源资源共享</a></li>
+<li><a href="https://segmentfault.com/a/1190000022512695">Node设置cors,后端解决跨域问题</a></li>
+<li><a href="https://segmentfault.com/a/1190000009971254">cors跨域之简单请求与预检请求（发送请求头带令牌token）</a></li>
+<li><a href="https://blog.yiguochen.com/options-cors.html">OPTIONS 方法在跨域请求（CORS）中的应用</a></li>
+<li><a href="https://segmentfault.com/a/1190000012550346">Nginx配置跨域请求 Access-Control-Allow-Origin *</a></li>
+</ul>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>部署</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Vue.js</tag>
+        <tag>Node.js</tag>
+        <tag>Express</tag>
       </tags>
   </entry>
   <entry>
@@ -596,82 +597,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CORS-跨域实战</title>
-    <url>/2021/01/26/JS03/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>前端需要做什么?</li>
-<li>后端需要怎么配置?</li>
-</ul>
-<blockquote>
-<p>由于浏览器的同源安全策略，作为前端开发你使用API调用接口必定会碰到跨域问题，网上太多的文章，大部分都是讲得不太清楚，让你看得特别懵逼，让你可能会做出以下愚蠢行为：跨域配置写到前端的header中、Nginx 跨域配置到Web节点中、瞎填Access-Control-Allow-Headers中的值等等，会导致怎么配置都不对，令你自己发狂。经验提醒：不要急着瞎改瞎试，看完理论相关文章后再尝试，然后静下心来思考流程是怎么运转的，用这样的方式很快就会配对了。以下是我成功跨域配置，希望给你提供一点帮助。</p>
-</blockquote>
-<a id="more"></a>
-<hr>
-<h3 id="前端需要做什么"><a href="#前端需要做什么" class="headerlink" title="前端需要做什么?"></a>前端需要做什么?</h3><blockquote>
-<p>请求时使用到的header字段梳理并告知后端<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210126175710.png" alt=""></p>
-</blockquote>
-<hr>
-<h3 id="后端需要怎么配置"><a href="#后端需要怎么配置" class="headerlink" title="后端需要怎么配置?"></a>后端需要怎么配置?</h3><h4 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h4><blockquote>
-<p>注意：针对API 服务配置跨域，而不是Web服务</p>
-<ul>
-<li>疑问1：为啥要配置nginx,因为请求需要转换，所以需要配置</li>
-<li>注意：Access-Control-Allow-Origin <em>，必须加在Nginx层，否则请求不会转换至api server 层，所以api server 层的Access-Control-Allow-Origin </em> 可以去掉，否则会报：<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210126211841.png" alt=""></li>
-</ul>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">location &#x2F;secret-http-api&#x2F; &#123;</span><br><span class="line">            proxy_pass http:&#x2F;&#x2F;127.0.0.1:3001&#x2F;;</span><br><span class="line">            proxy_read_timeout 240s;</span><br><span class="line">            add_header Access-Control-Allow-Origin *;</span><br><span class="line">            add_header Access-Control-Allow-Methods &#39;GET, POST, OPTIONS&#39;;</span><br><span class="line">            add_header Access-Control-Allow-Headers &#39;Content-Type,Authorization,Content-Encoding,Accept-Encoding&#39;;</span><br><span class="line">            if ($request_method &#x3D; &#39;OPTIONS&#39;) &#123;</span><br><span class="line">                return 204;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h4 id="API-Server-Nodejs"><a href="#API-Server-Nodejs" class="headerlink" title="API Server (Nodejs)"></a>API Server (Nodejs)</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">        app.use(function (req, res, next) &#123;</span><br><span class="line">    if (req.path !&#x3D;&#x3D; &#39;&#x2F;&#39; &amp;&amp; !req.path.includes(&#39;.&#39;)) &#123;</span><br><span class="line">        res.set(&#123;</span><br><span class="line">            &#x2F;* 允许后端发送cookie*&#x2F;</span><br><span class="line">            &#x2F;&#x2F; &#39;Access-Control-Allow-Credentials&#39;: true,</span><br><span class="line">            &#x2F;*任意域名都可以访问,或者基于我请求头里面的域*&#x2F;</span><br><span class="line">            &#x2F;&#x2F; &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,</span><br><span class="line">            &#x2F;*允许请求头字段*&#x2F;</span><br><span class="line">            &#x2F;&#x2F; &#39;Access-Control-Allow-Headers&#39;: &#39;Accept,Content-Encoding,Content-Type,Accept-Encoding&#39;,</span><br><span class="line">            &#x2F;*允许请求方式*&#x2F;</span><br><span class="line">            &#39;Access-Control-Allow-Methods&#39;: &#39;POST,GET,OPTIONS&#39;,</span><br><span class="line">            &#x2F;*预检成功后相同请求无需预检的有效时间(单位：秒)*&#x2F;</span><br><span class="line">            &#39;Access-Control-Max-Age&#39;: 3600,</span><br><span class="line">            &#x2F;*默认与允许的文本格式json和编码格式*&#x2F;</span><br><span class="line">            &#39;Content-Type&#39;: &#39;text&#x2F;plain; charset&#x3D;utf-8&#39;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    req.method &#x3D;&#x3D;&#x3D; &#39;OPTIONS&#39; ? res.status(204).end() : next()</span><br><span class="line">&#125;);     </span><br></pre></td></tr></table></figure>
-<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E9%9C%80%E8%A6%81_cors_%EF%BC%9F">跨源资源共享</a></li>
-<li><a href="https://segmentfault.com/a/1190000022512695">Node设置cors,后端解决跨域问题</a></li>
-<li><a href="https://segmentfault.com/a/1190000009971254">cors跨域之简单请求与预检请求（发送请求头带令牌token）</a></li>
-<li><a href="https://blog.yiguochen.com/options-cors.html">OPTIONS 方法在跨域请求（CORS）中的应用</a></li>
-<li><a href="https://segmentfault.com/a/1190000012550346">Nginx配置跨域请求 Access-Control-Allow-Origin *</a></li>
-</ul>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>部署</category>
-      </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>Vue.js</tag>
-        <tag>Node.js</tag>
-        <tag>Express</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>屏蔽：键盘按键、鼠标点击事件</title>
-    <url>/2020/10/14/PreventEvent/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>屏蔽-键盘按键</li>
-<li>屏蔽-鼠标点击</li>
-<li>屏蔽-BackSpace</li>
-</ul>
-<a id="more"></a>
-<h3 id="屏蔽-键盘按键"><a href="#屏蔽-键盘按键" class="headerlink" title="屏蔽-键盘按键"></a>屏蔽-键盘按键</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;添加按键监听</span><br><span class="line">window.addEventListener(&#39;keydown&#39;, this.onKeyDown,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;移除按键监听</span><br><span class="line">window.removeEventListener(&quot;keydown&quot;,this.onKeyDown,true);</span><br><span class="line"></span><br><span class="line">onKeyDown(val)&#123;</span><br><span class="line">    console.log(&#39;按下&#39; + val.key);</span><br><span class="line">    val.preventDefault();</span><br><span class="line">    val.stopPropagation();</span><br><span class="line">    val.cancelBubble &#x3D; true;</span><br><span class="line">    window.event.returnValue &#x3D; false;</span><br><span class="line">    window.event.preventDefault();</span><br><span class="line">    window.event.stopPropagation();</span><br><span class="line">    window.event.cancelBubble &#x3D; true;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="屏蔽-鼠标点击"><a href="#屏蔽-鼠标点击" class="headerlink" title="屏蔽-鼠标点击"></a>屏蔽-鼠标点击</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;添加鼠标点击监听</span><br><span class="line">window.addEventListener(&#39;mousedown&#39;,this.onClick,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;移除鼠标点击监听</span><br><span class="line">window.removeEventListener(&#39;mousedown&#39;,this.onClick,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;which: 1-左键 2-中键 3-右键</span><br><span class="line">onClick(val)&#123;</span><br><span class="line">    console.error(&#39;点击&#39; + val.which);</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="屏蔽-BackSpace"><a href="#屏蔽-BackSpace" class="headerlink" title="屏蔽-BackSpace"></a>屏蔽-BackSpace</h3><p>在IE页面跳转过程中，按BackSpace退格键默认返回上此浏览页，导致路由中断引起(Vue)页面卡死，所以需要在IE中屏蔽掉BackSpce退格键，但是在输入框中则不屏蔽。</p>
-<ul>
-<li>preventBackSpce.js： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export const banBackSpace &#x3D; (e) &#x3D;&gt; &#123;</span><br><span class="line">  let ev &#x3D; e || window.event</span><br><span class="line">  &#x2F;&#x2F; 各种浏览器下获取事件对象</span><br><span class="line">  let obj &#x3D; ev.relatedTarget || ev.srcElement || ev.target || ev.currentTarget</span><br><span class="line">  &#x2F;&#x2F; 按下Backspace键</span><br><span class="line">  if (ev.keyCode &#x3D;&#x3D;&#x3D; 8) &#123;</span><br><span class="line">    &#x2F;&#x2F; 标签名称</span><br><span class="line">    let tagName &#x3D; obj.nodeName.toLowerCase();</span><br><span class="line">    &#x2F;&#x2F; 如果标签不是input或者textarea则阻止Backspace</span><br><span class="line">    if (tagName !&#x3D;&#x3D; &#39;input&#39; &amp;&amp; tagName !&#x3D;&#x3D; &#39;textarea&#39;) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">    let tagType &#x3D; obj.type.toLowerCase() &#x2F;&#x2F; 标签类型</span><br><span class="line">    &#x2F;&#x2F; input标签除了下面几种类型，全部阻止Backspace</span><br><span class="line">    if (tagName &#x3D;&#x3D;&#x3D; &#39;input&#39; &amp;&amp; (tagType !&#x3D;&#x3D; &#39;text&#39; &amp;&amp; tagType !&#x3D;&#x3D; &#39;textarea&#39; &amp;&amp; tagType !&#x3D;&#x3D; &#39;password&#39;)) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; input或者textarea输入框如果不可编辑则阻止Backspace</span><br><span class="line">    if ((tagName &#x3D;&#x3D;&#x3D; &#39;input&#39; || tagName &#x3D;&#x3D;&#x3D; &#39;textarea&#39;) &amp;&amp; (obj.readOnly &#x3D;&#x3D;&#x3D; true || obj.disabled &#x3D;&#x3D;&#x3D; true)) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function stopIt(ev) &#123;</span><br><span class="line">  if (ev.preventDefault) &#123;</span><br><span class="line">    &#x2F;&#x2F; preventDefault()方法阻止元素发生默认的行为</span><br><span class="line">    ev.preventDefault()</span><br><span class="line">  &#125;</span><br><span class="line">  if (ev.returnValue) &#123;</span><br><span class="line">    &#x2F;&#x2F; IE浏览器下用window.event.returnValue &#x3D; false;实现阻止元素发生默认的行为</span><br><span class="line">  &#125;</span><br><span class="line">  return false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>使用方法：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. 在需要使用的Vue页面引入组件(一般在main.vue中添加)</span><br><span class="line">import &#123;banBackSpace&#125; from &quot;@&#x2F;util&#x2F;preventBackspace&quot;;</span><br><span class="line"></span><br><span class="line">2. mounted 钩子函数挂载事件</span><br><span class="line">document.onkeypress &#x3D; banBackSpace;</span><br><span class="line">document.onkeydown &#x3D; banBackSpace;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>H5</category>
-      </categories>
-      <tags>
-        <tag>事件屏蔽</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>全栈学习-开篇-001</title>
     <url>/2020/09/29/LearningFullStack01/</url>
     <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
@@ -716,6 +641,81 @@
       <tags>
         <tag>全栈</tag>
         <tag>NodeJS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>屏蔽：键盘按键、鼠标点击事件</title>
+    <url>/2020/10/14/PreventEvent/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>屏蔽-键盘按键</li>
+<li>屏蔽-鼠标点击</li>
+<li>屏蔽-BackSpace</li>
+</ul>
+<a id="more"></a>
+<h3 id="屏蔽-键盘按键"><a href="#屏蔽-键盘按键" class="headerlink" title="屏蔽-键盘按键"></a>屏蔽-键盘按键</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;添加按键监听</span><br><span class="line">window.addEventListener(&#39;keydown&#39;, this.onKeyDown,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;移除按键监听</span><br><span class="line">window.removeEventListener(&quot;keydown&quot;,this.onKeyDown,true);</span><br><span class="line"></span><br><span class="line">onKeyDown(val)&#123;</span><br><span class="line">    console.log(&#39;按下&#39; + val.key);</span><br><span class="line">    val.preventDefault();</span><br><span class="line">    val.stopPropagation();</span><br><span class="line">    val.cancelBubble &#x3D; true;</span><br><span class="line">    window.event.returnValue &#x3D; false;</span><br><span class="line">    window.event.preventDefault();</span><br><span class="line">    window.event.stopPropagation();</span><br><span class="line">    window.event.cancelBubble &#x3D; true;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="屏蔽-鼠标点击"><a href="#屏蔽-鼠标点击" class="headerlink" title="屏蔽-鼠标点击"></a>屏蔽-鼠标点击</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;添加鼠标点击监听</span><br><span class="line">window.addEventListener(&#39;mousedown&#39;,this.onClick,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;移除鼠标点击监听</span><br><span class="line">window.removeEventListener(&#39;mousedown&#39;,this.onClick,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;which: 1-左键 2-中键 3-右键</span><br><span class="line">onClick(val)&#123;</span><br><span class="line">    console.error(&#39;点击&#39; + val.which);</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="屏蔽-BackSpace"><a href="#屏蔽-BackSpace" class="headerlink" title="屏蔽-BackSpace"></a>屏蔽-BackSpace</h3><p>在IE页面跳转过程中，按BackSpace退格键默认返回上此浏览页，导致路由中断引起(Vue)页面卡死，所以需要在IE中屏蔽掉BackSpce退格键，但是在输入框中则不屏蔽。</p>
+<ul>
+<li>preventBackSpce.js： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export const banBackSpace &#x3D; (e) &#x3D;&gt; &#123;</span><br><span class="line">  let ev &#x3D; e || window.event</span><br><span class="line">  &#x2F;&#x2F; 各种浏览器下获取事件对象</span><br><span class="line">  let obj &#x3D; ev.relatedTarget || ev.srcElement || ev.target || ev.currentTarget</span><br><span class="line">  &#x2F;&#x2F; 按下Backspace键</span><br><span class="line">  if (ev.keyCode &#x3D;&#x3D;&#x3D; 8) &#123;</span><br><span class="line">    &#x2F;&#x2F; 标签名称</span><br><span class="line">    let tagName &#x3D; obj.nodeName.toLowerCase();</span><br><span class="line">    &#x2F;&#x2F; 如果标签不是input或者textarea则阻止Backspace</span><br><span class="line">    if (tagName !&#x3D;&#x3D; &#39;input&#39; &amp;&amp; tagName !&#x3D;&#x3D; &#39;textarea&#39;) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">    let tagType &#x3D; obj.type.toLowerCase() &#x2F;&#x2F; 标签类型</span><br><span class="line">    &#x2F;&#x2F; input标签除了下面几种类型，全部阻止Backspace</span><br><span class="line">    if (tagName &#x3D;&#x3D;&#x3D; &#39;input&#39; &amp;&amp; (tagType !&#x3D;&#x3D; &#39;text&#39; &amp;&amp; tagType !&#x3D;&#x3D; &#39;textarea&#39; &amp;&amp; tagType !&#x3D;&#x3D; &#39;password&#39;)) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; input或者textarea输入框如果不可编辑则阻止Backspace</span><br><span class="line">    if ((tagName &#x3D;&#x3D;&#x3D; &#39;input&#39; || tagName &#x3D;&#x3D;&#x3D; &#39;textarea&#39;) &amp;&amp; (obj.readOnly &#x3D;&#x3D;&#x3D; true || obj.disabled &#x3D;&#x3D;&#x3D; true)) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function stopIt(ev) &#123;</span><br><span class="line">  if (ev.preventDefault) &#123;</span><br><span class="line">    &#x2F;&#x2F; preventDefault()方法阻止元素发生默认的行为</span><br><span class="line">    ev.preventDefault()</span><br><span class="line">  &#125;</span><br><span class="line">  if (ev.returnValue) &#123;</span><br><span class="line">    &#x2F;&#x2F; IE浏览器下用window.event.returnValue &#x3D; false;实现阻止元素发生默认的行为</span><br><span class="line">  &#125;</span><br><span class="line">  return false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>使用方法：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. 在需要使用的Vue页面引入组件(一般在main.vue中添加)</span><br><span class="line">import &#123;banBackSpace&#125; from &quot;@&#x2F;util&#x2F;preventBackspace&quot;;</span><br><span class="line"></span><br><span class="line">2. mounted 钩子函数挂载事件</span><br><span class="line">document.onkeypress &#x3D; banBackSpace;</span><br><span class="line">document.onkeydown &#x3D; banBackSpace;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>H5</category>
+      </categories>
+      <tags>
+        <tag>事件屏蔽</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C# 与 JS 之间Gzip互通</title>
+    <url>/2020/12/16/JS01/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>JS 压缩 Gzip demo</li>
+<li>JS 压缩 Gzip + base64 demo</li>
+<li>JS 解压 CSharp 的 Gzip demo</li>
+<li>JS 解压 CSharp 的 base64 + gzip</li>
+<li>CSharp 压缩 Gzip demo</li>
+<li>CSharp 压缩 Gzip + base64 demo</li>
+<li>CSharp 解压 JS 的 Gzip demo</li>
+<li>CSharp 解压 JS 的 base64 + gzip</li>
+<li>Base64 encode 和 decode </li>
+</ul>
+<h3 id="源码地址："><a href="#源码地址：" class="headerlink" title="源码地址："></a>源码地址：</h3><p><a href="https://github.com/aa4790139/GzipSample">https://github.com/aa4790139/GzipSample</a></p>
+<a id="more"></a>
+<h3 id="GZip-文件结构图"><a href="#GZip-文件结构图" class="headerlink" title="GZip 文件结构图"></a>GZip 文件结构图</h3><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210115204550.jpg" alt=""></p>
+<!--more-->
+<h3 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h3><ul>
+<li><a href="https://stackabuse.com/encoding-and-decoding-base64-strings-in-node-js/">Encoding and Decoding Base64 Strings in Node.js</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/DEFLATE">DEFLATE</a></li>
+<li><a href="https://stackoverflow.com/questions/246801/how-can-you-encode-a-string-to-base64-in-javascript">How can you encode a string to Base64 in JavaScript?</a></li>
+<li><a href="https://stackoverflow.com/questions/3195865/converting-byte-array-to-string-in-javascript">Converting byte array to string in javascript</a></li>
+<li><a href="https://www.jianshu.com/p/c5df0156b229">Array.prototype.slice.call()方法详解</a></li>
+<li><a href="https://stackoverflow.com/questions/7056925/how-does-array-prototype-slice-call-work">how does Array.prototype.slice.call() work?
+</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators">JS按位操作符</a></li>
+<li><a href="https://www.iditect.com/how-to/58717282.html">Remove trailing zeros from byte[]</a></li>
+<li><a href="https://stackoverflow.com/questions/17191945/conversion-between-utf-8-arraybuffer-and-string">Conversion between UTF-8 ArrayBuffer and String</a></li>
+<li><a href="https://tool.oschina.net/commons?type=4">ASCLL对照表</a></li>
+<li><a href="https://blog.csdn.net/yc0188/article/details/4155168">GZIP文件格式简介</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>压缩</category>
+      </categories>
+      <tags>
+        <tag>C#</tag>
+        <tag>Gzip</tag>
+        <tag>JS</tag>
       </tags>
   </entry>
   <entry>
@@ -823,6 +823,57 @@
       </tags>
   </entry>
   <entry>
+    <title>Vue3.x + Vite2.x 实战 01：Vite 遇到的坑</title>
+    <url>/2021/04/02/Vue3.x_Vite2.x-01/</url>
+    <content><![CDATA[<blockquote>
+<p>为了记录自己的成长经历，我决定把自己实战遇到的坑记录起来，一来方便日后查阅，二来给后人提供一份帮助。</p>
+</blockquote>
+<p><em>提示：本篇文章会持续更新，记录Vite相关遇到的坑</em></p>
+<h2 id="环境介绍"><a href="#环境介绍" class="headerlink" title="环境介绍"></a>环境介绍</h2><p>大家都熟知开发环境不同，碰到的问题很有可能也不同。为了不给大家带来困恼（跟你配置完全一样，为啥你的可以我的不可以），介绍下我的开发环境</p>
+<ul>
+<li>Windows 10</li>
+<li>VSCode  1.54.3</li>
+<li>Node.js v12.16.1</li>
+<li>Vue 3.0.5</li>
+<li>Vite 2.0.5</li>
+<li>typescript 4.1.3</li>
+</ul>
+<hr>
+<h2 id="概要内容："><a href="#概要内容：" class="headerlink" title="概要内容："></a>概要内容：</h2><ol>
+<li>配置alias无效</li>
+<li>main.ts中全局引入样式，使用Sass样式变量提示变量未定义</li>
+</ol>
+<hr>
+<a id="more"></a>
+<h2 id="1-配置alias无效"><a href="#1-配置alias无效" class="headerlink" title="1. 配置alias无效"></a>1. 配置alias无效</h2><ul>
+<li>报错如下：<br><img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master/img/20210328134430.png" alt=""></li>
+</ul>
+<ul>
+<li>解决方法：  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; vite.config.ts 添加alias配置即可</span><br><span class="line"></span><br><span class="line">resolve: &#123;</span><br><span class="line">      alias: [</span><br><span class="line">        &#123;</span><br><span class="line">          find: &#39;&#x2F;@&#39;,</span><br><span class="line">          replacement: path.resolve(__dirname, &#39;.&#x2F;src&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="2-main-ts中全局引入样式，使用Sass样式变量提示变量未定义"><a href="#2-main-ts中全局引入样式，使用Sass样式变量提示变量未定义" class="headerlink" title="2. main.ts中全局引入样式，使用Sass样式变量提示变量未定义"></a>2. main.ts中全局引入样式，使用Sass样式变量提示变量未定义</h2><ul>
+<li>报错如下：<br><img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master/img/20210328134529.png" alt=""></li>
+</ul>
+<ul>
+<li>解决方法：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; vite.config.ts 添加对应sass变量样式文件配置即可</span><br><span class="line"></span><br><span class="line">css: &#123;</span><br><span class="line">      preprocessorOptions: &#123;</span><br><span class="line">        scss: &#123;</span><br><span class="line">          additionalData: &#96;@import &quot;.&#x2F;src&#x2F;assets&#x2F;styles&#x2F;variables&quot;;&#96;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Vue3.x + Vite2.x 实战</category>
+      </categories>
+      <tags>
+        <tag>Vue3.x</tag>
+        <tag>Vite2.x</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>uni-app 如何引入Iconfont阿里巴巴矢量图标库</title>
     <url>/2020/11/13/UniApp01/</url>
     <content><![CDATA[<h3 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下:"></a>步骤如下:</h3><ol>
@@ -847,7 +898,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Vue3.x + Vite2.x 实战 04：不管怎么设置z-index值，元素仍然层级不对</title>
+    <title>Vue3.x + Vite2.x 实战 04：不管怎么设置z-index值，元素层级仍然不对</title>
     <url>/2021/04/09/Vue3.x_Vite2.x-04/</url>
     <content><![CDATA[<blockquote>
 <p>编写页面布局时，必定会碰到的问题，不管怎么设置z-index值，元素都被挡住。原因：没有真正理解CSS层叠样式是啥</p>
@@ -930,57 +981,6 @@
       <tags>
         <tag>z-index</tag>
         <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vue3.x + Vite2.x 实战 01：Vite 遇到的坑</title>
-    <url>/2021/04/02/Vue3.x_Vite2.x-01/</url>
-    <content><![CDATA[<blockquote>
-<p>为了记录自己的成长经历，我决定把自己实战遇到的坑记录起来，一来方便日后查阅，二来给后人提供一份帮助。</p>
-</blockquote>
-<p><em>提示：本篇文章会持续更新，记录Vite相关遇到的坑</em></p>
-<h2 id="环境介绍"><a href="#环境介绍" class="headerlink" title="环境介绍"></a>环境介绍</h2><p>大家都熟知开发环境不同，碰到的问题很有可能也不同。为了不给大家带来困恼（跟你配置完全一样，为啥你的可以我的不可以），介绍下我的开发环境</p>
-<ul>
-<li>Windows 10</li>
-<li>VSCode  1.54.3</li>
-<li>Node.js v12.16.1</li>
-<li>Vue 3.0.5</li>
-<li>Vite 2.0.5</li>
-<li>typescript 4.1.3</li>
-</ul>
-<hr>
-<h2 id="概要内容："><a href="#概要内容：" class="headerlink" title="概要内容："></a>概要内容：</h2><ol>
-<li>配置alias无效</li>
-<li>main.ts中全局引入样式，使用Sass样式变量提示变量未定义</li>
-</ol>
-<hr>
-<a id="more"></a>
-<h2 id="1-配置alias无效"><a href="#1-配置alias无效" class="headerlink" title="1. 配置alias无效"></a>1. 配置alias无效</h2><ul>
-<li>报错如下：<br><img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master/img/20210328134430.png" alt=""></li>
-</ul>
-<ul>
-<li>解决方法：  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; vite.config.ts 添加alias配置即可</span><br><span class="line"></span><br><span class="line">resolve: &#123;</span><br><span class="line">      alias: [</span><br><span class="line">        &#123;</span><br><span class="line">          find: &#39;&#x2F;@&#39;,</span><br><span class="line">          replacement: path.resolve(__dirname, &#39;.&#x2F;src&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h2 id="2-main-ts中全局引入样式，使用Sass样式变量提示变量未定义"><a href="#2-main-ts中全局引入样式，使用Sass样式变量提示变量未定义" class="headerlink" title="2. main.ts中全局引入样式，使用Sass样式变量提示变量未定义"></a>2. main.ts中全局引入样式，使用Sass样式变量提示变量未定义</h2><ul>
-<li>报错如下：<br><img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master/img/20210328134529.png" alt=""></li>
-</ul>
-<ul>
-<li>解决方法：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; vite.config.ts 添加对应sass变量样式文件配置即可</span><br><span class="line"></span><br><span class="line">css: &#123;</span><br><span class="line">      preprocessorOptions: &#123;</span><br><span class="line">        scss: &#123;</span><br><span class="line">          additionalData: &#96;@import &quot;.&#x2F;src&#x2F;assets&#x2F;styles&#x2F;variables&quot;;&#96;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Vue3.x + Vite2.x 实战</category>
-      </categories>
-      <tags>
-        <tag>Vue3.x</tag>
-        <tag>Vite2.x</tag>
       </tags>
   </entry>
   <entry>
@@ -1152,6 +1152,135 @@
       <tags>
         <tag>混淆</tag>
         <tag>UglifyJS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue3.x + Vite2.x 实战 06：Keep-alive 动态配置include实现页面缓存</title>
+    <url>/2021/04/29/Vue3.x_Vite2.x-06/</url>
+    <content><![CDATA[<h2 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h2><ul>
+<li>实现步骤<ul>
+<li>第一步：利用store状态管理缓存页面</li>
+<li>第二步：布局layout组件添加router-view相关配置</li>
+<li>第三步：在需要缓存的页面，添加路由守卫</li>
+</ul>
+</li>
+<li>总结</li>
+</ul>
+<a id="more"></a>
+<hr>
+<h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><hr>
+<ul>
+<li><p>第一步：利用store状态管理缓存页面</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; src&#x2F;store&#x2F;modules&#x2F;KeepAlive.ts</span><br><span class="line">&#x2F;&#x2F;-------------------------------------------------------------------------</span><br><span class="line">const keepAliveModule &#x3D; &#123;</span><br><span class="line">    namespaced: true,</span><br><span class="line">    state: &#123;</span><br><span class="line">        caches: [],</span><br><span class="line">    &#125;,</span><br><span class="line">    mutations: &#123;</span><br><span class="line">        ADD(state, name) &#123;</span><br><span class="line">            if (state.caches.indexOf(name) &lt; 0) &#123;</span><br><span class="line">                state.caches.push(name)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        REMOVE(state, name) &#123;</span><br><span class="line">            state.caches &#x3D; state.caches.filter(item &#x3D;&gt; item !&#x3D; name);</span><br><span class="line">        &#125;,</span><br><span class="line">        CLEAN(state) &#123;</span><br><span class="line">            state.caches &#x3D; [];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;-------------------------------------------------------------------------</span><br><span class="line">export default keepAliveModule;</span><br><span class="line">&#x2F;&#x2F;-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; src&#x2F;store&#x2F;index.ts</span><br><span class="line">import &#123; createStore &#125; from &#39;vuex&#39;</span><br><span class="line">import keepAliveModule from &#39;.&#x2F;modules&#x2F;KeepAlive&#39;;</span><br><span class="line">&#x2F;&#x2F;-------------------------------------------------------------------------</span><br><span class="line">const store &#x3D; createStore(&#123;</span><br><span class="line">    modules: &#123;</span><br><span class="line">        keepAlive: keepAliveModule</span><br><span class="line">    &#125;,</span><br><span class="line">    getters: &#123;</span><br><span class="line">        keepAlive: (state) &#x3D;&gt; (state as any).keepAlive,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&#x2F;&#x2F;-------------------------------------------------------------------------</span><br><span class="line">export default store;</span><br><span class="line">&#x2F;&#x2F;-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第二步：布局layout组件添加router-view相关配置</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div class&#x3D;&quot;MainWrapper&quot;&gt;</span><br><span class="line">	      &lt;router-view v-slot&#x3D;&quot;&#123; Component &#125;&quot;&gt;</span><br><span class="line">	        &lt;transition&gt;</span><br><span class="line">	          &lt;keep-alive :include&#x3D;&quot;$store.state.keepAlive.caches&quot;&gt;</span><br><span class="line">	            &lt;component :is&#x3D;&quot;Component&quot; &#x2F;&gt;</span><br><span class="line">	          &lt;&#x2F;keep-alive&gt;</span><br><span class="line">	        &lt;&#x2F;transition&gt;</span><br><span class="line">	    &lt;&#x2F;router-view&gt;</span><br><span class="line">	&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第三步：在需要缓存的页面，添加路由守卫</p>
+<ul>
+<li>beforeRouteEnter：添加缓存页面</li>
+<li>beforeRouteLeave：删除缓存页面</li>
+<li><p>提示：控制逻辑放置一块，方便管理</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;src&#x2F;views&#x2F;variety.vue</span><br><span class="line">export default defineComponent(&#123;</span><br><span class="line">  name: &quot;variety&quot;,</span><br><span class="line">  components: &#123;</span><br><span class="line">  &#125;,</span><br><span class="line">  setup(props, context) &#123;</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeRouteEnter(to, from, next) &#123;</span><br><span class="line">    if (to.path &#x3D;&#x3D; &quot;&#x2F;product&#x2F;variety&quot;) &#123;</span><br><span class="line">      store.commit(&quot;keepAlive&#x2F;ADD&quot;, to.name);</span><br><span class="line">    &#125;</span><br><span class="line">    next();</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeRouteLeave(to, from, next) &#123;</span><br><span class="line">    if (to.name !&#x3D; &quot;pic-editor&quot;) &#123;</span><br><span class="line">      store.commit(&quot;keepAlive&#x2F;REMOVE&quot;, from.name);</span><br><span class="line">    &#125;</span><br><span class="line">    next();</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>特别提醒：keep-alive :include 使用的是页面组件name，所以一定要记得给页面组件命名</li>
+</ul>
+<hr>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="https://hooray.github.io/posts/5dc60183/">使用 keep-alive 的 include 属性实现 Vue 页面缓存</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>以上：如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>xx</category>
+      </categories>
+      <tags>
+        <tag>xx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>创建通用JS公共模块并发布至npm</title>
+    <url>/2021/03/03/Web04/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>创建：JS公共模块</li>
+<li>打包：使用rollup 打包公共模块</li>
+<li>发布：js公共模块至verdaccio平台</li>
+<li>发布：js公共模块至npm平台</li>
+</ul>
+<a id="more"></a>
+<hr>
+<h3 id="如何创建JS公共模块"><a href="#如何创建JS公共模块" class="headerlink" title="如何创建JS公共模块"></a>如何创建JS公共模块</h3><blockquote>
+<p>由于代码有点多就不贴代码了，直接去代码仓库看吧  <a href="https://github.com/aa4790139/JSCommonUtils">传输门</a></p>
+</blockquote>
+<hr>
+<h3 id="rollup"><a href="#rollup" class="headerlink" title="rollup"></a>rollup</h3><ul>
+<li>简介：<blockquote>
+<p>Rollup 是一个 JavaScript 模块打包器，可以将小块代码编译成大块复杂的代码，例如 library 或应用程序。</p>
+</blockquote>
+</li>
+<li>使用起因：<blockquote>
+<p>公共相关的js文件想弄成单独的一个模块，方便后续开发使用，而不是不停的copy 和paste，所以就去了解怎么样把js公共相关js 打包成一个模块。</p>
+</blockquote>
+</li>
+<li>安装  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pnpm install -g rollup</span><br></pre></td></tr></table></figure></li>
+<li>创建配置文件  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; rollup.config.js</span><br><span class="line">import json from &#39;rollup-plugin-json&#39;;</span><br><span class="line">import babel from &#39;rollup-plugin-babel&#39;;</span><br><span class="line">import &#123;uglify&#125; from &#39;rollup-plugin-uglify&#39;;</span><br><span class="line">import &#123;version&#125; from &#39;..&#x2F;package.json&#39;;</span><br><span class="line">import multiEntry from &quot;rollup-plugin-multi-entry&quot;;</span><br><span class="line">import &#123;terser&#125; from &quot;rollup-plugin-terser&quot;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    input: &#39;src&#x2F;*.js&#39;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        &#x2F;*输出公共库路径*&#x2F;</span><br><span class="line">        file: &#39;lib&#x2F;index.js&#39;,</span><br><span class="line">        &#x2F;*配置：UMD 通用定义模块，支持前端端跨平台模块化*&#x2F;</span><br><span class="line">        format: &#39;umd&#39;,</span><br><span class="line">        name: &#39;JSCommonUtils&#39;,</span><br><span class="line">        &#x2F;*压缩和混淆js*&#x2F;</span><br><span class="line">        plugins: [terser(), uglify()],</span><br><span class="line">        &#x2F;*JS前缀: 添加库相关信息*&#x2F;</span><br><span class="line">        banner: &#39;&#x2F;* JSCommonUtils version &#39; + version + &#39; *&#x2F;&#39;,</span><br><span class="line">        &#x2F;*JS尾部: 添加个人相关信息*&#x2F;</span><br><span class="line">        footer: &#39;&#x2F;* follow me on github aa4790139 *&#x2F;&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        json(),</span><br><span class="line">        babel(&#123;</span><br><span class="line">            &#x2F;*过滤node_modules编译*&#x2F;</span><br><span class="line">            exclude: &#39;node_modules&#x2F;**&#39;</span><br><span class="line">        &#125;),</span><br><span class="line">        &#x2F;*允许多输入源*&#x2F;</span><br><span class="line">        multiEntry()</span><br><span class="line">    ],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="verdaccio"><a href="#verdaccio" class="headerlink" title="verdaccio"></a>verdaccio</h3><ul>
+<li>简介： 开源轻量的npm私服包管理平台</li>
+<li>使用起因：<blockquote>
+<p>创建好自己的js公共模块时，我们需要在浏览器和Node.js 环境中测试，有了verdaccio 就非常方便我们测试了。而不是去不停npm本地公共模块搞得非常蛋疼，而且很容易出问题，所以为了简单和方便我们使用verdaccio 搞个私有仓库，方便我们模拟安装使用。</p>
+</blockquote>
+</li>
+<li>安装   <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pnpm install -g verdaccio</span><br></pre></td></tr></table></figure></li>
+<li>启动  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">verdaccio</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="发布至verdaccio平台"><a href="#发布至verdaccio平台" class="headerlink" title="发布至verdaccio平台"></a>发布至verdaccio平台</h3><ul>
+<li>常用命令<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;1. 添加用户</span><br><span class="line">npm adduser --registry http:&#x2F;&#x2F;localhost:4873</span><br><span class="line">&#x2F;&#x2F;2. 发布至私有仓库位置</span><br><span class="line">npm publish --registry http:&#x2F;&#x2F;localhost:4873</span><br><span class="line">&#x2F;&#x2F; 撤回发布刚发布包</span><br><span class="line">npm unpublish --force --registry http:&#x2F;&#x2F;localhost:4873 </span><br><span class="line">&#x2F;&#x2F; 撤回发布的指定包</span><br><span class="line">npm unpublish package_name  --force --registry http:&#x2F;&#x2F;localhost:4873</span><br></pre></td></tr></table></figure></li>
+<li>效果图<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210303144737.png" alt=""></li>
+</ul>
+<h3 id="发布至npm平台"><a href="#发布至npm平台" class="headerlink" title="发布至npm平台"></a>发布至npm平台</h3><ul>
+<li><p>创建.npmignore 文件，过滤掉无需上传的文件和目录</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">node_modules&#x2F;*</span><br><span class="line">src&#x2F;</span><br><span class="line">build&#x2F;</span><br><span class="line">.babelrc</span><br><span class="line">.gitignore</span><br><span class="line">package-lock.json</span><br><span class="line">pnpm-lock.yaml</span><br><span class="line">!node_modules&#x2F;crc32</span><br><span class="line">!node_modules&#x2F;deflate-js</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>提示: .npmignore文件内容，需要忽略的文件和目录写前面，需要排除忽略的文件或目录前加!写后面</p>
+</blockquote>
+</li>
+<li><p>效果图<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210303144716.png" alt=""></p>
+</li>
+</ul>
+<hr>
+<h4 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h4><ul>
+<li><a href="https://verdaccio.org/docs/en/installation">verdaccio 官网</a></li>
+<li><a href="https://fe.rualc.com/note/npm-verdaccio.html#npm-install">verdaccio 搭建配置</a></li>
+<li><a href="https://www.rollupjs.com/guide/tools">rollup.js 中文文档</a></li>
+<li><a href="https://github.com/Godiswill/blog/issues/6">rollup 官网打包实践</a></li>
+<li><a href="https://chenshenhai.github.io/rollupjs-note/">Rollup.js 实战学习笔记</a></li>
+<li><a href="https://stackoverflow.com/questions/48092647/npmignore-ignore-whole-folder-except-given-file-types">.npmignore: ignore whole folder except given file types</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>模块化</category>
+      </categories>
+      <tags>
+        <tag>UMD</tag>
+        <tag>rollup</tag>
+        <tag>verdaccio</tag>
+        <tag>npm</tag>
       </tags>
   </entry>
   <entry>
@@ -1330,83 +1459,6 @@
         <tag>DllPlugin</tag>
         <tag>DllReferencePlugin</tag>
         <tag>打包优化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>创建通用JS公共模块并发布至npm</title>
-    <url>/2021/03/03/Web04/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>创建：JS公共模块</li>
-<li>打包：使用rollup 打包公共模块</li>
-<li>发布：js公共模块至verdaccio平台</li>
-<li>发布：js公共模块至npm平台</li>
-</ul>
-<a id="more"></a>
-<hr>
-<h3 id="如何创建JS公共模块"><a href="#如何创建JS公共模块" class="headerlink" title="如何创建JS公共模块"></a>如何创建JS公共模块</h3><blockquote>
-<p>由于代码有点多就不贴代码了，直接去代码仓库看吧  <a href="https://github.com/aa4790139/JSCommonUtils">传输门</a></p>
-</blockquote>
-<hr>
-<h3 id="rollup"><a href="#rollup" class="headerlink" title="rollup"></a>rollup</h3><ul>
-<li>简介：<blockquote>
-<p>Rollup 是一个 JavaScript 模块打包器，可以将小块代码编译成大块复杂的代码，例如 library 或应用程序。</p>
-</blockquote>
-</li>
-<li>使用起因：<blockquote>
-<p>公共相关的js文件想弄成单独的一个模块，方便后续开发使用，而不是不停的copy 和paste，所以就去了解怎么样把js公共相关js 打包成一个模块。</p>
-</blockquote>
-</li>
-<li>安装  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pnpm install -g rollup</span><br></pre></td></tr></table></figure></li>
-<li>创建配置文件  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; rollup.config.js</span><br><span class="line">import json from &#39;rollup-plugin-json&#39;;</span><br><span class="line">import babel from &#39;rollup-plugin-babel&#39;;</span><br><span class="line">import &#123;uglify&#125; from &#39;rollup-plugin-uglify&#39;;</span><br><span class="line">import &#123;version&#125; from &#39;..&#x2F;package.json&#39;;</span><br><span class="line">import multiEntry from &quot;rollup-plugin-multi-entry&quot;;</span><br><span class="line">import &#123;terser&#125; from &quot;rollup-plugin-terser&quot;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    input: &#39;src&#x2F;*.js&#39;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        &#x2F;*输出公共库路径*&#x2F;</span><br><span class="line">        file: &#39;lib&#x2F;index.js&#39;,</span><br><span class="line">        &#x2F;*配置：UMD 通用定义模块，支持前端端跨平台模块化*&#x2F;</span><br><span class="line">        format: &#39;umd&#39;,</span><br><span class="line">        name: &#39;JSCommonUtils&#39;,</span><br><span class="line">        &#x2F;*压缩和混淆js*&#x2F;</span><br><span class="line">        plugins: [terser(), uglify()],</span><br><span class="line">        &#x2F;*JS前缀: 添加库相关信息*&#x2F;</span><br><span class="line">        banner: &#39;&#x2F;* JSCommonUtils version &#39; + version + &#39; *&#x2F;&#39;,</span><br><span class="line">        &#x2F;*JS尾部: 添加个人相关信息*&#x2F;</span><br><span class="line">        footer: &#39;&#x2F;* follow me on github aa4790139 *&#x2F;&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        json(),</span><br><span class="line">        babel(&#123;</span><br><span class="line">            &#x2F;*过滤node_modules编译*&#x2F;</span><br><span class="line">            exclude: &#39;node_modules&#x2F;**&#39;</span><br><span class="line">        &#125;),</span><br><span class="line">        &#x2F;*允许多输入源*&#x2F;</span><br><span class="line">        multiEntry()</span><br><span class="line">    ],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h3 id="verdaccio"><a href="#verdaccio" class="headerlink" title="verdaccio"></a>verdaccio</h3><ul>
-<li>简介： 开源轻量的npm私服包管理平台</li>
-<li>使用起因：<blockquote>
-<p>创建好自己的js公共模块时，我们需要在浏览器和Node.js 环境中测试，有了verdaccio 就非常方便我们测试了。而不是去不停npm本地公共模块搞得非常蛋疼，而且很容易出问题，所以为了简单和方便我们使用verdaccio 搞个私有仓库，方便我们模拟安装使用。</p>
-</blockquote>
-</li>
-<li>安装   <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pnpm install -g verdaccio</span><br></pre></td></tr></table></figure></li>
-<li>启动  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">verdaccio</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="发布至verdaccio平台"><a href="#发布至verdaccio平台" class="headerlink" title="发布至verdaccio平台"></a>发布至verdaccio平台</h3><ul>
-<li>常用命令<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;1. 添加用户</span><br><span class="line">npm adduser --registry http:&#x2F;&#x2F;localhost:4873</span><br><span class="line">&#x2F;&#x2F;2. 发布至私有仓库位置</span><br><span class="line">npm publish --registry http:&#x2F;&#x2F;localhost:4873</span><br><span class="line">&#x2F;&#x2F; 撤回发布刚发布包</span><br><span class="line">npm unpublish --force --registry http:&#x2F;&#x2F;localhost:4873 </span><br><span class="line">&#x2F;&#x2F; 撤回发布的指定包</span><br><span class="line">npm unpublish package_name  --force --registry http:&#x2F;&#x2F;localhost:4873</span><br></pre></td></tr></table></figure></li>
-<li>效果图<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210303144737.png" alt=""></li>
-</ul>
-<h3 id="发布至npm平台"><a href="#发布至npm平台" class="headerlink" title="发布至npm平台"></a>发布至npm平台</h3><ul>
-<li><p>创建.npmignore 文件，过滤掉无需上传的文件和目录</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">node_modules&#x2F;*</span><br><span class="line">src&#x2F;</span><br><span class="line">build&#x2F;</span><br><span class="line">.babelrc</span><br><span class="line">.gitignore</span><br><span class="line">package-lock.json</span><br><span class="line">pnpm-lock.yaml</span><br><span class="line">!node_modules&#x2F;crc32</span><br><span class="line">!node_modules&#x2F;deflate-js</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>提示: .npmignore文件内容，需要忽略的文件和目录写前面，需要排除忽略的文件或目录前加!写后面</p>
-</blockquote>
-</li>
-<li><p>效果图<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210303144716.png" alt=""></p>
-</li>
-</ul>
-<hr>
-<h4 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h4><ul>
-<li><a href="https://verdaccio.org/docs/en/installation">verdaccio 官网</a></li>
-<li><a href="https://fe.rualc.com/note/npm-verdaccio.html#npm-install">verdaccio 搭建配置</a></li>
-<li><a href="https://www.rollupjs.com/guide/tools">rollup.js 中文文档</a></li>
-<li><a href="https://github.com/Godiswill/blog/issues/6">rollup 官网打包实践</a></li>
-<li><a href="https://chenshenhai.github.io/rollupjs-note/">Rollup.js 实战学习笔记</a></li>
-<li><a href="https://stackoverflow.com/questions/48092647/npmignore-ignore-whole-folder-except-given-file-types">.npmignore: ignore whole folder except given file types</a></li>
-</ul>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>模块化</category>
-      </categories>
-      <tags>
-        <tag>UMD</tag>
-        <tag>rollup</tag>
-        <tag>verdaccio</tag>
-        <tag>npm</tag>
       </tags>
   </entry>
 </search>
