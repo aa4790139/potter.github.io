@@ -95,80 +95,6 @@
       </tags>
   </entry>
   <entry>
-    <title>自动化测试-02：实践</title>
-    <url>/2020/10/22/AutoTest02/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>环境搭建: Appium 环境、Android 环境、Python 环境、夜神模拟器</li>
-<li>Android APP 测试 </li>
-</ul>
-<a id="more"></a>
-<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><ul>
-<li>Appium 环境<ul>
-<li>安装：Appium Desktop (Server) <a href="https://github.com/appium/appium-desktop/releases">下载地址</a></li>
-<li>安装：Appium-Python-Client (Client) <a href="https://pypi.org/project/Appium-Python-Client/">教程</a></li>
-</ul>
-</li>
-<li>Android 环境：<ul>
-<li>下载安装JDK <a href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">下载地址</a></li>
-<li>下载Android SDK <a href="https://developer.android.com/studio">下载地址</a></li>
-<li>配置JAVA和Android环境变量 <a href="https://www.jianshu.com/p/a9e80bb782af">教程</a></li>
-</ul>
-</li>
-<li>Python 环境：<ul>
-<li>首先：<a href="https://www.python.org/downloads/">下载安装Python</a></li>
-<li>此次：安装Appium Python库, 命令: pip install -U Appium-Python-Client—python <a href="https://pypi.org/project/Appium-Python-Client/">安装教程</a></li>
-<li>最后：安装Python IDE <a href="https://www.jetbrains.com/pycharm/download/#section=windows">pycharm下载</a></li>
-</ul>
-</li>
-<li>夜神模拟器：<a href="https://www.yeshen.com/">下载安装</a></li>
-</ul>
-<h3 id="Android-APP-测试"><a href="#Android-APP-测试" class="headerlink" title="Android APP 测试"></a>Android APP 测试</h3><ul>
-<li><p>常用命令：</p>
-<ul>
-<li>获取联机设备名称：adb devices</li>
-<li>与设备建立连接：adb connect ip:port (提示：使用adb devices 显示设备的ip和端口)</li>
-<li><p>获取APP包名和启动名：adb shell dumpsys window  windows | findstr mFocusedApp (提示：使用模拟器或手机,打印需测试的APP 保持显示在当前屏幕后，在cmd中输入此命令回车，假如输出结果如下)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  adb shell dumpsys window  windows | findstr mFocusedApp</span><br><span class="line">mFocusedApp&#x3D;AppWindowToken&#123;e84eb4f token&#x3D;Token&#123;1260a29 ActivityRecord&#123;16e4bb0 u0 com.guide.custom&#x2F;com.anyapps.Activity.AALaunch t12&#125;&#125;&#125;</span><br><span class="line"></span><br><span class="line">包名：com.guide.custom</span><br><span class="line">启动Activity名：com.anyapps.Activity.AALaunch</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>调试步骤：</p>
-<ol>
-<li>启动夜神模拟器，获取相关信息<ul>
-<li>获取设备号IP和Port: cmd-&gt;adb devices (如果不显示请检查环境配置)</li>
-<li>与设备建立连接：adb connect 127.0.0.1:62001</li>
-<li>系统版本：系统应用-&gt;设置-&gt;版本</li>
-</ul>
-</li>
-<li>打开程序包(拿系统Setting打比方)，获取包名和启动Activity名：adb shell dumpsys window  windows | findstr</li>
-<li>启动Appium，创建Server&lt;-&gt;会话<ul>
-<li>Start Server -&gt; 点击搜索图标 -&gt; 根据1、2获取信息，填写对应信息，我的如下<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201025-001.png" alt=""></li>
-<li>创建会话成功后，效果图如下：(此时可以获取原生布局元素了)<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201025224614.png" alt=""></li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<h3 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h3><ul>
-<li><a href="https://www.51zxw.net/list.aspx?page=2&amp;cid=670#!fenye=2">Appium自动化测试教程</a></li>
-<li><a href="http://appium.io/docs/cn/writing-running-appium/caps/index.html">Appium 参数说明</a></li>
-</ul>
-<blockquote>
-<p>最后：其他平台APP调试应该类似，以后再尝试吧 ~</p>
-</blockquote>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>自动化测试</category>
-      </categories>
-      <tags>
-        <tag>测试</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python-04：AppWeb自动化测试【打开App切换WebView登录】</title>
     <url>/2020/11/04/AutoTest04/</url>
     <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
@@ -253,6 +179,80 @@
       <tags>
         <tag>Python</tag>
         <tag>Selenium</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自动化测试-02：实践</title>
+    <url>/2020/10/22/AutoTest02/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>环境搭建: Appium 环境、Android 环境、Python 环境、夜神模拟器</li>
+<li>Android APP 测试 </li>
+</ul>
+<a id="more"></a>
+<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><ul>
+<li>Appium 环境<ul>
+<li>安装：Appium Desktop (Server) <a href="https://github.com/appium/appium-desktop/releases">下载地址</a></li>
+<li>安装：Appium-Python-Client (Client) <a href="https://pypi.org/project/Appium-Python-Client/">教程</a></li>
+</ul>
+</li>
+<li>Android 环境：<ul>
+<li>下载安装JDK <a href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">下载地址</a></li>
+<li>下载Android SDK <a href="https://developer.android.com/studio">下载地址</a></li>
+<li>配置JAVA和Android环境变量 <a href="https://www.jianshu.com/p/a9e80bb782af">教程</a></li>
+</ul>
+</li>
+<li>Python 环境：<ul>
+<li>首先：<a href="https://www.python.org/downloads/">下载安装Python</a></li>
+<li>此次：安装Appium Python库, 命令: pip install -U Appium-Python-Client—python <a href="https://pypi.org/project/Appium-Python-Client/">安装教程</a></li>
+<li>最后：安装Python IDE <a href="https://www.jetbrains.com/pycharm/download/#section=windows">pycharm下载</a></li>
+</ul>
+</li>
+<li>夜神模拟器：<a href="https://www.yeshen.com/">下载安装</a></li>
+</ul>
+<h3 id="Android-APP-测试"><a href="#Android-APP-测试" class="headerlink" title="Android APP 测试"></a>Android APP 测试</h3><ul>
+<li><p>常用命令：</p>
+<ul>
+<li>获取联机设备名称：adb devices</li>
+<li>与设备建立连接：adb connect ip:port (提示：使用adb devices 显示设备的ip和端口)</li>
+<li><p>获取APP包名和启动名：adb shell dumpsys window  windows | findstr mFocusedApp (提示：使用模拟器或手机,打印需测试的APP 保持显示在当前屏幕后，在cmd中输入此命令回车，假如输出结果如下)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  adb shell dumpsys window  windows | findstr mFocusedApp</span><br><span class="line">mFocusedApp&#x3D;AppWindowToken&#123;e84eb4f token&#x3D;Token&#123;1260a29 ActivityRecord&#123;16e4bb0 u0 com.guide.custom&#x2F;com.anyapps.Activity.AALaunch t12&#125;&#125;&#125;</span><br><span class="line"></span><br><span class="line">包名：com.guide.custom</span><br><span class="line">启动Activity名：com.anyapps.Activity.AALaunch</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>调试步骤：</p>
+<ol>
+<li>启动夜神模拟器，获取相关信息<ul>
+<li>获取设备号IP和Port: cmd-&gt;adb devices (如果不显示请检查环境配置)</li>
+<li>与设备建立连接：adb connect 127.0.0.1:62001</li>
+<li>系统版本：系统应用-&gt;设置-&gt;版本</li>
+</ul>
+</li>
+<li>打开程序包(拿系统Setting打比方)，获取包名和启动Activity名：adb shell dumpsys window  windows | findstr</li>
+<li>启动Appium，创建Server&lt;-&gt;会话<ul>
+<li>Start Server -&gt; 点击搜索图标 -&gt; 根据1、2获取信息，填写对应信息，我的如下<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201025-001.png" alt=""></li>
+<li>创建会话成功后，效果图如下：(此时可以获取原生布局元素了)<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201025224614.png" alt=""></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h3><ul>
+<li><a href="https://www.51zxw.net/list.aspx?page=2&amp;cid=670#!fenye=2">Appium自动化测试教程</a></li>
+<li><a href="http://appium.io/docs/cn/writing-running-appium/caps/index.html">Appium 参数说明</a></li>
+</ul>
+<blockquote>
+<p>最后：其他平台APP调试应该类似，以后再尝试吧 ~</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>自动化测试</category>
+      </categories>
+      <tags>
+        <tag>测试</tag>
       </tags>
   </entry>
   <entry>
@@ -393,6 +393,52 @@
       </tags>
   </entry>
   <entry>
+    <title>C# 与 JS 之间Gzip互通</title>
+    <url>/2020/12/16/JS01/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>JS 压缩 Gzip demo</li>
+<li>JS 压缩 Gzip + base64 demo</li>
+<li>JS 解压 CSharp 的 Gzip demo</li>
+<li>JS 解压 CSharp 的 base64 + gzip</li>
+<li>CSharp 压缩 Gzip demo</li>
+<li>CSharp 压缩 Gzip + base64 demo</li>
+<li>CSharp 解压 JS 的 Gzip demo</li>
+<li>CSharp 解压 JS 的 base64 + gzip</li>
+<li>Base64 encode 和 decode </li>
+</ul>
+<h3 id="源码地址："><a href="#源码地址：" class="headerlink" title="源码地址："></a>源码地址：</h3><p><a href="https://github.com/aa4790139/GzipSample">https://github.com/aa4790139/GzipSample</a></p>
+<a id="more"></a>
+<h3 id="GZip-文件结构图"><a href="#GZip-文件结构图" class="headerlink" title="GZip 文件结构图"></a>GZip 文件结构图</h3><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210115204550.jpg" alt=""></p>
+<!--more-->
+<h3 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h3><ul>
+<li><a href="https://stackabuse.com/encoding-and-decoding-base64-strings-in-node-js/">Encoding and Decoding Base64 Strings in Node.js</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/DEFLATE">DEFLATE</a></li>
+<li><a href="https://stackoverflow.com/questions/246801/how-can-you-encode-a-string-to-base64-in-javascript">How can you encode a string to Base64 in JavaScript?</a></li>
+<li><a href="https://stackoverflow.com/questions/3195865/converting-byte-array-to-string-in-javascript">Converting byte array to string in javascript</a></li>
+<li><a href="https://www.jianshu.com/p/c5df0156b229">Array.prototype.slice.call()方法详解</a></li>
+<li><a href="https://stackoverflow.com/questions/7056925/how-does-array-prototype-slice-call-work">how does Array.prototype.slice.call() work?
+</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators">JS按位操作符</a></li>
+<li><a href="https://www.iditect.com/how-to/58717282.html">Remove trailing zeros from byte[]</a></li>
+<li><a href="https://stackoverflow.com/questions/17191945/conversion-between-utf-8-arraybuffer-and-string">Conversion between UTF-8 ArrayBuffer and String</a></li>
+<li><a href="https://tool.oschina.net/commons?type=4">ASCLL对照表</a></li>
+<li><a href="https://blog.csdn.net/yc0188/article/details/4155168">GZIP文件格式简介</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>压缩</category>
+      </categories>
+      <tags>
+        <tag>C#</tag>
+        <tag>Gzip</tag>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>结束《皇室战争》之旅</title>
     <url>/2020/11/02/Game01/</url>
     <content><![CDATA[<h3 id="一款又爱又恨的游戏"><a href="#一款又爱又恨的游戏" class="headerlink" title="一款又爱又恨的游戏"></a>一款又爱又恨的游戏</h3><ul>
@@ -474,52 +520,6 @@
         <tag>Vue.js</tag>
         <tag>Node.js</tag>
         <tag>Express</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C# 与 JS 之间Gzip互通</title>
-    <url>/2020/12/16/JS01/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>JS 压缩 Gzip demo</li>
-<li>JS 压缩 Gzip + base64 demo</li>
-<li>JS 解压 CSharp 的 Gzip demo</li>
-<li>JS 解压 CSharp 的 base64 + gzip</li>
-<li>CSharp 压缩 Gzip demo</li>
-<li>CSharp 压缩 Gzip + base64 demo</li>
-<li>CSharp 解压 JS 的 Gzip demo</li>
-<li>CSharp 解压 JS 的 base64 + gzip</li>
-<li>Base64 encode 和 decode </li>
-</ul>
-<h3 id="源码地址："><a href="#源码地址：" class="headerlink" title="源码地址："></a>源码地址：</h3><p><a href="https://github.com/aa4790139/GzipSample">https://github.com/aa4790139/GzipSample</a></p>
-<a id="more"></a>
-<h3 id="GZip-文件结构图"><a href="#GZip-文件结构图" class="headerlink" title="GZip 文件结构图"></a>GZip 文件结构图</h3><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210115204550.jpg" alt=""></p>
-<!--more-->
-<h3 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h3><ul>
-<li><a href="https://stackabuse.com/encoding-and-decoding-base64-strings-in-node-js/">Encoding and Decoding Base64 Strings in Node.js</a></li>
-<li><a href="https://zh.wikipedia.org/wiki/DEFLATE">DEFLATE</a></li>
-<li><a href="https://stackoverflow.com/questions/246801/how-can-you-encode-a-string-to-base64-in-javascript">How can you encode a string to Base64 in JavaScript?</a></li>
-<li><a href="https://stackoverflow.com/questions/3195865/converting-byte-array-to-string-in-javascript">Converting byte array to string in javascript</a></li>
-<li><a href="https://www.jianshu.com/p/c5df0156b229">Array.prototype.slice.call()方法详解</a></li>
-<li><a href="https://stackoverflow.com/questions/7056925/how-does-array-prototype-slice-call-work">how does Array.prototype.slice.call() work?
-</a></li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators">JS按位操作符</a></li>
-<li><a href="https://www.iditect.com/how-to/58717282.html">Remove trailing zeros from byte[]</a></li>
-<li><a href="https://stackoverflow.com/questions/17191945/conversion-between-utf-8-arraybuffer-and-string">Conversion between UTF-8 ArrayBuffer and String</a></li>
-<li><a href="https://tool.oschina.net/commons?type=4">ASCLL对照表</a></li>
-<li><a href="https://blog.csdn.net/yc0188/article/details/4155168">GZIP文件格式简介</a></li>
-</ul>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>压缩</category>
-      </categories>
-      <tags>
-        <tag>C#</tag>
-        <tag>Gzip</tag>
-        <tag>JS</tag>
       </tags>
   </entry>
   <entry>
@@ -690,86 +690,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Python-01：Python与C# 基本语法区别</title>
-    <url>/2020/10/31/Python01/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>Python 与 C# 基本语法区别</li>
-<li>具体语法示例</li>
-</ul>
-<a id="more"></a>
-<h3 id="最明显的区别"><a href="#最明显的区别" class="headerlink" title="最明显的区别"></a>最明显的区别</h3><ol>
-<li>Python if、for、while等 包裹代码块不是用{}，而是使用”:”和 换行缩进</li>
-<li>Python 弱类型语言，同时每句话结束后无需加分号”;”，与JAVAScript 类似</li>
-</ol>
-<h3 id="具体语法区别："><a href="#具体语法区别：" class="headerlink" title="具体语法区别："></a>具体语法区别：</h3><ul>
-<li>if<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：</span><br><span class="line">if(条件)&#123;</span><br><span class="line">    print(&quot;xxx&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Python:</span><br><span class="line">if 条件:</span><br><span class="line">    print(&quot;xxx&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>for<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#:</span><br><span class="line">var list &#x3D; new List&lt;int&gt;()&#123;1, 2, 3&#125;;</span><br><span class="line">foreach(n : list)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(n);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Python:</span><br><span class="line">list &#x3D; &#123;1, 2, 3&#125;</span><br><span class="line">for n in list:</span><br><span class="line">    print(n)</span><br></pre></td></tr></table></figure></li>
-<li>强制类型转换<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C# </span><br><span class="line">var num &#x3D; &quot;12&quot;;</span><br><span class="line">int n &#x3D; (int)num</span><br><span class="line"></span><br><span class="line">Python</span><br><span class="line">num &#x3D; &quot;12&quot;</span><br><span class="line">n &#x3D; int(num)</span><br></pre></td></tr></table></figure></li>
-<li><p>数组切片： 其实就是copy出数组中的指定区域元素</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">listnames &#x3D; [&#39;1&#39;,&#39;2&#39;,&#39;3&#39;]</span><br><span class="line">listnames[start_index:end_index] </span><br><span class="line">(注意：copy出来的集合为[start_index,end_index)之前的元素</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>函数及注释说明</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; 测试函数</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">public string test(string username)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(&quot;hello &quot; + username);</span><br><span class="line">    return username;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Python:</span><br><span class="line">def test(username):</span><br><span class="line">    &quot;&quot;&quot;测试函数&quot;&quot;&quot;</span><br><span class="line">    print(&quot;hello &quot; + username)</span><br><span class="line">    return username.title()</span><br></pre></td></tr></table></figure></li>
-<li><p>传递任意数量的实参：*实参名 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：无对应语法</span><br><span class="line"></span><br><span class="line">Python</span><br><span class="line">def make_pizza(*toppings): </span><br><span class="line">    &quot;&quot;&quot;打印顾客点的所有配料&quot;&quot;&quot; </span><br><span class="line">    print(toppings)</span><br><span class="line"></span><br><span class="line"># 任意数量实参, 如果是键值对，请使用**双星号，比如：</span><br><span class="line">def build_profile(first,last,**user_info):</span><br><span class="line">    for key, value in user_info.items(): </span><br><span class="line">        print(&quot;key&#x3D;&quot; + key + &quot;value&#x3D;&quot; + value)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：任意数量实参只能有一个，并且只能放在函数最后一个参数的位置</p>
-</blockquote>
-</li>
-<li><p>模块导入：类似java 在一个类文件中，导入另外一个文件类</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#: 使用userspace 引入空间，既可以直接使用空间中的类</span><br><span class="line">one.cs：内容如下</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">namespace onens </span><br><span class="line">&#123;</span><br><span class="line">    public class One</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">two.cs：内容如下</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">using onens</span><br><span class="line">namespace twons</span><br><span class="line">&#123;</span><br><span class="line">    public class Two</span><br><span class="line">    &#123;</span><br><span class="line">        public Two()</span><br><span class="line">        &#123;</span><br><span class="line">            var one &#x3D; new One()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Python: 导出模块后，就可以通过模块名称访问其中的所有方法</span><br><span class="line">OneModule.py：内容如下</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">def one(name, address):</span><br><span class="line">    print(name + &quot;&quot; + address)</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">TwoModule.py：内容如下</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">import OneModule</span><br><span class="line">def two():</span><br><span class="line">    OneModule.one(&quot;potter&quot;,&quot;sz&quot;)</span><br><span class="line">-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>导入特定函数</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#: 没有导出特定函数一说，只有using namespace的内容 或者说import dll中的方法，比如：</span><br><span class="line">[DllImport(&quot;User32.DLL&quot;)]</span><br><span class="line">public static extern IntPtr GetActiveWindow();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Python：</span><br><span class="line">from module_name import function_name1，function_name2...</span><br><span class="line"># 使用as给导入函数取别名</span><br><span class="line">from module_name import fuction_name as fn</span><br><span class="line"># 使用as给导入模块取别名</span><br><span class="line">import module_name as mn</span><br><span class="line"># 使用*号，导入模块所有函数</span><br><span class="line">from module_name import *</span><br></pre></td></tr></table></figure></li>
-<li>类<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">构造方法</span><br><span class="line">C#: </span><br><span class="line">class Test</span><br><span class="line">&#123;</span><br><span class="line">    public Test(string name,string address)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Python: __init__ 就是构造方法, self是自动传递的</span><br><span class="line">class Test():</span><br><span class="line">    def __init__(self, name, address):</span><br><span class="line">        self.name &#x3D; name</span><br><span class="line">        self.address &#x3D; address</span><br><span class="line">    def hello(self):</span><br><span class="line">        print(&quot;hello&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>继承<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">class Car</span><br><span class="line">&#123;</span><br><span class="line">    private string make;</span><br><span class="line">    private string model;</span><br><span class="line">    private string year;</span><br><span class="line">    public Car(string make, string model, string year)</span><br><span class="line">    &#123;</span><br><span class="line">        this.make &#x3D; make;</span><br><span class="line">        this.model &#x3D; model;</span><br><span class="line">        this.year &#x3D; year;</span><br><span class="line">    &#125;</span><br><span class="line">    public virtual void Run() </span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(&quot;run&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">class ElectricCar : Car</span><br><span class="line">&#123;</span><br><span class="line">    private string makeAddress;</span><br><span class="line">    public ElectricCar(string makeAddress, string make, string model ,string year) : base(make, model,year)</span><br><span class="line">    &#123;</span><br><span class="line">        this.makeAddress &#x3D; makeAddress;</span><br><span class="line">    &#125;</span><br><span class="line">    public override void Run()</span><br><span class="line">    &#123;</span><br><span class="line">        base.Run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Python:</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">class Car():</span><br><span class="line">    def __init__(self,make,model,year):</span><br><span class="line">        self.make &#x3D; make</span><br><span class="line">        self.model &#x3D; model</span><br><span class="line">        self.year &#x3D; year</span><br><span class="line">    def run():</span><br><span class="line">        print(&quot;run&quot;)</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">class ElectricCar(Car):</span><br><span class="line">    def __init__(self,make,model,year):</span><br><span class="line">        super().__init__(make,model,year)</span><br><span class="line">    def run()</span><br><span class="line">        ***子类重写父类方法，同名即可***</span><br><span class="line">        print(&quot;ElectricCar run&quot;)</span><br><span class="line">-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></li>
-<li>导入类：(格式：from module_name import class,class)<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from car import Car</span><br><span class="line">my_new_car &#x3D; Car(&#39;audi&#39;, &#39;a4&#39;, 2016)</span><br></pre></td></tr></table></figure></li>
-<li>文件读写<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#: </span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">1. 读取整个文件</span><br><span class="line">using (FileStream fs &#x3D; File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))</span><br><span class="line">&#123;</span><br><span class="line">    StreamReader sr &#x3D; new StreamReader(fs);</span><br><span class="line">    strContent &#x3D; sr.ReadToEnd();</span><br><span class="line">    sr.Close();</span><br><span class="line">    fs.Close();</span><br><span class="line">&#125;</span><br><span class="line">2. 逐行读取文件</span><br><span class="line">using (StreamReader sr &#x3D; new StreamReader(filepath))</span><br><span class="line">&#123;</span><br><span class="line">    String line;</span><br><span class="line">    while((line&#x3D;sr.ReadLine())!&#x3D;null)</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(line);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">3. 写入文件</span><br><span class="line">using (FileStream fs &#x3D; File.Open(filepath, FileMode.Create, FileAccess.Write, FileShare.ReadWrite))</span><br><span class="line">&#123;</span><br><span class="line">    StreamWriter sw &#x3D; new StreamWriter(fs);</span><br><span class="line">    sw.WriteLine(content);</span><br><span class="line">    sw.Flush();</span><br><span class="line">    sw.Close();</span><br><span class="line">    fs.Close();</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Python:</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">1.读取整个文件，使用rstrip过滤掉前后空格</span><br><span class="line">with open(&#39;pi_digits.txt&#39;) as file_object: </span><br><span class="line">    contents &#x3D; file_object.read() </span><br><span class="line">    print(contents.rstrip())</span><br><span class="line">2. 逐行读取文件</span><br><span class="line">with open(&#39;pi_digits.txt&#39;) as file_object: </span><br><span class="line">    for line in file_object: </span><br><span class="line">    print(line.rstrip())</span><br><span class="line">3. 写入文件：&#39;w&#39;、&#39;r&#39;、&#39;a&#39; 分别代表&#39;写&#39;、&#39;读&#39;、&#39;追加&#39;</span><br><span class="line">filename &#x3D; &#39;programming.txt&#39; </span><br><span class="line">with open(filename, &#39;w&#39;) as file_object: </span><br><span class="line">    file_object.write(&quot;I love programming.&quot;)</span><br></pre></td></tr></table></figure></li>
-<li>存取数据<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：其实就是文件写和读</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Python: </span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">1. 存：</span><br><span class="line">import json </span><br><span class="line">numbers &#x3D; [2, 3, 5, 7, 11, 13]</span><br><span class="line">with open(filename, &#39;w&#39;) as f_obj: </span><br><span class="line">    json.dump(numbers, f_obj)</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">2. 取</span><br><span class="line">import json </span><br><span class="line">with open(filename, &#39;r&#39;) as f_obj:</span><br><span class="line">    print(json.load(f_obj))</span><br><span class="line">-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></li>
-<li>异常<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">int r &#x3D; 0;</span><br><span class="line">try</span><br><span class="line">&#123;</span><br><span class="line">    r &#x3D; 5&#x2F;0</span><br><span class="line">&#125;</span><br><span class="line">catch (Exception e)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(&quot;出现异常&quot;);</span><br><span class="line">&#125;</span><br><span class="line">finally</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(&quot;try最后执行代码&quot;);</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Python：</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">try:</span><br><span class="line">    r &#x3D; 5&#x2F;0</span><br><span class="line">except ZeroDivisionError:</span><br><span class="line">    raise Exception(&quot;抛出异常：除数不能为0&quot;)</span><br><span class="line">except FileNotFoundError:</span><br><span class="line">    print(&quot;异常打印：文件找不到&quot;)</span><br><span class="line">except:</span><br><span class="line">    print(&quot;其他异常&quot;)</span><br><span class="line">else:</span><br><span class="line">    print(&quot;无异常，打印此句&quot;)</span><br><span class="line">finally:</span><br><span class="line">    print(&quot;最后打印此句&quot;)</span><br><span class="line"></span><br><span class="line">说明：</span><br><span class="line">1. else 缩进后代码，相当于把这部分代码放到try-except中或者取消缩进放到最后一样，没啥特别的</span><br><span class="line">2. except 不带具体异常，就相当于C#的catch(Exception)</span><br><span class="line">3. raise 相当于C#的throw</span><br><span class="line">-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></li>
-<li>lambda<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：</span><br><span class="line">格式：(arguments) &#x3D;&gt; &#123; expression &#125;;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Func&lt;int, int&gt; func &#x3D; (x) &#x3D;&gt; &#123; return x + 5; &#125;;</span><br><span class="line">Console.WriteLine(&quot;&quot; + func(5));</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">Python:</span><br><span class="line">格式：lambda arguments : expression</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">func &#x3D; lambda a : a + 10</span><br><span class="line">print(func(5))</span><br><span class="line">-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></li>
-<li>API <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Python: (注意：使用前请使用pip install requests 安装requests模块)</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">import requests</span><br><span class="line">url &#x3D; &#39;https:&#x2F;&#x2F;api.github.com&#x2F;search&#x2F;repositories?q&#x3D;language:python&amp;sort&#x3D;stars&#39;</span><br><span class="line">response &#x3D; requests.get(url)</span><br><span class="line">print(&quot;Status code:&quot;, response.status_code)</span><br><span class="line"># 将API响应存储在一个变量中</span><br><span class="line">response_dict &#x3D; response.json()</span><br><span class="line">print(&quot;Total repositories:&quot;, response_dict[&#39;total_count&#39;])</span><br><span class="line"># 用完记得关闭，否则下次运行会报：远程主机强迫关闭了一个现有的连接</span><br><span class="line">response.close()</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>屏蔽：键盘按键、鼠标点击事件</title>
-    <url>/2020/10/14/PreventEvent/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>屏蔽-键盘按键</li>
-<li>屏蔽-鼠标点击</li>
-<li>屏蔽-BackSpace</li>
-</ul>
-<a id="more"></a>
-<h3 id="屏蔽-键盘按键"><a href="#屏蔽-键盘按键" class="headerlink" title="屏蔽-键盘按键"></a>屏蔽-键盘按键</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;添加按键监听</span><br><span class="line">window.addEventListener(&#39;keydown&#39;, this.onKeyDown,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;移除按键监听</span><br><span class="line">window.removeEventListener(&quot;keydown&quot;,this.onKeyDown,true);</span><br><span class="line"></span><br><span class="line">onKeyDown(val)&#123;</span><br><span class="line">    console.log(&#39;按下&#39; + val.key);</span><br><span class="line">    val.preventDefault();</span><br><span class="line">    val.stopPropagation();</span><br><span class="line">    val.cancelBubble &#x3D; true;</span><br><span class="line">    window.event.returnValue &#x3D; false;</span><br><span class="line">    window.event.preventDefault();</span><br><span class="line">    window.event.stopPropagation();</span><br><span class="line">    window.event.cancelBubble &#x3D; true;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="屏蔽-鼠标点击"><a href="#屏蔽-鼠标点击" class="headerlink" title="屏蔽-鼠标点击"></a>屏蔽-鼠标点击</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;添加鼠标点击监听</span><br><span class="line">window.addEventListener(&#39;mousedown&#39;,this.onClick,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;移除鼠标点击监听</span><br><span class="line">window.removeEventListener(&#39;mousedown&#39;,this.onClick,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;which: 1-左键 2-中键 3-右键</span><br><span class="line">onClick(val)&#123;</span><br><span class="line">    console.error(&#39;点击&#39; + val.which);</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="屏蔽-BackSpace"><a href="#屏蔽-BackSpace" class="headerlink" title="屏蔽-BackSpace"></a>屏蔽-BackSpace</h3><p>在IE页面跳转过程中，按BackSpace退格键默认返回上此浏览页，导致路由中断引起(Vue)页面卡死，所以需要在IE中屏蔽掉BackSpce退格键，但是在输入框中则不屏蔽。</p>
-<ul>
-<li>preventBackSpce.js： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export const banBackSpace &#x3D; (e) &#x3D;&gt; &#123;</span><br><span class="line">  let ev &#x3D; e || window.event</span><br><span class="line">  &#x2F;&#x2F; 各种浏览器下获取事件对象</span><br><span class="line">  let obj &#x3D; ev.relatedTarget || ev.srcElement || ev.target || ev.currentTarget</span><br><span class="line">  &#x2F;&#x2F; 按下Backspace键</span><br><span class="line">  if (ev.keyCode &#x3D;&#x3D;&#x3D; 8) &#123;</span><br><span class="line">    &#x2F;&#x2F; 标签名称</span><br><span class="line">    let tagName &#x3D; obj.nodeName.toLowerCase();</span><br><span class="line">    &#x2F;&#x2F; 如果标签不是input或者textarea则阻止Backspace</span><br><span class="line">    if (tagName !&#x3D;&#x3D; &#39;input&#39; &amp;&amp; tagName !&#x3D;&#x3D; &#39;textarea&#39;) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">    let tagType &#x3D; obj.type.toLowerCase() &#x2F;&#x2F; 标签类型</span><br><span class="line">    &#x2F;&#x2F; input标签除了下面几种类型，全部阻止Backspace</span><br><span class="line">    if (tagName &#x3D;&#x3D;&#x3D; &#39;input&#39; &amp;&amp; (tagType !&#x3D;&#x3D; &#39;text&#39; &amp;&amp; tagType !&#x3D;&#x3D; &#39;textarea&#39; &amp;&amp; tagType !&#x3D;&#x3D; &#39;password&#39;)) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; input或者textarea输入框如果不可编辑则阻止Backspace</span><br><span class="line">    if ((tagName &#x3D;&#x3D;&#x3D; &#39;input&#39; || tagName &#x3D;&#x3D;&#x3D; &#39;textarea&#39;) &amp;&amp; (obj.readOnly &#x3D;&#x3D;&#x3D; true || obj.disabled &#x3D;&#x3D;&#x3D; true)) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function stopIt(ev) &#123;</span><br><span class="line">  if (ev.preventDefault) &#123;</span><br><span class="line">    &#x2F;&#x2F; preventDefault()方法阻止元素发生默认的行为</span><br><span class="line">    ev.preventDefault()</span><br><span class="line">  &#125;</span><br><span class="line">  if (ev.returnValue) &#123;</span><br><span class="line">    &#x2F;&#x2F; IE浏览器下用window.event.returnValue &#x3D; false;实现阻止元素发生默认的行为</span><br><span class="line">  &#125;</span><br><span class="line">  return false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>使用方法：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. 在需要使用的Vue页面引入组件(一般在main.vue中添加)</span><br><span class="line">import &#123;banBackSpace&#125; from &quot;@&#x2F;util&#x2F;preventBackspace&quot;;</span><br><span class="line"></span><br><span class="line">2. mounted 钩子函数挂载事件</span><br><span class="line">document.onkeypress &#x3D; banBackSpace;</span><br><span class="line">document.onkeydown &#x3D; banBackSpace;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>H5</category>
-      </categories>
-      <tags>
-        <tag>事件屏蔽</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>TypeScript 入门1：创建一个在Chrome上运行的TypeScript Demo</title>
     <url>/2021/03/04/TypeScript01/</url>
     <content><![CDATA[<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><blockquote>
@@ -823,6 +743,127 @@
       </tags>
   </entry>
   <entry>
+    <title>屏蔽：键盘按键、鼠标点击事件</title>
+    <url>/2020/10/14/PreventEvent/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>屏蔽-键盘按键</li>
+<li>屏蔽-鼠标点击</li>
+<li>屏蔽-BackSpace</li>
+</ul>
+<a id="more"></a>
+<h3 id="屏蔽-键盘按键"><a href="#屏蔽-键盘按键" class="headerlink" title="屏蔽-键盘按键"></a>屏蔽-键盘按键</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;添加按键监听</span><br><span class="line">window.addEventListener(&#39;keydown&#39;, this.onKeyDown,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;移除按键监听</span><br><span class="line">window.removeEventListener(&quot;keydown&quot;,this.onKeyDown,true);</span><br><span class="line"></span><br><span class="line">onKeyDown(val)&#123;</span><br><span class="line">    console.log(&#39;按下&#39; + val.key);</span><br><span class="line">    val.preventDefault();</span><br><span class="line">    val.stopPropagation();</span><br><span class="line">    val.cancelBubble &#x3D; true;</span><br><span class="line">    window.event.returnValue &#x3D; false;</span><br><span class="line">    window.event.preventDefault();</span><br><span class="line">    window.event.stopPropagation();</span><br><span class="line">    window.event.cancelBubble &#x3D; true;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="屏蔽-鼠标点击"><a href="#屏蔽-鼠标点击" class="headerlink" title="屏蔽-鼠标点击"></a>屏蔽-鼠标点击</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;添加鼠标点击监听</span><br><span class="line">window.addEventListener(&#39;mousedown&#39;,this.onClick,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;移除鼠标点击监听</span><br><span class="line">window.removeEventListener(&#39;mousedown&#39;,this.onClick,true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;which: 1-左键 2-中键 3-右键</span><br><span class="line">onClick(val)&#123;</span><br><span class="line">    console.error(&#39;点击&#39; + val.which);</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="屏蔽-BackSpace"><a href="#屏蔽-BackSpace" class="headerlink" title="屏蔽-BackSpace"></a>屏蔽-BackSpace</h3><p>在IE页面跳转过程中，按BackSpace退格键默认返回上此浏览页，导致路由中断引起(Vue)页面卡死，所以需要在IE中屏蔽掉BackSpce退格键，但是在输入框中则不屏蔽。</p>
+<ul>
+<li>preventBackSpce.js： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export const banBackSpace &#x3D; (e) &#x3D;&gt; &#123;</span><br><span class="line">  let ev &#x3D; e || window.event</span><br><span class="line">  &#x2F;&#x2F; 各种浏览器下获取事件对象</span><br><span class="line">  let obj &#x3D; ev.relatedTarget || ev.srcElement || ev.target || ev.currentTarget</span><br><span class="line">  &#x2F;&#x2F; 按下Backspace键</span><br><span class="line">  if (ev.keyCode &#x3D;&#x3D;&#x3D; 8) &#123;</span><br><span class="line">    &#x2F;&#x2F; 标签名称</span><br><span class="line">    let tagName &#x3D; obj.nodeName.toLowerCase();</span><br><span class="line">    &#x2F;&#x2F; 如果标签不是input或者textarea则阻止Backspace</span><br><span class="line">    if (tagName !&#x3D;&#x3D; &#39;input&#39; &amp;&amp; tagName !&#x3D;&#x3D; &#39;textarea&#39;) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">    let tagType &#x3D; obj.type.toLowerCase() &#x2F;&#x2F; 标签类型</span><br><span class="line">    &#x2F;&#x2F; input标签除了下面几种类型，全部阻止Backspace</span><br><span class="line">    if (tagName &#x3D;&#x3D;&#x3D; &#39;input&#39; &amp;&amp; (tagType !&#x3D;&#x3D; &#39;text&#39; &amp;&amp; tagType !&#x3D;&#x3D; &#39;textarea&#39; &amp;&amp; tagType !&#x3D;&#x3D; &#39;password&#39;)) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; input或者textarea输入框如果不可编辑则阻止Backspace</span><br><span class="line">    if ((tagName &#x3D;&#x3D;&#x3D; &#39;input&#39; || tagName &#x3D;&#x3D;&#x3D; &#39;textarea&#39;) &amp;&amp; (obj.readOnly &#x3D;&#x3D;&#x3D; true || obj.disabled &#x3D;&#x3D;&#x3D; true)) &#123;</span><br><span class="line">      return stopIt(ev)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function stopIt(ev) &#123;</span><br><span class="line">  if (ev.preventDefault) &#123;</span><br><span class="line">    &#x2F;&#x2F; preventDefault()方法阻止元素发生默认的行为</span><br><span class="line">    ev.preventDefault()</span><br><span class="line">  &#125;</span><br><span class="line">  if (ev.returnValue) &#123;</span><br><span class="line">    &#x2F;&#x2F; IE浏览器下用window.event.returnValue &#x3D; false;实现阻止元素发生默认的行为</span><br><span class="line">  &#125;</span><br><span class="line">  return false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>使用方法：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. 在需要使用的Vue页面引入组件(一般在main.vue中添加)</span><br><span class="line">import &#123;banBackSpace&#125; from &quot;@&#x2F;util&#x2F;preventBackspace&quot;;</span><br><span class="line"></span><br><span class="line">2. mounted 钩子函数挂载事件</span><br><span class="line">document.onkeypress &#x3D; banBackSpace;</span><br><span class="line">document.onkeydown &#x3D; banBackSpace;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>H5</category>
+      </categories>
+      <tags>
+        <tag>事件屏蔽</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python-01：Python与C# 基本语法区别</title>
+    <url>/2020/10/31/Python01/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>Python 与 C# 基本语法区别</li>
+<li>具体语法示例</li>
+</ul>
+<a id="more"></a>
+<h3 id="最明显的区别"><a href="#最明显的区别" class="headerlink" title="最明显的区别"></a>最明显的区别</h3><ol>
+<li>Python if、for、while等 包裹代码块不是用{}，而是使用”:”和 换行缩进</li>
+<li>Python 弱类型语言，同时每句话结束后无需加分号”;”，与JAVAScript 类似</li>
+</ol>
+<h3 id="具体语法区别："><a href="#具体语法区别：" class="headerlink" title="具体语法区别："></a>具体语法区别：</h3><ul>
+<li>if<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：</span><br><span class="line">if(条件)&#123;</span><br><span class="line">    print(&quot;xxx&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Python:</span><br><span class="line">if 条件:</span><br><span class="line">    print(&quot;xxx&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>for<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#:</span><br><span class="line">var list &#x3D; new List&lt;int&gt;()&#123;1, 2, 3&#125;;</span><br><span class="line">foreach(n : list)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(n);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Python:</span><br><span class="line">list &#x3D; &#123;1, 2, 3&#125;</span><br><span class="line">for n in list:</span><br><span class="line">    print(n)</span><br></pre></td></tr></table></figure></li>
+<li>强制类型转换<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C# </span><br><span class="line">var num &#x3D; &quot;12&quot;;</span><br><span class="line">int n &#x3D; (int)num</span><br><span class="line"></span><br><span class="line">Python</span><br><span class="line">num &#x3D; &quot;12&quot;</span><br><span class="line">n &#x3D; int(num)</span><br></pre></td></tr></table></figure></li>
+<li><p>数组切片： 其实就是copy出数组中的指定区域元素</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">listnames &#x3D; [&#39;1&#39;,&#39;2&#39;,&#39;3&#39;]</span><br><span class="line">listnames[start_index:end_index] </span><br><span class="line">(注意：copy出来的集合为[start_index,end_index)之前的元素</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数及注释说明</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; 测试函数</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">public string test(string username)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(&quot;hello &quot; + username);</span><br><span class="line">    return username;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Python:</span><br><span class="line">def test(username):</span><br><span class="line">    &quot;&quot;&quot;测试函数&quot;&quot;&quot;</span><br><span class="line">    print(&quot;hello &quot; + username)</span><br><span class="line">    return username.title()</span><br></pre></td></tr></table></figure></li>
+<li><p>传递任意数量的实参：*实参名 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：无对应语法</span><br><span class="line"></span><br><span class="line">Python</span><br><span class="line">def make_pizza(*toppings): </span><br><span class="line">    &quot;&quot;&quot;打印顾客点的所有配料&quot;&quot;&quot; </span><br><span class="line">    print(toppings)</span><br><span class="line"></span><br><span class="line"># 任意数量实参, 如果是键值对，请使用**双星号，比如：</span><br><span class="line">def build_profile(first,last,**user_info):</span><br><span class="line">    for key, value in user_info.items(): </span><br><span class="line">        print(&quot;key&#x3D;&quot; + key + &quot;value&#x3D;&quot; + value)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：任意数量实参只能有一个，并且只能放在函数最后一个参数的位置</p>
+</blockquote>
+</li>
+<li><p>模块导入：类似java 在一个类文件中，导入另外一个文件类</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#: 使用userspace 引入空间，既可以直接使用空间中的类</span><br><span class="line">one.cs：内容如下</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">namespace onens </span><br><span class="line">&#123;</span><br><span class="line">    public class One</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">two.cs：内容如下</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">using onens</span><br><span class="line">namespace twons</span><br><span class="line">&#123;</span><br><span class="line">    public class Two</span><br><span class="line">    &#123;</span><br><span class="line">        public Two()</span><br><span class="line">        &#123;</span><br><span class="line">            var one &#x3D; new One()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Python: 导出模块后，就可以通过模块名称访问其中的所有方法</span><br><span class="line">OneModule.py：内容如下</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">def one(name, address):</span><br><span class="line">    print(name + &quot;&quot; + address)</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">TwoModule.py：内容如下</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">import OneModule</span><br><span class="line">def two():</span><br><span class="line">    OneModule.one(&quot;potter&quot;,&quot;sz&quot;)</span><br><span class="line">-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>导入特定函数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#: 没有导出特定函数一说，只有using namespace的内容 或者说import dll中的方法，比如：</span><br><span class="line">[DllImport(&quot;User32.DLL&quot;)]</span><br><span class="line">public static extern IntPtr GetActiveWindow();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Python：</span><br><span class="line">from module_name import function_name1，function_name2...</span><br><span class="line"># 使用as给导入函数取别名</span><br><span class="line">from module_name import fuction_name as fn</span><br><span class="line"># 使用as给导入模块取别名</span><br><span class="line">import module_name as mn</span><br><span class="line"># 使用*号，导入模块所有函数</span><br><span class="line">from module_name import *</span><br></pre></td></tr></table></figure></li>
+<li>类<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">构造方法</span><br><span class="line">C#: </span><br><span class="line">class Test</span><br><span class="line">&#123;</span><br><span class="line">    public Test(string name,string address)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Python: __init__ 就是构造方法, self是自动传递的</span><br><span class="line">class Test():</span><br><span class="line">    def __init__(self, name, address):</span><br><span class="line">        self.name &#x3D; name</span><br><span class="line">        self.address &#x3D; address</span><br><span class="line">    def hello(self):</span><br><span class="line">        print(&quot;hello&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>继承<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">class Car</span><br><span class="line">&#123;</span><br><span class="line">    private string make;</span><br><span class="line">    private string model;</span><br><span class="line">    private string year;</span><br><span class="line">    public Car(string make, string model, string year)</span><br><span class="line">    &#123;</span><br><span class="line">        this.make &#x3D; make;</span><br><span class="line">        this.model &#x3D; model;</span><br><span class="line">        this.year &#x3D; year;</span><br><span class="line">    &#125;</span><br><span class="line">    public virtual void Run() </span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(&quot;run&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">class ElectricCar : Car</span><br><span class="line">&#123;</span><br><span class="line">    private string makeAddress;</span><br><span class="line">    public ElectricCar(string makeAddress, string make, string model ,string year) : base(make, model,year)</span><br><span class="line">    &#123;</span><br><span class="line">        this.makeAddress &#x3D; makeAddress;</span><br><span class="line">    &#125;</span><br><span class="line">    public override void Run()</span><br><span class="line">    &#123;</span><br><span class="line">        base.Run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Python:</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">class Car():</span><br><span class="line">    def __init__(self,make,model,year):</span><br><span class="line">        self.make &#x3D; make</span><br><span class="line">        self.model &#x3D; model</span><br><span class="line">        self.year &#x3D; year</span><br><span class="line">    def run():</span><br><span class="line">        print(&quot;run&quot;)</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">class ElectricCar(Car):</span><br><span class="line">    def __init__(self,make,model,year):</span><br><span class="line">        super().__init__(make,model,year)</span><br><span class="line">    def run()</span><br><span class="line">        ***子类重写父类方法，同名即可***</span><br><span class="line">        print(&quot;ElectricCar run&quot;)</span><br><span class="line">-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></li>
+<li>导入类：(格式：from module_name import class,class)<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from car import Car</span><br><span class="line">my_new_car &#x3D; Car(&#39;audi&#39;, &#39;a4&#39;, 2016)</span><br></pre></td></tr></table></figure></li>
+<li>文件读写<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#: </span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">1. 读取整个文件</span><br><span class="line">using (FileStream fs &#x3D; File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))</span><br><span class="line">&#123;</span><br><span class="line">    StreamReader sr &#x3D; new StreamReader(fs);</span><br><span class="line">    strContent &#x3D; sr.ReadToEnd();</span><br><span class="line">    sr.Close();</span><br><span class="line">    fs.Close();</span><br><span class="line">&#125;</span><br><span class="line">2. 逐行读取文件</span><br><span class="line">using (StreamReader sr &#x3D; new StreamReader(filepath))</span><br><span class="line">&#123;</span><br><span class="line">    String line;</span><br><span class="line">    while((line&#x3D;sr.ReadLine())!&#x3D;null)</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(line);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">3. 写入文件</span><br><span class="line">using (FileStream fs &#x3D; File.Open(filepath, FileMode.Create, FileAccess.Write, FileShare.ReadWrite))</span><br><span class="line">&#123;</span><br><span class="line">    StreamWriter sw &#x3D; new StreamWriter(fs);</span><br><span class="line">    sw.WriteLine(content);</span><br><span class="line">    sw.Flush();</span><br><span class="line">    sw.Close();</span><br><span class="line">    fs.Close();</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Python:</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">1.读取整个文件，使用rstrip过滤掉前后空格</span><br><span class="line">with open(&#39;pi_digits.txt&#39;) as file_object: </span><br><span class="line">    contents &#x3D; file_object.read() </span><br><span class="line">    print(contents.rstrip())</span><br><span class="line">2. 逐行读取文件</span><br><span class="line">with open(&#39;pi_digits.txt&#39;) as file_object: </span><br><span class="line">    for line in file_object: </span><br><span class="line">    print(line.rstrip())</span><br><span class="line">3. 写入文件：&#39;w&#39;、&#39;r&#39;、&#39;a&#39; 分别代表&#39;写&#39;、&#39;读&#39;、&#39;追加&#39;</span><br><span class="line">filename &#x3D; &#39;programming.txt&#39; </span><br><span class="line">with open(filename, &#39;w&#39;) as file_object: </span><br><span class="line">    file_object.write(&quot;I love programming.&quot;)</span><br></pre></td></tr></table></figure></li>
+<li>存取数据<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：其实就是文件写和读</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Python: </span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">1. 存：</span><br><span class="line">import json </span><br><span class="line">numbers &#x3D; [2, 3, 5, 7, 11, 13]</span><br><span class="line">with open(filename, &#39;w&#39;) as f_obj: </span><br><span class="line">    json.dump(numbers, f_obj)</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">2. 取</span><br><span class="line">import json </span><br><span class="line">with open(filename, &#39;r&#39;) as f_obj:</span><br><span class="line">    print(json.load(f_obj))</span><br><span class="line">-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></li>
+<li>异常<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">int r &#x3D; 0;</span><br><span class="line">try</span><br><span class="line">&#123;</span><br><span class="line">    r &#x3D; 5&#x2F;0</span><br><span class="line">&#125;</span><br><span class="line">catch (Exception e)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(&quot;出现异常&quot;);</span><br><span class="line">&#125;</span><br><span class="line">finally</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(&quot;try最后执行代码&quot;);</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Python：</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">try:</span><br><span class="line">    r &#x3D; 5&#x2F;0</span><br><span class="line">except ZeroDivisionError:</span><br><span class="line">    raise Exception(&quot;抛出异常：除数不能为0&quot;)</span><br><span class="line">except FileNotFoundError:</span><br><span class="line">    print(&quot;异常打印：文件找不到&quot;)</span><br><span class="line">except:</span><br><span class="line">    print(&quot;其他异常&quot;)</span><br><span class="line">else:</span><br><span class="line">    print(&quot;无异常，打印此句&quot;)</span><br><span class="line">finally:</span><br><span class="line">    print(&quot;最后打印此句&quot;)</span><br><span class="line"></span><br><span class="line">说明：</span><br><span class="line">1. else 缩进后代码，相当于把这部分代码放到try-except中或者取消缩进放到最后一样，没啥特别的</span><br><span class="line">2. except 不带具体异常，就相当于C#的catch(Exception)</span><br><span class="line">3. raise 相当于C#的throw</span><br><span class="line">-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></li>
+<li>lambda<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：</span><br><span class="line">格式：(arguments) &#x3D;&gt; &#123; expression &#125;;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Func&lt;int, int&gt; func &#x3D; (x) &#x3D;&gt; &#123; return x + 5; &#125;;</span><br><span class="line">Console.WriteLine(&quot;&quot; + func(5));</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">Python:</span><br><span class="line">格式：lambda arguments : expression</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">func &#x3D; lambda a : a + 10</span><br><span class="line">print(func(5))</span><br><span class="line">-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></li>
+<li>API <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Python: (注意：使用前请使用pip install requests 安装requests模块)</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">import requests</span><br><span class="line">url &#x3D; &#39;https:&#x2F;&#x2F;api.github.com&#x2F;search&#x2F;repositories?q&#x3D;language:python&amp;sort&#x3D;stars&#39;</span><br><span class="line">response &#x3D; requests.get(url)</span><br><span class="line">print(&quot;Status code:&quot;, response.status_code)</span><br><span class="line"># 将API响应存储在一个变量中</span><br><span class="line">response_dict &#x3D; response.json()</span><br><span class="line">print(&quot;Total repositories:&quot;, response_dict[&#39;total_count&#39;])</span><br><span class="line"># 用完记得关闭，否则下次运行会报：远程主机强迫关闭了一个现有的连接</span><br><span class="line">response.close()</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>uniapp 入门实战 02：编译时动态替换配置方案</title>
+    <url>/2021/05/13/UniApp02/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li><a id="more"></a>
+</li>
+</ul>
+<h2 id="概要内容-1"><a href="#概要内容-1" class="headerlink" title="概要内容"></a>概要内容</h2><ul>
+<li>通过vue.config 实现</li>
+<li>示例</li>
+</ul>
+<hr>
+<h2 id="通过vue-config-实现"><a href="#通过vue-config-实现" class="headerlink" title="通过vue.config 实现"></a>通过vue.config 实现</h2><hr>
+<p>由于我们公司业务需求，同一份uniapp项目代码需搞出两个不同名称的小程序，所以每次切换项目配置时，需要改好几处配置信息。根据以前的经验，就是通过webpack编译时，动态选择不同的配置。看到工程项目结构后我傻眼了，编译相关的uniapp 框架完全封装继承完，让人无需关系。问题是现在我需要啊~… </p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210513221230.png" alt="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210513221230.png"></p>
+<p>先google一下，uniapp 编译相关的找不到相关配置。只好翻uniapp 官网，看到以下信息，希望就在眼前。</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210513222337.png" alt="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210513222337.png"></p>
+<p>所以解决方案就来了  😜</p>
+<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><ul>
+<li><p>首先：项目根目录创建vue.config.js</p>
+<p>  <img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210513222808.png" alt="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210513222808.png"></p>
+</li>
+<li><p>其次：vue.config.js（替换微信小程序appid）</p>
+  <figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 创建日期: 2021-05-13</span></span><br><span class="line"><span class="comment">* 文件名称：vue.config.js</span></span><br><span class="line"><span class="comment">* 创建作者：Potter</span></span><br><span class="line"><span class="comment">* 开发版本：1.0.0</span></span><br><span class="line"><span class="comment">* 相关说明：</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//-------------------------------------------------------------------------</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;------------------------------------------&quot;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;Compile [Auto replace config]: Go...&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="comment">//-------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 读取launch_config.json 配置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> serverConfig = <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	<span class="keyword">const</span> data = fs.readFileSync(path.join(__dirname, <span class="string">&#x27;./static/launch_config.json&#x27;</span>), <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">	<span class="keyword">let</span> launchConfig = <span class="built_in">JSON</span>.parse(data);</span><br><span class="line">	serverConfig = launchConfig[<span class="string">&quot;server_configs&quot;</span>][launchConfig[<span class="string">&quot;server&quot;</span>]];</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">&quot;Compile [Auto replace config] : current choice configInfo=&quot;</span> + <span class="built_in">JSON</span>.stringify(serverConfig));</span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">	<span class="built_in">console</span>.error(<span class="string">&quot;Compile [Auto replace config] : read lanch_config error ! e=&quot;</span> + e);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//-------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 读取manifest.json, 采用当前渲染server_config 替换掉manifest.json 中的对应字段</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	<span class="keyword">const</span> manifestPath = path.join(__dirname, <span class="string">&#x27;./manifest.json&#x27;</span>);</span><br><span class="line">	<span class="keyword">const</span> data = fs.readFileSync(manifestPath, <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">	<span class="keyword">let</span> manifest = <span class="built_in">JSON</span>.parse(data);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">&quot;Compile [Auto replace config] : manifest &quot;</span> + <span class="string">`appid[<span class="subst">$&#123;manifest[<span class="string">&quot;mp-weixin&quot;</span>][<span class="string">&#x27;appid&#x27;</span>]&#125;</span>-&gt;<span class="subst">$&#123;serverConfig[<span class="string">&#x27;appid&#x27;</span>]&#125;</span>]`</span>);</span><br><span class="line">	manifest[<span class="string">&quot;mp-weixin&quot;</span>][<span class="string">&#x27;appid&#x27;</span>] = serverConfig[<span class="string">&#x27;appid&#x27;</span>];</span><br><span class="line"></span><br><span class="line">	fs.writeFileSync(manifestPath, <span class="built_in">JSON</span>.stringify(manifest, <span class="literal">null</span>, <span class="number">4</span>));</span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">	<span class="built_in">console</span>.error(<span class="string">&quot;Compile [Auto replace config] : read manifest error ! e=&quot;</span> + e);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//-------------------------------------------------------------------------</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;Compile [Auto replace config]: Complete !&quot;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;------------------------------------------&quot;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最后：运行即可，可以看到以下appid 已替换</p>
+<p>  <img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210513223413.png" alt="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210513223413.png"></p>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>以上：如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>uniapp 入门实战</category>
+      </categories>
+      <tags>
+        <tag>UniApp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vue3.x + Vite2.x 入门实战 01：Vite 遇到的坑</title>
     <url>/2021/04/02/Vue3.x_Vite2.x-01/</url>
     <content><![CDATA[<blockquote>
@@ -871,30 +912,6 @@
       <tags>
         <tag>Vue3.x</tag>
         <tag>Vite2.x</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>uni-app 如何引入Iconfont阿里巴巴矢量图标库</title>
-    <url>/2020/11/13/UniApp01/</url>
-    <content><![CDATA[<h3 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下:"></a>步骤如下:</h3><ol>
-<li>下载图标项目, 解压后效果如下<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201113164039.png" alt=""></li>
-<li><p>修改iconfont.css文件</p>
-<p> 修改前格式：</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@font-face &#123;font-family: &quot;iconfont&quot;;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083&#39;); &#x2F;* IE9 *&#x2F;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083#iefix&#39;) format(&#39;embedded-opentype&#39;), &#x2F;* IE6-IE8 *&#x2F;</span><br><span class="line">url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;),</span><br><span class="line">url(&#39;iconfont.woff?t&#x3D;1605254910083&#39;) format(&#39;woff&#39;),</span><br><span class="line">url(&#39;iconfont.ttf?t&#x3D;1605254910083&#39;) format(&#39;truetype&#39;), &#x2F;* chrome, firefox, opera, Safari, Android, iOS 4.2+ *&#x2F;</span><br><span class="line">url(&#39;iconfont.svg?t&#x3D;1605254910083#iconfont&#39;) format(&#39;svg&#39;); &#x2F;* iOS 4.1- *&#x2F;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 修改后格式: </p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &quot;iconfont&quot;;</span><br><span class="line">    src: url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>Copy字体文件iconfont.ttf和样式文件iconfont.css 至UniApp项目static/font目录中</li>
-</ol>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>UniApp</tag>
       </tags>
   </entry>
   <entry>
@@ -1019,6 +1036,83 @@
       </tags>
   </entry>
   <entry>
+    <title>uni-app 如何引入Iconfont阿里巴巴矢量图标库</title>
+    <url>/2020/11/13/UniApp01/</url>
+    <content><![CDATA[<h3 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下:"></a>步骤如下:</h3><ol>
+<li>下载图标项目, 解压后效果如下<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201113164039.png" alt=""></li>
+<li><p>修改iconfont.css文件</p>
+<p> 修改前格式：</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@font-face &#123;font-family: &quot;iconfont&quot;;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083&#39;); &#x2F;* IE9 *&#x2F;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083#iefix&#39;) format(&#39;embedded-opentype&#39;), &#x2F;* IE6-IE8 *&#x2F;</span><br><span class="line">url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;),</span><br><span class="line">url(&#39;iconfont.woff?t&#x3D;1605254910083&#39;) format(&#39;woff&#39;),</span><br><span class="line">url(&#39;iconfont.ttf?t&#x3D;1605254910083&#39;) format(&#39;truetype&#39;), &#x2F;* chrome, firefox, opera, Safari, Android, iOS 4.2+ *&#x2F;</span><br><span class="line">url(&#39;iconfont.svg?t&#x3D;1605254910083#iconfont&#39;) format(&#39;svg&#39;); &#x2F;* iOS 4.1- *&#x2F;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 修改后格式: </p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &quot;iconfont&quot;;</span><br><span class="line">    src: url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>Copy字体文件iconfont.ttf和样式文件iconfont.css 至UniApp项目static/font目录中</li>
+</ol>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>UniApp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue3.x + Vite2.x 入门实战 06：Keep-alive 动态配置include实现页面缓存</title>
+    <url>/2021/04/29/Vue3.x_Vite2.x-06/</url>
+    <content><![CDATA[<h2 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h2><ul>
+<li>实现步骤<ul>
+<li>第一步：利用store状态管理缓存页面</li>
+<li>第二步：布局layout组件添加router-view相关配置</li>
+<li>第三步：在需要缓存的页面，添加路由守卫</li>
+</ul>
+</li>
+<li>总结</li>
+</ul>
+<a id="more"></a>
+<hr>
+<h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><hr>
+<ul>
+<li><p>第一步：利用store状态管理缓存页面</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; src&#x2F;store&#x2F;modules&#x2F;KeepAlive.ts</span><br><span class="line">&#x2F;&#x2F;-------------------------------------------------------------------------</span><br><span class="line">const keepAliveModule &#x3D; &#123;</span><br><span class="line">    namespaced: true,</span><br><span class="line">    state: &#123;</span><br><span class="line">        caches: [],</span><br><span class="line">    &#125;,</span><br><span class="line">    mutations: &#123;</span><br><span class="line">        ADD(state, name) &#123;</span><br><span class="line">            if (state.caches.indexOf(name) &lt; 0) &#123;</span><br><span class="line">                state.caches.push(name)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        REMOVE(state, name) &#123;</span><br><span class="line">            state.caches &#x3D; state.caches.filter(item &#x3D;&gt; item !&#x3D; name);</span><br><span class="line">        &#125;,</span><br><span class="line">        CLEAN(state) &#123;</span><br><span class="line">            state.caches &#x3D; [];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;-------------------------------------------------------------------------</span><br><span class="line">export default keepAliveModule;</span><br><span class="line">&#x2F;&#x2F;-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; src&#x2F;store&#x2F;index.ts</span><br><span class="line">import &#123; createStore &#125; from &#39;vuex&#39;</span><br><span class="line">import keepAliveModule from &#39;.&#x2F;modules&#x2F;KeepAlive&#39;;</span><br><span class="line">&#x2F;&#x2F;-------------------------------------------------------------------------</span><br><span class="line">const store &#x3D; createStore(&#123;</span><br><span class="line">    modules: &#123;</span><br><span class="line">        keepAlive: keepAliveModule</span><br><span class="line">    &#125;,</span><br><span class="line">    getters: &#123;</span><br><span class="line">        keepAlive: (state) &#x3D;&gt; (state as any).keepAlive,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&#x2F;&#x2F;-------------------------------------------------------------------------</span><br><span class="line">export default store;</span><br><span class="line">&#x2F;&#x2F;-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第二步：布局layout组件添加router-view相关配置</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div class&#x3D;&quot;MainWrapper&quot;&gt;</span><br><span class="line">	      &lt;router-view v-slot&#x3D;&quot;&#123; Component &#125;&quot;&gt;</span><br><span class="line">	        &lt;transition&gt;</span><br><span class="line">	          &lt;keep-alive :include&#x3D;&quot;$store.state.keepAlive.caches&quot;&gt;</span><br><span class="line">	            &lt;component :is&#x3D;&quot;Component&quot; &#x2F;&gt;</span><br><span class="line">	          &lt;&#x2F;keep-alive&gt;</span><br><span class="line">	        &lt;&#x2F;transition&gt;</span><br><span class="line">	    &lt;&#x2F;router-view&gt;</span><br><span class="line">	&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第三步：在需要缓存的页面，添加路由守卫</p>
+<ul>
+<li>beforeRouteEnter：添加缓存页面</li>
+<li>beforeRouteLeave：删除缓存页面</li>
+<li><p>提示：控制逻辑放置一块，方便管理</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;src&#x2F;views&#x2F;variety.vue</span><br><span class="line">export default defineComponent(&#123;</span><br><span class="line">  name: &quot;variety&quot;,</span><br><span class="line">  components: &#123;</span><br><span class="line">  &#125;,</span><br><span class="line">  setup(props, context) &#123;</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeRouteEnter(to, from, next) &#123;</span><br><span class="line">    if (to.path &#x3D;&#x3D; &quot;&#x2F;product&#x2F;variety&quot;) &#123;</span><br><span class="line">      store.commit(&quot;keepAlive&#x2F;ADD&quot;, to.name);</span><br><span class="line">    &#125;</span><br><span class="line">    next();</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeRouteLeave(to, from, next) &#123;</span><br><span class="line">    if (to.name !&#x3D; &quot;pic-editor&quot;) &#123;</span><br><span class="line">      store.commit(&quot;keepAlive&#x2F;REMOVE&quot;, from.name);</span><br><span class="line">    &#125;</span><br><span class="line">    next();</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>特别提醒：keep-alive :include 使用的是页面组件name，所以一定要记得给页面组件命名</li>
+</ul>
+<hr>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="https://hooray.github.io/posts/5dc60183/">使用 keep-alive 的 include 属性实现 Vue 页面缓存</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>以上：如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Vue3.x + Vite2.x 入门实战</category>
+      </categories>
+      <tags>
+        <tag>页面缓存</tag>
+        <tag>Keep-alive</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vue3.x + Vite2.x 入门实战 04：不管怎么设置z-index值，元素层级仍然不对</title>
     <url>/2021/04/09/Vue3.x_Vite2.x-04/</url>
     <content><![CDATA[<blockquote>
@@ -1105,59 +1199,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Vue3.x + Vite2.x 入门实战 06：Keep-alive 动态配置include实现页面缓存</title>
-    <url>/2021/04/29/Vue3.x_Vite2.x-06/</url>
-    <content><![CDATA[<h2 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h2><ul>
-<li>实现步骤<ul>
-<li>第一步：利用store状态管理缓存页面</li>
-<li>第二步：布局layout组件添加router-view相关配置</li>
-<li>第三步：在需要缓存的页面，添加路由守卫</li>
-</ul>
-</li>
-<li>总结</li>
-</ul>
-<a id="more"></a>
-<hr>
-<h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><hr>
-<ul>
-<li><p>第一步：利用store状态管理缓存页面</p>
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; src&#x2F;store&#x2F;modules&#x2F;KeepAlive.ts</span><br><span class="line">&#x2F;&#x2F;-------------------------------------------------------------------------</span><br><span class="line">const keepAliveModule &#x3D; &#123;</span><br><span class="line">    namespaced: true,</span><br><span class="line">    state: &#123;</span><br><span class="line">        caches: [],</span><br><span class="line">    &#125;,</span><br><span class="line">    mutations: &#123;</span><br><span class="line">        ADD(state, name) &#123;</span><br><span class="line">            if (state.caches.indexOf(name) &lt; 0) &#123;</span><br><span class="line">                state.caches.push(name)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        REMOVE(state, name) &#123;</span><br><span class="line">            state.caches &#x3D; state.caches.filter(item &#x3D;&gt; item !&#x3D; name);</span><br><span class="line">        &#125;,</span><br><span class="line">        CLEAN(state) &#123;</span><br><span class="line">            state.caches &#x3D; [];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;-------------------------------------------------------------------------</span><br><span class="line">export default keepAliveModule;</span><br><span class="line">&#x2F;&#x2F;-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; src&#x2F;store&#x2F;index.ts</span><br><span class="line">import &#123; createStore &#125; from &#39;vuex&#39;</span><br><span class="line">import keepAliveModule from &#39;.&#x2F;modules&#x2F;KeepAlive&#39;;</span><br><span class="line">&#x2F;&#x2F;-------------------------------------------------------------------------</span><br><span class="line">const store &#x3D; createStore(&#123;</span><br><span class="line">    modules: &#123;</span><br><span class="line">        keepAlive: keepAliveModule</span><br><span class="line">    &#125;,</span><br><span class="line">    getters: &#123;</span><br><span class="line">        keepAlive: (state) &#x3D;&gt; (state as any).keepAlive,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&#x2F;&#x2F;-------------------------------------------------------------------------</span><br><span class="line">export default store;</span><br><span class="line">&#x2F;&#x2F;-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>第二步：布局layout组件添加router-view相关配置</p>
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div class&#x3D;&quot;MainWrapper&quot;&gt;</span><br><span class="line">	      &lt;router-view v-slot&#x3D;&quot;&#123; Component &#125;&quot;&gt;</span><br><span class="line">	        &lt;transition&gt;</span><br><span class="line">	          &lt;keep-alive :include&#x3D;&quot;$store.state.keepAlive.caches&quot;&gt;</span><br><span class="line">	            &lt;component :is&#x3D;&quot;Component&quot; &#x2F;&gt;</span><br><span class="line">	          &lt;&#x2F;keep-alive&gt;</span><br><span class="line">	        &lt;&#x2F;transition&gt;</span><br><span class="line">	    &lt;&#x2F;router-view&gt;</span><br><span class="line">	&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>第三步：在需要缓存的页面，添加路由守卫</p>
-<ul>
-<li>beforeRouteEnter：添加缓存页面</li>
-<li>beforeRouteLeave：删除缓存页面</li>
-<li><p>提示：控制逻辑放置一块，方便管理</p>
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;src&#x2F;views&#x2F;variety.vue</span><br><span class="line">export default defineComponent(&#123;</span><br><span class="line">  name: &quot;variety&quot;,</span><br><span class="line">  components: &#123;</span><br><span class="line">  &#125;,</span><br><span class="line">  setup(props, context) &#123;</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeRouteEnter(to, from, next) &#123;</span><br><span class="line">    if (to.path &#x3D;&#x3D; &quot;&#x2F;product&#x2F;variety&quot;) &#123;</span><br><span class="line">      store.commit(&quot;keepAlive&#x2F;ADD&quot;, to.name);</span><br><span class="line">    &#125;</span><br><span class="line">    next();</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeRouteLeave(to, from, next) &#123;</span><br><span class="line">    if (to.name !&#x3D; &quot;pic-editor&quot;) &#123;</span><br><span class="line">      store.commit(&quot;keepAlive&#x2F;REMOVE&quot;, from.name);</span><br><span class="line">    &#125;</span><br><span class="line">    next();</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li>特别提醒：keep-alive :include 使用的是页面组件name，所以一定要记得给页面组件命名</li>
-</ul>
-<hr>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://hooray.github.io/posts/5dc60183/">使用 keep-alive 的 include 属性实现 Vue 页面缓存</a></li>
-</ul>
-<hr>
-<blockquote>
-<p>以上：如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Vue3.x + Vite2.x 入门实战</category>
-      </categories>
-      <tags>
-        <tag>页面缓存</tag>
-        <tag>Keep-alive</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Web如何防调试</title>
     <url>/2020/12/27/Web01/</url>
     <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
@@ -1224,56 +1265,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Web代码混淆</title>
-    <url>/2020/12/29/Web02/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>代码混淆</li>
-<li>环境准备</li>
-<li>如何配置UglifyJsPlugin混淆参数</li>
-<li>混淆效果</li>
-<li>Demo源码工程</li>
-</ul>
-<a id="more"></a>
-<h3 id="代码混淆"><a href="#代码混淆" class="headerlink" title="代码混淆"></a>代码混淆</h3><ul>
-<li><p>定义：代码混淆(Obfuscated code)亦称花指令，是将计算机程序的代码，转换成一种功能上等价，但是难于阅读和理解的形式的行为。通俗一点讲就是你写的代码，通过混淆工具，把你的源代码混淆得别人看不太懂。</p>
-</li>
-<li><p>起因：由于Web可以用浏览器调试工具，直接查看到我们的源代码，如果我们的源代码中包含了敏感信息(比如：加密密钥、服务器内部接口地址等)，那么对于不怀好意的人，就可能拿着这些东西攻击我们的服务器，所以我们需要把我们的代码去掉注释、混淆代码等，这样别人就没那么容易看懂我们的代码了，提高服务被攻击的门槛。</p>
-</li>
-</ul>
-<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><blockquote>
-<p>由于我尝试使用WebPack3.x的版本，利用UglifyJsPlugin版本来混淆打包，发现各种配置问题，然后导致打包出问题，所以推荐WebPack4.x 以上版本。我的环境如下</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dependencies&quot;: &#123;</span><br><span class="line">		&quot;vue&quot;: &quot;^2.6.11&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;@babel&#x2F;cli&quot;: &quot;^7.8.4&quot;,</span><br><span class="line">    &quot;@babel&#x2F;core&quot;: &quot;^7.8.7&quot;,</span><br><span class="line">    &quot;@babel&#x2F;preset-env&quot;: &quot;^7.8.7&quot;,</span><br><span class="line">    &quot;babel-loader&quot;: &quot;^8.0.6&quot;,</span><br><span class="line">    &quot;clean-webpack-plugin&quot;: &quot;^3.0.0&quot;,</span><br><span class="line">    &quot;css-loader&quot;: &quot;^3.4.2&quot;,</span><br><span class="line">    &quot;html-loader&quot;: &quot;^1.3.2&quot;,</span><br><span class="line">    &quot;html-webpack-plugin&quot;: &quot;^3.2.0&quot;,</span><br><span class="line">    &quot;uglifyjs-webpack-plugin&quot;: &quot;^2.2.0&quot;,</span><br><span class="line">    &quot;url-loader&quot;: &quot;^4.1.1&quot;,</span><br><span class="line">    &quot;vue-loader&quot;: &quot;^15.9.0&quot;,</span><br><span class="line">    &quot;vue-style-loader&quot;: &quot;^4.1.2&quot;,</span><br><span class="line">    &quot;vue-template-compiler&quot;: &quot;^2.6.11&quot;,</span><br><span class="line">    &quot;webpack&quot;: &quot;^4.42.0&quot;,</span><br><span class="line">    &quot;webpack-bundle-analyzer&quot;: &quot;^4.3.0&quot;,</span><br><span class="line">    &quot;webpack-cli&quot;: &quot;^3.3.11&quot;,</span><br><span class="line">    &quot;webpack-dev-server&quot;: &quot;^3.10.3&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="如何配置UglifyJsPlugin混淆参数"><a href="#如何配置UglifyJsPlugin混淆参数" class="headerlink" title="如何配置UglifyJsPlugin混淆参数"></a>如何配置UglifyJsPlugin混淆参数</h3><blockquote>
-<p>由于混淆需指定混淆哪些代码，不能把JS提供的API、第三方库的API相关的代码也给混淆掉，所以需要在写代码时一定要养成养好的编码规范，这样在配置混淆正在表达式时就非常好些了。以下介绍我的2种命令规范，所以下面的混淆正则表达式就非常好写。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">m_xxx : 成员变量</span><br><span class="line">__function : 方法名</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">new UglifyJsPlugin(</span><br><span class="line">&#123;</span><br><span class="line">    uglifyOptions: &#123;</span><br><span class="line">        compress: &#123;</span><br><span class="line">            &#x2F;&#x2F; warnings: false,</span><br><span class="line">            &#x2F;* 移除没被引用的代码 *&#x2F;</span><br><span class="line">            dead_code: true,</span><br><span class="line">            &#x2F;* 当 Function(args, code)的args 和 code都是字符串时，压缩并混淆 *&#x2F;</span><br><span class="line">            &#x2F;&#x2F; unsafe_Func: true,</span><br><span class="line">            &#x2F;* 干掉没有被引用的函数和变量 *&#x2F;</span><br><span class="line">            unused: true,</span><br><span class="line">            &#x2F;* 干掉顶层作用域中没有被引用的函数或变量 *&#x2F;</span><br><span class="line">            toplevel: true,</span><br><span class="line">            &#x2F;* 干掉console.*函数 *&#x2F;</span><br><span class="line">            drop_console: true,</span><br><span class="line">            &#x2F;* 干掉Debugger*&#x2F;</span><br><span class="line">            drop_debugger: true,</span><br><span class="line">            &#x2F;* 压缩代码次数 注意：数字越大压缩耗时越长 *&#x2F;</span><br><span class="line">            passes: 1,</span><br><span class="line">            &#x2F;* 传true以防止压缩时把1&#x2F;0转成Infinity，那可能会在chrome上有性能问题 *&#x2F;</span><br><span class="line">            keep_infinity: true</span><br><span class="line">        &#125;,</span><br><span class="line">        output: &#123;</span><br><span class="line">            comments: false,</span><br><span class="line">        &#125;,</span><br><span class="line">        mangle: &#123;</span><br><span class="line">            properties: &#123;</span><br><span class="line">                &#x2F;&#x2F; keep_fnames: false,</span><br><span class="line">                &#x2F;* 说明：混淆正在表达式就非常好写 *&#x2F;</span><br><span class="line">                regex: &#x2F;(^__|^m_)\w+&#x2F;,</span><br><span class="line">                reserved: [&quot;$&quot;, &quot;iv&quot;, &quot;mode&quot;, &quot;padding&quot;, &quot;CryptoJS&quot;]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    cache: true,</span><br><span class="line">    extractComments: false,</span><br><span class="line">    sourceMap: false,</span><br><span class="line">    parallel: true</span><br><span class="line">&#125;</span><br><span class="line">),</span><br></pre></td></tr></table></figure>
-<h3 id="混淆效果"><a href="#混淆效果" class="headerlink" title="混淆效果"></a>混淆效果</h3><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201229141408.png" alt=""></p>
-<h3 id="Demo源码工程"><a href="#Demo源码工程" class="headerlink" title="Demo源码工程"></a>Demo源码工程</h3><ul>
-<li>访问地址：<a href="https://github.com/aa4790139/webpack4_confuse_demo">https://github.com/aa4790139/webpack4_confuse_demo</a></li>
-</ul>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
-<li><a href="https://www.freebuf.com/articles/web/102269.html">可信前端之路：代码保护</a></li>
-<li><a href="https://webpack.docschina.org/plugins/uglifyjs-webpack-plugin/">UglifyjsWebpackPlugin 使用说明</a></li>
-<li><a href="https://github.com/LiPinghai/UglifyJSDocCN/blob/master/README.md#compress-options">UglifyJSDocCN</a></li>
-<li><a href="http://lisperator.net/uglifyjs/transform">UglifyJS</a></li>
-<li><a href="https://segmentfault.com/a/1190000008995453">UglifyJS中文文档</a></li>
-<li><a href="https://github.com/yacan8/blog/blob/master/posts/JavaScript%E6%B7%B7%E6%B7%86%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA.md">JavaScript混淆安全加固</a></li>
-</ul>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Web安全</category>
-      </categories>
-      <tags>
-        <tag>混淆</tag>
-        <tag>UglifyJS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Web性能优化</title>
     <url>/2021/02/05/Web03/</url>
     <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
@@ -1305,83 +1296,6 @@
       <tags>
         <tag>Vue</tag>
         <tag>WebPack</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>创建通用JS公共模块并发布至npm</title>
-    <url>/2021/03/03/Web04/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>创建：JS公共模块</li>
-<li>打包：使用rollup 打包公共模块</li>
-<li>发布：js公共模块至verdaccio平台</li>
-<li>发布：js公共模块至npm平台</li>
-</ul>
-<a id="more"></a>
-<hr>
-<h3 id="如何创建JS公共模块"><a href="#如何创建JS公共模块" class="headerlink" title="如何创建JS公共模块"></a>如何创建JS公共模块</h3><blockquote>
-<p>由于代码有点多就不贴代码了，直接去代码仓库看吧  <a href="https://github.com/aa4790139/JSCommonUtils">传输门</a></p>
-</blockquote>
-<hr>
-<h3 id="rollup"><a href="#rollup" class="headerlink" title="rollup"></a>rollup</h3><ul>
-<li>简介：<blockquote>
-<p>Rollup 是一个 JavaScript 模块打包器，可以将小块代码编译成大块复杂的代码，例如 library 或应用程序。</p>
-</blockquote>
-</li>
-<li>使用起因：<blockquote>
-<p>公共相关的js文件想弄成单独的一个模块，方便后续开发使用，而不是不停的copy 和paste，所以就去了解怎么样把js公共相关js 打包成一个模块。</p>
-</blockquote>
-</li>
-<li>安装  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pnpm install -g rollup</span><br></pre></td></tr></table></figure></li>
-<li>创建配置文件  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; rollup.config.js</span><br><span class="line">import json from &#39;rollup-plugin-json&#39;;</span><br><span class="line">import babel from &#39;rollup-plugin-babel&#39;;</span><br><span class="line">import &#123;uglify&#125; from &#39;rollup-plugin-uglify&#39;;</span><br><span class="line">import &#123;version&#125; from &#39;..&#x2F;package.json&#39;;</span><br><span class="line">import multiEntry from &quot;rollup-plugin-multi-entry&quot;;</span><br><span class="line">import &#123;terser&#125; from &quot;rollup-plugin-terser&quot;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    input: &#39;src&#x2F;*.js&#39;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        &#x2F;*输出公共库路径*&#x2F;</span><br><span class="line">        file: &#39;lib&#x2F;index.js&#39;,</span><br><span class="line">        &#x2F;*配置：UMD 通用定义模块，支持前端端跨平台模块化*&#x2F;</span><br><span class="line">        format: &#39;umd&#39;,</span><br><span class="line">        name: &#39;JSCommonUtils&#39;,</span><br><span class="line">        &#x2F;*压缩和混淆js*&#x2F;</span><br><span class="line">        plugins: [terser(), uglify()],</span><br><span class="line">        &#x2F;*JS前缀: 添加库相关信息*&#x2F;</span><br><span class="line">        banner: &#39;&#x2F;* JSCommonUtils version &#39; + version + &#39; *&#x2F;&#39;,</span><br><span class="line">        &#x2F;*JS尾部: 添加个人相关信息*&#x2F;</span><br><span class="line">        footer: &#39;&#x2F;* follow me on github aa4790139 *&#x2F;&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        json(),</span><br><span class="line">        babel(&#123;</span><br><span class="line">            &#x2F;*过滤node_modules编译*&#x2F;</span><br><span class="line">            exclude: &#39;node_modules&#x2F;**&#39;</span><br><span class="line">        &#125;),</span><br><span class="line">        &#x2F;*允许多输入源*&#x2F;</span><br><span class="line">        multiEntry()</span><br><span class="line">    ],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h3 id="verdaccio"><a href="#verdaccio" class="headerlink" title="verdaccio"></a>verdaccio</h3><ul>
-<li>简介： 开源轻量的npm私服包管理平台</li>
-<li>使用起因：<blockquote>
-<p>创建好自己的js公共模块时，我们需要在浏览器和Node.js 环境中测试，有了verdaccio 就非常方便我们测试了。而不是去不停npm本地公共模块搞得非常蛋疼，而且很容易出问题，所以为了简单和方便我们使用verdaccio 搞个私有仓库，方便我们模拟安装使用。</p>
-</blockquote>
-</li>
-<li>安装   <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pnpm install -g verdaccio</span><br></pre></td></tr></table></figure></li>
-<li>启动  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">verdaccio</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="发布至verdaccio平台"><a href="#发布至verdaccio平台" class="headerlink" title="发布至verdaccio平台"></a>发布至verdaccio平台</h3><ul>
-<li>常用命令<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;1. 添加用户</span><br><span class="line">npm adduser --registry http:&#x2F;&#x2F;localhost:4873</span><br><span class="line">&#x2F;&#x2F;2. 发布至私有仓库位置</span><br><span class="line">npm publish --registry http:&#x2F;&#x2F;localhost:4873</span><br><span class="line">&#x2F;&#x2F; 撤回发布刚发布包</span><br><span class="line">npm unpublish --force --registry http:&#x2F;&#x2F;localhost:4873 </span><br><span class="line">&#x2F;&#x2F; 撤回发布的指定包</span><br><span class="line">npm unpublish package_name  --force --registry http:&#x2F;&#x2F;localhost:4873</span><br></pre></td></tr></table></figure></li>
-<li>效果图<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210303144737.png" alt=""></li>
-</ul>
-<h3 id="发布至npm平台"><a href="#发布至npm平台" class="headerlink" title="发布至npm平台"></a>发布至npm平台</h3><ul>
-<li><p>创建.npmignore 文件，过滤掉无需上传的文件和目录</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">node_modules&#x2F;*</span><br><span class="line">src&#x2F;</span><br><span class="line">build&#x2F;</span><br><span class="line">.babelrc</span><br><span class="line">.gitignore</span><br><span class="line">package-lock.json</span><br><span class="line">pnpm-lock.yaml</span><br><span class="line">!node_modules&#x2F;crc32</span><br><span class="line">!node_modules&#x2F;deflate-js</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>提示: .npmignore文件内容，需要忽略的文件和目录写前面，需要排除忽略的文件或目录前加!写后面</p>
-</blockquote>
-</li>
-<li><p>效果图<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210303144716.png" alt=""></p>
-</li>
-</ul>
-<hr>
-<h4 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h4><ul>
-<li><a href="https://verdaccio.org/docs/en/installation">verdaccio 官网</a></li>
-<li><a href="https://fe.rualc.com/note/npm-verdaccio.html#npm-install">verdaccio 搭建配置</a></li>
-<li><a href="https://www.rollupjs.com/guide/tools">rollup.js 中文文档</a></li>
-<li><a href="https://github.com/Godiswill/blog/issues/6">rollup 官网打包实践</a></li>
-<li><a href="https://chenshenhai.github.io/rollupjs-note/">Rollup.js 实战学习笔记</a></li>
-<li><a href="https://stackoverflow.com/questions/48092647/npmignore-ignore-whole-folder-except-given-file-types">.npmignore: ignore whole folder except given file types</a></li>
-</ul>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>模块化</category>
-      </categories>
-      <tags>
-        <tag>UMD</tag>
-        <tag>rollup</tag>
-        <tag>verdaccio</tag>
-        <tag>npm</tag>
       </tags>
   </entry>
   <entry>
@@ -1460,6 +1374,133 @@
         <tag>DllPlugin</tag>
         <tag>DllReferencePlugin</tag>
         <tag>打包优化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Web代码混淆</title>
+    <url>/2020/12/29/Web02/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>代码混淆</li>
+<li>环境准备</li>
+<li>如何配置UglifyJsPlugin混淆参数</li>
+<li>混淆效果</li>
+<li>Demo源码工程</li>
+</ul>
+<a id="more"></a>
+<h3 id="代码混淆"><a href="#代码混淆" class="headerlink" title="代码混淆"></a>代码混淆</h3><ul>
+<li><p>定义：代码混淆(Obfuscated code)亦称花指令，是将计算机程序的代码，转换成一种功能上等价，但是难于阅读和理解的形式的行为。通俗一点讲就是你写的代码，通过混淆工具，把你的源代码混淆得别人看不太懂。</p>
+</li>
+<li><p>起因：由于Web可以用浏览器调试工具，直接查看到我们的源代码，如果我们的源代码中包含了敏感信息(比如：加密密钥、服务器内部接口地址等)，那么对于不怀好意的人，就可能拿着这些东西攻击我们的服务器，所以我们需要把我们的代码去掉注释、混淆代码等，这样别人就没那么容易看懂我们的代码了，提高服务被攻击的门槛。</p>
+</li>
+</ul>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><blockquote>
+<p>由于我尝试使用WebPack3.x的版本，利用UglifyJsPlugin版本来混淆打包，发现各种配置问题，然后导致打包出问题，所以推荐WebPack4.x 以上版本。我的环境如下</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dependencies&quot;: &#123;</span><br><span class="line">		&quot;vue&quot;: &quot;^2.6.11&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;@babel&#x2F;cli&quot;: &quot;^7.8.4&quot;,</span><br><span class="line">    &quot;@babel&#x2F;core&quot;: &quot;^7.8.7&quot;,</span><br><span class="line">    &quot;@babel&#x2F;preset-env&quot;: &quot;^7.8.7&quot;,</span><br><span class="line">    &quot;babel-loader&quot;: &quot;^8.0.6&quot;,</span><br><span class="line">    &quot;clean-webpack-plugin&quot;: &quot;^3.0.0&quot;,</span><br><span class="line">    &quot;css-loader&quot;: &quot;^3.4.2&quot;,</span><br><span class="line">    &quot;html-loader&quot;: &quot;^1.3.2&quot;,</span><br><span class="line">    &quot;html-webpack-plugin&quot;: &quot;^3.2.0&quot;,</span><br><span class="line">    &quot;uglifyjs-webpack-plugin&quot;: &quot;^2.2.0&quot;,</span><br><span class="line">    &quot;url-loader&quot;: &quot;^4.1.1&quot;,</span><br><span class="line">    &quot;vue-loader&quot;: &quot;^15.9.0&quot;,</span><br><span class="line">    &quot;vue-style-loader&quot;: &quot;^4.1.2&quot;,</span><br><span class="line">    &quot;vue-template-compiler&quot;: &quot;^2.6.11&quot;,</span><br><span class="line">    &quot;webpack&quot;: &quot;^4.42.0&quot;,</span><br><span class="line">    &quot;webpack-bundle-analyzer&quot;: &quot;^4.3.0&quot;,</span><br><span class="line">    &quot;webpack-cli&quot;: &quot;^3.3.11&quot;,</span><br><span class="line">    &quot;webpack-dev-server&quot;: &quot;^3.10.3&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="如何配置UglifyJsPlugin混淆参数"><a href="#如何配置UglifyJsPlugin混淆参数" class="headerlink" title="如何配置UglifyJsPlugin混淆参数"></a>如何配置UglifyJsPlugin混淆参数</h3><blockquote>
+<p>由于混淆需指定混淆哪些代码，不能把JS提供的API、第三方库的API相关的代码也给混淆掉，所以需要在写代码时一定要养成养好的编码规范，这样在配置混淆正在表达式时就非常好些了。以下介绍我的2种命令规范，所以下面的混淆正则表达式就非常好写。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">m_xxx : 成员变量</span><br><span class="line">__function : 方法名</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">new UglifyJsPlugin(</span><br><span class="line">&#123;</span><br><span class="line">    uglifyOptions: &#123;</span><br><span class="line">        compress: &#123;</span><br><span class="line">            &#x2F;&#x2F; warnings: false,</span><br><span class="line">            &#x2F;* 移除没被引用的代码 *&#x2F;</span><br><span class="line">            dead_code: true,</span><br><span class="line">            &#x2F;* 当 Function(args, code)的args 和 code都是字符串时，压缩并混淆 *&#x2F;</span><br><span class="line">            &#x2F;&#x2F; unsafe_Func: true,</span><br><span class="line">            &#x2F;* 干掉没有被引用的函数和变量 *&#x2F;</span><br><span class="line">            unused: true,</span><br><span class="line">            &#x2F;* 干掉顶层作用域中没有被引用的函数或变量 *&#x2F;</span><br><span class="line">            toplevel: true,</span><br><span class="line">            &#x2F;* 干掉console.*函数 *&#x2F;</span><br><span class="line">            drop_console: true,</span><br><span class="line">            &#x2F;* 干掉Debugger*&#x2F;</span><br><span class="line">            drop_debugger: true,</span><br><span class="line">            &#x2F;* 压缩代码次数 注意：数字越大压缩耗时越长 *&#x2F;</span><br><span class="line">            passes: 1,</span><br><span class="line">            &#x2F;* 传true以防止压缩时把1&#x2F;0转成Infinity，那可能会在chrome上有性能问题 *&#x2F;</span><br><span class="line">            keep_infinity: true</span><br><span class="line">        &#125;,</span><br><span class="line">        output: &#123;</span><br><span class="line">            comments: false,</span><br><span class="line">        &#125;,</span><br><span class="line">        mangle: &#123;</span><br><span class="line">            properties: &#123;</span><br><span class="line">                &#x2F;&#x2F; keep_fnames: false,</span><br><span class="line">                &#x2F;* 说明：混淆正在表达式就非常好写 *&#x2F;</span><br><span class="line">                regex: &#x2F;(^__|^m_)\w+&#x2F;,</span><br><span class="line">                reserved: [&quot;$&quot;, &quot;iv&quot;, &quot;mode&quot;, &quot;padding&quot;, &quot;CryptoJS&quot;]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    cache: true,</span><br><span class="line">    extractComments: false,</span><br><span class="line">    sourceMap: false,</span><br><span class="line">    parallel: true</span><br><span class="line">&#125;</span><br><span class="line">),</span><br></pre></td></tr></table></figure>
+<h3 id="混淆效果"><a href="#混淆效果" class="headerlink" title="混淆效果"></a>混淆效果</h3><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201229141408.png" alt=""></p>
+<h3 id="Demo源码工程"><a href="#Demo源码工程" class="headerlink" title="Demo源码工程"></a>Demo源码工程</h3><ul>
+<li>访问地址：<a href="https://github.com/aa4790139/webpack4_confuse_demo">https://github.com/aa4790139/webpack4_confuse_demo</a></li>
+</ul>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
+<li><a href="https://www.freebuf.com/articles/web/102269.html">可信前端之路：代码保护</a></li>
+<li><a href="https://webpack.docschina.org/plugins/uglifyjs-webpack-plugin/">UglifyjsWebpackPlugin 使用说明</a></li>
+<li><a href="https://github.com/LiPinghai/UglifyJSDocCN/blob/master/README.md#compress-options">UglifyJSDocCN</a></li>
+<li><a href="http://lisperator.net/uglifyjs/transform">UglifyJS</a></li>
+<li><a href="https://segmentfault.com/a/1190000008995453">UglifyJS中文文档</a></li>
+<li><a href="https://github.com/yacan8/blog/blob/master/posts/JavaScript%E6%B7%B7%E6%B7%86%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA.md">JavaScript混淆安全加固</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>混淆</tag>
+        <tag>UglifyJS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>创建通用JS公共模块并发布至npm</title>
+    <url>/2021/03/03/Web04/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>创建：JS公共模块</li>
+<li>打包：使用rollup 打包公共模块</li>
+<li>发布：js公共模块至verdaccio平台</li>
+<li>发布：js公共模块至npm平台</li>
+</ul>
+<a id="more"></a>
+<hr>
+<h3 id="如何创建JS公共模块"><a href="#如何创建JS公共模块" class="headerlink" title="如何创建JS公共模块"></a>如何创建JS公共模块</h3><blockquote>
+<p>由于代码有点多就不贴代码了，直接去代码仓库看吧  <a href="https://github.com/aa4790139/JSCommonUtils">传输门</a></p>
+</blockquote>
+<hr>
+<h3 id="rollup"><a href="#rollup" class="headerlink" title="rollup"></a>rollup</h3><ul>
+<li>简介：<blockquote>
+<p>Rollup 是一个 JavaScript 模块打包器，可以将小块代码编译成大块复杂的代码，例如 library 或应用程序。</p>
+</blockquote>
+</li>
+<li>使用起因：<blockquote>
+<p>公共相关的js文件想弄成单独的一个模块，方便后续开发使用，而不是不停的copy 和paste，所以就去了解怎么样把js公共相关js 打包成一个模块。</p>
+</blockquote>
+</li>
+<li>安装  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pnpm install -g rollup</span><br></pre></td></tr></table></figure></li>
+<li>创建配置文件  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; rollup.config.js</span><br><span class="line">import json from &#39;rollup-plugin-json&#39;;</span><br><span class="line">import babel from &#39;rollup-plugin-babel&#39;;</span><br><span class="line">import &#123;uglify&#125; from &#39;rollup-plugin-uglify&#39;;</span><br><span class="line">import &#123;version&#125; from &#39;..&#x2F;package.json&#39;;</span><br><span class="line">import multiEntry from &quot;rollup-plugin-multi-entry&quot;;</span><br><span class="line">import &#123;terser&#125; from &quot;rollup-plugin-terser&quot;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    input: &#39;src&#x2F;*.js&#39;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        &#x2F;*输出公共库路径*&#x2F;</span><br><span class="line">        file: &#39;lib&#x2F;index.js&#39;,</span><br><span class="line">        &#x2F;*配置：UMD 通用定义模块，支持前端端跨平台模块化*&#x2F;</span><br><span class="line">        format: &#39;umd&#39;,</span><br><span class="line">        name: &#39;JSCommonUtils&#39;,</span><br><span class="line">        &#x2F;*压缩和混淆js*&#x2F;</span><br><span class="line">        plugins: [terser(), uglify()],</span><br><span class="line">        &#x2F;*JS前缀: 添加库相关信息*&#x2F;</span><br><span class="line">        banner: &#39;&#x2F;* JSCommonUtils version &#39; + version + &#39; *&#x2F;&#39;,</span><br><span class="line">        &#x2F;*JS尾部: 添加个人相关信息*&#x2F;</span><br><span class="line">        footer: &#39;&#x2F;* follow me on github aa4790139 *&#x2F;&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        json(),</span><br><span class="line">        babel(&#123;</span><br><span class="line">            &#x2F;*过滤node_modules编译*&#x2F;</span><br><span class="line">            exclude: &#39;node_modules&#x2F;**&#39;</span><br><span class="line">        &#125;),</span><br><span class="line">        &#x2F;*允许多输入源*&#x2F;</span><br><span class="line">        multiEntry()</span><br><span class="line">    ],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="verdaccio"><a href="#verdaccio" class="headerlink" title="verdaccio"></a>verdaccio</h3><ul>
+<li>简介： 开源轻量的npm私服包管理平台</li>
+<li>使用起因：<blockquote>
+<p>创建好自己的js公共模块时，我们需要在浏览器和Node.js 环境中测试，有了verdaccio 就非常方便我们测试了。而不是去不停npm本地公共模块搞得非常蛋疼，而且很容易出问题，所以为了简单和方便我们使用verdaccio 搞个私有仓库，方便我们模拟安装使用。</p>
+</blockquote>
+</li>
+<li>安装   <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pnpm install -g verdaccio</span><br></pre></td></tr></table></figure></li>
+<li>启动  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">verdaccio</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="发布至verdaccio平台"><a href="#发布至verdaccio平台" class="headerlink" title="发布至verdaccio平台"></a>发布至verdaccio平台</h3><ul>
+<li>常用命令<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;1. 添加用户</span><br><span class="line">npm adduser --registry http:&#x2F;&#x2F;localhost:4873</span><br><span class="line">&#x2F;&#x2F;2. 发布至私有仓库位置</span><br><span class="line">npm publish --registry http:&#x2F;&#x2F;localhost:4873</span><br><span class="line">&#x2F;&#x2F; 撤回发布刚发布包</span><br><span class="line">npm unpublish --force --registry http:&#x2F;&#x2F;localhost:4873 </span><br><span class="line">&#x2F;&#x2F; 撤回发布的指定包</span><br><span class="line">npm unpublish package_name  --force --registry http:&#x2F;&#x2F;localhost:4873</span><br></pre></td></tr></table></figure></li>
+<li>效果图<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210303144737.png" alt=""></li>
+</ul>
+<h3 id="发布至npm平台"><a href="#发布至npm平台" class="headerlink" title="发布至npm平台"></a>发布至npm平台</h3><ul>
+<li><p>创建.npmignore 文件，过滤掉无需上传的文件和目录</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">node_modules&#x2F;*</span><br><span class="line">src&#x2F;</span><br><span class="line">build&#x2F;</span><br><span class="line">.babelrc</span><br><span class="line">.gitignore</span><br><span class="line">package-lock.json</span><br><span class="line">pnpm-lock.yaml</span><br><span class="line">!node_modules&#x2F;crc32</span><br><span class="line">!node_modules&#x2F;deflate-js</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>提示: .npmignore文件内容，需要忽略的文件和目录写前面，需要排除忽略的文件或目录前加!写后面</p>
+</blockquote>
+</li>
+<li><p>效果图<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210303144716.png" alt=""></p>
+</li>
+</ul>
+<hr>
+<h4 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h4><ul>
+<li><a href="https://verdaccio.org/docs/en/installation">verdaccio 官网</a></li>
+<li><a href="https://fe.rualc.com/note/npm-verdaccio.html#npm-install">verdaccio 搭建配置</a></li>
+<li><a href="https://www.rollupjs.com/guide/tools">rollup.js 中文文档</a></li>
+<li><a href="https://github.com/Godiswill/blog/issues/6">rollup 官网打包实践</a></li>
+<li><a href="https://chenshenhai.github.io/rollupjs-note/">Rollup.js 实战学习笔记</a></li>
+<li><a href="https://stackoverflow.com/questions/48092647/npmignore-ignore-whole-folder-except-given-file-types">.npmignore: ignore whole folder except given file types</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>模块化</category>
+      </categories>
+      <tags>
+        <tag>UMD</tag>
+        <tag>rollup</tag>
+        <tag>verdaccio</tag>
+        <tag>npm</tag>
       </tags>
   </entry>
 </search>
