@@ -210,6 +210,52 @@
       </tags>
   </entry>
   <entry>
+    <title>Python-04：AppWeb自动化测试【打开App切换WebView登录】</title>
+    <url>/2020/11/04/AutoTest04/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>环境准备</li>
+<li>测试步骤</li>
+<li>案例代码</li>
+</ul>
+<a id="more"></a>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
+<li>NodeJS v12.13.1</li>
+<li>JDK 1.8.0_191</li>
+<li>Android SDK </li>
+<li>Appium-Python-Client </li>
+</ol>
+<blockquote>
+<p>具体教程请看: <a href="https://yanxuewen.cn/2020/10/22/AutoTest02/">自动化测试-02：实践</a></p>
+</blockquote>
+<h3 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下"></a>步骤如下</h3><ol>
+<li>AppWebView开启调试模式： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">setWebContentsDebuggingEnabled(true);</span><br></pre></td></tr></table></figure></li>
+<li>获取Android Chrome 版本： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">adb shell am start -a android.intent.action.VIEW -d  https:&#x2F;&#x2F;liulanmi.com&#x2F;labs&#x2F;core.html</span><br></pre></td></tr></table></figure></li>
+<li>根据Android Chrome版本，下载对应ChromeDriver驱动 <a href="https://chromedriver.chromium.org/downloads">下载地址</a></li>
+<li>将下载的ChromeDriver Copy 至 Appium 目录，比如我的Appium目录： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Program Files\Appium\resources\app\node_modules\appium\node_modules\appium-chromedriver\chromedriver\win</span><br></pre></td></tr></table></figure></li>
+<li>启动APP后并跳转App内嵌的WebView页面，使用Chrome获取WebView中的元素 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">打开Chrome </span><br><span class="line">地址栏输入：chrome:&#x2F;&#x2F;inspect</span><br></pre></td></tr></table></figure>
+ 如下图所示：<br> <img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201105212810.png" alt=""></li>
+</ol>
+<h3 id="案例代码"><a href="#案例代码" class="headerlink" title="案例代码"></a>案例代码</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 案例：自动化测试-登录</span><br><span class="line"></span><br><span class="line">from appium import webdriver</span><br><span class="line">from selenium.webdriver.common.by import By</span><br><span class="line"></span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">desired_caps &#x3D; &#123;&#125;</span><br><span class="line">desired_caps[&quot;platformName&quot;] &#x3D; &quot;android&quot;</span><br><span class="line">desired_caps[&quot;platformVersion&quot;] &#x3D; &quot;7.1.2&quot;</span><br><span class="line">desired_caps[&quot;deviceName&quot;] &#x3D; &quot;127.0.0.1:62001&quot;</span><br><span class="line">desired_caps[&quot;appPackage&quot;] &#x3D; &quot;com.guide.custom&quot;</span><br><span class="line">desired_caps[&quot;appActivity&quot;] &#x3D; &quot;com.anyapps.Activity.AALaunch&quot;</span><br><span class="line">desired_caps[&quot;noReset&quot;] &#x3D; &quot;true&quot;</span><br><span class="line">desired_caps[&quot;autoGrantPermissions&quot;] &#x3D; &quot;true&quot;</span><br><span class="line">desired_caps[&#39;chromeOptions&#39;] &#x3D; &#123;&quot;w3c&quot;:False&#125;</span><br><span class="line">desired_caps[&#39;showChromedriverLog&#39;] &#x3D; True</span><br><span class="line"></span><br><span class="line">driver &#x3D; webdriver.Remote(&#39;http:&#x2F;&#x2F;localhost:4723&#x2F;wd&#x2F;hub&#39;, desired_caps)</span><br><span class="line"></span><br><span class="line">view_context &#x3D; &quot;WEBVIEW_com.guide.custom&quot;</span><br><span class="line">driver.switch_to.context(view_context)</span><br><span class="line">time.sleep(5)</span><br><span class="line">print(driver.current_context)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 获取账号和密码元素，输入账号密码</span><br><span class="line">inputAccount &#x3D; driver.find_element_by_id(&quot;account&quot;)</span><br><span class="line">inputAccount.send_keys(&#39;186xxxxxxx&#39;)</span><br><span class="line">inputPassword &#x3D; driver.find_element_by_id(&quot;password&quot;)</span><br><span class="line">inputPassword.send_keys(&#39;123456&#39;)</span><br><span class="line"># 获取登录元素，点击登录</span><br><span class="line">loginBtn &#x3D; driver.find_element_by_class_name(&#39;confirmDisable&#39;)</span><br><span class="line">loginBtn.click()</span><br></pre></td></tr></table></figure>
+<h3 id="Appium-调试App-原理图"><a href="#Appium-调试App-原理图" class="headerlink" title="Appium 调试App 原理图"></a>Appium 调试App 原理图</h3><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/QQ%E6%88%AA%E5%9B%BE20201105213544.png" alt=""></p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献:"></a>参考文献:</h3><ul>
+<li><a href="https://selenium-python-zh.readthedocs.io/en/latest/index.html">Selenium-Python中文文档</a></li>
+<li><a href="https://github.com/appium/appium/issues/13306">Fail to locate an web element using “findElement” on Android</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>自动化测试</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Selenium</tag>
+        <tag>Appnium</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Github + Hexo + Next 搭建个人博客网站</title>
     <url>/2020/09/29/BuildBlog/</url>
     <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
@@ -344,52 +390,6 @@
         <tag>Github</tag>
         <tag>Hexo</tag>
         <tag>Next</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python-04：AppWeb自动化测试【打开App切换WebView登录】</title>
-    <url>/2020/11/04/AutoTest04/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>环境准备</li>
-<li>测试步骤</li>
-<li>案例代码</li>
-</ul>
-<a id="more"></a>
-<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
-<li>NodeJS v12.13.1</li>
-<li>JDK 1.8.0_191</li>
-<li>Android SDK </li>
-<li>Appium-Python-Client </li>
-</ol>
-<blockquote>
-<p>具体教程请看: <a href="https://yanxuewen.cn/2020/10/22/AutoTest02/">自动化测试-02：实践</a></p>
-</blockquote>
-<h3 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下"></a>步骤如下</h3><ol>
-<li>AppWebView开启调试模式： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">setWebContentsDebuggingEnabled(true);</span><br></pre></td></tr></table></figure></li>
-<li>获取Android Chrome 版本： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">adb shell am start -a android.intent.action.VIEW -d  https:&#x2F;&#x2F;liulanmi.com&#x2F;labs&#x2F;core.html</span><br></pre></td></tr></table></figure></li>
-<li>根据Android Chrome版本，下载对应ChromeDriver驱动 <a href="https://chromedriver.chromium.org/downloads">下载地址</a></li>
-<li>将下载的ChromeDriver Copy 至 Appium 目录，比如我的Appium目录： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Program Files\Appium\resources\app\node_modules\appium\node_modules\appium-chromedriver\chromedriver\win</span><br></pre></td></tr></table></figure></li>
-<li>启动APP后并跳转App内嵌的WebView页面，使用Chrome获取WebView中的元素 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">打开Chrome </span><br><span class="line">地址栏输入：chrome:&#x2F;&#x2F;inspect</span><br></pre></td></tr></table></figure>
- 如下图所示：<br> <img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201105212810.png" alt=""></li>
-</ol>
-<h3 id="案例代码"><a href="#案例代码" class="headerlink" title="案例代码"></a>案例代码</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 案例：自动化测试-登录</span><br><span class="line"></span><br><span class="line">from appium import webdriver</span><br><span class="line">from selenium.webdriver.common.by import By</span><br><span class="line"></span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">desired_caps &#x3D; &#123;&#125;</span><br><span class="line">desired_caps[&quot;platformName&quot;] &#x3D; &quot;android&quot;</span><br><span class="line">desired_caps[&quot;platformVersion&quot;] &#x3D; &quot;7.1.2&quot;</span><br><span class="line">desired_caps[&quot;deviceName&quot;] &#x3D; &quot;127.0.0.1:62001&quot;</span><br><span class="line">desired_caps[&quot;appPackage&quot;] &#x3D; &quot;com.guide.custom&quot;</span><br><span class="line">desired_caps[&quot;appActivity&quot;] &#x3D; &quot;com.anyapps.Activity.AALaunch&quot;</span><br><span class="line">desired_caps[&quot;noReset&quot;] &#x3D; &quot;true&quot;</span><br><span class="line">desired_caps[&quot;autoGrantPermissions&quot;] &#x3D; &quot;true&quot;</span><br><span class="line">desired_caps[&#39;chromeOptions&#39;] &#x3D; &#123;&quot;w3c&quot;:False&#125;</span><br><span class="line">desired_caps[&#39;showChromedriverLog&#39;] &#x3D; True</span><br><span class="line"></span><br><span class="line">driver &#x3D; webdriver.Remote(&#39;http:&#x2F;&#x2F;localhost:4723&#x2F;wd&#x2F;hub&#39;, desired_caps)</span><br><span class="line"></span><br><span class="line">view_context &#x3D; &quot;WEBVIEW_com.guide.custom&quot;</span><br><span class="line">driver.switch_to.context(view_context)</span><br><span class="line">time.sleep(5)</span><br><span class="line">print(driver.current_context)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 获取账号和密码元素，输入账号密码</span><br><span class="line">inputAccount &#x3D; driver.find_element_by_id(&quot;account&quot;)</span><br><span class="line">inputAccount.send_keys(&#39;186xxxxxxx&#39;)</span><br><span class="line">inputPassword &#x3D; driver.find_element_by_id(&quot;password&quot;)</span><br><span class="line">inputPassword.send_keys(&#39;123456&#39;)</span><br><span class="line"># 获取登录元素，点击登录</span><br><span class="line">loginBtn &#x3D; driver.find_element_by_class_name(&#39;confirmDisable&#39;)</span><br><span class="line">loginBtn.click()</span><br></pre></td></tr></table></figure>
-<h3 id="Appium-调试App-原理图"><a href="#Appium-调试App-原理图" class="headerlink" title="Appium 调试App 原理图"></a>Appium 调试App 原理图</h3><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/QQ%E6%88%AA%E5%9B%BE20201105213544.png" alt=""></p>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献:"></a>参考文献:</h3><ul>
-<li><a href="https://selenium-python-zh.readthedocs.io/en/latest/index.html">Selenium-Python中文文档</a></li>
-<li><a href="https://github.com/appium/appium/issues/13306">Fail to locate an web element using “findElement” on Android</a></li>
-</ul>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>自动化测试</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Selenium</tag>
-        <tag>Appnium</tag>
       </tags>
   </entry>
   <entry>
@@ -719,6 +719,57 @@
       </tags>
   </entry>
   <entry>
+    <title>Python-01：Python与C# 基本语法区别</title>
+    <url>/2020/10/31/Python01/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>Python 与 C# 基本语法区别</li>
+<li>具体语法示例</li>
+</ul>
+<a id="more"></a>
+<h3 id="最明显的区别"><a href="#最明显的区别" class="headerlink" title="最明显的区别"></a>最明显的区别</h3><ol>
+<li>Python if、for、while等 包裹代码块不是用{}，而是使用”:”和 换行缩进</li>
+<li>Python 弱类型语言，同时每句话结束后无需加分号”;”，与JAVAScript 类似</li>
+</ol>
+<h3 id="具体语法区别："><a href="#具体语法区别：" class="headerlink" title="具体语法区别："></a>具体语法区别：</h3><ul>
+<li>if<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：</span><br><span class="line">if(条件)&#123;</span><br><span class="line">    print(&quot;xxx&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Python:</span><br><span class="line">if 条件:</span><br><span class="line">    print(&quot;xxx&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>for<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#:</span><br><span class="line">var list &#x3D; new List&lt;int&gt;()&#123;1, 2, 3&#125;;</span><br><span class="line">foreach(n : list)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(n);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Python:</span><br><span class="line">list &#x3D; &#123;1, 2, 3&#125;</span><br><span class="line">for n in list:</span><br><span class="line">    print(n)</span><br></pre></td></tr></table></figure></li>
+<li>强制类型转换<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C# </span><br><span class="line">var num &#x3D; &quot;12&quot;;</span><br><span class="line">int n &#x3D; (int)num</span><br><span class="line"></span><br><span class="line">Python</span><br><span class="line">num &#x3D; &quot;12&quot;</span><br><span class="line">n &#x3D; int(num)</span><br></pre></td></tr></table></figure></li>
+<li><p>数组切片： 其实就是copy出数组中的指定区域元素</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">listnames &#x3D; [&#39;1&#39;,&#39;2&#39;,&#39;3&#39;]</span><br><span class="line">listnames[start_index:end_index] </span><br><span class="line">(注意：copy出来的集合为[start_index,end_index)之前的元素</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数及注释说明</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; 测试函数</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">public string test(string username)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(&quot;hello &quot; + username);</span><br><span class="line">    return username;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Python:</span><br><span class="line">def test(username):</span><br><span class="line">    &quot;&quot;&quot;测试函数&quot;&quot;&quot;</span><br><span class="line">    print(&quot;hello &quot; + username)</span><br><span class="line">    return username.title()</span><br></pre></td></tr></table></figure></li>
+<li><p>传递任意数量的实参：*实参名 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：无对应语法</span><br><span class="line"></span><br><span class="line">Python</span><br><span class="line">def make_pizza(*toppings): </span><br><span class="line">    &quot;&quot;&quot;打印顾客点的所有配料&quot;&quot;&quot; </span><br><span class="line">    print(toppings)</span><br><span class="line"></span><br><span class="line"># 任意数量实参, 如果是键值对，请使用**双星号，比如：</span><br><span class="line">def build_profile(first,last,**user_info):</span><br><span class="line">    for key, value in user_info.items(): </span><br><span class="line">        print(&quot;key&#x3D;&quot; + key + &quot;value&#x3D;&quot; + value)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：任意数量实参只能有一个，并且只能放在函数最后一个参数的位置</p>
+</blockquote>
+</li>
+<li><p>模块导入：类似java 在一个类文件中，导入另外一个文件类</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#: 使用userspace 引入空间，既可以直接使用空间中的类</span><br><span class="line">one.cs：内容如下</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">namespace onens </span><br><span class="line">&#123;</span><br><span class="line">    public class One</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">two.cs：内容如下</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">using onens</span><br><span class="line">namespace twons</span><br><span class="line">&#123;</span><br><span class="line">    public class Two</span><br><span class="line">    &#123;</span><br><span class="line">        public Two()</span><br><span class="line">        &#123;</span><br><span class="line">            var one &#x3D; new One()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Python: 导出模块后，就可以通过模块名称访问其中的所有方法</span><br><span class="line">OneModule.py：内容如下</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">def one(name, address):</span><br><span class="line">    print(name + &quot;&quot; + address)</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">TwoModule.py：内容如下</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">import OneModule</span><br><span class="line">def two():</span><br><span class="line">    OneModule.one(&quot;potter&quot;,&quot;sz&quot;)</span><br><span class="line">-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>导入特定函数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#: 没有导出特定函数一说，只有using namespace的内容 或者说import dll中的方法，比如：</span><br><span class="line">[DllImport(&quot;User32.DLL&quot;)]</span><br><span class="line">public static extern IntPtr GetActiveWindow();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Python：</span><br><span class="line">from module_name import function_name1，function_name2...</span><br><span class="line"># 使用as给导入函数取别名</span><br><span class="line">from module_name import fuction_name as fn</span><br><span class="line"># 使用as给导入模块取别名</span><br><span class="line">import module_name as mn</span><br><span class="line"># 使用*号，导入模块所有函数</span><br><span class="line">from module_name import *</span><br></pre></td></tr></table></figure></li>
+<li>类<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">构造方法</span><br><span class="line">C#: </span><br><span class="line">class Test</span><br><span class="line">&#123;</span><br><span class="line">    public Test(string name,string address)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Python: __init__ 就是构造方法, self是自动传递的</span><br><span class="line">class Test():</span><br><span class="line">    def __init__(self, name, address):</span><br><span class="line">        self.name &#x3D; name</span><br><span class="line">        self.address &#x3D; address</span><br><span class="line">    def hello(self):</span><br><span class="line">        print(&quot;hello&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>继承<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">class Car</span><br><span class="line">&#123;</span><br><span class="line">    private string make;</span><br><span class="line">    private string model;</span><br><span class="line">    private string year;</span><br><span class="line">    public Car(string make, string model, string year)</span><br><span class="line">    &#123;</span><br><span class="line">        this.make &#x3D; make;</span><br><span class="line">        this.model &#x3D; model;</span><br><span class="line">        this.year &#x3D; year;</span><br><span class="line">    &#125;</span><br><span class="line">    public virtual void Run() </span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(&quot;run&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">class ElectricCar : Car</span><br><span class="line">&#123;</span><br><span class="line">    private string makeAddress;</span><br><span class="line">    public ElectricCar(string makeAddress, string make, string model ,string year) : base(make, model,year)</span><br><span class="line">    &#123;</span><br><span class="line">        this.makeAddress &#x3D; makeAddress;</span><br><span class="line">    &#125;</span><br><span class="line">    public override void Run()</span><br><span class="line">    &#123;</span><br><span class="line">        base.Run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Python:</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">class Car():</span><br><span class="line">    def __init__(self,make,model,year):</span><br><span class="line">        self.make &#x3D; make</span><br><span class="line">        self.model &#x3D; model</span><br><span class="line">        self.year &#x3D; year</span><br><span class="line">    def run():</span><br><span class="line">        print(&quot;run&quot;)</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">class ElectricCar(Car):</span><br><span class="line">    def __init__(self,make,model,year):</span><br><span class="line">        super().__init__(make,model,year)</span><br><span class="line">    def run()</span><br><span class="line">        ***子类重写父类方法，同名即可***</span><br><span class="line">        print(&quot;ElectricCar run&quot;)</span><br><span class="line">-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></li>
+<li>导入类：(格式：from module_name import class,class)<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from car import Car</span><br><span class="line">my_new_car &#x3D; Car(&#39;audi&#39;, &#39;a4&#39;, 2016)</span><br></pre></td></tr></table></figure></li>
+<li>文件读写<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#: </span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">1. 读取整个文件</span><br><span class="line">using (FileStream fs &#x3D; File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))</span><br><span class="line">&#123;</span><br><span class="line">    StreamReader sr &#x3D; new StreamReader(fs);</span><br><span class="line">    strContent &#x3D; sr.ReadToEnd();</span><br><span class="line">    sr.Close();</span><br><span class="line">    fs.Close();</span><br><span class="line">&#125;</span><br><span class="line">2. 逐行读取文件</span><br><span class="line">using (StreamReader sr &#x3D; new StreamReader(filepath))</span><br><span class="line">&#123;</span><br><span class="line">    String line;</span><br><span class="line">    while((line&#x3D;sr.ReadLine())!&#x3D;null)</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(line);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">3. 写入文件</span><br><span class="line">using (FileStream fs &#x3D; File.Open(filepath, FileMode.Create, FileAccess.Write, FileShare.ReadWrite))</span><br><span class="line">&#123;</span><br><span class="line">    StreamWriter sw &#x3D; new StreamWriter(fs);</span><br><span class="line">    sw.WriteLine(content);</span><br><span class="line">    sw.Flush();</span><br><span class="line">    sw.Close();</span><br><span class="line">    fs.Close();</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Python:</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">1.读取整个文件，使用rstrip过滤掉前后空格</span><br><span class="line">with open(&#39;pi_digits.txt&#39;) as file_object: </span><br><span class="line">    contents &#x3D; file_object.read() </span><br><span class="line">    print(contents.rstrip())</span><br><span class="line">2. 逐行读取文件</span><br><span class="line">with open(&#39;pi_digits.txt&#39;) as file_object: </span><br><span class="line">    for line in file_object: </span><br><span class="line">    print(line.rstrip())</span><br><span class="line">3. 写入文件：&#39;w&#39;、&#39;r&#39;、&#39;a&#39; 分别代表&#39;写&#39;、&#39;读&#39;、&#39;追加&#39;</span><br><span class="line">filename &#x3D; &#39;programming.txt&#39; </span><br><span class="line">with open(filename, &#39;w&#39;) as file_object: </span><br><span class="line">    file_object.write(&quot;I love programming.&quot;)</span><br></pre></td></tr></table></figure></li>
+<li>存取数据<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：其实就是文件写和读</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Python: </span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">1. 存：</span><br><span class="line">import json </span><br><span class="line">numbers &#x3D; [2, 3, 5, 7, 11, 13]</span><br><span class="line">with open(filename, &#39;w&#39;) as f_obj: </span><br><span class="line">    json.dump(numbers, f_obj)</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">2. 取</span><br><span class="line">import json </span><br><span class="line">with open(filename, &#39;r&#39;) as f_obj:</span><br><span class="line">    print(json.load(f_obj))</span><br><span class="line">-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></li>
+<li>异常<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">int r &#x3D; 0;</span><br><span class="line">try</span><br><span class="line">&#123;</span><br><span class="line">    r &#x3D; 5&#x2F;0</span><br><span class="line">&#125;</span><br><span class="line">catch (Exception e)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(&quot;出现异常&quot;);</span><br><span class="line">&#125;</span><br><span class="line">finally</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(&quot;try最后执行代码&quot;);</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Python：</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">try:</span><br><span class="line">    r &#x3D; 5&#x2F;0</span><br><span class="line">except ZeroDivisionError:</span><br><span class="line">    raise Exception(&quot;抛出异常：除数不能为0&quot;)</span><br><span class="line">except FileNotFoundError:</span><br><span class="line">    print(&quot;异常打印：文件找不到&quot;)</span><br><span class="line">except:</span><br><span class="line">    print(&quot;其他异常&quot;)</span><br><span class="line">else:</span><br><span class="line">    print(&quot;无异常，打印此句&quot;)</span><br><span class="line">finally:</span><br><span class="line">    print(&quot;最后打印此句&quot;)</span><br><span class="line"></span><br><span class="line">说明：</span><br><span class="line">1. else 缩进后代码，相当于把这部分代码放到try-except中或者取消缩进放到最后一样，没啥特别的</span><br><span class="line">2. except 不带具体异常，就相当于C#的catch(Exception)</span><br><span class="line">3. raise 相当于C#的throw</span><br><span class="line">-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></li>
+<li>lambda<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：</span><br><span class="line">格式：(arguments) &#x3D;&gt; &#123; expression &#125;;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Func&lt;int, int&gt; func &#x3D; (x) &#x3D;&gt; &#123; return x + 5; &#125;;</span><br><span class="line">Console.WriteLine(&quot;&quot; + func(5));</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">Python:</span><br><span class="line">格式：lambda arguments : expression</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">func &#x3D; lambda a : a + 10</span><br><span class="line">print(func(5))</span><br><span class="line">-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></li>
+<li>API <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Python: (注意：使用前请使用pip install requests 安装requests模块)</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">import requests</span><br><span class="line">url &#x3D; &#39;https:&#x2F;&#x2F;api.github.com&#x2F;search&#x2F;repositories?q&#x3D;language:python&amp;sort&#x3D;stars&#39;</span><br><span class="line">response &#x3D; requests.get(url)</span><br><span class="line">print(&quot;Status code:&quot;, response.status_code)</span><br><span class="line"># 将API响应存储在一个变量中</span><br><span class="line">response_dict &#x3D; response.json()</span><br><span class="line">print(&quot;Total repositories:&quot;, response_dict[&#39;total_count&#39;])</span><br><span class="line"># 用完记得关闭，否则下次运行会报：远程主机强迫关闭了一个现有的连接</span><br><span class="line">response.close()</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>TypeScript 入门1：创建一个在Chrome上运行的TypeScript Demo</title>
     <url>/2021/03/04/TypeScript01/</url>
     <content><![CDATA[<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><blockquote>
@@ -769,57 +820,6 @@
         <tag>TypeScript</tag>
         <tag>VSCode</tag>
         <tag>Chrom</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python-01：Python与C# 基本语法区别</title>
-    <url>/2020/10/31/Python01/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>Python 与 C# 基本语法区别</li>
-<li>具体语法示例</li>
-</ul>
-<a id="more"></a>
-<h3 id="最明显的区别"><a href="#最明显的区别" class="headerlink" title="最明显的区别"></a>最明显的区别</h3><ol>
-<li>Python if、for、while等 包裹代码块不是用{}，而是使用”:”和 换行缩进</li>
-<li>Python 弱类型语言，同时每句话结束后无需加分号”;”，与JAVAScript 类似</li>
-</ol>
-<h3 id="具体语法区别："><a href="#具体语法区别：" class="headerlink" title="具体语法区别："></a>具体语法区别：</h3><ul>
-<li>if<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：</span><br><span class="line">if(条件)&#123;</span><br><span class="line">    print(&quot;xxx&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Python:</span><br><span class="line">if 条件:</span><br><span class="line">    print(&quot;xxx&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>for<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#:</span><br><span class="line">var list &#x3D; new List&lt;int&gt;()&#123;1, 2, 3&#125;;</span><br><span class="line">foreach(n : list)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(n);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Python:</span><br><span class="line">list &#x3D; &#123;1, 2, 3&#125;</span><br><span class="line">for n in list:</span><br><span class="line">    print(n)</span><br></pre></td></tr></table></figure></li>
-<li>强制类型转换<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C# </span><br><span class="line">var num &#x3D; &quot;12&quot;;</span><br><span class="line">int n &#x3D; (int)num</span><br><span class="line"></span><br><span class="line">Python</span><br><span class="line">num &#x3D; &quot;12&quot;</span><br><span class="line">n &#x3D; int(num)</span><br></pre></td></tr></table></figure></li>
-<li><p>数组切片： 其实就是copy出数组中的指定区域元素</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">listnames &#x3D; [&#39;1&#39;,&#39;2&#39;,&#39;3&#39;]</span><br><span class="line">listnames[start_index:end_index] </span><br><span class="line">(注意：copy出来的集合为[start_index,end_index)之前的元素</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>函数及注释说明</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; 测试函数</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">public string test(string username)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(&quot;hello &quot; + username);</span><br><span class="line">    return username;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Python:</span><br><span class="line">def test(username):</span><br><span class="line">    &quot;&quot;&quot;测试函数&quot;&quot;&quot;</span><br><span class="line">    print(&quot;hello &quot; + username)</span><br><span class="line">    return username.title()</span><br></pre></td></tr></table></figure></li>
-<li><p>传递任意数量的实参：*实参名 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：无对应语法</span><br><span class="line"></span><br><span class="line">Python</span><br><span class="line">def make_pizza(*toppings): </span><br><span class="line">    &quot;&quot;&quot;打印顾客点的所有配料&quot;&quot;&quot; </span><br><span class="line">    print(toppings)</span><br><span class="line"></span><br><span class="line"># 任意数量实参, 如果是键值对，请使用**双星号，比如：</span><br><span class="line">def build_profile(first,last,**user_info):</span><br><span class="line">    for key, value in user_info.items(): </span><br><span class="line">        print(&quot;key&#x3D;&quot; + key + &quot;value&#x3D;&quot; + value)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：任意数量实参只能有一个，并且只能放在函数最后一个参数的位置</p>
-</blockquote>
-</li>
-<li><p>模块导入：类似java 在一个类文件中，导入另外一个文件类</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#: 使用userspace 引入空间，既可以直接使用空间中的类</span><br><span class="line">one.cs：内容如下</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">namespace onens </span><br><span class="line">&#123;</span><br><span class="line">    public class One</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">two.cs：内容如下</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">using onens</span><br><span class="line">namespace twons</span><br><span class="line">&#123;</span><br><span class="line">    public class Two</span><br><span class="line">    &#123;</span><br><span class="line">        public Two()</span><br><span class="line">        &#123;</span><br><span class="line">            var one &#x3D; new One()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Python: 导出模块后，就可以通过模块名称访问其中的所有方法</span><br><span class="line">OneModule.py：内容如下</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">def one(name, address):</span><br><span class="line">    print(name + &quot;&quot; + address)</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">TwoModule.py：内容如下</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">import OneModule</span><br><span class="line">def two():</span><br><span class="line">    OneModule.one(&quot;potter&quot;,&quot;sz&quot;)</span><br><span class="line">-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>导入特定函数</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#: 没有导出特定函数一说，只有using namespace的内容 或者说import dll中的方法，比如：</span><br><span class="line">[DllImport(&quot;User32.DLL&quot;)]</span><br><span class="line">public static extern IntPtr GetActiveWindow();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Python：</span><br><span class="line">from module_name import function_name1，function_name2...</span><br><span class="line"># 使用as给导入函数取别名</span><br><span class="line">from module_name import fuction_name as fn</span><br><span class="line"># 使用as给导入模块取别名</span><br><span class="line">import module_name as mn</span><br><span class="line"># 使用*号，导入模块所有函数</span><br><span class="line">from module_name import *</span><br></pre></td></tr></table></figure></li>
-<li>类<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">构造方法</span><br><span class="line">C#: </span><br><span class="line">class Test</span><br><span class="line">&#123;</span><br><span class="line">    public Test(string name,string address)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Python: __init__ 就是构造方法, self是自动传递的</span><br><span class="line">class Test():</span><br><span class="line">    def __init__(self, name, address):</span><br><span class="line">        self.name &#x3D; name</span><br><span class="line">        self.address &#x3D; address</span><br><span class="line">    def hello(self):</span><br><span class="line">        print(&quot;hello&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>继承<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">class Car</span><br><span class="line">&#123;</span><br><span class="line">    private string make;</span><br><span class="line">    private string model;</span><br><span class="line">    private string year;</span><br><span class="line">    public Car(string make, string model, string year)</span><br><span class="line">    &#123;</span><br><span class="line">        this.make &#x3D; make;</span><br><span class="line">        this.model &#x3D; model;</span><br><span class="line">        this.year &#x3D; year;</span><br><span class="line">    &#125;</span><br><span class="line">    public virtual void Run() </span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(&quot;run&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">class ElectricCar : Car</span><br><span class="line">&#123;</span><br><span class="line">    private string makeAddress;</span><br><span class="line">    public ElectricCar(string makeAddress, string make, string model ,string year) : base(make, model,year)</span><br><span class="line">    &#123;</span><br><span class="line">        this.makeAddress &#x3D; makeAddress;</span><br><span class="line">    &#125;</span><br><span class="line">    public override void Run()</span><br><span class="line">    &#123;</span><br><span class="line">        base.Run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Python:</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">class Car():</span><br><span class="line">    def __init__(self,make,model,year):</span><br><span class="line">        self.make &#x3D; make</span><br><span class="line">        self.model &#x3D; model</span><br><span class="line">        self.year &#x3D; year</span><br><span class="line">    def run():</span><br><span class="line">        print(&quot;run&quot;)</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">class ElectricCar(Car):</span><br><span class="line">    def __init__(self,make,model,year):</span><br><span class="line">        super().__init__(make,model,year)</span><br><span class="line">    def run()</span><br><span class="line">        ***子类重写父类方法，同名即可***</span><br><span class="line">        print(&quot;ElectricCar run&quot;)</span><br><span class="line">-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></li>
-<li>导入类：(格式：from module_name import class,class)<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from car import Car</span><br><span class="line">my_new_car &#x3D; Car(&#39;audi&#39;, &#39;a4&#39;, 2016)</span><br></pre></td></tr></table></figure></li>
-<li>文件读写<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#: </span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">1. 读取整个文件</span><br><span class="line">using (FileStream fs &#x3D; File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))</span><br><span class="line">&#123;</span><br><span class="line">    StreamReader sr &#x3D; new StreamReader(fs);</span><br><span class="line">    strContent &#x3D; sr.ReadToEnd();</span><br><span class="line">    sr.Close();</span><br><span class="line">    fs.Close();</span><br><span class="line">&#125;</span><br><span class="line">2. 逐行读取文件</span><br><span class="line">using (StreamReader sr &#x3D; new StreamReader(filepath))</span><br><span class="line">&#123;</span><br><span class="line">    String line;</span><br><span class="line">    while((line&#x3D;sr.ReadLine())!&#x3D;null)</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(line);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">3. 写入文件</span><br><span class="line">using (FileStream fs &#x3D; File.Open(filepath, FileMode.Create, FileAccess.Write, FileShare.ReadWrite))</span><br><span class="line">&#123;</span><br><span class="line">    StreamWriter sw &#x3D; new StreamWriter(fs);</span><br><span class="line">    sw.WriteLine(content);</span><br><span class="line">    sw.Flush();</span><br><span class="line">    sw.Close();</span><br><span class="line">    fs.Close();</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Python:</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">1.读取整个文件，使用rstrip过滤掉前后空格</span><br><span class="line">with open(&#39;pi_digits.txt&#39;) as file_object: </span><br><span class="line">    contents &#x3D; file_object.read() </span><br><span class="line">    print(contents.rstrip())</span><br><span class="line">2. 逐行读取文件</span><br><span class="line">with open(&#39;pi_digits.txt&#39;) as file_object: </span><br><span class="line">    for line in file_object: </span><br><span class="line">    print(line.rstrip())</span><br><span class="line">3. 写入文件：&#39;w&#39;、&#39;r&#39;、&#39;a&#39; 分别代表&#39;写&#39;、&#39;读&#39;、&#39;追加&#39;</span><br><span class="line">filename &#x3D; &#39;programming.txt&#39; </span><br><span class="line">with open(filename, &#39;w&#39;) as file_object: </span><br><span class="line">    file_object.write(&quot;I love programming.&quot;)</span><br></pre></td></tr></table></figure></li>
-<li>存取数据<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：其实就是文件写和读</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Python: </span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">1. 存：</span><br><span class="line">import json </span><br><span class="line">numbers &#x3D; [2, 3, 5, 7, 11, 13]</span><br><span class="line">with open(filename, &#39;w&#39;) as f_obj: </span><br><span class="line">    json.dump(numbers, f_obj)</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">2. 取</span><br><span class="line">import json </span><br><span class="line">with open(filename, &#39;r&#39;) as f_obj:</span><br><span class="line">    print(json.load(f_obj))</span><br><span class="line">-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></li>
-<li>异常<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">int r &#x3D; 0;</span><br><span class="line">try</span><br><span class="line">&#123;</span><br><span class="line">    r &#x3D; 5&#x2F;0</span><br><span class="line">&#125;</span><br><span class="line">catch (Exception e)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(&quot;出现异常&quot;);</span><br><span class="line">&#125;</span><br><span class="line">finally</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(&quot;try最后执行代码&quot;);</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Python：</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">try:</span><br><span class="line">    r &#x3D; 5&#x2F;0</span><br><span class="line">except ZeroDivisionError:</span><br><span class="line">    raise Exception(&quot;抛出异常：除数不能为0&quot;)</span><br><span class="line">except FileNotFoundError:</span><br><span class="line">    print(&quot;异常打印：文件找不到&quot;)</span><br><span class="line">except:</span><br><span class="line">    print(&quot;其他异常&quot;)</span><br><span class="line">else:</span><br><span class="line">    print(&quot;无异常，打印此句&quot;)</span><br><span class="line">finally:</span><br><span class="line">    print(&quot;最后打印此句&quot;)</span><br><span class="line"></span><br><span class="line">说明：</span><br><span class="line">1. else 缩进后代码，相当于把这部分代码放到try-except中或者取消缩进放到最后一样，没啥特别的</span><br><span class="line">2. except 不带具体异常，就相当于C#的catch(Exception)</span><br><span class="line">3. raise 相当于C#的throw</span><br><span class="line">-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></li>
-<li>lambda<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C#：</span><br><span class="line">格式：(arguments) &#x3D;&gt; &#123; expression &#125;;</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">Func&lt;int, int&gt; func &#x3D; (x) &#x3D;&gt; &#123; return x + 5; &#125;;</span><br><span class="line">Console.WriteLine(&quot;&quot; + func(5));</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">Python:</span><br><span class="line">格式：lambda arguments : expression</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">func &#x3D; lambda a : a + 10</span><br><span class="line">print(func(5))</span><br><span class="line">-------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></li>
-<li>API <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Python: (注意：使用前请使用pip install requests 安装requests模块)</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line">import requests</span><br><span class="line">url &#x3D; &#39;https:&#x2F;&#x2F;api.github.com&#x2F;search&#x2F;repositories?q&#x3D;language:python&amp;sort&#x3D;stars&#39;</span><br><span class="line">response &#x3D; requests.get(url)</span><br><span class="line">print(&quot;Status code:&quot;, response.status_code)</span><br><span class="line"># 将API响应存储在一个变量中</span><br><span class="line">response_dict &#x3D; response.json()</span><br><span class="line">print(&quot;Total repositories:&quot;, response_dict[&#39;total_count&#39;])</span><br><span class="line"># 用完记得关闭，否则下次运行会报：远程主机强迫关闭了一个现有的连接</span><br><span class="line">response.close()</span><br><span class="line">-------------------------------------------------------------------------</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -985,6 +985,78 @@
       </tags>
   </entry>
   <entry>
+    <title>Vue3.x + Vite2.x 入门实战 02：搞懂各种对齐参数</title>
+    <url>/2021/04/02/Vue3.x_Vite2.x-02/</url>
+    <content><![CDATA[<blockquote>
+<p>最常用的text-align、align-item、vertical_align、justify-content 这四个参数容易搞混淆 ，没搞清楚概念经常循环着尝试影响效率 😂，所以动手实践搞清楚一下。</p>
+</blockquote>
+<hr>
+<p><em>提示：只演示2-3种属性值效果，其他去查api即可</em></p>
+<h2 id="概要内容："><a href="#概要内容：" class="headerlink" title="概要内容："></a>概要内容：</h2><ol>
+<li>text-align</li>
+<li>align-item</li>
+<li>vertical_align</li>
+<li>justify-content</li>
+</ol>
+<a id="more"></a>
+<h3 id="1-text-align"><a href="#1-text-align" class="headerlink" title="1. text-align"></a>1. text-align</h3><blockquote>
+<p>作用：针对行内内容，相对父元素的（<strong>横轴</strong>）对齐方式</p>
+</blockquote>
+<ul>
+<li><p>示例：</p>
+  <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>text-align<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.left</span> &#123;</span></span><br><span class="line">            border: 1px solid black;</span><br><span class="line">            text-align: left;</span><br><span class="line">            width: 600px;</span><br><span class="line">            height: 50px;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.left</span> <span class="selector-class">.block</span> &#123;</span></span><br><span class="line">            background: red;</span><br><span class="line">            width: 300px;</span><br><span class="line">            display: inline-block;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.center</span> &#123;</span></span><br><span class="line">            border: 1px solid black;</span><br><span class="line">            text-align: center;</span><br><span class="line">            width: 600px;</span><br><span class="line">            height: 50px;</span><br><span class="line">            text-align: center;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.center</span> <span class="selector-class">.block</span> &#123;</span></span><br><span class="line">            background: green;</span><br><span class="line">            width: 300px;</span><br><span class="line">            display: inline-block;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.right</span> &#123;</span></span><br><span class="line">            border: 1px solid black;</span><br><span class="line">            text-align: right;</span><br><span class="line">            width: 600px;</span><br><span class="line">            height: 50px;</span><br><span class="line">            text-align: right;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.right</span> <span class="selector-class">.block</span> &#123;</span></span><br><span class="line">            background: gold;</span><br><span class="line">            width: 300px;</span><br><span class="line">            display: inline-block;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;block&quot;</span>&gt;</span></span><br><span class="line">            this is a block , text-align: left;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;block&quot;</span>&gt;</span></span><br><span class="line">            this is a block, text-align: center;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;block&quot;</span>&gt;</span></span><br><span class="line">            this is a block, text-align: right;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>示例效果：</p>
+<p>  <img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210402123233.png" alt=""></p>
+</li>
+</ul>
+<h3 id="2-align-items"><a href="#2-align-items" class="headerlink" title="2. align-items"></a>2. align-items</h3><blockquote>
+<p>作用：定义flex子项在flex容器的当前行的侧轴（<strong>纵轴</strong>）方向上的对齐方式</p>
+</blockquote>
+<ul>
+<li>示例</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>align-items<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-id">#baseline</span> &#123;</span></span><br><span class="line">            width: 220px;</span><br><span class="line">            height: 150px;</span><br><span class="line">            border: 1px solid black;</span><br><span class="line">            display: flex;</span><br><span class="line">            align-items: baseline;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-id">#baseline</span> <span class="selector-tag">div</span> &#123;</span></span><br><span class="line">            flex: 1;</span><br><span class="line">            display: inline-block;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-id">#center</span> &#123;</span></span><br><span class="line">            width: 220px;</span><br><span class="line">            height: 150px;</span><br><span class="line">            border: 1px solid black;</span><br><span class="line">            display: flex;</span><br><span class="line">            align-items: center;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-id">#center</span> <span class="selector-tag">div</span> &#123;</span></span><br><span class="line">            flex: 1;</span><br><span class="line">            display: inline-block;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;baseline&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color:coral;&quot;</span>&gt;</span> align-items<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color:lightblue;&quot;</span>&gt;</span>baseline<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color:coral;&quot;</span>&gt;</span> align-items<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color:lightblue;&quot;</span>&gt;</span>center<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>示例图</p>
+<p>  <img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210402123016.png" alt=""></p>
+</li>
+</ul>
+<h3 id="3-vertical-align"><a href="#3-vertical-align" class="headerlink" title="3. vertical-align"></a>3. vertical-align</h3><blockquote>
+<p>作用：定义行内元素的基线相对于该元素所在行的基线的(<strong>纵轴</strong>)垂直对齐方式</p>
+</blockquote>
+<ul>
+<li><p>示例</p>
+  <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>菜鸟教程(runoob.com)<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        body &#123;</span><br><span class="line">            border: 1px solid black;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.parent</span> <span class="selector-class">.default</span> &#123;</span></span><br><span class="line">            background-color: grey;</span><br><span class="line">            display: inline-block;</span><br><span class="line">            height: 50px;</span><br><span class="line">            margin-bottom: 10px;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.parent</span> <span class="selector-class">.top</span> &#123;</span></span><br><span class="line">            background-color: red;</span><br><span class="line">            display: inline-block;</span><br><span class="line">            height: 50px;</span><br><span class="line">            vertical-align: text-top;</span><br><span class="line">            margin-bottom: 10px;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.parent</span> <span class="selector-class">.bottom</span> &#123;</span></span><br><span class="line">            background-color: olive;</span><br><span class="line">            display: inline-block;</span><br><span class="line">            height: 50px;</span><br><span class="line">            vertical-align: text-bottom;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;parent&quot;</span>&gt;</span>一个<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;default&quot;</span>&gt;</span>this is a block<span class="tag">&lt;/<span class="name">div</span>&gt;</span>默认对齐的块元素。<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;parent&quot;</span>&gt;</span>一个<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;top&quot;</span>&gt;</span>this is a block<span class="tag">&lt;/<span class="name">div</span>&gt;</span>text-top 对齐的块元素。<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;parent&quot;</span>&gt;</span>一个<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;bottom&quot;</span>&gt;</span>this is a block<span class="tag">&lt;/<span class="name">div</span>&gt;</span>text-bottom 对齐的块元素。<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>示例效果：</p>
+<p>  <img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210402123314.png" alt=""></p>
+</li>
+</ul>
+<h3 id="4-justify-content"><a href="#4-justify-content" class="headerlink" title="4. justify-content"></a>4. justify-content</h3><blockquote>
+<p>作用：用于设置或检索弹性盒子元素在主轴（<strong>横轴</strong>）方向上的对齐方式</p>
+</blockquote>
+<ul>
+<li><p>示例：</p>
+  <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>justify-content<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.center</span> <span class="selector-class">.contian</span> &#123;</span></span><br><span class="line">            width: 400px;</span><br><span class="line">            height: 100px;</span><br><span class="line"><span class="css">            <span class="selector-tag">border</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#c3c3c3</span>;</span></span><br><span class="line">            display: flex;</span><br><span class="line">            justify-content: center;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.center</span> <span class="selector-class">.contian</span> <span class="selector-tag">div</span> &#123;</span></span><br><span class="line">            width: 70px;</span><br><span class="line">            height: 70px;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.flex-start</span> <span class="selector-class">.contian</span> &#123;</span></span><br><span class="line">            width: 400px;</span><br><span class="line">            height: 100px;</span><br><span class="line"><span class="css">            <span class="selector-tag">border</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#c3c3c3</span>;</span></span><br><span class="line">            display: flex;</span><br><span class="line">            justify-content: flex-start;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.flex-start</span> <span class="selector-class">.contian</span> <span class="selector-tag">div</span> &#123;</span></span><br><span class="line">            width: 70px;</span><br><span class="line">            height: 70px;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.space-between</span> <span class="selector-class">.contian</span> &#123;</span></span><br><span class="line">            width: 400px;</span><br><span class="line">            height: 100px;</span><br><span class="line"><span class="css">            <span class="selector-tag">border</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#c3c3c3</span>;</span></span><br><span class="line">            display: flex;</span><br><span class="line">            justify-content: space-between;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.space-between</span> <span class="selector-class">.contian</span> <span class="selector-tag">div</span> &#123;</span></span><br><span class="line">            width: 70px;</span><br><span class="line">            height: 70px;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span>justify-content: center;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;contian&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color:coral;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color:lightblue;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;flex-start&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span>flex-start<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;contian&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color:coral;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color:lightblue;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;space-between&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span>space-between<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;contian&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color:coral;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color:lightblue;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>示例效果：</p>
+<p>  <img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210402123335.png" alt=""></p>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Vue3.x + Vite2.x 入门实战</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vue3.x + Vite2.x 入门实战 04：不管怎么设置z-index值，元素层级仍然不对</title>
     <url>/2021/04/09/Vue3.x_Vite2.x-04/</url>
     <content><![CDATA[<blockquote>
@@ -1068,78 +1140,6 @@
       <tags>
         <tag>z-index</tag>
         <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vue3.x + Vite2.x 入门实战 02：搞懂各种对齐参数</title>
-    <url>/2021/04/02/Vue3.x_Vite2.x-02/</url>
-    <content><![CDATA[<blockquote>
-<p>最常用的text-align、align-item、vertical_align、justify-content 这四个参数容易搞混淆 ，没搞清楚概念经常循环着尝试影响效率 😂，所以动手实践搞清楚一下。</p>
-</blockquote>
-<hr>
-<p><em>提示：只演示2-3种属性值效果，其他去查api即可</em></p>
-<h2 id="概要内容："><a href="#概要内容：" class="headerlink" title="概要内容："></a>概要内容：</h2><ol>
-<li>text-align</li>
-<li>align-item</li>
-<li>vertical_align</li>
-<li>justify-content</li>
-</ol>
-<a id="more"></a>
-<h3 id="1-text-align"><a href="#1-text-align" class="headerlink" title="1. text-align"></a>1. text-align</h3><blockquote>
-<p>作用：针对行内内容，相对父元素的（<strong>横轴</strong>）对齐方式</p>
-</blockquote>
-<ul>
-<li><p>示例：</p>
-  <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>text-align<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.left</span> &#123;</span></span><br><span class="line">            border: 1px solid black;</span><br><span class="line">            text-align: left;</span><br><span class="line">            width: 600px;</span><br><span class="line">            height: 50px;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.left</span> <span class="selector-class">.block</span> &#123;</span></span><br><span class="line">            background: red;</span><br><span class="line">            width: 300px;</span><br><span class="line">            display: inline-block;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.center</span> &#123;</span></span><br><span class="line">            border: 1px solid black;</span><br><span class="line">            text-align: center;</span><br><span class="line">            width: 600px;</span><br><span class="line">            height: 50px;</span><br><span class="line">            text-align: center;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.center</span> <span class="selector-class">.block</span> &#123;</span></span><br><span class="line">            background: green;</span><br><span class="line">            width: 300px;</span><br><span class="line">            display: inline-block;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.right</span> &#123;</span></span><br><span class="line">            border: 1px solid black;</span><br><span class="line">            text-align: right;</span><br><span class="line">            width: 600px;</span><br><span class="line">            height: 50px;</span><br><span class="line">            text-align: right;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.right</span> <span class="selector-class">.block</span> &#123;</span></span><br><span class="line">            background: gold;</span><br><span class="line">            width: 300px;</span><br><span class="line">            display: inline-block;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;block&quot;</span>&gt;</span></span><br><span class="line">            this is a block , text-align: left;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;block&quot;</span>&gt;</span></span><br><span class="line">            this is a block, text-align: center;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;block&quot;</span>&gt;</span></span><br><span class="line">            this is a block, text-align: right;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>示例效果：</p>
-<p>  <img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210402123233.png" alt=""></p>
-</li>
-</ul>
-<h3 id="2-align-items"><a href="#2-align-items" class="headerlink" title="2. align-items"></a>2. align-items</h3><blockquote>
-<p>作用：定义flex子项在flex容器的当前行的侧轴（<strong>纵轴</strong>）方向上的对齐方式</p>
-</blockquote>
-<ul>
-<li>示例</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>align-items<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-id">#baseline</span> &#123;</span></span><br><span class="line">            width: 220px;</span><br><span class="line">            height: 150px;</span><br><span class="line">            border: 1px solid black;</span><br><span class="line">            display: flex;</span><br><span class="line">            align-items: baseline;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-id">#baseline</span> <span class="selector-tag">div</span> &#123;</span></span><br><span class="line">            flex: 1;</span><br><span class="line">            display: inline-block;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-id">#center</span> &#123;</span></span><br><span class="line">            width: 220px;</span><br><span class="line">            height: 150px;</span><br><span class="line">            border: 1px solid black;</span><br><span class="line">            display: flex;</span><br><span class="line">            align-items: center;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-id">#center</span> <span class="selector-tag">div</span> &#123;</span></span><br><span class="line">            flex: 1;</span><br><span class="line">            display: inline-block;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;baseline&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color:coral;&quot;</span>&gt;</span> align-items<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color:lightblue;&quot;</span>&gt;</span>baseline<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color:coral;&quot;</span>&gt;</span> align-items<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color:lightblue;&quot;</span>&gt;</span>center<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>示例图</p>
-<p>  <img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210402123016.png" alt=""></p>
-</li>
-</ul>
-<h3 id="3-vertical-align"><a href="#3-vertical-align" class="headerlink" title="3. vertical-align"></a>3. vertical-align</h3><blockquote>
-<p>作用：定义行内元素的基线相对于该元素所在行的基线的(<strong>纵轴</strong>)垂直对齐方式</p>
-</blockquote>
-<ul>
-<li><p>示例</p>
-  <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>菜鸟教程(runoob.com)<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        body &#123;</span><br><span class="line">            border: 1px solid black;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.parent</span> <span class="selector-class">.default</span> &#123;</span></span><br><span class="line">            background-color: grey;</span><br><span class="line">            display: inline-block;</span><br><span class="line">            height: 50px;</span><br><span class="line">            margin-bottom: 10px;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.parent</span> <span class="selector-class">.top</span> &#123;</span></span><br><span class="line">            background-color: red;</span><br><span class="line">            display: inline-block;</span><br><span class="line">            height: 50px;</span><br><span class="line">            vertical-align: text-top;</span><br><span class="line">            margin-bottom: 10px;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.parent</span> <span class="selector-class">.bottom</span> &#123;</span></span><br><span class="line">            background-color: olive;</span><br><span class="line">            display: inline-block;</span><br><span class="line">            height: 50px;</span><br><span class="line">            vertical-align: text-bottom;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;parent&quot;</span>&gt;</span>一个<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;default&quot;</span>&gt;</span>this is a block<span class="tag">&lt;/<span class="name">div</span>&gt;</span>默认对齐的块元素。<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;parent&quot;</span>&gt;</span>一个<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;top&quot;</span>&gt;</span>this is a block<span class="tag">&lt;/<span class="name">div</span>&gt;</span>text-top 对齐的块元素。<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;parent&quot;</span>&gt;</span>一个<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;bottom&quot;</span>&gt;</span>this is a block<span class="tag">&lt;/<span class="name">div</span>&gt;</span>text-bottom 对齐的块元素。<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>示例效果：</p>
-<p>  <img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210402123314.png" alt=""></p>
-</li>
-</ul>
-<h3 id="4-justify-content"><a href="#4-justify-content" class="headerlink" title="4. justify-content"></a>4. justify-content</h3><blockquote>
-<p>作用：用于设置或检索弹性盒子元素在主轴（<strong>横轴</strong>）方向上的对齐方式</p>
-</blockquote>
-<ul>
-<li><p>示例：</p>
-  <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>justify-content<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.center</span> <span class="selector-class">.contian</span> &#123;</span></span><br><span class="line">            width: 400px;</span><br><span class="line">            height: 100px;</span><br><span class="line"><span class="css">            <span class="selector-tag">border</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#c3c3c3</span>;</span></span><br><span class="line">            display: flex;</span><br><span class="line">            justify-content: center;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.center</span> <span class="selector-class">.contian</span> <span class="selector-tag">div</span> &#123;</span></span><br><span class="line">            width: 70px;</span><br><span class="line">            height: 70px;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.flex-start</span> <span class="selector-class">.contian</span> &#123;</span></span><br><span class="line">            width: 400px;</span><br><span class="line">            height: 100px;</span><br><span class="line"><span class="css">            <span class="selector-tag">border</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#c3c3c3</span>;</span></span><br><span class="line">            display: flex;</span><br><span class="line">            justify-content: flex-start;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.flex-start</span> <span class="selector-class">.contian</span> <span class="selector-tag">div</span> &#123;</span></span><br><span class="line">            width: 70px;</span><br><span class="line">            height: 70px;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.space-between</span> <span class="selector-class">.contian</span> &#123;</span></span><br><span class="line">            width: 400px;</span><br><span class="line">            height: 100px;</span><br><span class="line"><span class="css">            <span class="selector-tag">border</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#c3c3c3</span>;</span></span><br><span class="line">            display: flex;</span><br><span class="line">            justify-content: space-between;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.space-between</span> <span class="selector-class">.contian</span> <span class="selector-tag">div</span> &#123;</span></span><br><span class="line">            width: 70px;</span><br><span class="line">            height: 70px;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span>justify-content: center;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;contian&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color:coral;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color:lightblue;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;flex-start&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span>flex-start<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;contian&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color:coral;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color:lightblue;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;space-between&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span>space-between<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;contian&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color:coral;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color:lightblue;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>示例效果：</p>
-<p>  <img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210402123335.png" alt=""></p>
-</li>
-</ul>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Vue3.x + Vite2.x 入门实战</category>
-      </categories>
-      <tags>
-        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -1262,40 +1262,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Web性能优化</title>
-    <url>/2021/02/05/Web03/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>工具层面</li>
-<li>Vue代码层面</li>
-<li>Webpack层面</li>
-<li>Web技术层面</li>
-</ul>
-<blockquote>
-<p>性能优化对于每一个工程师都是必定要面对的问题，相信大部分人平常发现什么点可以优化，就优化什么样的点，没有全面仔细梳理汇总过知识点，导致别人问我们也不能很全面的回答上来，可能当时只能回答想到的一些零碎的点，这样给人的印象就很不好，所以我查阅相关资料，以及自己的一些经验汇总出如下脑图，方面日后别人问起时，我们脑子里面能快速呈现一幅图，然后把关联知识都说出来。</p>
-</blockquote>
-<a id="more"></a>
-<p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/Web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.jpg" alt=""></p>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><blockquote>
-<p>如果你发现有我没有列出来的优化点，欢迎给我留言，我再更新这个导图</p>
-</blockquote>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
-<li><a href="https://juejin.cn/post/6844903913410314247#heading-22">Vue 项目性能优化 — 实践指南（网上最全 / 详细）</a></li>
-<li><a href="https://yanxuewen.cn/2020/12/30/WebBuild01/#more">Web构建优化</a></li>
-</ul>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>性能优化</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-        <tag>WebPack</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Web代码混淆</title>
     <url>/2020/12/29/Web02/</url>
     <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
@@ -1346,66 +1312,25 @@
       </tags>
   </entry>
   <entry>
-    <title>创建通用JS公共模块并发布至npm</title>
-    <url>/2021/03/03/Web04/</url>
+    <title>Web性能优化</title>
+    <url>/2021/02/05/Web03/</url>
     <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>创建：JS公共模块</li>
-<li>打包：使用rollup 打包公共模块</li>
-<li>发布：js公共模块至verdaccio平台</li>
-<li>发布：js公共模块至npm平台</li>
+<li>工具层面</li>
+<li>Vue代码层面</li>
+<li>Webpack层面</li>
+<li>Web技术层面</li>
 </ul>
-<a id="more"></a>
-<hr>
-<h3 id="如何创建JS公共模块"><a href="#如何创建JS公共模块" class="headerlink" title="如何创建JS公共模块"></a>如何创建JS公共模块</h3><blockquote>
-<p>由于代码有点多就不贴代码了，直接去代码仓库看吧  <a href="https://github.com/aa4790139/JSCommonUtils">传输门</a></p>
-</blockquote>
-<hr>
-<h3 id="rollup"><a href="#rollup" class="headerlink" title="rollup"></a>rollup</h3><ul>
-<li>简介：<blockquote>
-<p>Rollup 是一个 JavaScript 模块打包器，可以将小块代码编译成大块复杂的代码，例如 library 或应用程序。</p>
-</blockquote>
-</li>
-<li>使用起因：<blockquote>
-<p>公共相关的js文件想弄成单独的一个模块，方便后续开发使用，而不是不停的copy 和paste，所以就去了解怎么样把js公共相关js 打包成一个模块。</p>
-</blockquote>
-</li>
-<li>安装  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pnpm install -g rollup</span><br></pre></td></tr></table></figure></li>
-<li>创建配置文件  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; rollup.config.js</span><br><span class="line">import json from &#39;rollup-plugin-json&#39;;</span><br><span class="line">import babel from &#39;rollup-plugin-babel&#39;;</span><br><span class="line">import &#123;uglify&#125; from &#39;rollup-plugin-uglify&#39;;</span><br><span class="line">import &#123;version&#125; from &#39;..&#x2F;package.json&#39;;</span><br><span class="line">import multiEntry from &quot;rollup-plugin-multi-entry&quot;;</span><br><span class="line">import &#123;terser&#125; from &quot;rollup-plugin-terser&quot;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    input: &#39;src&#x2F;*.js&#39;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        &#x2F;*输出公共库路径*&#x2F;</span><br><span class="line">        file: &#39;lib&#x2F;index.js&#39;,</span><br><span class="line">        &#x2F;*配置：UMD 通用定义模块，支持前端端跨平台模块化*&#x2F;</span><br><span class="line">        format: &#39;umd&#39;,</span><br><span class="line">        name: &#39;JSCommonUtils&#39;,</span><br><span class="line">        &#x2F;*压缩和混淆js*&#x2F;</span><br><span class="line">        plugins: [terser(), uglify()],</span><br><span class="line">        &#x2F;*JS前缀: 添加库相关信息*&#x2F;</span><br><span class="line">        banner: &#39;&#x2F;* JSCommonUtils version &#39; + version + &#39; *&#x2F;&#39;,</span><br><span class="line">        &#x2F;*JS尾部: 添加个人相关信息*&#x2F;</span><br><span class="line">        footer: &#39;&#x2F;* follow me on github aa4790139 *&#x2F;&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        json(),</span><br><span class="line">        babel(&#123;</span><br><span class="line">            &#x2F;*过滤node_modules编译*&#x2F;</span><br><span class="line">            exclude: &#39;node_modules&#x2F;**&#39;</span><br><span class="line">        &#125;),</span><br><span class="line">        &#x2F;*允许多输入源*&#x2F;</span><br><span class="line">        multiEntry()</span><br><span class="line">    ],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h3 id="verdaccio"><a href="#verdaccio" class="headerlink" title="verdaccio"></a>verdaccio</h3><ul>
-<li>简介： 开源轻量的npm私服包管理平台</li>
-<li>使用起因：<blockquote>
-<p>创建好自己的js公共模块时，我们需要在浏览器和Node.js 环境中测试，有了verdaccio 就非常方便我们测试了。而不是去不停npm本地公共模块搞得非常蛋疼，而且很容易出问题，所以为了简单和方便我们使用verdaccio 搞个私有仓库，方便我们模拟安装使用。</p>
-</blockquote>
-</li>
-<li>安装   <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pnpm install -g verdaccio</span><br></pre></td></tr></table></figure></li>
-<li>启动  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">verdaccio</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="发布至verdaccio平台"><a href="#发布至verdaccio平台" class="headerlink" title="发布至verdaccio平台"></a>发布至verdaccio平台</h3><ul>
-<li>常用命令<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;1. 添加用户</span><br><span class="line">npm adduser --registry http:&#x2F;&#x2F;localhost:4873</span><br><span class="line">&#x2F;&#x2F;2. 发布至私有仓库位置</span><br><span class="line">npm publish --registry http:&#x2F;&#x2F;localhost:4873</span><br><span class="line">&#x2F;&#x2F; 撤回发布刚发布包</span><br><span class="line">npm unpublish --force --registry http:&#x2F;&#x2F;localhost:4873 </span><br><span class="line">&#x2F;&#x2F; 撤回发布的指定包</span><br><span class="line">npm unpublish package_name  --force --registry http:&#x2F;&#x2F;localhost:4873</span><br></pre></td></tr></table></figure></li>
-<li>效果图<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210303144737.png" alt=""></li>
-</ul>
-<h3 id="发布至npm平台"><a href="#发布至npm平台" class="headerlink" title="发布至npm平台"></a>发布至npm平台</h3><ul>
-<li><p>创建.npmignore 文件，过滤掉无需上传的文件和目录</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">node_modules&#x2F;*</span><br><span class="line">src&#x2F;</span><br><span class="line">build&#x2F;</span><br><span class="line">.babelrc</span><br><span class="line">.gitignore</span><br><span class="line">package-lock.json</span><br><span class="line">pnpm-lock.yaml</span><br><span class="line">!node_modules&#x2F;crc32</span><br><span class="line">!node_modules&#x2F;deflate-js</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>提示: .npmignore文件内容，需要忽略的文件和目录写前面，需要排除忽略的文件或目录前加!写后面</p>
+<p>性能优化对于每一个工程师都是必定要面对的问题，相信大部分人平常发现什么点可以优化，就优化什么样的点，没有全面仔细梳理汇总过知识点，导致别人问我们也不能很全面的回答上来，可能当时只能回答想到的一些零碎的点，这样给人的印象就很不好，所以我查阅相关资料，以及自己的一些经验汇总出如下脑图，方面日后别人问起时，我们脑子里面能快速呈现一幅图，然后把关联知识都说出来。</p>
 </blockquote>
-</li>
-<li><p>效果图<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210303144716.png" alt=""></p>
-</li>
-</ul>
-<hr>
-<h4 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h4><ul>
-<li><a href="https://verdaccio.org/docs/en/installation">verdaccio 官网</a></li>
-<li><a href="https://fe.rualc.com/note/npm-verdaccio.html#npm-install">verdaccio 搭建配置</a></li>
-<li><a href="https://www.rollupjs.com/guide/tools">rollup.js 中文文档</a></li>
-<li><a href="https://github.com/Godiswill/blog/issues/6">rollup 官网打包实践</a></li>
-<li><a href="https://chenshenhai.github.io/rollupjs-note/">Rollup.js 实战学习笔记</a></li>
-<li><a href="https://stackoverflow.com/questions/48092647/npmignore-ignore-whole-folder-except-given-file-types">.npmignore: ignore whole folder except given file types</a></li>
+<a id="more"></a>
+<p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/Web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.jpg" alt=""></p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><blockquote>
+<p>如果你发现有我没有列出来的优化点，欢迎给我留言，我再更新这个导图</p>
+</blockquote>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
+<li><a href="https://juejin.cn/post/6844903913410314247#heading-22">Vue 项目性能优化 — 实践指南（网上最全 / 详细）</a></li>
+<li><a href="https://yanxuewen.cn/2020/12/30/WebBuild01/#more">Web构建优化</a></li>
 </ul>
 <hr>
 <blockquote>
@@ -1413,13 +1338,11 @@
 </blockquote>
 ]]></content>
       <categories>
-        <category>模块化</category>
+        <category>性能优化</category>
       </categories>
       <tags>
-        <tag>UMD</tag>
-        <tag>rollup</tag>
-        <tag>verdaccio</tag>
-        <tag>npm</tag>
+        <tag>Vue</tag>
+        <tag>WebPack</tag>
       </tags>
   </entry>
   <entry>
@@ -1498,6 +1421,83 @@
         <tag>DllPlugin</tag>
         <tag>DllReferencePlugin</tag>
         <tag>打包优化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>创建通用JS公共模块并发布至npm</title>
+    <url>/2021/03/03/Web04/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>创建：JS公共模块</li>
+<li>打包：使用rollup 打包公共模块</li>
+<li>发布：js公共模块至verdaccio平台</li>
+<li>发布：js公共模块至npm平台</li>
+</ul>
+<a id="more"></a>
+<hr>
+<h3 id="如何创建JS公共模块"><a href="#如何创建JS公共模块" class="headerlink" title="如何创建JS公共模块"></a>如何创建JS公共模块</h3><blockquote>
+<p>由于代码有点多就不贴代码了，直接去代码仓库看吧  <a href="https://github.com/aa4790139/JSCommonUtils">传输门</a></p>
+</blockquote>
+<hr>
+<h3 id="rollup"><a href="#rollup" class="headerlink" title="rollup"></a>rollup</h3><ul>
+<li>简介：<blockquote>
+<p>Rollup 是一个 JavaScript 模块打包器，可以将小块代码编译成大块复杂的代码，例如 library 或应用程序。</p>
+</blockquote>
+</li>
+<li>使用起因：<blockquote>
+<p>公共相关的js文件想弄成单独的一个模块，方便后续开发使用，而不是不停的copy 和paste，所以就去了解怎么样把js公共相关js 打包成一个模块。</p>
+</blockquote>
+</li>
+<li>安装  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pnpm install -g rollup</span><br></pre></td></tr></table></figure></li>
+<li>创建配置文件  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; rollup.config.js</span><br><span class="line">import json from &#39;rollup-plugin-json&#39;;</span><br><span class="line">import babel from &#39;rollup-plugin-babel&#39;;</span><br><span class="line">import &#123;uglify&#125; from &#39;rollup-plugin-uglify&#39;;</span><br><span class="line">import &#123;version&#125; from &#39;..&#x2F;package.json&#39;;</span><br><span class="line">import multiEntry from &quot;rollup-plugin-multi-entry&quot;;</span><br><span class="line">import &#123;terser&#125; from &quot;rollup-plugin-terser&quot;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    input: &#39;src&#x2F;*.js&#39;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        &#x2F;*输出公共库路径*&#x2F;</span><br><span class="line">        file: &#39;lib&#x2F;index.js&#39;,</span><br><span class="line">        &#x2F;*配置：UMD 通用定义模块，支持前端端跨平台模块化*&#x2F;</span><br><span class="line">        format: &#39;umd&#39;,</span><br><span class="line">        name: &#39;JSCommonUtils&#39;,</span><br><span class="line">        &#x2F;*压缩和混淆js*&#x2F;</span><br><span class="line">        plugins: [terser(), uglify()],</span><br><span class="line">        &#x2F;*JS前缀: 添加库相关信息*&#x2F;</span><br><span class="line">        banner: &#39;&#x2F;* JSCommonUtils version &#39; + version + &#39; *&#x2F;&#39;,</span><br><span class="line">        &#x2F;*JS尾部: 添加个人相关信息*&#x2F;</span><br><span class="line">        footer: &#39;&#x2F;* follow me on github aa4790139 *&#x2F;&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        json(),</span><br><span class="line">        babel(&#123;</span><br><span class="line">            &#x2F;*过滤node_modules编译*&#x2F;</span><br><span class="line">            exclude: &#39;node_modules&#x2F;**&#39;</span><br><span class="line">        &#125;),</span><br><span class="line">        &#x2F;*允许多输入源*&#x2F;</span><br><span class="line">        multiEntry()</span><br><span class="line">    ],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="verdaccio"><a href="#verdaccio" class="headerlink" title="verdaccio"></a>verdaccio</h3><ul>
+<li>简介： 开源轻量的npm私服包管理平台</li>
+<li>使用起因：<blockquote>
+<p>创建好自己的js公共模块时，我们需要在浏览器和Node.js 环境中测试，有了verdaccio 就非常方便我们测试了。而不是去不停npm本地公共模块搞得非常蛋疼，而且很容易出问题，所以为了简单和方便我们使用verdaccio 搞个私有仓库，方便我们模拟安装使用。</p>
+</blockquote>
+</li>
+<li>安装   <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pnpm install -g verdaccio</span><br></pre></td></tr></table></figure></li>
+<li>启动  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">verdaccio</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="发布至verdaccio平台"><a href="#发布至verdaccio平台" class="headerlink" title="发布至verdaccio平台"></a>发布至verdaccio平台</h3><ul>
+<li>常用命令<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;1. 添加用户</span><br><span class="line">npm adduser --registry http:&#x2F;&#x2F;localhost:4873</span><br><span class="line">&#x2F;&#x2F;2. 发布至私有仓库位置</span><br><span class="line">npm publish --registry http:&#x2F;&#x2F;localhost:4873</span><br><span class="line">&#x2F;&#x2F; 撤回发布刚发布包</span><br><span class="line">npm unpublish --force --registry http:&#x2F;&#x2F;localhost:4873 </span><br><span class="line">&#x2F;&#x2F; 撤回发布的指定包</span><br><span class="line">npm unpublish package_name  --force --registry http:&#x2F;&#x2F;localhost:4873</span><br></pre></td></tr></table></figure></li>
+<li>效果图<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210303144737.png" alt=""></li>
+</ul>
+<h3 id="发布至npm平台"><a href="#发布至npm平台" class="headerlink" title="发布至npm平台"></a>发布至npm平台</h3><ul>
+<li><p>创建.npmignore 文件，过滤掉无需上传的文件和目录</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">node_modules&#x2F;*</span><br><span class="line">src&#x2F;</span><br><span class="line">build&#x2F;</span><br><span class="line">.babelrc</span><br><span class="line">.gitignore</span><br><span class="line">package-lock.json</span><br><span class="line">pnpm-lock.yaml</span><br><span class="line">!node_modules&#x2F;crc32</span><br><span class="line">!node_modules&#x2F;deflate-js</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>提示: .npmignore文件内容，需要忽略的文件和目录写前面，需要排除忽略的文件或目录前加!写后面</p>
+</blockquote>
+</li>
+<li><p>效果图<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210303144716.png" alt=""></p>
+</li>
+</ul>
+<hr>
+<h4 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h4><ul>
+<li><a href="https://verdaccio.org/docs/en/installation">verdaccio 官网</a></li>
+<li><a href="https://fe.rualc.com/note/npm-verdaccio.html#npm-install">verdaccio 搭建配置</a></li>
+<li><a href="https://www.rollupjs.com/guide/tools">rollup.js 中文文档</a></li>
+<li><a href="https://github.com/Godiswill/blog/issues/6">rollup 官网打包实践</a></li>
+<li><a href="https://chenshenhai.github.io/rollupjs-note/">Rollup.js 实战学习笔记</a></li>
+<li><a href="https://stackoverflow.com/questions/48092647/npmignore-ignore-whole-folder-except-given-file-types">.npmignore: ignore whole folder except given file types</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>模块化</category>
+      </categories>
+      <tags>
+        <tag>UMD</tag>
+        <tag>rollup</tag>
+        <tag>verdaccio</tag>
+        <tag>npm</tag>
       </tags>
   </entry>
 </search>
