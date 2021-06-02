@@ -476,6 +476,53 @@
       </tags>
   </entry>
   <entry>
+    <title>CORS-跨域实战</title>
+    <url>/2021/01/26/JS03/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>前端需要做什么?</li>
+<li>后端需要怎么配置?</li>
+</ul>
+<blockquote>
+<p>由于浏览器的同源安全策略，作为前端开发你使用API调用接口必定会碰到跨域问题，网上太多的文章，大部分都是讲得不太清楚，让你看得特别懵逼，让你可能会做出以下愚蠢行为：跨域配置写到前端的header中、Nginx 跨域配置到Web节点中、瞎填Access-Control-Allow-Headers中的值等等，会导致怎么配置都不对，令你自己发狂。经验提醒：不要急着瞎改瞎试，看完理论相关文章后再尝试，然后静下心来思考流程是怎么运转的，用这样的方式很快就会配对了。以下是我成功跨域配置，希望给你提供一点帮助。</p>
+</blockquote>
+<a id="more"></a>
+<hr>
+<h3 id="前端需要做什么"><a href="#前端需要做什么" class="headerlink" title="前端需要做什么?"></a>前端需要做什么?</h3><blockquote>
+<p>请求时使用到的header字段梳理并告知后端<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210126175710.png" alt=""></p>
+</blockquote>
+<hr>
+<h3 id="后端需要怎么配置"><a href="#后端需要怎么配置" class="headerlink" title="后端需要怎么配置?"></a>后端需要怎么配置?</h3><h4 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h4><blockquote>
+<p>注意：针对API 服务配置跨域，而不是Web服务</p>
+<ul>
+<li>疑问1：为啥要配置nginx,因为请求需要转换，所以需要配置</li>
+<li>注意：Access-Control-Allow-Origin <em>，必须加在Nginx层，否则请求不会转换至api server 层，所以api server 层的Access-Control-Allow-Origin </em> 可以去掉，否则会报：<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210126211841.png" alt=""></li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">location &#x2F;secret-http-api&#x2F; &#123;</span><br><span class="line">            proxy_pass http:&#x2F;&#x2F;127.0.0.1:3001&#x2F;;</span><br><span class="line">            proxy_read_timeout 240s;</span><br><span class="line">            add_header Access-Control-Allow-Origin *;</span><br><span class="line">            add_header Access-Control-Allow-Methods &#39;GET, POST, OPTIONS&#39;;</span><br><span class="line">            add_header Access-Control-Allow-Headers &#39;Content-Type,Authorization,Content-Encoding,Accept-Encoding&#39;;</span><br><span class="line">            if ($request_method &#x3D; &#39;OPTIONS&#39;) &#123;</span><br><span class="line">                return 204;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="API-Server-Nodejs"><a href="#API-Server-Nodejs" class="headerlink" title="API Server (Nodejs)"></a>API Server (Nodejs)</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">        app.use(function (req, res, next) &#123;</span><br><span class="line">    if (req.path !&#x3D;&#x3D; &#39;&#x2F;&#39; &amp;&amp; !req.path.includes(&#39;.&#39;)) &#123;</span><br><span class="line">        res.set(&#123;</span><br><span class="line">            &#x2F;* 允许后端发送cookie*&#x2F;</span><br><span class="line">            &#x2F;&#x2F; &#39;Access-Control-Allow-Credentials&#39;: true,</span><br><span class="line">            &#x2F;*任意域名都可以访问,或者基于我请求头里面的域*&#x2F;</span><br><span class="line">            &#x2F;&#x2F; &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,</span><br><span class="line">            &#x2F;*允许请求头字段*&#x2F;</span><br><span class="line">            &#x2F;&#x2F; &#39;Access-Control-Allow-Headers&#39;: &#39;Accept,Content-Encoding,Content-Type,Accept-Encoding&#39;,</span><br><span class="line">            &#x2F;*允许请求方式*&#x2F;</span><br><span class="line">            &#39;Access-Control-Allow-Methods&#39;: &#39;POST,GET,OPTIONS&#39;,</span><br><span class="line">            &#x2F;*预检成功后相同请求无需预检的有效时间(单位：秒)*&#x2F;</span><br><span class="line">            &#39;Access-Control-Max-Age&#39;: 3600,</span><br><span class="line">            &#x2F;*默认与允许的文本格式json和编码格式*&#x2F;</span><br><span class="line">            &#39;Content-Type&#39;: &#39;text&#x2F;plain; charset&#x3D;utf-8&#39;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    req.method &#x3D;&#x3D;&#x3D; &#39;OPTIONS&#39; ? res.status(204).end() : next()</span><br><span class="line">&#125;);     </span><br></pre></td></tr></table></figure>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E9%9C%80%E8%A6%81_cors_%EF%BC%9F">跨源资源共享</a></li>
+<li><a href="https://segmentfault.com/a/1190000022512695">Node设置cors,后端解决跨域问题</a></li>
+<li><a href="https://segmentfault.com/a/1190000009971254">cors跨域之简单请求与预检请求（发送请求头带令牌token）</a></li>
+<li><a href="https://blog.yiguochen.com/options-cors.html">OPTIONS 方法在跨域请求（CORS）中的应用</a></li>
+<li><a href="https://segmentfault.com/a/1190000012550346">Nginx配置跨域请求 Access-Control-Allow-Origin *</a></li>
+</ul>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>部署</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Vue.js</tag>
+        <tag>Node.js</tag>
+        <tag>Express</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>对称加密和非对称加密的应用</title>
     <url>/2020/12/27/JS02/</url>
     <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
@@ -593,53 +640,6 @@
         <tag>非对称加密</tag>
         <tag>AES</tag>
         <tag>RSA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CORS-跨域实战</title>
-    <url>/2021/01/26/JS03/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>前端需要做什么?</li>
-<li>后端需要怎么配置?</li>
-</ul>
-<blockquote>
-<p>由于浏览器的同源安全策略，作为前端开发你使用API调用接口必定会碰到跨域问题，网上太多的文章，大部分都是讲得不太清楚，让你看得特别懵逼，让你可能会做出以下愚蠢行为：跨域配置写到前端的header中、Nginx 跨域配置到Web节点中、瞎填Access-Control-Allow-Headers中的值等等，会导致怎么配置都不对，令你自己发狂。经验提醒：不要急着瞎改瞎试，看完理论相关文章后再尝试，然后静下心来思考流程是怎么运转的，用这样的方式很快就会配对了。以下是我成功跨域配置，希望给你提供一点帮助。</p>
-</blockquote>
-<a id="more"></a>
-<hr>
-<h3 id="前端需要做什么"><a href="#前端需要做什么" class="headerlink" title="前端需要做什么?"></a>前端需要做什么?</h3><blockquote>
-<p>请求时使用到的header字段梳理并告知后端<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210126175710.png" alt=""></p>
-</blockquote>
-<hr>
-<h3 id="后端需要怎么配置"><a href="#后端需要怎么配置" class="headerlink" title="后端需要怎么配置?"></a>后端需要怎么配置?</h3><h4 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h4><blockquote>
-<p>注意：针对API 服务配置跨域，而不是Web服务</p>
-<ul>
-<li>疑问1：为啥要配置nginx,因为请求需要转换，所以需要配置</li>
-<li>注意：Access-Control-Allow-Origin <em>，必须加在Nginx层，否则请求不会转换至api server 层，所以api server 层的Access-Control-Allow-Origin </em> 可以去掉，否则会报：<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master//img/20210126211841.png" alt=""></li>
-</ul>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">location &#x2F;secret-http-api&#x2F; &#123;</span><br><span class="line">            proxy_pass http:&#x2F;&#x2F;127.0.0.1:3001&#x2F;;</span><br><span class="line">            proxy_read_timeout 240s;</span><br><span class="line">            add_header Access-Control-Allow-Origin *;</span><br><span class="line">            add_header Access-Control-Allow-Methods &#39;GET, POST, OPTIONS&#39;;</span><br><span class="line">            add_header Access-Control-Allow-Headers &#39;Content-Type,Authorization,Content-Encoding,Accept-Encoding&#39;;</span><br><span class="line">            if ($request_method &#x3D; &#39;OPTIONS&#39;) &#123;</span><br><span class="line">                return 204;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h4 id="API-Server-Nodejs"><a href="#API-Server-Nodejs" class="headerlink" title="API Server (Nodejs)"></a>API Server (Nodejs)</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">        app.use(function (req, res, next) &#123;</span><br><span class="line">    if (req.path !&#x3D;&#x3D; &#39;&#x2F;&#39; &amp;&amp; !req.path.includes(&#39;.&#39;)) &#123;</span><br><span class="line">        res.set(&#123;</span><br><span class="line">            &#x2F;* 允许后端发送cookie*&#x2F;</span><br><span class="line">            &#x2F;&#x2F; &#39;Access-Control-Allow-Credentials&#39;: true,</span><br><span class="line">            &#x2F;*任意域名都可以访问,或者基于我请求头里面的域*&#x2F;</span><br><span class="line">            &#x2F;&#x2F; &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,</span><br><span class="line">            &#x2F;*允许请求头字段*&#x2F;</span><br><span class="line">            &#x2F;&#x2F; &#39;Access-Control-Allow-Headers&#39;: &#39;Accept,Content-Encoding,Content-Type,Accept-Encoding&#39;,</span><br><span class="line">            &#x2F;*允许请求方式*&#x2F;</span><br><span class="line">            &#39;Access-Control-Allow-Methods&#39;: &#39;POST,GET,OPTIONS&#39;,</span><br><span class="line">            &#x2F;*预检成功后相同请求无需预检的有效时间(单位：秒)*&#x2F;</span><br><span class="line">            &#39;Access-Control-Max-Age&#39;: 3600,</span><br><span class="line">            &#x2F;*默认与允许的文本格式json和编码格式*&#x2F;</span><br><span class="line">            &#39;Content-Type&#39;: &#39;text&#x2F;plain; charset&#x3D;utf-8&#39;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    req.method &#x3D;&#x3D;&#x3D; &#39;OPTIONS&#39; ? res.status(204).end() : next()</span><br><span class="line">&#125;);     </span><br></pre></td></tr></table></figure>
-<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E9%9C%80%E8%A6%81_cors_%EF%BC%9F">跨源资源共享</a></li>
-<li><a href="https://segmentfault.com/a/1190000022512695">Node设置cors,后端解决跨域问题</a></li>
-<li><a href="https://segmentfault.com/a/1190000009971254">cors跨域之简单请求与预检请求（发送请求头带令牌token）</a></li>
-<li><a href="https://blog.yiguochen.com/options-cors.html">OPTIONS 方法在跨域请求（CORS）中的应用</a></li>
-<li><a href="https://segmentfault.com/a/1190000012550346">Nginx配置跨域请求 Access-Control-Allow-Origin *</a></li>
-</ul>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>部署</category>
-      </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>Vue.js</tag>
-        <tag>Node.js</tag>
-        <tag>Express</tag>
       </tags>
   </entry>
   <entry>
@@ -823,30 +823,6 @@
       </tags>
   </entry>
   <entry>
-    <title>uni-app 如何引入Iconfont阿里巴巴矢量图标库</title>
-    <url>/2020/11/13/UniApp01/</url>
-    <content><![CDATA[<h3 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下:"></a>步骤如下:</h3><ol>
-<li>下载图标项目, 解压后效果如下<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201113164039.png" alt=""></li>
-<li><p>修改iconfont.css文件</p>
-<p> 修改前格式：</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@font-face &#123;font-family: &quot;iconfont&quot;;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083&#39;); &#x2F;* IE9 *&#x2F;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083#iefix&#39;) format(&#39;embedded-opentype&#39;), &#x2F;* IE6-IE8 *&#x2F;</span><br><span class="line">url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;),</span><br><span class="line">url(&#39;iconfont.woff?t&#x3D;1605254910083&#39;) format(&#39;woff&#39;),</span><br><span class="line">url(&#39;iconfont.ttf?t&#x3D;1605254910083&#39;) format(&#39;truetype&#39;), &#x2F;* chrome, firefox, opera, Safari, Android, iOS 4.2+ *&#x2F;</span><br><span class="line">url(&#39;iconfont.svg?t&#x3D;1605254910083#iconfont&#39;) format(&#39;svg&#39;); &#x2F;* iOS 4.1- *&#x2F;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 修改后格式: </p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &quot;iconfont&quot;;</span><br><span class="line">    src: url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>Copy字体文件iconfont.ttf和样式文件iconfont.css 至UniApp项目static/font目录中</li>
-</ol>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>UniApp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>uniapp 入门实战 02：编译时动态替换配置方案</title>
     <url>/2021/05/13/UniApp02/</url>
     <content><![CDATA[<h2 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h2><ul>
@@ -911,6 +887,7 @@
 <hr>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
 <li><a href="https://ask.dcloud.net.cn/article/35772">富文本/渲染/显示/图文混排方案。rich-text、uparse、v-html的区别</a></li>
+<li><a href="https://uniapp.dcloud.io/component/rich-text">rich-text 文档</a></li>
 </ul>
 <blockquote>
 <p>以上：如发现有问题，欢迎留言指出，我及时更正</p>
@@ -921,6 +898,30 @@
       </categories>
       <tags>
         <tag>rich-text</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>uni-app 如何引入Iconfont阿里巴巴矢量图标库</title>
+    <url>/2020/11/13/UniApp01/</url>
+    <content><![CDATA[<h3 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下:"></a>步骤如下:</h3><ol>
+<li>下载图标项目, 解压后效果如下<br><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/20201113164039.png" alt=""></li>
+<li><p>修改iconfont.css文件</p>
+<p> 修改前格式：</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@font-face &#123;font-family: &quot;iconfont&quot;;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083&#39;); &#x2F;* IE9 *&#x2F;</span><br><span class="line">src: url(&#39;iconfont.eot?t&#x3D;1605254910083#iefix&#39;) format(&#39;embedded-opentype&#39;), &#x2F;* IE6-IE8 *&#x2F;</span><br><span class="line">url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;),</span><br><span class="line">url(&#39;iconfont.woff?t&#x3D;1605254910083&#39;) format(&#39;woff&#39;),</span><br><span class="line">url(&#39;iconfont.ttf?t&#x3D;1605254910083&#39;) format(&#39;truetype&#39;), &#x2F;* chrome, firefox, opera, Safari, Android, iOS 4.2+ *&#x2F;</span><br><span class="line">url(&#39;iconfont.svg?t&#x3D;1605254910083#iconfont&#39;) format(&#39;svg&#39;); &#x2F;* iOS 4.1- *&#x2F;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 修改后格式: </p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &quot;iconfont&quot;;</span><br><span class="line">    src: url(&#39;data:application&#x2F;x-font-woff2;charset&#x3D;utf-8;base64,转换的base64内容&#39;) format(&#39;woff2&#39;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>Copy字体文件iconfont.ttf和样式文件iconfont.css 至UniApp项目static/font目录中</li>
+</ol>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>UniApp</tag>
       </tags>
   </entry>
   <entry>
@@ -1047,55 +1048,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Vue3.x + Vite2.x 入门实战 03：二次封装el-input组件</title>
-    <url>/2021/04/02/Vue3.x_Vite2.x-03/</url>
-    <content><![CDATA[<blockquote>
-<p>element-plus 提供了非常多通用的组件，但要满足特定产品需求效果还是略有差异，所以需再次封装。</p>
-</blockquote>
-<h2 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h2><ul>
-<li>怎么封装成子组件？</li>
-<li>怎么使用封装组件？</li>
-</ul>
-<a id="more"></a>
-<h2 id="效果对比"><a href="#效果对比" class="headerlink" title="效果对比"></a>效果对比</h2><ul>
-<li><p>原始效果</p>
-<p>  <img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210402123602.png" alt=""></p>
-</li>
-<li><p>封装后效果</p>
-<p>  <img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210402123609.png" alt=""></p>
-</li>
-</ul>
-<h2 id="怎么封装成子组件？"><a href="#怎么封装成子组件？" class="headerlink" title="怎么封装成子组件？"></a>怎么封装成子组件？</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;contain&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-input</span></span></span><br><span class="line"><span class="tag">      <span class="attr">class</span>=<span class="string">&quot;input&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:class</span>=<span class="string">&quot;&#123; &#x27;red-border&#x27;: tips.length &gt; 0 &#125;&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">v-model</span>=<span class="string">&quot;value&quot;</span></span></span><br><span class="line"><span class="tag">      @<span class="attr">input</span>=<span class="string">&quot;onInput&quot;</span></span></span><br><span class="line"><span class="tag">      @<span class="attr">change</span>=<span class="string">&quot;$emit(&#x27;onChange&#x27;)&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:placeholder</span>=<span class="string">&quot;placeholder&quot;</span></span></span><br><span class="line"><span class="tag">    &gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">template</span> #<span class="attr">prefix</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">:class</span>=<span class="string">&quot;[&#x27;iconfont&#x27;, iconName]&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-input</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;tips&quot;</span> <span class="attr">v-if</span>=<span class="string">&quot;tips.length &gt; 0&quot;</span>&gt;</span></span><br><span class="line">      &#123;&#123; tips &#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123; defineComponent, reactive, ref, watch, toRefs &#125; <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123; ElInput &#125; <span class="keyword">from</span> <span class="string">&quot;element-plus&quot;</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent(&#123;</span></span><br><span class="line"><span class="javascript">  name: <span class="string">&quot;CustomInput&quot;</span>,</span></span><br><span class="line">  components: &#123; ElInput &#125;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    modelValue: &#123;</span><br><span class="line"><span class="javascript">      type: [<span class="built_in">String</span>, <span class="built_in">Number</span>],</span></span><br><span class="line"><span class="javascript">      <span class="keyword">default</span>: <span class="string">&quot;&quot;</span>,</span></span><br><span class="line">    &#125;,</span><br><span class="line"><span class="javascript">    placeholder: &#123; <span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">default</span>: <span class="string">&quot;&quot;</span> &#125;,</span></span><br><span class="line"><span class="javascript">    oninput: &#123; <span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">default</span>: <span class="string">&quot;&quot;</span> &#125;,</span></span><br><span class="line"><span class="javascript">    iconName: &#123; <span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">default</span>: <span class="string">&quot;&quot;</span> &#125;,</span></span><br><span class="line"><span class="javascript">    tips: &#123; <span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">default</span>: <span class="string">&quot;&quot;</span> &#125;,</span></span><br><span class="line">  &#125;,</span><br><span class="line"><span class="javascript">  emits: [<span class="string">&quot;input&quot;</span>, <span class="string">&quot;update:modelValue&quot;</span>, <span class="string">&quot;onChange&quot;</span>],</span></span><br><span class="line">  setup(props, context) &#123;</span><br><span class="line"><span class="javascript">    <span class="comment">// 绑定控件的值</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> value = ref(<span class="string">&quot;&quot;</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="comment">// 监听属性，给 value 赋值</span></span></span><br><span class="line">    watch(</span><br><span class="line">      () =&gt; props.modelValue,</span><br><span class="line">      (v1, v2) =&gt; &#123;</span><br><span class="line">        value.value = v1;</span><br><span class="line">      &#125;</span><br><span class="line">    );</span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line">      value,</span><br><span class="line">      props,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    getIconName() &#123;</span><br><span class="line"><span class="javascript">      <span class="keyword">return</span> <span class="string">&quot;iconfont &quot;</span> + <span class="built_in">this</span>.iconName;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    /** 向父组件提交事件更新数据 */</span><br><span class="line">    onInput(e) &#123;</span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.$emit(<span class="string">&quot;update:modelValue&quot;</span>, e);</span></span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.$emit(<span class="string">&quot;input&quot;</span>, e);</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">&quot;scss&quot;</span>&gt;</span></span><br><span class="line"><span class="css"><span class="selector-class">.input</span> &#123;</span></span><br><span class="line">  height: 50px;</span><br><span class="line">  text-align: left;</span><br><span class="line"></span><br><span class="line"><span class="css">  <span class="selector-class">.iconfont</span> &#123;</span></span><br><span class="line">    font-size: 22px;</span><br><span class="line"><span class="css">    <span class="selector-tag">color</span>: <span class="selector-id">#127ffc</span>;</span></span><br><span class="line">    display: inline-block;</span><br><span class="line">    margin-right: 14px;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="css"><span class="selector-class">.red-border</span> <span class="selector-class">.el-input__inner</span> &#123;</span></span><br><span class="line"><span class="css">  <span class="selector-tag">border</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#ff6666</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="css"><span class="selector-class">.tips</span> &#123;</span></span><br><span class="line">  font-size: 14px;</span><br><span class="line"><span class="css">  <span class="selector-tag">color</span>: <span class="selector-id">#ff6666</span>;</span></span><br><span class="line">  text-align: left;</span><br><span class="line">  margin: 5px auto 20px;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="怎么使用封装组件？"><a href="#怎么使用封装组件？" class="headerlink" title="怎么使用封装组件？"></a>怎么使用封装组件？</h2><ul>
-<li><p>引入</p>
-  <figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> CustomInput <span class="keyword">from</span> <span class="string">&quot;/@/components/CustomInput/index.vue&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent(&#123;</span><br><span class="line">  components: &#123; CustomInput &#125;,</span><br><span class="line">	...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用</p>
-  <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">CustomInput</span></span></span><br><span class="line"><span class="tag">            <span class="attr">class</span>=<span class="string">&quot;input-tel&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">v-model</span>=<span class="string">&quot;tel&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">placeholder</span>=<span class="string">&quot;请输入手机号码&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">iconName</span>=<span class="string">&quot;iconshoujihaoma&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">oninput</span>=<span class="string">&quot;`(value = value.replace(/[^\d]/g, &#x27;&#x27;))`&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">:tips</span>=<span class="string">&quot;telTips&quot;</span></span></span><br><span class="line"><span class="tag">            @<span class="attr">onChange</span>=<span class="string">&quot;telTips = &#x27;&#x27;&quot;</span></span></span><br><span class="line"><span class="tag">          &gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">CustomInput</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
-<li>子组件需watch值变化，然后通过emit 事件上抛值，否则子组件value值变化，上层组件还是原来的值</li>
-<li>更改子组件默认样式，需要将style 标签中的scoped 去掉，否则会导致怎么也无法覆盖子组件样式情况</li>
-</ol>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://javascript.plainenglish.io/vue-3-v-model-and-components-de2d39527f80">Vue 3 - v-model and Components</a></li>
-<li><a href="https://www.jianshu.com/p/a3c3ba59f812">Vue3组件（三）把别人的组件拿过来再封装一下</a></li>
-<li><a href="https://stackoverflow.com/questions/41133833/how-to-override-scoped-styles-in-vue-components">How to override scoped styles in Vue components?</a></li>
-</ul>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Vue3.x + Vite2.x 入门实战</category>
-      </categories>
-      <tags>
-        <tag>el-input 封装</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Vue3.x + Vite2.x 入门实战 04：不管怎么设置z-index值，元素层级仍然不对</title>
     <url>/2021/04/09/Vue3.x_Vite2.x-04/</url>
     <content><![CDATA[<blockquote>
@@ -1179,6 +1131,55 @@
       <tags>
         <tag>z-index</tag>
         <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue3.x + Vite2.x 入门实战 03：二次封装el-input组件</title>
+    <url>/2021/04/02/Vue3.x_Vite2.x-03/</url>
+    <content><![CDATA[<blockquote>
+<p>element-plus 提供了非常多通用的组件，但要满足特定产品需求效果还是略有差异，所以需再次封装。</p>
+</blockquote>
+<h2 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h2><ul>
+<li>怎么封装成子组件？</li>
+<li>怎么使用封装组件？</li>
+</ul>
+<a id="more"></a>
+<h2 id="效果对比"><a href="#效果对比" class="headerlink" title="效果对比"></a>效果对比</h2><ul>
+<li><p>原始效果</p>
+<p>  <img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210402123602.png" alt=""></p>
+</li>
+<li><p>封装后效果</p>
+<p>  <img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210402123609.png" alt=""></p>
+</li>
+</ul>
+<h2 id="怎么封装成子组件？"><a href="#怎么封装成子组件？" class="headerlink" title="怎么封装成子组件？"></a>怎么封装成子组件？</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;contain&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-input</span></span></span><br><span class="line"><span class="tag">      <span class="attr">class</span>=<span class="string">&quot;input&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:class</span>=<span class="string">&quot;&#123; &#x27;red-border&#x27;: tips.length &gt; 0 &#125;&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">v-model</span>=<span class="string">&quot;value&quot;</span></span></span><br><span class="line"><span class="tag">      @<span class="attr">input</span>=<span class="string">&quot;onInput&quot;</span></span></span><br><span class="line"><span class="tag">      @<span class="attr">change</span>=<span class="string">&quot;$emit(&#x27;onChange&#x27;)&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:placeholder</span>=<span class="string">&quot;placeholder&quot;</span></span></span><br><span class="line"><span class="tag">    &gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">template</span> #<span class="attr">prefix</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">:class</span>=<span class="string">&quot;[&#x27;iconfont&#x27;, iconName]&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-input</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;tips&quot;</span> <span class="attr">v-if</span>=<span class="string">&quot;tips.length &gt; 0&quot;</span>&gt;</span></span><br><span class="line">      &#123;&#123; tips &#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123; defineComponent, reactive, ref, watch, toRefs &#125; <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123; ElInput &#125; <span class="keyword">from</span> <span class="string">&quot;element-plus&quot;</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent(&#123;</span></span><br><span class="line"><span class="javascript">  name: <span class="string">&quot;CustomInput&quot;</span>,</span></span><br><span class="line">  components: &#123; ElInput &#125;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    modelValue: &#123;</span><br><span class="line"><span class="javascript">      type: [<span class="built_in">String</span>, <span class="built_in">Number</span>],</span></span><br><span class="line"><span class="javascript">      <span class="keyword">default</span>: <span class="string">&quot;&quot;</span>,</span></span><br><span class="line">    &#125;,</span><br><span class="line"><span class="javascript">    placeholder: &#123; <span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">default</span>: <span class="string">&quot;&quot;</span> &#125;,</span></span><br><span class="line"><span class="javascript">    oninput: &#123; <span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">default</span>: <span class="string">&quot;&quot;</span> &#125;,</span></span><br><span class="line"><span class="javascript">    iconName: &#123; <span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">default</span>: <span class="string">&quot;&quot;</span> &#125;,</span></span><br><span class="line"><span class="javascript">    tips: &#123; <span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">default</span>: <span class="string">&quot;&quot;</span> &#125;,</span></span><br><span class="line">  &#125;,</span><br><span class="line"><span class="javascript">  emits: [<span class="string">&quot;input&quot;</span>, <span class="string">&quot;update:modelValue&quot;</span>, <span class="string">&quot;onChange&quot;</span>],</span></span><br><span class="line">  setup(props, context) &#123;</span><br><span class="line"><span class="javascript">    <span class="comment">// 绑定控件的值</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> value = ref(<span class="string">&quot;&quot;</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="comment">// 监听属性，给 value 赋值</span></span></span><br><span class="line">    watch(</span><br><span class="line">      () =&gt; props.modelValue,</span><br><span class="line">      (v1, v2) =&gt; &#123;</span><br><span class="line">        value.value = v1;</span><br><span class="line">      &#125;</span><br><span class="line">    );</span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line">      value,</span><br><span class="line">      props,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    getIconName() &#123;</span><br><span class="line"><span class="javascript">      <span class="keyword">return</span> <span class="string">&quot;iconfont &quot;</span> + <span class="built_in">this</span>.iconName;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    /** 向父组件提交事件更新数据 */</span><br><span class="line">    onInput(e) &#123;</span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.$emit(<span class="string">&quot;update:modelValue&quot;</span>, e);</span></span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.$emit(<span class="string">&quot;input&quot;</span>, e);</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">&quot;scss&quot;</span>&gt;</span></span><br><span class="line"><span class="css"><span class="selector-class">.input</span> &#123;</span></span><br><span class="line">  height: 50px;</span><br><span class="line">  text-align: left;</span><br><span class="line"></span><br><span class="line"><span class="css">  <span class="selector-class">.iconfont</span> &#123;</span></span><br><span class="line">    font-size: 22px;</span><br><span class="line"><span class="css">    <span class="selector-tag">color</span>: <span class="selector-id">#127ffc</span>;</span></span><br><span class="line">    display: inline-block;</span><br><span class="line">    margin-right: 14px;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="css"><span class="selector-class">.red-border</span> <span class="selector-class">.el-input__inner</span> &#123;</span></span><br><span class="line"><span class="css">  <span class="selector-tag">border</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#ff6666</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="css"><span class="selector-class">.tips</span> &#123;</span></span><br><span class="line">  font-size: 14px;</span><br><span class="line"><span class="css">  <span class="selector-tag">color</span>: <span class="selector-id">#ff6666</span>;</span></span><br><span class="line">  text-align: left;</span><br><span class="line">  margin: 5px auto 20px;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="怎么使用封装组件？"><a href="#怎么使用封装组件？" class="headerlink" title="怎么使用封装组件？"></a>怎么使用封装组件？</h2><ul>
+<li><p>引入</p>
+  <figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> CustomInput <span class="keyword">from</span> <span class="string">&quot;/@/components/CustomInput/index.vue&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent(&#123;</span><br><span class="line">  components: &#123; CustomInput &#125;,</span><br><span class="line">	...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用</p>
+  <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">CustomInput</span></span></span><br><span class="line"><span class="tag">            <span class="attr">class</span>=<span class="string">&quot;input-tel&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">v-model</span>=<span class="string">&quot;tel&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">placeholder</span>=<span class="string">&quot;请输入手机号码&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">iconName</span>=<span class="string">&quot;iconshoujihaoma&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">oninput</span>=<span class="string">&quot;`(value = value.replace(/[^\d]/g, &#x27;&#x27;))`&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">:tips</span>=<span class="string">&quot;telTips&quot;</span></span></span><br><span class="line"><span class="tag">            @<span class="attr">onChange</span>=<span class="string">&quot;telTips = &#x27;&#x27;&quot;</span></span></span><br><span class="line"><span class="tag">          &gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">CustomInput</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>子组件需watch值变化，然后通过emit 事件上抛值，否则子组件value值变化，上层组件还是原来的值</li>
+<li>更改子组件默认样式，需要将style 标签中的scoped 去掉，否则会导致怎么也无法覆盖子组件样式情况</li>
+</ol>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="https://javascript.plainenglish.io/vue-3-v-model-and-components-de2d39527f80">Vue 3 - v-model and Components</a></li>
+<li><a href="https://www.jianshu.com/p/a3c3ba59f812">Vue3组件（三）把别人的组件拿过来再封装一下</a></li>
+<li><a href="https://stackoverflow.com/questions/41133833/how-to-override-scoped-styles-in-vue-components">How to override scoped styles in Vue components?</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Vue3.x + Vite2.x 入门实战</category>
+      </categories>
+      <tags>
+        <tag>el-input 封装</tag>
       </tags>
   </entry>
   <entry>
@@ -1301,6 +1302,40 @@
       </tags>
   </entry>
   <entry>
+    <title>Web性能优化</title>
+    <url>/2021/02/05/Web03/</url>
+    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
+<li>工具层面</li>
+<li>Vue代码层面</li>
+<li>Webpack层面</li>
+<li>Web技术层面</li>
+</ul>
+<blockquote>
+<p>性能优化对于每一个工程师都是必定要面对的问题，相信大部分人平常发现什么点可以优化，就优化什么样的点，没有全面仔细梳理汇总过知识点，导致别人问我们也不能很全面的回答上来，可能当时只能回答想到的一些零碎的点，这样给人的印象就很不好，所以我查阅相关资料，以及自己的一些经验汇总出如下脑图，方面日后别人问起时，我们脑子里面能快速呈现一幅图，然后把关联知识都说出来。</p>
+</blockquote>
+<a id="more"></a>
+<p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/Web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.jpg" alt=""></p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><blockquote>
+<p>如果你发现有我没有列出来的优化点，欢迎给我留言，我再更新这个导图</p>
+</blockquote>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
+<li><a href="https://juejin.cn/post/6844903913410314247#heading-22">Vue 项目性能优化 — 实践指南（网上最全 / 详细）</a></li>
+<li><a href="https://yanxuewen.cn/2020/12/30/WebBuild01/#more">Web构建优化</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>性能优化</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+        <tag>WebPack</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Web代码混淆</title>
     <url>/2020/12/29/Web02/</url>
     <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
@@ -1348,40 +1383,6 @@
       <tags>
         <tag>混淆</tag>
         <tag>UglifyJS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Web性能优化</title>
-    <url>/2021/02/05/Web03/</url>
-    <content><![CDATA[<h3 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h3><ul>
-<li>工具层面</li>
-<li>Vue代码层面</li>
-<li>Webpack层面</li>
-<li>Web技术层面</li>
-</ul>
-<blockquote>
-<p>性能优化对于每一个工程师都是必定要面对的问题，相信大部分人平常发现什么点可以优化，就优化什么样的点，没有全面仔细梳理汇总过知识点，导致别人问我们也不能很全面的回答上来，可能当时只能回答想到的一些零碎的点，这样给人的印象就很不好，所以我查阅相关资料，以及自己的一些经验汇总出如下脑图，方面日后别人问起时，我们脑子里面能快速呈现一幅图，然后把关联知识都说出来。</p>
-</blockquote>
-<a id="more"></a>
-<p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/Web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.jpg" alt=""></p>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><blockquote>
-<p>如果你发现有我没有列出来的优化点，欢迎给我留言，我再更新这个导图</p>
-</blockquote>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
-<li><a href="https://juejin.cn/post/6844903913410314247#heading-22">Vue 项目性能优化 — 实践指南（网上最全 / 详细）</a></li>
-<li><a href="https://yanxuewen.cn/2020/12/30/WebBuild01/#more">Web构建优化</a></li>
-</ul>
-<hr>
-<blockquote>
-<p>以上: 如发现有问题，欢迎留言指出，我及时更正</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>性能优化</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-        <tag>WebPack</tag>
       </tags>
   </entry>
   <entry>
