@@ -6,7 +6,7 @@
   <link href="https://yanxuewen.cn/atom.xml" rel="self"/>
   
   <link href="https://yanxuewen.cn/"/>
-  <updated>2021-05-14T02:53:20.129Z</updated>
+  <updated>2021-06-02T06:50:48.341Z</updated>
   <id>https://yanxuewen.cn/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>uniapp 入门实战 03：富文本显示</title>
+    <link href="https://yanxuewen.cn/2021/06/02/UniApp03/"/>
+    <id>https://yanxuewen.cn/2021/06/02/UniApp03/</id>
+    <published>2021-06-02T06:47:57.731Z</published>
+    <updated>2021-06-02T06:50:48.341Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="概要内容"><a href="#概要内容" class="headerlink" title="概要内容"></a>概要内容</h2><ul><li><p>需求效果</p><p>  <img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210602132458.png" alt="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210602132458.png"></p></li><li><p>解决方案一：利用rich-text的v-html属性</p></li><li>解决方案二：利用rich-text的nodes参数</li></ul><h2 id="实现效果："><a href="#实现效果：" class="headerlink" title="实现效果："></a>实现效果：</h2><p><img data-src="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210602132458.png" alt="https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210602132458.png"></p><p>这行文字包含3部分，前：“您当前有”，中：“3”，后：“个客户”，最直接的方案就是用三个view标签搞定。我想万一有很多端需要特殊突显显示怎么办法？这种直接办法就不可取了，所以官网了解下富文本组件。</p><hr><a id="more"></a><h2 id="方案一：利用rich-text的v-html属性"><a href="#方案一：利用rich-text的v-html属性" class="headerlink" title="方案一：利用rich-text的v-html属性"></a>方案一：利用rich-text的v-html属性</h2><hr><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">rich-text</span> <span class="attr">v-html</span>=<span class="string">&quot;text&quot;</span> <span class="attr">:style</span>=<span class="string">&quot;&#123;color: &#x27;#818181&#x27;&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">rich-text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">data()&#123;</span><br><span class="line"><span class="keyword">return</span> &#123;</span><br><span class="line">text:<span class="string">`您当前有&lt;span style=&quot;color:#E2434A;font-weight:bold;&quot;&gt; 3 &lt;/span&gt;个客户`</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="方案二：利用rich-text的nodes参数"><a href="#方案二：利用rich-text的nodes参数" class="headerlink" title="方案二：利用rich-text的nodes参数"></a>方案二：利用rich-text的nodes参数</h2><hr><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">rich-text</span> <span class="attr">:nodes</span>=<span class="string">&quot;nodes&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">rich-text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">data() &#123;</span><br><span class="line"><span class="keyword">return</span> &#123;</span><br><span class="line">nodes: [</span><br><span class="line">&#123;</span><br><span class="line">name: <span class="string">&#x27;&#x27;</span></span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">name: <span class="string">&#x27;span&#x27;</span>,</span><br><span class="line">attrs: &#123;</span><br><span class="line">style: <span class="string">&#x27;font-size: 12px; color: #818181;&#x27;</span></span><br><span class="line">&#125;,</span><br><span class="line">children: [</span><br><span class="line">&#123;</span><br><span class="line">type: <span class="string">&#x27;text&#x27;</span>,</span><br><span class="line">text: <span class="string">&#x27;您当前有&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">name: <span class="string">&#x27;span&#x27;</span>,</span><br><span class="line">attrs: &#123;</span><br><span class="line">style: <span class="string">&#x27;font-size: 12px; color: red;&#x27;</span></span><br><span class="line">&#125;,</span><br><span class="line">children: [</span><br><span class="line">&#123;</span><br><span class="line">type: <span class="string">&#x27;text&#x27;</span>,</span><br><span class="line">text: <span class="string">&#x27;3&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">name: <span class="string">&#x27;span&#x27;</span>,</span><br><span class="line">attrs: &#123;</span><br><span class="line">style: <span class="string">&#x27;font-size: 12px; color: #818181;&#x27;</span></span><br><span class="line">&#125;,</span><br><span class="line">children: [</span><br><span class="line">&#123;</span><br><span class="line">type: <span class="string">&#x27;text&#x27;</span>,</span><br><span class="line">text: <span class="string">&#x27;个客户&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul><li>使用rich-text外面需套一层view，否则会出现不显示或不生效问题</li></ul><hr><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul><li><a href="https://ask.dcloud.net.cn/article/35772">富文本/渲染/显示/图文混排方案。rich-text、uparse、v-html的区别</a></li></ul><blockquote><p>以上：如发现有问题，欢迎留言指出，我及时更正</p></blockquote>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;概要内容&quot;&gt;&lt;a href=&quot;#概要内容&quot; class=&quot;headerlink&quot; title=&quot;概要内容&quot;&gt;&lt;/a&gt;概要内容&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;需求效果&lt;/p&gt;
+&lt;p&gt;  &lt;img data-src=&quot;https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210602132458.png&quot; alt=&quot;https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210602132458.png&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;解决方案一：利用rich-text的v-html属性&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;解决方案二：利用rich-text的nodes参数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;实现效果：&quot;&gt;&lt;a href=&quot;#实现效果：&quot; class=&quot;headerlink&quot; title=&quot;实现效果：&quot;&gt;&lt;/a&gt;实现效果：&lt;/h2&gt;&lt;p&gt;&lt;img data-src=&quot;https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210602132458.png&quot; alt=&quot;https://cdn.jsdelivr.net/gh/yxw007/BlogPicBed@master//img/20210602132458.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这行文字包含3部分，前：“您当前有”，中：“3”，后：“个客户”，最直接的方案就是用三个view标签搞定。我想万一有很多端需要特殊突显显示怎么办法？这种直接办法就不可取了，所以官网了解下富文本组件。&lt;/p&gt;
+&lt;hr&gt;</summary>
+    
+    
+    
+    <category term="uniapp 入门实战" scheme="https://yanxuewen.cn/categories/uniapp-%E5%85%A5%E9%97%A8%E5%AE%9E%E6%88%98/"/>
+    
+    
+    <category term="rich-text" scheme="https://yanxuewen.cn/tags/rich-text/"/>
+    
+  </entry>
   
   <entry>
     <title>uniapp 入门实战 02：编译时动态替换配置方案</title>
@@ -596,42 +627,6 @@
     <category term="Python" scheme="https://yanxuewen.cn/tags/Python/"/>
     
     <category term="Selenium" scheme="https://yanxuewen.cn/tags/Selenium/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>结束《皇室战争》之旅</title>
-    <link href="https://yanxuewen.cn/2020/11/02/Game01/"/>
-    <id>https://yanxuewen.cn/2020/11/02/Game01/</id>
-    <published>2020-11-02T06:15:24.223Z</published>
-    <updated>2020-12-17T13:09:10.445Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="一款又爱又恨的游戏"><a href="#一款又爱又恨的游戏" class="headerlink" title="一款又爱又恨的游戏"></a>一款又爱又恨的游戏</h3><ul><li>爱：<ol><li>这游戏UI和画质都做得非常精美，原画的细节做得非常逼真</li><li>3分钟一场战斗，游戏时间设置的完美</li><li>操作简单，容易上手</li></ol></li><li>恨:<ol><li>3分钟一场战斗，导致你蹲个坑都可以玩几局，有时输能让你蹲出半个多小时，最后起来酸的不行</li><li>部落战匹配规则做得不好，分段6K左右自己卡等只有10级，结果给你匹配满级的来对付你，你技术再好也是以卵击石</li><li>商店不断推出活动引诱你充值，看到你要啥卡牌、是没有金币还是没有宝石，就给你推对应的活动</li><li>影响与家人的关系，有时候连输好几把，家人跟我聊天，我说话很冲，导致跟对方吵起来</li><li>不间断活动、每天对战，让你控制不住不玩，不停想上分，影响工作和学习</li></ol></li></ul><a id="more"></a><h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><ol><li>对方出的每张卡都记住，等全部8张卡出完，再想怎么用当前的卡组对付它</li><li>未知对方卡组，尽量使用小费过牌，等待摸清对方卡组再出手</li><li>排兵布阵不能全部放到一块，要分散放，不然被对面一个法术全部打中</li></ol><h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><blockquote><p>要升级的卡组已升满，没有玩下去的欲望了，本想这个赛季冲个6500+，结果没多少时间打，中午打了一个多小时，结果卡住6150上不去了，那就让他停留在6150结束这段旅程。接下来开启新的篇章，好好学习、好好工作，这样才能有好的未来</p></blockquote><p><img data-src="https://cdn.jsdelivr.net/gh/aa4790139/BlogPicBed@master/img/222.png" alt=""></p>]]></content>
-    
-    
-    <summary type="html">&lt;h3 id=&quot;一款又爱又恨的游戏&quot;&gt;&lt;a href=&quot;#一款又爱又恨的游戏&quot; class=&quot;headerlink&quot; title=&quot;一款又爱又恨的游戏&quot;&gt;&lt;/a&gt;一款又爱又恨的游戏&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;爱：&lt;ol&gt;
-&lt;li&gt;这游戏UI和画质都做得非常精美，原画的细节做得非常逼真&lt;/li&gt;
-&lt;li&gt;3分钟一场战斗，游戏时间设置的完美&lt;/li&gt;
-&lt;li&gt;操作简单，容易上手&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;恨:&lt;ol&gt;
-&lt;li&gt;3分钟一场战斗，导致你蹲个坑都可以玩几局，有时输能让你蹲出半个多小时，最后起来酸的不行&lt;/li&gt;
-&lt;li&gt;部落战匹配规则做得不好，分段6K左右自己卡等只有10级，结果给你匹配满级的来对付你，你技术再好也是以卵击石&lt;/li&gt;
-&lt;li&gt;商店不断推出活动引诱你充值，看到你要啥卡牌、是没有金币还是没有宝石，就给你推对应的活动&lt;/li&gt;
-&lt;li&gt;影响与家人的关系，有时候连输好几把，家人跟我聊天，我说话很冲，导致跟对方吵起来&lt;/li&gt;
-&lt;li&gt;不间断活动、每天对战，让你控制不住不玩，不停想上分，影响工作和学习&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</summary>
-    
-    
-    
-    <category term="游戏" scheme="https://yanxuewen.cn/categories/%E6%B8%B8%E6%88%8F/"/>
-    
-    
-    <category term="皇室战争" scheme="https://yanxuewen.cn/tags/%E7%9A%87%E5%AE%A4%E6%88%98%E4%BA%89/"/>
     
   </entry>
   
